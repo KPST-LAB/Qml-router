@@ -134,7 +134,7 @@ reported in the paper.
 
 ### KV restoration
 
-All rows use Llama-3.2-3B-Instruct; every reconnect answer is checked against a value planted
+All rows use Llama-3.2-3B-Instruct unless the row names another model; every reconnect answer is checked against a value planted
 in its own history. Baseline = the same engine without qml-router.
 
 <p align="center">
@@ -187,6 +187,7 @@ Per-turn p50 latency at turn 500 (log scale); bar labels give the evicted facts 
 | vLLM, RTX 4090 | 0/46 | 46/46 | 3.95 -> 1.49 |
 | SGLang, RTX 4090 | 0/46 | 40/46 | 4.23 -> 2.53 |
 | llama.cpp, Jetson AGX Orin | 0/46 | 42/44 | 0.06 -> 0.13 |
+| llama.cpp, RTX 4090, Qwen3-4B | 0/46 | 46/48 | 0.32 -> 0.44 |
 
 On vLLM and SGLang the baseline drops the history that passed the window and stays faster;
 qml-router keeps the history and answers the questions about it.
