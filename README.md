@@ -20,7 +20,7 @@ This repository will hold the source code and the artifact of the paper:
 > Durable, Engine-Agnostic Sessions," *IEEE Access*, 2026 (accepted; manuscript ID
 > Access-2026-45930).
 
-**Key points of the paper**
+**Key points**
 
 - Sessions survive process restarts, the storage lookup has no cross-session content
   matching step, and history trimmed from the context window is archived for retrieval.
@@ -32,16 +32,16 @@ This repository will hold the source code and the artifact of the paper:
 The name "qml" stands for query-based machine learning. It is unrelated to the Qt QML
 language and to quantum machine learning.
 
-## Architecture (Fig. 3 of the paper)
+## Architecture
 
 <p align="center">
-  <img src="docs/images/fig3-architecture.png" width="760" alt="Fig. 3: llama.cpp, vLLM and SGLang with qml-router attached, saving to and restoring from the qml-router persistence tier (SQLite sessions and token log, LMDB KV payload)">
+  <img src="docs/images/fig3-architecture.png" width="760" alt="llama.cpp, vLLM and SGLang with qml-router attached, saving to and restoring from the qml-router persistence tier (SQLite sessions and token log, LMDB KV payload)">
 </p>
 
-**Fig. 3.** The system after qml-router is attached: the reuse scope extends beyond GPU memory
-and engine boundaries. The measured value of every arrow is reported in Section V of the paper.
+The system after qml-router is attached: the reuse scope extends beyond GPU memory and engine
+boundaries.
 
-## Comparison with persistent-KV systems (Table 2 of the paper)
+## Comparison with persistent-KV systems
 
 ✓ = supported, — = not provided, N/R = the cited work does not report the property (not taken
 as evidence of its absence). Cells reflect the cited publications and, for LMCache, its 2026
@@ -118,7 +118,7 @@ that shares the tokenizer by replaying it.
 Storage is embedded in the serving process: SQLite for sessions, token log, archive and
 control commands; LMDB for KV payloads. There is no separate service process.
 
-## Results reported in the paper
+## Results
 
 Measured with the engine's restore path modified as described in the paper.
 
@@ -132,7 +132,7 @@ Measured with the engine's restore path modified as described in the paper.
 Regimes where recomputation is as fast or faster (short histories on a fast GPU) are
 reported in the paper.
 
-### Section V-A: KV restoration (results of the paper)
+### KV restoration
 
 All rows use Llama-3.2-3B-Instruct; every reconnect answer is checked against a value planted
 in its own history. Baseline = the same engine without qml-router.
