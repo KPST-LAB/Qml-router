@@ -137,6 +137,15 @@ reported in the paper.
 All rows use Llama-3.2-3B-Instruct; every reconnect answer is checked against a value planted
 in its own history. Baseline = the same engine without qml-router.
 
+<p align="center">
+  <img src="docs/images/fig1ab-reconnect-density.png" height="260" alt="Reconnect latency and short-request throughput as N users reconnect">
+  <img src="docs/images/fig1c-reconnect-vs-history.png" height="260" alt="Single-user reconnect latency versus history length">
+</p>
+
+Left: reconnect latency and short-request throughput as N users reconnect at once (latency over
+passing answers only: 29/30 qml-router, 30/30 baseline; throughput not answer-checked). Right:
+one user's reconnect latency versus history length; restoration stays near-flat.
+
 **Reconnect latency (llama.cpp)**
 
 | Condition | Baseline | qml-router | Ratio |
@@ -165,6 +174,12 @@ in its own history. Baseline = the same engine without qml-router.
 | SGLang | +47 MiB | 166 -> 185 ms (+19) |
 
 **500-turn session past a 32K-token window: facts answered at turn 500**
+
+<p align="center">
+  <img src="docs/images/overflow-latency.png" width="560" alt="Per-turn p50 latency at turn 500, log scale, baseline and qml-router on five engine and device pairs, with the evicted facts answered">
+</p>
+
+Per-turn p50 latency at turn 500 (log scale); bar labels give the evicted facts answered.
 
 | Engine and device | Baseline | qml-router | Throughput (turns/s), baseline -> qml-router |
 |---|---|---|---|
