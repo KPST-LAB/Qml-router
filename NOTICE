@@ -1,0 +1,34 @@
+qml-router
+Copyright (c) 2026 Korea Platform Service Technology Co., Inc.
+
+This product includes software developed by Korea Platform Service Technology Co., Inc.
+It is dual-licensed: under the GNU Affero General Public License, version 3 only
+(AGPL-3.0-only; see LICENSE), or under a separate commercial license (see
+LICENSE-COMMERCIAL.md).
+
+Third-party software
+
+1. llama.cpp (https://github.com/ggml-org/llama.cpp)
+   Copyright (c) 2023-2026 The ggml authors. MIT License.
+   patches/llama.cpp-qml-session.patch modifies llama.cpp source files at upstream
+   commit 0d47ea742 (build b10141). The original llama.cpp code in those files remains
+   under the MIT license of llama.cpp (copyright notice above). The modifications that
+   the patch adds (and hooks/llama.cpp/server-context-resident-dedup.patch) are
+   copyright Korea Platform Service Technology Co., Inc. and are licensed like the rest
+   of this repository (AGPL-3.0-only or the commercial license). llama.cpp itself is not
+   redistributed in this repository; scripts/setup_llama_cpp.sh downloads it.
+
+2. vLLM (https://github.com/vllm-project/vllm), Apache License 2.0
+   SGLang (https://github.com/sgl-project/sglang), Apache License 2.0
+   LMCache (https://github.com/LMCache/LMCache), Apache License 2.0
+   These engines are not redistributed. hooks/vllm and hooks/sglang implement their
+   public extension interfaces (KVConnector, HiCacheStorage).
+
+3. SQLite (public domain) and LMDB (OpenLDAP Public License) are linked as system
+   libraries and are not redistributed.
+
+Datasets and models
+
+LongMemEval, the Llama models and the Qwen3 models are not redistributed. The files in
+artifact/ contain measurement outputs only; consult each dataset and model license
+before reusing inputs derived from them.
