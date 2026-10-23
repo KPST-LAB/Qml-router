@@ -138,8 +138,8 @@ All rows use Llama-3.2-3B-Instruct unless the row names another model; every rec
 in its own history. Baseline = the same engine without qml-router.
 
 <p align="center">
-  <img src="docs/images/fig1ab-reconnect-density.png" height="260" alt="Reconnect latency and short-request throughput as N users reconnect">
-  <img src="docs/images/fig1c-reconnect-vs-history.png" height="260" alt="Single-user reconnect latency versus history length">
+  <img src="docs/images/fig1ab-reconnect-density.png" width="34%" alt="Reconnect latency and short-request throughput as N users reconnect">
+  <img src="docs/images/fig1c-reconnect-vs-history.png" width="64%" alt="Single-user reconnect latency versus history length">
 </p>
 
 Left: reconnect latency and short-request throughput as N users reconnect at once (latency over
