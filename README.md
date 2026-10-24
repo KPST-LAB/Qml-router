@@ -6,7 +6,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/banner-dark.svg">
-    <img src="docs/images/banner-light.svg" width="760" alt="qml-router: persistent session state for LLM serving on edge and on-premises hardware">
+    <img src="docs/images/banner-light.svg" width="760" alt="qml-router: persistent KV cache sessions for LLM serving on edge and on-premises hardware">
   </picture>
 </p>
 
@@ -30,6 +30,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 
 <p align="center">
   <b>qml-router keeps a conversation's state outside the LLM serving process.</b><br>
+  qml stands for query-based machine learning; the project is not related to Qt QML.<br>
   A session survives process restarts, a reconnect restores the KV cache instead of recomputing it,<br>
   history past the context window is archived and retrieved when a question needs it,<br>
   and a session can continue on another engine. Built for on-premises servers and edge devices.
