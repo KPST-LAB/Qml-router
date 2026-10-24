@@ -395,7 +395,31 @@ curl http://127.0.0.1:8090/v1/chat/completions -H 'Content-Type: application/jso
   "messages": [{"role": "user", "content": "and what was my name again?"}]}'
 ```
 
-**5. Run a paper experiment**
+**5. SGLang with qml-router, behind the session layer**
+
+```bash
+pip install sglang==0.5.16
+mkdir -p store
+PYTHONPATH=hooks/sglang python3 -m sglang.launch_server \
+  --model-path unsloth/Llama-3.2-3B-Instruct --port 30000 --page-size 64 \
+  --enable-hierarchical-cache --hicache-write-policy write_through \
+  --hicache-storage-backend dynamic \
+  --hicache-storage-backend-extra-config '{"module_path": "qml_sglang_storage",
+    "class_name": "QmlSglangStorage", "backend_name": "qml",
+    "qml_sqlite_path": "store/qml.db", "qml_lmdb_path": "store/qml_lmdb",
+    "qml_token_log": "off"}'
+
+# the same session layer, with SGLang as the engine (session id sent as extra_key)
+python3 router/qml_openai_gateway.py --engine sglang --engine-url http://127.0.0.1:30000 \
+  --model unsloth/Llama-3.2-3B-Instruct --tokenizer <model directory> \
+  --store-db store/qml.db --store-lmdb store/qml_lmdb --window 3000 --port 8090
+
+curl http://127.0.0.1:8090/v1/chat/completions -H 'Content-Type: application/json' -d '{
+  "session_id": "alice::chat-1", "max_tokens": 64,
+  "messages": [{"role": "user", "content": "and what was my name again?"}]}'
+```
+
+**6. Run a paper experiment**
 
 Each experiment has a folder in `tests/paper/` with its run scripts and a README (model, engine,
 hardware, frozen log). The scripts read `REPO` (repository root; models under `$REPO/models/`)
@@ -433,7 +457,7 @@ To check a result, compare the new log with the frozen one in `artifact/paper/lo
 `artifact/paper/VERSIONS.txt` maps every table and figure to its log, script and data, and
 `artifact/paper/reader.txt` says where the number is in each log.
 
-**6. Unit tests (no GPU)**
+**7. Unit tests (no GPU)**
 
 ```bash
 for t in unit_sqlite_save_tx unit_blob_fallback unit_blob_sweep unit_kv_owner; do
