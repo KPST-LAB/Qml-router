@@ -543,7 +543,7 @@ seconds; for short 1.5~2.5K sessions, the verdicts of Section 7-2 (b) and Sectio
 ## 7-9. The KV blob is tied to the slot configuration, but the session is not (2026-08-02)
 
 llama.cpp's per-sequence state save writes `n_stream` at the very start of the blob
-([llama-kv-cache.cpp](../../third_party/llama.cpp/src/llama-kv-cache.cpp) state_write:2129),
+([llama-kv-cache.cpp](https://github.com/ggml-org/llama.cpp/blob/0d47ea742/src/llama-kv-cache.cpp) state_write:2129),
 and on restore throws an exception if it differs from the current context (state_read:2202 `n_stream mismatch`).
 Since `n_stream = kv_unified ? 1 : n_seq_max`, **it is effectively the `-np` value**. Therefore if `-np` is changed or
 the server switches to `--kv-unified`, **existing KV blobs cannot be reused.**
