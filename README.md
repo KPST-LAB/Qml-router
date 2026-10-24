@@ -43,6 +43,17 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
   </tr>
 </table>
 
+<p align="center">
+  <img src="docs/images/fig1ab-reconnect-density.png" width="34%" alt="Reconnect latency and short-request throughput as N users reconnect">
+  <img src="docs/images/fig1c-reconnect-vs-history.png" width="64%" alt="Single-user reconnect latency versus history length">
+</p>
+
+<p align="center"><sub>
+  Llama-3.2-3B-Instruct on llama.cpp, RTX 4090. Left: N users reconnect at once (latency over passing<br>
+  answers only: 29/30 qml-router, 30/30 baseline; throughput not answer-checked).<br>
+  Right: one user's reconnect latency versus history length.
+</sub></p>
+
 > [!NOTE]
 > This repository holds the source code, the benchmark programs and the paper's experiment artifact.
 > The SGLang storage backend (`hooks/sglang/`) follows shortly; qml-engine, the own engine, follows
@@ -215,15 +226,6 @@ GGUF and safetensors.
   planted in its own history. Baseline = the same engine without qml-router.
 </p>
 
-<p align="center">
-  <img src="docs/images/fig1ab-reconnect-density.png" width="34%" alt="Reconnect latency and short-request throughput as N users reconnect">
-  <img src="docs/images/fig1c-reconnect-vs-history.png" width="64%" alt="Single-user reconnect latency versus history length">
-</p>
-
-<p align="center"><sub>
-  Left: N users reconnect at once (latency over passing answers only: 29/30 qml-router, 30/30 baseline;<br>
-  throughput not answer-checked). Right: one user's reconnect latency versus history length.
-</sub></p>
 
 **32K-token reconnect by storage and device**
 
