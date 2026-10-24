@@ -1,0 +1,5 @@
+# Engine versions used in the paper (Table 15). Install only what you need.
+# llama.cpp is built from source: scripts/setup_llama_cpp.sh
+vllm==0.26.0
+sglang==0.5.16
+lmcache==0.5.2

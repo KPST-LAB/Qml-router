@@ -1,0 +1,122 @@
+VERSIONS -- result-to-file map
+
+Which log, script and data file stand behind each table and figure of the article
+"Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture for
+Durable, Engine-Agnostic Sessions" (IEEE Access, Access-2026-45930). Logs are in logs/,
+scripts in scripts/ (bench programs in scripts/bin/), inputs and result files in data/.
+"LME data" means the files in data/longmemeval/. reader.txt gives the run conditions of
+each log and where the number is in it.
+
+Engine versions behind every number: llama.cpp build b10141 (upstream 0d47ea742) with the
+qml-router patch series, vLLM 0.26.0, SGLang 0.5.16, LMCache 0.5.2 (Table 15).
+
+Figure 1(a)-(b), Section V-A concurrency, Table 8 row
+  log     reviewer1_edit_14_step1_density_raw.log, _srv.log.gz
+  script  reviewer1_edit_14_step1_density_raw.{sh,py}
+  data    reviewer1_edit_14_step1_density_raw.json (samples);
+          reviewer2_minor1_density_verified_only.json (values over passing reconnects,
+          computed by reviewer2_minor1_density_verified_only.py)
+  figure  reviewer2_minor1_plot_fig1.py (all three charts of Fig. 1)
+Figure 1(c)
+  log     fig01_crossover.json
+  script  fig01_crossover.sh, bin/bench_crossover.py
+  data    fig01_crossover.json
+Table 4 (adoption cost; llama.cpp, vLLM and SGLang rows)
+  log     tab04_adoption_llama.log, tab04_adoption_vllm_sglang.log
+  script  tab04_adoption_llama.sh, tab04_adoption_vllm_sglang.sh, bin/bench_overhead_client.py
+  data    tab04_adoption.json
+Table 4 protocol on a size-matched non-Llama model (Section V-A2)
+  log     tab04_adoption_qwen4b.log
+  script  bin/bench_overhead_client.py
+  data    tab04_adoption.json
+Table 5 and Fig. 4 (500-turn context overflow)
+  log     tab05_500turn_4090.log (rows 1-6), tab05_500turn_orin.log (rows 7-8),
+          tab05_500turn_qwen4b.log (last two rows)
+  script  tab05_500turn_4090.sh, tab05_500turn_orin.sh, bin/bench_tab5_crossover_32k.py;
+          figure bin/plot_overflow_latency.py
+  data    tab05_500turn.json
+Table 6 (repeated runs)
+  log     tab06_repeat_crossover.log (rows 1-2), tab06_repeat_mixed.log (rows 3-4),
+          tab06_tab07_orin_repeat_maxn.log (row 5), tab06_tab07_orin_repeat_30w.log (row 6)
+  script  tab06_repeat_crossover.sh, bin/bench_crossover.py; tab06_repeat_mixed.sh,
+          bin/bench_mixed_load.py; tab06_tab07_orin_repeat_{maxn,30w}.sh,
+          bin/bench_long_context.py
+  data    tab06_tab11_mixed_workload.json (rows 3-4), tab07_long_context.json (rows 5-6);
+          rows 1-2 use the sessions bench_crossover.py builds (data/fig01_crossover.json)
+Table 6 caption (same-day re-run of both 32K procedures)
+  log     reviewer2_minor3_step1_engine_config.log, reviewer2_minor3_step2_crossover.log,
+          reviewer2_minor3_step1b_engine_config_after_crossover.log,
+          reviewer2_minor3_step1b_gpu_state.log, reviewer2_minor3_server_*.log.gz
+  script  reviewer2_minor3_step1_engine_config.sh, reviewer2_minor3_step2_crossover.{sh,py}
+  data    reviewer2_minor3_step2_crossover.json
+Table 7 (restore/recompute boundary by hardware)
+  log     tab07_hw_devserver.log (row 1), tab07_hw_nvme.log (row 2),
+          tab06_tab07_orin_repeat_maxn.log (row 3), tab06_tab07_orin_repeat_30w.log (row 4)
+  script  tab07_hw_devserver.sh, tab07_hw_nvme.sh, tab06_tab07_orin_repeat_{maxn,30w}.sh,
+          bin/bench_long_context.py
+  data    tab07_long_context.json
+Table 11 and Section V-D (warm-versus-warm with LMCache)
+  log     tab11_lmcache_mp.log (row 1), tab11_qml_connector.log (row 2)
+  script  tab11_lmcache_mp.sh, tab11_qml_connector.sh, bin/bench_mixed_load.py
+  data    tab06_tab11_mixed_workload.json
+Table 10 and the baseline-vLLM row of Table 11
+  only engine server logs of these runs survive (see "Not here" in reader.txt)
+Figure 5 (session portability)
+  log     fig05_continuation_vllm.log (bars 1-3), fig05_sglang_to_llama.log (bar 4)
+  script  fig05_continuation_vllm.sh, bin/bench_migration.py; fig05_sglang_to_llama.sh
+          (inline Python)
+  data    fig05_continuation.json
+Figure 6 and Section V-C (archive recall on LongMemEval_S)
+  log     fig06_longmemeval_archive_recall.log, fig06_longmemeval_full_history.log,
+          fig06_longmemeval_recent_window.log
+  script  fig06_longmemeval_archive_recall.sh, fig06_longmemeval_full_history_chain.sh,
+          fig06_longmemeval_recent_window_chain.sh, bin/bench_longmemeval.py
+  data    LME data
+Figure 6(a) embedding curve; Section V-C recall figures
+  log     reviewer1_edit_17_step1_retrieval_curve.log, _step1_srv_embedding.log.gz
+  script  reviewer1_edit_17_step1_retrieval_curve.{sh,py}; figure plot_lme_recall.py
+  data    reviewer1_edit_17_step1_retrieval_curve.json, _perquestion_{msf,trf}.json
+Section V-C oracle-context sentence
+  log     reviewer1_edit_16_step1_oracle_context.log, reviewer1_edit_16_step1_judge.log
+  script  reviewer1_edit_16_step1_oracle_context.py
+  data    reviewer1_edit_16_step1_oracle_results[_paperjudged].json
+Appendix A-G, Table 13 (ranker cost and accuracy)
+  log     reviewer1_edit_17_step2_*.log, _srv.log.gz; reviewer1_edit_17_step3_*.log,
+          reviewer1_edit_17_step3b_*.log; reviewer1_edit_17_chain.log
+  script  reviewer1_edit_17_step2_*.{sh,py}, reviewer1_edit_17_step3_e2e_embedding.py,
+          reviewer1_edit_17_step3_chain_h200.sh, reviewer1_edit_17_step3_summarize.py,
+          reviewer1_edit_17_step3b_lex_rerun_h200.sh
+  data    reviewer1_edit_17_step2_*.json, reviewer1_edit_17_step3_results_*.json
+Section V-B1 (20,000-turn session and recall gate)
+  log     secVB1_20000turn_session.log, secVB1_20000turn_recall.log,
+          secVB1_20000turn_latency.log; slope and first/last 1,000-turn means:
+          reviewer1_edit_4_step1_longevity_slope.log
+  script  secVB1_20000turn_{session,recall,latency}.sh, bin/bench_weather_longevity.py;
+          reviewer1_edit_4_step1_longevity_slope.py
+  data    secVB1_20000turn_session.json
+Section V-B2 (restart recovery, 242 ms)
+  log     secVB2_restart_recovery.log
+  script  secVB2_restart_recovery.sh (inline Python)
+Section III-B persistence window; Appendix A-H, Table 14
+  log     reviewer1_edit_18_step1_durability_window.log, reviewer1_edit_18_step2_burst_kill.log,
+          _srv.log.gz, reviewer1_edit_18_chain.log, reviewer1_edit_10_18_chain.log
+  script  reviewer1_edit_18_step1_durability_window.{sh,py},
+          reviewer1_edit_18_step2_burst_kill.{sh,py}, _server_cmd.txt,
+          reviewer1_edit_10_18_chain_4090.sh
+  data    reviewer1_edit_18_step1_durability_window.json, reviewer1_edit_18_step2_burst_kill.json
+Section III-B shared-prefix storage
+  log     reviewer1_edit_10_step1_shared_prefix_storage.log, _srv.log.gz
+  script  reviewer1_edit_10_step1_shared_prefix_storage.{sh,py}
+  data    reviewer1_edit_10_step1_shared_prefix_storage.json
+Section I and Appendix B item 11 (86.8% of prefill volume avoided)
+  data    gateway_usage_log_2026-08-07_09.csv (saved_tokens / (saved_tokens +
+          computed_tokens) = 25,418 / 29,296)
+Appendix A-E (four-build check)
+  log     appE_four_build_check.log
+  script  appE_four_build_check.sh, bin/bench_density_ablation.py (uses bin/bench_density_curve.py)
+
+Not behind a number in the article: tab04_adoption_orin.log and tab04_adoption_orin.sh (the
+Table 4 protocol on the Jetson AGX Orin; the article's Table 4 has no Orin row), and the chain
+logs (*_chain.log), which record the order in which the runs above were started.
+
+MANIFEST.sha256 lists the SHA-256 of every file in this bundle.

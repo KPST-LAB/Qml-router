@@ -1,0 +1,225 @@
+{
+ "summary": {
+  "repeats": 2,
+  "burst": 5,
+  "events": 6,
+  "lost_per_event": [
+   3,
+   5,
+   5,
+   4,
+   4,
+   4
+  ],
+  "max_lost": 5,
+  "any_lost_before_burst": true,
+  "integrity_all_ok": true
+ },
+ "events": [
+  {
+   "repeat": 1,
+   "history_tokens_before_burst": 5221,
+   "history_tokens_after_burst": 6601,
+   "burst_turns": [
+    19,
+    20,
+    21,
+    22,
+    23
+   ],
+   "burst_wall_s": 0.674,
+   "durable_turns_of_burst": [
+    19,
+    20
+   ],
+   "lost_turns_of_burst": [
+    21,
+    22,
+    23
+   ],
+   "lost_before_burst": [],
+   "token_log_before": 4950,
+   "token_log_after": 5500,
+   "integrity_check": "ok",
+   "restart_s": 2.61,
+   "continue_prompt_n": 543,
+   "continue_tokens_cached": 5775,
+   "continue_s": 0.232
+  },
+  {
+   "repeat": 1,
+   "history_tokens_before_burst": 15121,
+   "history_tokens_after_burst": 16501,
+   "burst_turns": [
+    58,
+    59,
+    60,
+    61,
+    62
+   ],
+   "burst_wall_s": 1.146,
+   "durable_turns_of_burst": [],
+   "lost_turns_of_burst": [
+    58,
+    59,
+    60,
+    61,
+    62
+   ],
+   "lost_before_burst": [
+    21,
+    22,
+    23
+   ],
+   "token_log_before": 14850,
+   "token_log_after": 14850,
+   "integrity_check": "ok",
+   "restart_s": 2.51,
+   "continue_prompt_n": 543,
+   "continue_tokens_cached": 15125,
+   "continue_s": 0.355
+  },
+  {
+   "repeat": 1,
+   "history_tokens_before_burst": 25021,
+   "history_tokens_after_burst": 26401,
+   "burst_turns": [
+    99,
+    100,
+    101,
+    102,
+    103
+   ],
+   "burst_wall_s": 1.635,
+   "durable_turns_of_burst": [],
+   "lost_turns_of_burst": [
+    99,
+    100,
+    101,
+    102,
+    103
+   ],
+   "lost_before_burst": [
+    21,
+    22,
+    23,
+    58,
+    59,
+    60,
+    61,
+    62
+   ],
+   "token_log_before": 24750,
+   "token_log_after": 24750,
+   "integrity_check": "ok",
+   "restart_s": 2.63,
+   "continue_prompt_n": 543,
+   "continue_tokens_cached": 25025,
+   "continue_s": 0.478
+  },
+  {
+   "repeat": 2,
+   "history_tokens_before_burst": 5221,
+   "history_tokens_after_burst": 6601,
+   "burst_turns": [
+    19,
+    20,
+    21,
+    22,
+    23
+   ],
+   "burst_wall_s": 0.692,
+   "durable_turns_of_burst": [
+    19
+   ],
+   "lost_turns_of_burst": [
+    20,
+    21,
+    22,
+    23
+   ],
+   "lost_before_burst": [],
+   "token_log_before": 4950,
+   "token_log_after": 5225,
+   "integrity_check": "ok",
+   "restart_s": 2.51,
+   "continue_prompt_n": 5493,
+   "continue_tokens_cached": 5500,
+   "continue_s": 0.498
+  },
+  {
+   "repeat": 2,
+   "history_tokens_before_burst": 15121,
+   "history_tokens_after_burst": 16501,
+   "burst_turns": [
+    59,
+    60,
+    61,
+    62,
+    63
+   ],
+   "burst_wall_s": 1.102,
+   "durable_turns_of_burst": [
+    59
+   ],
+   "lost_turns_of_burst": [
+    60,
+    61,
+    62,
+    63
+   ],
+   "lost_before_burst": [
+    20,
+    21,
+    22,
+    23
+   ],
+   "token_log_before": 14850,
+   "token_log_after": 15125,
+   "integrity_check": "ok",
+   "restart_s": 2.51,
+   "continue_prompt_n": 543,
+   "continue_tokens_cached": 15400,
+   "continue_s": 0.376
+  },
+  {
+   "repeat": 2,
+   "history_tokens_before_burst": 25021,
+   "history_tokens_after_burst": 26401,
+   "burst_turns": [
+    99,
+    100,
+    101,
+    102,
+    103
+   ],
+   "burst_wall_s": 1.615,
+   "durable_turns_of_burst": [
+    99
+   ],
+   "lost_turns_of_burst": [
+    100,
+    101,
+    102,
+    103
+   ],
+   "lost_before_burst": [
+    20,
+    21,
+    22,
+    23,
+    60,
+    61,
+    62,
+    63
+   ],
+   "token_log_before": 24750,
+   "token_log_after": 25025,
+   "integrity_check": "ok",
+   "restart_s": 2.51,
+   "continue_prompt_n": 543,
+   "continue_tokens_cached": 25300,
+   "continue_s": 0.534
+  }
+ ]
+}

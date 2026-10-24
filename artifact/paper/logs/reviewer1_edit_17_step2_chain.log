@@ -1,0 +1,86 @@
+=== reviewer1_edit_17_step2_latency_h200gpu start 2026-09-29T13:35:08+09:00 ===
+e196d84e066fa6d26bc534b14fc144e6  $DATA/llama.cpp/build/bin/llama-server
+03a516c72ddc68a72013fdecae3f3006  $DATA/models/bge-m3-f16.gguf
+8a9c36d8d2cebc9f469fe62da4cdbfce  $REPO/ieee-rev1/scripts/reviewer1_edit_17_step2_export_subset.py
+87c64f88cabc4082b908da5830ea3bd3  $REPO/ieee-rev1/scripts/reviewer1_edit_17_step2_retrieval_latency.py
+lme-msf:: rows 194889 (fact 129724)
+lme-trf:: rows 196119 (fact 130600)
+subset built in 57s, 294.1 MB
+questions 266, empty fts query 0
+0f295c1a36f99165c2d12b1b5b45167b  $REPO/ieee-rev1/data/reviewer1_edit_17_step2_subset.db
+4a049592e6e3380d33b4f55f4c4b686b  $REPO/ieee-rev1/data/reviewer1_edit_17_step2_questions.json
+NVIDIA H200, 580.126.20
+device run: db=$REPO/ieee-rev1/data/reviewer1_edit_17_step2_subset.db questions=266 emb=http://127.0.0.1:58172 mode=all sqlite=3.37.2
+[write] 25 sessions, last 955 rows fetch 2356.9 ms embed 5643 ms
+[write] 50 sessions, last 1111 rows fetch 2409.6 ms embed 6810 ms
+[write] 75 sessions, last 954 rows fetch 2455.3 ms embed 5537 ms
+[write] 100 sessions, last 1012 rows fetch 3445.3 ms embed 5868 ms
+[write] 125 sessions, last 888 rows fetch 2706.5 ms embed 4985 ms
+[write] 150 sessions, last 965 rows fetch 3020.3 ms embed 5213 ms
+[write] 175 sessions, last 887 rows fetch 2550.4 ms embed 5169 ms
+[write] 200 sessions, last 1023 rows fetch 2349.5 ms embed 5806 ms
+[write] 225 sessions, last 965 rows fetch 2387.1 ms embed 5333 ms
+[write] 250 sessions, last 926 rows fetch 2422.1 ms embed 5644 ms
+{
+ "lexical_query_cold": {
+  "n": 266,
+  "median_ms": 1184.007,
+  "p95_ms": 2061.919,
+  "mean_ms": 1237.488,
+  "total_s": 329.17
+ },
+ "lexical_query_warm": {
+  "n": 266,
+  "median_ms": 1169.217,
+  "p95_ms": 1971.691,
+  "mean_ms": 1183.594,
+  "total_s": 314.84
+ },
+ "embedding_query_cold": {
+  "n": 266,
+  "median_ms": 14.775,
+  "p95_ms": 23.749,
+  "mean_ms": 15.537,
+  "total_s": 4.13
+ },
+ "embedding_query_warm": {
+  "n": 266,
+  "median_ms": 6.109,
+  "p95_ms": 8.918,
+  "mean_ms": 6.386,
+  "total_s": 1.7
+ },
+ "embedding_rank_only_warm": {
+  "n": 266,
+  "median_ms": 0.474,
+  "p95_ms": 1.982,
+  "mean_ms": 0.666,
+  "total_s": 0.18
+ },
+ "embedding_write_fetch_per_session": {
+  "n": 266,
+  "median_ms": 2531.098,
+  "p95_ms": 3297.689,
+  "mean_ms": 2646.189,
+  "total_s": 703.89
+ },
+ "embedding_write_embed_per_session": {
+  "n": 266,
+  "median_ms": 5641.179,
+  "p95_ms": 6295.417,
+  "mean_ms": 5623.295,
+  "total_s": 1495.8
+ },
+ "embedding_write_rows": 260324,
+ "recall_all_at_32": {
+  "lexical": 235,
+  "embedding": 256
+ },
+ "mode": "all",
+ "sqlite": "3.37.2",
+ "embedding_write_rows_per_s": 174.0
+}
+python rc=0 2026-09-29T14:40:22+09:00
+=== reviewer1_edit_17_step2_latency_h200gpu done 2026-09-29T14:40:22+09:00 ===
+embedding server stopped pid=3111623 2026-09-29T14:40:23+09:00
+exit 0

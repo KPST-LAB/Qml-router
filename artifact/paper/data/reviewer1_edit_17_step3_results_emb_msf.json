@@ -1,0 +1,1997 @@
+[
+ {
+  "qid": "0a995998",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.083,
+  "answer": "You need to pick up a new pair of boots, dry cleaning, and return some boots to Zara. That's at least 3 items.",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 671,
+  "engine_step0_rows_tokens": [
+   31,
+   746
+  ]
+ },
+ {
+  "qid": "6d550036",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.036,
+  "answer": "At least 2 projects: one in Nigeria (planned on or before 2023/05/21) and a high-priority project that was completed two months ahead of time. Additionally, you're working on a project involving visualizations of customer purchase data and writing a chapter, but it's unclear if these are separate projects or part of the existing ones.",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 679,
+  "engine_step0_rows_tokens": [
+   11,
+   258
+  ]
+ },
+ {
+  "qid": "gpt4_59c863d7",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.469,
+  "answer": "You've worked on or bought at least 4 model kits: \n\n1. Revell F-15 Eagle kit\n2. Tamiya 1/48 scale Spitfire Mk.V model kit\n3. 1/72 scale B-29 bomber model kit\n4. 1/24 scale '69 Camaro model kit \n\nYou're also working on a 1/72 scale model and a Tiger I diorama, but it's not clear if these are",
+  "gold": "I have worked on or bought five model kits. The scales of the models are: Revell F-15 Eagle (scale not mentioned), Tamiya 1/48 scale Spitfire Mk.V, 1/16 scale German Tiger I tank, 1/72 scale B-29 bomber, and 1/24 scale '69 Camaro.",
+  "n_rows": 32,
+  "n_block_tokens": 783,
+  "engine_step0_rows_tokens": [
+   32,
+   710
+  ]
+ },
+ {
+  "qid": "b5ef892d",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.061,
+  "answer": "You spent 3 days on a solo camping trip to Big Sur and 5 days on a camping trip to Yellowstone National Park, and 7 days on a family road trip to Utah (though you didn't go camping on that trip). \n\nSo, the total number of days spent on camping trips in the United States this year is 3 + 5 = 8 days.",
+  "gold": "8 days.",
+  "n_rows": 32,
+  "n_block_tokens": 671,
+  "engine_step0_rows_tokens": [
+   17,
+   405
+  ]
+ },
+ {
+  "qid": "e831120c",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.044,
+  "answer": "You watched the MCU movies in 2 weeks and the main Star Wars films in 1.5 weeks. Since these periods overlap, it's not a simple addition. However, considering the end date (2023/05/25) is the same for both, the total duration is 2 weeks.",
+  "gold": "3.5 weeks",
+  "n_rows": 32,
+  "n_block_tokens": 655,
+  "engine_step0_rows_tokens": [
+   32,
+   682
+  ]
+ },
+ {
+  "qid": "3a704032",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You acquired the snake plant last month, and you purchased plants (including a succulent) two weeks prior to 2023/05/20, which is also last month. However, the exact number of plants purchased two weeks prior to 2023/05/20 is not specified. You also have other plants, but it's not clear when they were acquired.",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 655,
+  "engine_step0_rows_tokens": [
+   20,
+   458
+  ]
+ },
+ {
+  "qid": "gpt4_d84a3211",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You've spent $40 on bike lights since the start of the year, and you also replaced the chain, but the cost of the chain is not specified. Therefore, the total known bike-related expense is $40.",
+  "gold": "$185",
+  "n_rows": 32,
+  "n_block_tokens": 663,
+  "engine_step0_rows_tokens": [
+   32,
+   664
+  ]
+ },
+ {
+  "qid": "aae3761f",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.25,
+  "answer": "You drove 4 hours to Outer Banks, 5 hours to the mountains in Tennessee, and 6 hours to Washington D.C. The total driving time is 4 + 5 + 6 = 15 hours.",
+  "gold": "15 hours for getting to the three destinations (or 30 hours for the round trip)",
+  "n_rows": 32,
+  "n_block_tokens": 695,
+  "engine_step0_rows_tokens": [
+   32,
+   726
+  ]
+ },
+ {
+  "qid": "gpt4_f2262a51",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.216,
+  "answer": "You visited at least 3 different doctors: \n\n1. Dr. Patel (ENT specialist)\n2. Dr. Lee (dermatologist)\n3. Dr. Smith (primary care physician)",
+  "gold": "I visited three different doctors: a primary care physician, an ENT specialist, and a dermatologist.",
+  "n_rows": 32,
+  "n_block_tokens": 754,
+  "engine_step0_rows_tokens": [
+   17,
+   427
+  ]
+ },
+ {
+  "qid": "dd2973ad",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.068,
+  "answer": "You had a doctor's appointment on Wednesday, 2023/05/24. The day before that would be Tuesday, 2023/05/23. However, the information about your bedtime on 2023/05/23 is not available. But it is known that you went to bed at 2 AM on the last Wednesday, which is 2023/05/24, and also on the last Wednesday before that, which is 2023/05",
+  "gold": "2 AM",
+  "n_rows": 32,
+  "n_block_tokens": 696,
+  "engine_step0_rows_tokens": [
+   32,
+   775
+  ]
+ },
+ {
+  "qid": "c4a1ceb8",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.143,
+  "answer": "You've used at least 3 types of citrus fruits: lime, orange, and lemon.",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 750,
+  "engine_step0_rows_tokens": [
+   25,
+   542
+  ]
+ },
+ {
+  "qid": "gpt4_a56e767c",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.067,
+  "answer": "You attended at least 4 film festivals: \n\n1. Austin Film Festival\n2. Seattle International Film Festival\n3. Portland Film Festival\n4. AFI Fest (in LA)",
+  "gold": "I attended four movie festivals.",
+  "n_rows": 32,
+  "n_block_tokens": 726,
+  "engine_step0_rows_tokens": [
+   16,
+   353
+  ]
+ },
+ {
+  "qid": "6cb6f249",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.091,
+  "answer": "You took a 7-day break and a 10-day break, so in total, you took social media breaks for 17 days.",
+  "gold": "17 days",
+  "n_rows": 32,
+  "n_block_tokens": 712,
+  "engine_step0_rows_tokens": [
+   19,
+   467
+  ]
+ },
+ {
+  "qid": "46a3abf7",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You currently have 2 tanks: the 20-gallon community tank (Amazonia) and the one you set up for your friend's kid.",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 692,
+  "engine_step0_rows_tokens": [
+   18,
+   432
+  ]
+ },
+ {
+  "qid": "36b9f61e",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "Based on our previous conversations, you spent:\n\n- $800 on a luxury evening gown\n- $1,200 on a designer handbag from Gucci\n- $500 on a pair of leather boots\n\nThe total amount spent on luxury items is $2,500.",
+  "gold": "$2,500",
+  "n_rows": 32,
+  "n_block_tokens": 722,
+  "engine_step0_rows_tokens": [
+   31,
+   755
+  ]
+ },
+ {
+  "qid": "28dc39ac",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.047,
+  "answer": "You spent 30 hours playing The Last of Us Part II, 70 hours playing Assassin's Creed Odyssey, 10 hours playing Celeste, and 5 hours playing Hyper Light Drifter. \n\nTotal hours = 30 + 70 + 10 + 5 = 115 hours.",
+  "gold": "140 hours",
+  "n_rows": 32,
+  "n_block_tokens": 651,
+  "engine_step0_rows_tokens": [
+   32,
+   659
+  ]
+ },
+ {
+  "qid": "gpt4_2f8be40d",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.129,
+  "answer": "At least 4: your cousin's, your college roommate's, Jen's, and Emily's, and also Rachel's.",
+  "gold": "I attended three weddings. The couples were Rachel and Mike, Emily and Sarah, and Jen and Tom.",
+  "n_rows": 32,
+  "n_block_tokens": 661,
+  "engine_step0_rows_tokens": [
+   19,
+   403
+  ]
+ },
+ {
+  "qid": "2e6d26dc",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.032,
+  "answer": "Based on our earlier conversations, the following babies were born to friends and family members in the last few months:\n\n1. Charlotte (Mike and Emma's daughter, born in March)\n2. Max (Rachel's son, born in March)\n3. Jasper (David's son, born a few weeks ago)\n4. Ava and Lily (your aunt's twins, born in April)\n\nSo, there are 5 babies in total.",
+  "gold": "5",
+  "n_rows": 32,
+  "n_block_tokens": 724,
+  "engine_step0_rows_tokens": [
+   32,
+   727
+  ]
+ },
+ {
+  "qid": "gpt4_15e38248",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You: \n- bought a coffee table (about 3 weeks prior to 2023/05/26)\n- assembled an IKEA bookshelf (about 2 months ago as of 2023/05/29)\n- fixed a kitchen table with a wobbly leg (last weekend as of 2023/05/26)\n\nThat's 3 pieces of furniture. There's no mention of selling any furniture.",
+  "gold": "4",
+  "n_rows": 32,
+  "n_block_tokens": 698,
+  "engine_step0_rows_tokens": [
+   24,
+   587
+  ]
+ },
+ {
+  "qid": "88432d0a",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "Based on the known facts, you baked:\n\n1. A chocolate cake (2023/05/21)\n2. A sourdough bread (2023/05/21, Tuesday, and also mentioned on 2023/05/24)\n3. A batch of cookies (Thursday before 2023/05/24)\n4. A batch of cookies using convection setting (2023/05/28)\n5. A whole wheat baguette (previous",
+  "gold": "4",
+  "n_rows": 32,
+  "n_block_tokens": 715,
+  "engine_step0_rows_tokens": [
+   12,
+   294
+  ]
+ },
+ {
+  "qid": "80ec1f4f",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You visited at least 2: The Art Cube and the Modern Art Museum (for a guided workshop in January, but you also visited The Art Cube and the Natural History Museum recently, which could be in February).",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 698,
+  "engine_step0_rows_tokens": [
+   24,
+   545
+  ]
+ },
+ {
+  "qid": "d23cf73b",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.051,
+  "answer": "You've tried or learned about Ethiopian, Indian, Korean, and vegan cuisines. That's 4 different cuisines. You also mentioned interest in Tokyo restaurants, which could imply Japanese cuisine, and Pok Pok, which is Thai cuisine. So, potentially 6 cuisines.",
+  "gold": "4",
+  "n_rows": 32,
+  "n_block_tokens": 673,
+  "engine_step0_rows_tokens": [
+   32,
+   757
+  ]
+ },
+ {
+  "qid": "gpt4_7fce9456",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.33,
+  "answer": "You viewed at least 3 properties: \n\n1. A property in Cedar Creek on February 1st.\n2. A bungalow in the Oakwood neighborhood (no specific date mentioned).\n3. The 3-bedroom townhouse in the Brookside neighborhood on February 22nd, on which you made an offer on February 25th.",
+  "gold": "I viewed four properties before making an offer on the townhouse in the Brookside neighborhood. The reasons I didn't make an offer on them were: the kitchen of the bungalow needed serious renovation, the property in Cedar Creek was out of my budget, the noise from the highway was a deal-breaker for the 1-bedroom condo, and my offer on the 2-bedroom condo was rejected due to a higher bid.",
+  "n_rows": 32,
+  "n_block_tokens": 721,
+  "engine_step0_rows_tokens": [
+   32,
+   795
+  ]
+ },
+ {
+  "qid": "d682f1a2",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You've used at least two: Fresh Fusion and Uber Eats, and also had Domino's Pizza.",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 670,
+  "engine_step0_rows_tokens": [
+   28,
+   685
+  ]
+ },
+ {
+  "qid": "7024f17c",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.075,
+  "answer": "Last week, you went for a 30-minute jog (0.5 hours) on Saturday (2023/05/20) and didn't report any yoga practice. This week, you've been planning to get back into yoga, but no practice has been reported yet. So, the total hours of jogging and yoga you did last week is 0.5 hours.",
+  "gold": "0.5 hours",
+  "n_rows": 32,
+  "n_block_tokens": 663,
+  "engine_step0_rows_tokens": [
+   32,
+   647
+  ]
+ },
+ {
+  "qid": "gpt4_5501fe77",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.048,
+  "answer": "Based on the information, you gained 200 followers on TikTok over the past three weeks and 120 followers on Twitter (from 420 to 540) over the past month. Since 200 is greater than 120, you gained the most followers on TikTok.",
+  "gold": "TikTok",
+  "n_rows": 32,
+  "n_block_tokens": 679,
+  "engine_step0_rows_tokens": [
+   32,
+   768
+  ]
+ },
+ {
+  "qid": "gpt4_2ba83207",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.105,
+  "answer": "You spent around $150 at Thrive Market and also $120 at Walmart, but there's also the $60 spent at Publix and $80 at Trader Joe's. However, the highest single amount mentioned is $150 at Thrive Market.",
+  "gold": "Thrive Market",
+  "n_rows": 32,
+  "n_block_tokens": 759,
+  "engine_step0_rows_tokens": [
+   27,
+   664
+  ]
+ },
+ {
+  "qid": "2318644b",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.083,
+  "answer": "You spent over $300 per night in Maui (Hawaii) and around $30 per night in Tokyo. The difference is over $270 per night.",
+  "gold": "$270",
+  "n_rows": 32,
+  "n_block_tokens": 678,
+  "engine_step0_rows_tokens": [
+   32,
+   696
+  ]
+ },
+ {
+  "qid": "2ce6a0f2",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You attended 2 art-related events: the Women in Art exhibition on February 10th and the Art Afternoon event on February 17th, and possibly some cultural orientation sessions (no specific dates mentioned).",
+  "gold": "4",
+  "n_rows": 32,
+  "n_block_tokens": 723,
+  "engine_step0_rows_tokens": [
+   32,
+   728
+  ]
+ },
+ {
+  "qid": "gpt4_d12ceb0e",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "To calculate the average age, we need the current ages of all individuals. \n\nYour age: 32 (as of 2023/05/26)\nYour mom's age: 55 (as of 2023/05/23)\nYour dad's age: 58 (as of 2023/05/23)\nYour grandma's age: She has passed away, but her age at the time of a previous mention was 75 (as of 202",
+  "gold": "59.6",
+  "n_rows": 32,
+  "n_block_tokens": 703,
+  "engine_step0_rows_tokens": [
+   8,
+   180
+  ]
+ },
+ {
+  "qid": "00ca467f",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You went to at least 3 doctor's appointments in March: \n1. Dr. Smith on March 3rd\n2. Dr. Thompson on March 20th\nYou also had an appointment with Dr. Smith on an unspecified date, and an appointment with Dr. Thompson before March 20th, but the latter may be the same as the one on March 20th.",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 745,
+  "engine_step0_rows_tokens": [
+   18,
+   554
+  ]
+ },
+ {
+  "qid": "b3c15d39",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.146,
+  "answer": "You ordered the new remote shutter release on February 5th and received it on February 10th. It took 5 days to receive the new remote shutter release after ordering it.",
+  "gold": "5 days. 6 days (including the last day) is also acceptable.",
+  "n_rows": 32,
+  "n_block_tokens": 695,
+  "engine_step0_rows_tokens": [
+   32,
+   707
+  ]
+ },
+ {
+  "qid": "gpt4_31ff4165",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You use at least 3 health-related devices: \n\n1. Nebulizer machine (for inhalation treatments)\n2. Blood sugar level tester (to test your blood sugar levels three times a day)\n3. Fitbit Versa 3 (to track activity levels and sleep patterns)",
+  "gold": "4",
+  "n_rows": 32,
+  "n_block_tokens": 709,
+  "engine_step0_rows_tokens": [
+   27,
+   622
+  ]
+ },
+ {
+  "qid": "eeda8a6d",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You have mentioned having the following fish:\n\n1. Bubbles (betta fish)\n2. Neon tetras (no specific number mentioned)\n3. A small pleco catfish\n4. 5 golden honey gouramis\n\nYou also mentioned planning to add schooling fish, but no specific number or type has been added yet.\n\nSince you only mentioned one 20-gallon tank, I assume you only have one aquarium. The total number of fish mentioned is at least",
+  "gold": "17",
+  "n_rows": 32,
+  "n_block_tokens": 700,
+  "engine_step0_rows_tokens": [
+   24,
+   549
+  ]
+ },
+ {
+  "qid": "2788b940",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.043,
+  "answer": "You attend the following classes: \n- BodyPump on Mondays\n- Zumba on Tuesdays\n- Zumba on Thursdays\n- Hip Hop Abs on Saturdays\n- Yoga on Sundays (you also teach yoga on Sundays)\n\nSo, in a typical week, you attend at least 5 fitness classes.",
+  "gold": "5",
+  "n_rows": 32,
+  "n_block_tokens": 613,
+  "engine_step0_rows_tokens": [
+   32,
+   631
+  ]
+ },
+ {
+  "qid": "60bf93ed",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.167,
+  "answer": "You bought the backpack on January 15, 2023, and received it on January 20, 2023. It took 5 days for your laptop backpack to arrive.",
+  "gold": "5 days. 6 days (including the last day) is also acceptable.",
+  "n_rows": 32,
+  "n_block_tokens": 715,
+  "engine_step0_rows_tokens": [
+   32,
+   757
+  ]
+ },
+ {
+  "qid": "9d25d4e0",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You mentioned buying emerald earrings \"last weekend\" on 2023/05/21. Since then, there's no mention of acquiring new jewelry. Assuming \"last weekend\" refers to the weekend before 2023/05/21, that would be around 2023/05/13-14. \n\nSo, in the last two months, you've mentioned acquiring at least one piece of jewelry: the emerald earrings. However, the total number of pieces acquired",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 669,
+  "engine_step0_rows_tokens": [
+   32,
+   693
+  ]
+ },
+ {
+  "qid": "129d1232",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You raised $250 through sponsors for the charity walk, and your team raised $5,000 for Cancer Research, and the charity yoga event raised $600 for a local animal shelter. So, the total amount raised is $250 + $5,000 + $600 = $5,850.",
+  "gold": "$5,850",
+  "n_rows": 32,
+  "n_block_tokens": 708,
+  "engine_step0_rows_tokens": [
+   23,
+   544
+  ]
+ },
+ {
+  "qid": "60472f9c",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You've been working on at least 3 projects simultaneously, excluding your thesis: \n\n1. A group project for your Database Systems course\n2. A group project in the Data Mining course\n3. A project that involves image classification (specifically, a diabetic retinopathy image classification task)",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 662,
+  "engine_step0_rows_tokens": [
+   18,
+   396
+  ]
+ },
+ {
+  "qid": "gpt4_194be4b3",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.455,
+  "answer": "You currently own 4 musical instruments: \n\n1. A 5-piece Pearl Export drum set\n2. A Korg B1 piano\n3. A Yamaha FG800 acoustic guitar\n4. A black Fender Stratocaster electric guitar \n\nNote: You are considering buying a ukulele, but you don't own one yet.",
+  "gold": "I currently own 4 musical instruments. I've had the Fender Stratocaster electric guitar for 5 years, the Yamaha FG800 acoustic guitar for 8 years, the 5-piece Pearl Export drum set for an unspecified amount of time, and the Korg B1 piano for 3 years.",
+  "n_rows": 32,
+  "n_block_tokens": 626,
+  "engine_step0_rows_tokens": [
+   6,
+   143
+  ]
+ },
+ {
+  "qid": "a9f6b44c",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.067,
+  "answer": "You had your road bike serviced at Pedal Power on March 10th, and you planned to replace the front tire of your commuter bike in March. So, 2 bikes.",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 720,
+  "engine_step0_rows_tokens": [
+   28,
+   774
+  ]
+ },
+ {
+  "qid": "d851d5ba",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You raised: \n- $250 for a local food bank\n- $500 for the American Cancer Society\n- $1,000 from a charity bake sale\n- $2,000 for a local animal shelter\n- $1,000 for the local children's hospital\n\nTotal: $4,750",
+  "gold": "$3,750",
+  "n_rows": 32,
+  "n_block_tokens": 658,
+  "engine_step0_rows_tokens": [
+   32,
+   681
+  ]
+ },
+ {
+  "qid": "5a7937c8",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.039,
+  "answer": "You participated in the following faith-related activities in December: \n- Helping at the church's annual holiday food drive on December 10th\n- Attending a Bible study on December 17th\n- Attending midnight mass on December 24th\n\nSo, you spent at least 3 days participating in faith-related activities in December.",
+  "gold": "3 days.",
+  "n_rows": 32,
+  "n_block_tokens": 784,
+  "engine_step0_rows_tokens": [
+   20,
+   507
+  ]
+ },
+ {
+  "qid": "gpt4_ab202e7f",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.333,
+  "answer": "You replaced or fixed the following kitchen items: \n1. Kitchen shelves (fixed)\n2. Kitchen mat (replaced)\n3. Kitchen faucet (replaced)\n4. Toaster (replaced with a toaster oven)",
+  "gold": "I replaced or fixed five items: the kitchen faucet, the kitchen mat, the toaster, the coffee maker, and the kitchen shelves.",
+  "n_rows": 32,
+  "n_block_tokens": 651,
+  "engine_step0_rows_tokens": [
+   32,
+   670
+  ]
+ },
+ {
+  "qid": "gpt4_e05b82a6",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.027,
+  "answer": "You rode the following rollercoasters:\n\n- Mako, Kraken, and Manta at SeaWorld San Diego in July (3 times each, but exact number of rides not specified)\n- Revenge of the Mummy at Universal Studios Hollywood (3 times in a row on one day, but exact date not specified)\n- Xcelerator at Knott's Berry Farm on October 8th (number of rides not specified)\n- Space Mountain: Ghost Galaxy at Disneyland on September",
+  "gold": "10 times",
+  "n_rows": 32,
+  "n_block_tokens": 779,
+  "engine_step0_rows_tokens": [
+   32,
+   732
+  ]
+ },
+ {
+  "qid": "gpt4_731e37d7",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You spent $500, $20, and $200 on workshops. The total amount spent is $500 + $20 + $200 = $720.",
+  "gold": "$720",
+  "n_rows": 32,
+  "n_block_tokens": 669,
+  "engine_step0_rows_tokens": [
+   31,
+   719
+  ]
+ },
+ {
+  "qid": "edced276",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.091,
+  "answer": "You spent an unknown number of days in Hawaii (you returned by 2023/05/24) and 5 days in New York City.",
+  "gold": "15 days",
+  "n_rows": 32,
+  "n_block_tokens": 689,
+  "engine_step0_rows_tokens": [
+   32,
+   698
+  ]
+ },
+ {
+  "qid": "10d9b85a",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.083,
+  "answer": "You attended a lecture on April 10th and a 2-day workshop on April 17th and 18th. That's a total of 3 days.",
+  "gold": "3 days",
+  "n_rows": 32,
+  "n_block_tokens": 729,
+  "engine_step0_rows_tokens": [
+   13,
+   343
+  ]
+ },
+ {
+  "qid": "e3038f8c",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.059,
+  "answer": "You have:\n- 57 rare records\n- 5 rare books\n- 25 rare coins\n- 12 rare figurines\n\nIn total, you have 57 + 5 + 25 + 12 = 99 rare items.",
+  "gold": "99",
+  "n_rows": 32,
+  "n_block_tokens": 612,
+  "engine_step0_rows_tokens": [
+   32,
+   600
+  ]
+ },
+ {
+  "qid": "2b8f3739",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You earned $225 from selling homemade jam and $120 from selling fresh organic herbs, so the total amount is $225 + $120 = $345. Additionally, you sold 20 potted herb plants for $7.5 each, which is $20 * $7.5 = $150. The total amount of money you earned is $345 + $150 = $495.",
+  "gold": "$495",
+  "n_rows": 32,
+  "n_block_tokens": 699,
+  "engine_step0_rows_tokens": [
+   25,
+   563
+  ]
+ },
+ {
+  "qid": "1a8a66a6",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You have 1 magazine subscription, which is to The New Yorker magazine. You canceled your Forbes magazine subscription in early March 2023.",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 647,
+  "engine_step0_rows_tokens": [
+   9,
+   205
+  ]
+ },
+ {
+  "qid": "c2ac3c61",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.125,
+  "answer": "You have completed 5 online courses in total (3 on Coursera and 2 on edX).",
+  "gold": "5",
+  "n_rows": 32,
+  "n_block_tokens": 729,
+  "engine_step0_rows_tokens": [
+   23,
+   536
+  ]
+ },
+ {
+  "qid": "bf659f65",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You have purchased or downloaded at least 2: \n\n1. The Whiskey Wanderers' EP 'Midnight Sky' (purchased at a festival merchandise booth)\n2. Billie Eilish's 'Happier Than Ever' album (downloaded on Spotify)",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 691,
+  "engine_step0_rows_tokens": [
+   32,
+   619
+  ]
+ },
+ {
+  "qid": "gpt4_372c3eed",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.028,
+  "answer": "You attended high school from 2010 to 2014 (4 years), then earned your Associate's degree in 2016 (2 years), and finally completed your Bachelor's degree in 2020 (4 years after starting your Associate's, which is 2 years for the remaining part of your Bachelor's). \n\nSo, the total years spent in formal education from high school to the completion of your Bachelor's degree is 4 (high school) + 2 (",
+  "gold": "10 years",
+  "n_rows": 32,
+  "n_block_tokens": 709,
+  "engine_step0_rows_tokens": [
+   19,
+   486
+  ]
+ },
+ {
+  "qid": "gpt4_2f91af09",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You've written 17 poems and 5 short stories. Since you participated in the writing challenge for 3 weeks, that's 3 additional pieces. So, in total, you've completed 17 (poems) + 5 (short stories) + 3 (writing challenge pieces) = 25 pieces of writing.",
+  "gold": "23",
+  "n_rows": 32,
+  "n_block_tokens": 647,
+  "engine_step0_rows_tokens": [
+   32,
+   659
+  ]
+ },
+ {
+  "qid": "81507db6",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You've attended at least 3: Rachel's master's degree graduation, Alex's leadership development program graduation, and Emma's preschool graduation.",
+  "gold": "3",
+  "n_rows": 32,
+  "n_block_tokens": 678,
+  "engine_step0_rows_tokens": [
+   26,
+   586
+  ]
+ },
+ {
+  "qid": "88432d0a_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.242,
+  "answer": "You didn't bake egg tarts, you were considering baking a fruit tart. There's no record of you baking egg tarts.",
+  "gold": "The information provided is not enough. You did not mention baking egg tarts.",
+  "n_rows": 32,
+  "n_block_tokens": 707,
+  "engine_step0_rows_tokens": [
+   12,
+   303
+  ]
+ },
+ {
+  "qid": "80ec1f4f_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.15,
+  "answer": "You didn't visit any museums or galleries in December, according to the known facts. The visits mentioned were in January (Modern Art Museum), February (The Art Cube, Natural History Museum).",
+  "gold": "0. You did not mention visitng any museum in December",
+  "n_rows": 32,
+  "n_block_tokens": 703,
+  "engine_step0_rows_tokens": [
+   10,
+   234
+  ]
+ },
+ {
+  "qid": "eeda8a6d_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.257,
+  "answer": "You don't have a 30-gallon tank. You have a 20-gallon tank. According to the known facts, your tank currently has:\n\n- 10 neon tetras\n- 5 golden honey gouramis\n- 1 small pleco catfish\n\nThere's also a mention of a betta fish named Bubbles, but it's unclear if Bubbles is still in the tank.",
+  "gold": "The information provided is not enough. You did not mention that you have a 30-gallon tank.",
+  "n_rows": 32,
+  "n_block_tokens": 676,
+  "engine_step0_rows_tokens": [
+   32,
+   656
+  ]
+ },
+ {
+  "qid": "60bf93ed_abs",
+  "type": "multi-session",
+  "ok": true,
+  "sub": false,
+  "f1": 0.522,
+  "answer": "There's no information about you buying an iPad case.",
+  "gold": "The information provided is not enough. You did not mention buying an iPad case.",
+  "n_rows": 32,
+  "n_block_tokens": 690,
+  "engine_step0_rows_tokens": [
+   32,
+   778
+  ]
+ },
+ {
+  "qid": "edced276_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.256,
+  "answer": "You didn't travel to Seattle, according to the known facts. You spent 5 days on a solo trip to New York City, and you went on an island-hopping trip to Hawaii with your family, which was part of a planned 10-day trip. However, the exact number of days spent in Hawaii is not specified.",
+  "gold": "The information provided is not enough. You mentioned traveling for 10 days in Hawaii but did not mention abything about the trip to Seattle.",
+  "n_rows": 32,
+  "n_block_tokens": 694,
+  "engine_step0_rows_tokens": [
+   17,
+   387
+  ]
+ },
+ {
+  "qid": "gpt4_372c3eed_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.255,
+  "answer": "You attended high school from 2010 to 2014 (4 years), then earned your Associate's degree in 2016 (2 years), and your Bachelor's degree in 2020 (4 years after Associate's). \n\nSince you're considering pursuing a Master's degree, I'll assume you completed it. A Master's degree typically takes 2 years. \n\nSo, the total years spent in formal education would be: 4 (high school) + 2",
+  "gold": "The information provided is not enough. You mentioned 4 years in high school (2010-2014), 2 years at PCC (2014-2016), and 4 years at UCLA (2016-2020). But you didn't mention the number of years you spend getting the Master's degree",
+  "n_rows": 32,
+  "n_block_tokens": 696,
+  "engine_step0_rows_tokens": [
+   25,
+   577
+  ]
+ },
+ {
+  "qid": "d3ab962e",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.118,
+  "answer": "You hiked 5 miles at Red Rock Canyon two weekends ago and 3 miles at Valley of Fire State Park last weekend. The total distance is 5 + 3 = 8 miles.",
+  "gold": "8 miles",
+  "n_rows": 32,
+  "n_block_tokens": 657,
+  "engine_step0_rows_tokens": [
+   4,
+   109
+  ]
+ },
+ {
+  "qid": "2311e44b",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.111,
+  "answer": "You have 190 pages left to read in 'The Nightingale' (440 total pages - 250 pages read).",
+  "gold": "190",
+  "n_rows": 32,
+  "n_block_tokens": 714,
+  "engine_step0_rows_tokens": [
+   12,
+   303
+  ]
+ },
+ {
+  "qid": "cc06de0d",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.1,
+  "answer": "The taxi ride was $12 and the train fare is $6. So, the taxi ride was $6 more expensive.",
+  "gold": "$6",
+  "n_rows": 32,
+  "n_block_tokens": 637,
+  "engine_step0_rows_tokens": [
+   32,
+   657
+  ]
+ },
+ {
+  "qid": "a11281a2",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.026,
+  "answer": "You had 250 followers at the start of the year and 350 followers after two weeks of posting regularly. However, the 250 followers were at the start of the year, not two weeks before having 350. \n\nSince you had 350 followers after two weeks of posting regularly (as of 2023/05/23), and assuming you started with a number close to the start of the year (250 followers), the increase would be approximately 100 followers in two",
+  "gold": "100",
+  "n_rows": 32,
+  "n_block_tokens": 649,
+  "engine_step0_rows_tokens": [
+   32,
+   646
+  ]
+ },
+ {
+  "qid": "4f54b7c9",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.042,
+  "answer": "You inherited or acquired the following antique items from your family members: \n\n1. Antique music box (from great-aunt)\n2. Antique tea set (from cousin Rachel)\n3. Depression-era glassware (from mom)\n4. Vintage diamond necklace (from grandmother)\n5. Vintage typewriter (from dad)\n\nThere are 5 items in total.",
+  "gold": "5",
+  "n_rows": 32,
+  "n_block_tokens": 721,
+  "engine_step0_rows_tokens": [
+   28,
+   654
+  ]
+ },
+ {
+  "qid": "85fa3a3f",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "The total cost is: \n$15 (food bowl) + $5 (measuring cup) + $10 (dental chews) + $20 (flea and tick collar) = $50.",
+  "gold": "$50",
+  "n_rows": 32,
+  "n_block_tokens": 692,
+  "engine_step0_rows_tokens": [
+   32,
+   701
+  ]
+ },
+ {
+  "qid": "9aaed6a3",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.133,
+  "answer": "You spent $75 at SaveMart and earn 1% cashback. So, you earned $0.75 cashback.",
+  "gold": "$0.75",
+  "n_rows": 32,
+  "n_block_tokens": 720,
+  "engine_step0_rows_tokens": [
+   32,
+   708
+  ]
+ },
+ {
+  "qid": "1f2b8d4f",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "The difference in price is $750. Your luxury boots cost $800, while the similar pair at the budget store costs $50.",
+  "gold": "$750",
+  "n_rows": 32,
+  "n_block_tokens": 683,
+  "engine_step0_rows_tokens": [
+   32,
+   700
+  ]
+ },
+ {
+  "qid": "e6041065",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.049,
+  "answer": "You packed 5 pairs of shoes and wore 2 types (sneakers and sandals), which implies you wore 2 pairs. \n\nTo find the percentage: (2/5) * 100 = 40%\n\nYou wore 40% of the shoes you packed on your last trip.",
+  "gold": "40%",
+  "n_rows": 32,
+  "n_block_tokens": 690,
+  "engine_step0_rows_tokens": [
+   32,
+   704
+  ]
+ },
+ {
+  "qid": "51c32626",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You submitted your research paper to ACL on 2023/05/22.",
+  "gold": "February 1st",
+  "n_rows": 32,
+  "n_block_tokens": 737,
+  "engine_step0_rows_tokens": [
+   20,
+   480
+  ]
+ },
+ {
+  "qid": "d905b33f",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.057,
+  "answer": "You paid $24 for the book after a discount, and the original price was $30. To find the discount percentage: \n\n($30 - $24) / $30 = $6 / $30 = 0.2 or 20% discount.",
+  "gold": "20%",
+  "n_rows": 32,
+  "n_block_tokens": 743,
+  "engine_step0_rows_tokens": [
+   32,
+   755
+  ]
+ },
+ {
+  "qid": "7405e8b1",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You received a 40% discount on your first HelloFresh order, but there's no record of a discount on your first UberEats order, only a 20% discount on a subsequent UberEats order.",
+  "gold": "Yes.",
+  "n_rows": 32,
+  "n_block_tokens": 690,
+  "engine_step0_rows_tokens": [
+   11,
+   264
+  ]
+ },
+ {
+  "qid": "f35224e0",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You've listened to around 15 episodes of 'How I Built This' and finished episode 12 of 'My Favorite Murder'. So, the total number of episodes is 15 + 12 = 27.",
+  "gold": "27",
+  "n_rows": 32,
+  "n_block_tokens": 680,
+  "engine_step0_rows_tokens": [
+   21,
+   505
+  ]
+ },
+ {
+  "qid": "6456829e",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You initially planted 5 tomato plants and 3 cucumber plants.",
+  "gold": "8",
+  "n_rows": 32,
+  "n_block_tokens": 696,
+  "engine_step0_rows_tokens": [
+   32,
+   697
+  ]
+ },
+ {
+  "qid": "a4996e51",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.105,
+  "answer": "During peak campaign seasons, you work 40 (typical hours) + 10 (additional hours) = 50 hours a week.",
+  "gold": "50",
+  "n_rows": 32,
+  "n_block_tokens": 699,
+  "engine_step0_rows_tokens": [
+   32,
+   733
+  ]
+ },
+ {
+  "qid": "3c1045c8",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.133,
+  "answer": "You are 32 years old, and the average age of employees in your department is 29.5 years old. So, you are 2.5 years older than the average age.",
+  "gold": "2.5 years",
+  "n_rows": 32,
+  "n_block_tokens": 694,
+  "engine_step0_rows_tokens": [
+   10,
+   254
+  ]
+ },
+ {
+  "qid": "60036106",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "The Facebook ad campaign reached around 2,000 people, and the influencer has 10,000 followers on Instagram. Assuming the collaboration reached all of the influencer's followers, the total number of people reached would be 2,000 (Facebook) + 10,000 (Instagram) = 12,000.",
+  "gold": "12,000",
+  "n_rows": 32,
+  "n_block_tokens": 682,
+  "engine_step0_rows_tokens": [
+   32,
+   675
+  ]
+ },
+ {
+  "qid": "681a1674",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.133,
+  "answer": "You re-watched at least 2 Marvel movies: Avengers: Endgame and Spider-Man: No Way Home.",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 668,
+  "engine_step0_rows_tokens": [
+   31,
+   640
+  ]
+ },
+ {
+  "qid": "e25c3b8d",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.083,
+  "answer": "You saved $300 on the designer handbag at TK Maxx, as it was originally priced at $500 and you bought it for $200.",
+  "gold": "$300",
+  "n_rows": 32,
+  "n_block_tokens": 683,
+  "engine_step0_rows_tokens": [
+   16,
+   359
+  ]
+ },
+ {
+  "qid": "4adc0475",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "As of 2023/05/28, you had scored 3 goals and had 2 assists. Since there's no update on new goals or assists after 2023/05/28, the total remains: 3 goals + 2 assists = 5.",
+  "gold": "5",
+  "n_rows": 32,
+  "n_block_tokens": 619,
+  "engine_step0_rows_tokens": [
+   19,
+   401
+  ]
+ },
+ {
+  "qid": "4bc144e2",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You spent $15 on a car wash and $50 on a parking ticket, for a total of $65.",
+  "gold": "$65",
+  "n_rows": 32,
+  "n_block_tokens": 692,
+  "engine_step0_rows_tokens": [
+   12,
+   276
+  ]
+ },
+ {
+  "qid": "ef66a6e5",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You've played 3 sports competitively: swimming, tennis, and soccer.",
+  "gold": "two",
+  "n_rows": 32,
+  "n_block_tokens": 663,
+  "engine_step0_rows_tokens": [
+   7,
+   174
+  ]
+ },
+ {
+  "qid": "5025383b",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.174,
+  "answer": "Based on our earlier conversations, the two hobbies that led you to join online communities are cooking and photo editing.",
+  "gold": "photography and cooking",
+  "n_rows": 32,
+  "n_block_tokens": 660,
+  "engine_step0_rows_tokens": [
+   24,
+   556
+  ]
+ },
+ {
+  "qid": "a1cc6108",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.074,
+  "answer": "You are 32 years old now, and Alex is 21 years old. So, when Alex was born, you were 32 - 21 = 11 years old.",
+  "gold": "11",
+  "n_rows": 32,
+  "n_block_tokens": 639,
+  "engine_step0_rows_tokens": [
+   10,
+   215
+  ]
+ },
+ {
+  "qid": "9ee3ecd6",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.077,
+  "answer": "You need 100 points to redeem a free skincare product at Sephora, since you already have 200 points and need a total of 300 points.",
+  "gold": "100",
+  "n_rows": 32,
+  "n_block_tokens": 696,
+  "engine_step0_rows_tokens": [
+   32,
+   719
+  ]
+ },
+ {
+  "qid": "3fdac837",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.238,
+  "answer": "You spent 7 days in Japan (April 15th to April 22nd) and 4 days in Chicago. The total number of days is 7 + 4 = 11.",
+  "gold": "11 days (or 12 days, if April 15th to 22nd is considered as 8 days)",
+  "n_rows": 32,
+  "n_block_tokens": 666,
+  "engine_step0_rows_tokens": [
+   28,
+   634
+  ]
+ },
+ {
+  "qid": "91b15a6e",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.095,
+  "answer": "The minimum amount you could get is $5,150 ($5,000 for the vintage diamond necklace + $150 for the antique vanity).",
+  "gold": "$5,150",
+  "n_rows": 32,
+  "n_block_tokens": 695,
+  "engine_step0_rows_tokens": [
+   32,
+   670
+  ]
+ },
+ {
+  "qid": "27016adc",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.054,
+  "answer": "The cost of renovations is $20,000 and the countryside property's price is $200,000. \n\nTo find the percentage: ($20,000 / $200,000) * 100 = 10%\n\nThe cost of the renovations is 10% of the countryside property's price.",
+  "gold": "10%",
+  "n_rows": 32,
+  "n_block_tokens": 708,
+  "engine_step0_rows_tokens": [
+   32,
+   689
+  ]
+ },
+ {
+  "qid": "720133ac",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "The vet visit cost $50 (consultation fee) and the flea medication costs $25. The total cost is $50 + $25 = $75.",
+  "gold": "$75",
+  "n_rows": 32,
+  "n_block_tokens": 685,
+  "engine_step0_rows_tokens": [
+   27,
+   573
+  ]
+ },
+ {
+  "qid": "77eafa52",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.111,
+  "answer": "You initially paid $2,500 and the corrected price was $2,800, so you had to pay $300 more.",
+  "gold": "$300",
+  "n_rows": 32,
+  "n_block_tokens": 741,
+  "engine_step0_rows_tokens": [
+   32,
+   730
+  ]
+ },
+ {
+  "qid": "8979f9ec",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.067,
+  "answer": "You got 3 meals from the chicken fajitas and 5 lunches from the lentil soup. So, the total number of lunch meals is 3 + 5 = 8.",
+  "gold": "8 meals",
+  "n_rows": 32,
+  "n_block_tokens": 723,
+  "engine_step0_rows_tokens": [
+   23,
+   625
+  ]
+ },
+ {
+  "qid": "0100672e",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.105,
+  "answer": "You spent $60 on 5 coffee mugs, so you spent $60 / 5 = $12 per coffee mug.",
+  "gold": "$12",
+  "n_rows": 32,
+  "n_block_tokens": 735,
+  "engine_step0_rows_tokens": [
+   28,
+   647
+  ]
+ },
+ {
+  "qid": "a96c20ee",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.154,
+  "answer": "You presented a poster on your thesis research at Harvard University.",
+  "gold": "Harvard University",
+  "n_rows": 32,
+  "n_block_tokens": 655,
+  "engine_step0_rows_tokens": [
+   16,
+   385
+  ]
+ },
+ {
+  "qid": "92a0aa75",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.111,
+  "answer": "You've been working in your current company for 3 years and 9 months.",
+  "gold": "1 year and 5 months",
+  "n_rows": 32,
+  "n_block_tokens": 647,
+  "engine_step0_rows_tokens": [
+   18,
+   447
+  ]
+ },
+ {
+  "qid": "3fe836c9",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "The pre-approval amount was $350,000 and the final sale price of the house was $325,000. The difference is $25,000.",
+  "gold": "$25,000",
+  "n_rows": 32,
+  "n_block_tokens": 732,
+  "engine_step0_rows_tokens": [
+   23,
+   550
+  ]
+ },
+ {
+  "qid": "1c549ce4",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "The total cost is $170. You spent $120 on the waterproof car cover and $50 on the detailing spray.",
+  "gold": "$140",
+  "n_rows": 32,
+  "n_block_tokens": 714,
+  "engine_step0_rows_tokens": [
+   32,
+   643
+  ]
+ },
+ {
+  "qid": "6c49646a",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.045,
+  "answer": "You covered 1,800 miles in your recent three road trips. Additionally, you covered 1,200 miles during your trip to Yellowstone National Park. However, the 1,200 miles is already included in the 1,800 miles. Therefore, the total distance you covered is 1,800 miles.",
+  "gold": "3,000 miles",
+  "n_rows": 32,
+  "n_block_tokens": 743,
+  "engine_step0_rows_tokens": [
+   8,
+   206
+  ]
+ },
+ {
+  "qid": "1192316e",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.121,
+  "answer": "It takes you 1 hour to get ready and 30 minutes to commute to work. So, the total time is 1 hour + 30 minutes = 1.5 hours.",
+  "gold": "an hour and a half",
+  "n_rows": 32,
+  "n_block_tokens": 687,
+  "engine_step0_rows_tokens": [
+   32,
+   719
+  ]
+ },
+ {
+  "qid": "0ea62687",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.105,
+  "answer": "2 miles per gallon. Your car used to get 30 miles per gallon, but now it gets 28.",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 706,
+  "engine_step0_rows_tokens": [
+   32,
+   726
+  ]
+ },
+ {
+  "qid": "67e0d0f2",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You've completed 12 courses on Coursera and taken 8 courses on edX, but it's not specified that you completed all 8 edX courses. Therefore, the total number of completed online courses that can be confirmed is 12.",
+  "gold": "20",
+  "n_rows": 32,
+  "n_block_tokens": 681,
+  "engine_step0_rows_tokens": [
+   27,
+   673
+  ]
+ },
+ {
+  "qid": "bb7c3b45",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.1,
+  "answer": "You saved $300 on the Jimmy Choo heels. They originally retailed for $500, but you spent $200 on them.",
+  "gold": "$300",
+  "n_rows": 32,
+  "n_block_tokens": 701,
+  "engine_step0_rows_tokens": [
+   6,
+   145
+  ]
+ },
+ {
+  "qid": "ba358f49",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.08,
+  "answer": "Since Rachel is getting married next year and you are currently 32 years old, you will be 33 years old when Rachel gets married.",
+  "gold": "33",
+  "n_rows": 32,
+  "n_block_tokens": 671,
+  "engine_step0_rows_tokens": [
+   13,
+   308
+  ]
+ },
+ {
+  "qid": "61f8c8f8",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.2,
+  "answer": "You finished the 5K run in 35 minutes, compared to 45 minutes last year. That's 10 minutes faster.",
+  "gold": "10 minutes",
+  "n_rows": 32,
+  "n_block_tokens": 655,
+  "engine_step0_rows_tokens": [
+   14,
+   349
+  ]
+ },
+ {
+  "qid": "60159905",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You've attended at least 3 dinner parties: \n1. At Alex's place on 2023/05/20\n2. At Mike's place (date not specified, but mentioned on 2023/05/21)\n3. At Sarah's place (attended an Italian feast, mentioned on 2023/05/22)",
+  "gold": "three",
+  "n_rows": 32,
+  "n_block_tokens": 663,
+  "engine_step0_rows_tokens": [
+   32,
+   709
+  ]
+ },
+ {
+  "qid": "ef9cf60a",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.061,
+  "answer": "You spent around $200 on a silver necklace from Tiffany's and $100 on a gift card to her favorite spa, so in total, you spent around $300 on gifts for your sister.",
+  "gold": "$300",
+  "n_rows": 32,
+  "n_block_tokens": 724,
+  "engine_step0_rows_tokens": [
+   22,
+   491
+  ]
+ },
+ {
+  "qid": "73d42213",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.067,
+  "answer": "You left home at 7 AM on Monday and it took 2 hours to get to the clinic. So, you reached the clinic at 9 AM on Monday.",
+  "gold": "9:00 AM",
+  "n_rows": 32,
+  "n_block_tokens": 675,
+  "engine_step0_rows_tokens": [
+   32,
+   782
+  ]
+ },
+ {
+  "qid": "bc149d6b",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.182,
+  "answer": "You purchased 50 pounds of layer feed and 20 pounds of organic scratch grains. The total weight is 70 pounds.",
+  "gold": "70 pounds",
+  "n_rows": 32,
+  "n_block_tokens": 712,
+  "engine_step0_rows_tokens": [
+   32,
+   752
+  ]
+ },
+ {
+  "qid": "099778bb",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.125,
+  "answer": "Women hold 20% of the leadership positions in your company (20 out of 100 positions).",
+  "gold": "20%",
+  "n_rows": 32,
+  "n_block_tokens": 730,
+  "engine_step0_rows_tokens": [
+   32,
+   719
+  ]
+ },
+ {
+  "qid": "09ba9854",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.133,
+  "answer": "You will save $50 by taking the train ($10) instead of a taxi ($60).",
+  "gold": "$50",
+  "n_rows": 32,
+  "n_block_tokens": 688,
+  "engine_step0_rows_tokens": [
+   32,
+   709
+  ]
+ },
+ {
+  "qid": "d6062bb9",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.056,
+  "answer": "Your most popular YouTube video has 542 views (social media analytics tutorial) and your most popular TikTok video has 1,456 views (Luna chasing a laser pointer). The total is 542 + 1,456 = 1,998 views.",
+  "gold": "1,998",
+  "n_rows": 32,
+  "n_block_tokens": 682,
+  "engine_step0_rows_tokens": [
+   28,
+   620
+  ]
+ },
+ {
+  "qid": "157a136e",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.077,
+  "answer": "You are 32 years old, and your grandma is 75 years old. So, your grandma is 75 - 32 = 43 years older than you.",
+  "gold": "43",
+  "n_rows": 32,
+  "n_block_tokens": 660,
+  "engine_step0_rows_tokens": [
+   9,
+   211
+  ]
+ },
+ {
+  "qid": "c18a7dc8",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.133,
+  "answer": "You graduated at 25 and are now 32, so you are 7 years older.",
+  "gold": "7",
+  "n_rows": 32,
+  "n_block_tokens": 694,
+  "engine_step0_rows_tokens": [
+   9,
+   197
+  ]
+ },
+ {
+  "qid": "a3332713",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "You spent $100 on the baby shower gift for your coworker and $100 on a gift card for your brother. The total amount is $200.",
+  "gold": "$200",
+  "n_rows": 32,
+  "n_block_tokens": 709,
+  "engine_step0_rows_tokens": [
+   27,
+   608
+  ]
+ },
+ {
+  "qid": "55241a1f",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.08,
+  "answer": "Your Facebook Live session had 12 comments. Your most popular video has 21 comments. So, the total is 12 + 21 = 33 comments.",
+  "gold": "33",
+  "n_rows": 32,
+  "n_block_tokens": 649,
+  "engine_step0_rows_tokens": [
+   32,
+   642
+  ]
+ },
+ {
+  "qid": "a08a253f",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.091,
+  "answer": "You attend fitness classes on Tuesday (Zumba), Wednesday (yoga), Thursday (Zumba), and Saturday (weightlifting), which is 4 days a week.",
+  "gold": "4 days.",
+  "n_rows": 32,
+  "n_block_tokens": 656,
+  "engine_step0_rows_tokens": [
+   27,
+   563
+  ]
+ },
+ {
+  "qid": "f0e564bc",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You spent $800 on the Coach handbag and $500 on high-end skincare products. The total amount is $800 + $500 = $1300.",
+  "gold": "$1,300",
+  "n_rows": 32,
+  "n_block_tokens": 700,
+  "engine_step0_rows_tokens": [
+   29,
+   670
+  ]
+ },
+ {
+  "qid": "078150f1",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.1,
+  "answer": "You initially aimed to raise $200 and actually raised $250. So, you raised $50 more than your initial goal.",
+  "gold": "$50",
+  "n_rows": 32,
+  "n_block_tokens": 724,
+  "engine_step0_rows_tokens": [
+   32,
+   724
+  ]
+ },
+ {
+  "qid": "8cf4d046",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.0,
+  "answer": "Your undergraduate GPA in Computer Science is 3.86 (out of 4.0) and your Master's GPA is 3.8 (out of 4.0). The average GPA is (3.86 + 3.8) / 2 = 3.83.",
+  "gold": "3.83",
+  "n_rows": 32,
+  "n_block_tokens": 713,
+  "engine_step0_rows_tokens": [
+   8,
+   219
+  ]
+ },
+ {
+  "qid": "a346bb18",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.083,
+  "answer": "You exceeded your target time by 12 minutes. Your target was 4 hours 10 minutes, and you finished in 4 hours 22 minutes.",
+  "gold": "12",
+  "n_rows": 32,
+  "n_block_tokens": 743,
+  "engine_step0_rows_tokens": [
+   21,
+   513
+  ]
+ },
+ {
+  "qid": "37f165cf",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "There is no information about the novels you finished in January and March. The known facts only mention finishing \"The Nightingale\" and a 416-page novel, both without specific finish dates, except that the 416-page novel was finished on 2023/05/27.",
+  "gold": "856",
+  "n_rows": 32,
+  "n_block_tokens": 695,
+  "engine_step0_rows_tokens": [
+   12,
+   299
+  ]
+ },
+ {
+  "qid": "8e91e7d9",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.2,
+  "answer": "You have 4 siblings: 3 sisters and 1 brother.",
+  "gold": "4",
+  "n_rows": 32,
+  "n_block_tokens": 615,
+  "engine_step0_rows_tokens": [
+   3,
+   78
+  ]
+ },
+ {
+  "qid": "87f22b4a",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.083,
+  "answer": "You sold 40 dozen eggs at $3 per dozen. So, 40 * $3 = $120. You made $120 from selling eggs this month.",
+  "gold": "$120",
+  "n_rows": 32,
+  "n_block_tokens": 645,
+  "engine_step0_rows_tokens": [
+   21,
+   472
+  ]
+ },
+ {
+  "qid": "e56a43b9",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.037,
+  "answer": "You earn a $1 discount for every 100 points at FreshMart, and a $5 discount when you earn 500 points. Without knowing the exact number of points you have, I can tell you the discount will be at least $5 if you have 500 points, plus $1 for every 100 points beyond that.",
+  "gold": "$5",
+  "n_rows": 32,
+  "n_block_tokens": 737,
+  "engine_step0_rows_tokens": [
+   29,
+   693
+  ]
+ },
+ {
+  "qid": "efc3f7c2",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.16,
+  "answer": "You wake up at 6:00 AM on Fridays and 6:30 AM on other weekdays. So, you wake up 30 minutes earlier on Fridays.",
+  "gold": "30 minutes",
+  "n_rows": 32,
+  "n_block_tokens": 686,
+  "engine_step0_rows_tokens": [
+   10,
+   251
+  ]
+ },
+ {
+  "qid": "21d02d0d",
+  "type": "multi-session",
+  "ok": true,
+  "sub": true,
+  "f1": 0.095,
+  "answer": "You missed 2 fun runs in March due to work commitments: one on March 5th and another on March 26th.",
+  "gold": "2",
+  "n_rows": 32,
+  "n_block_tokens": 683,
+  "engine_step0_rows_tokens": [
+   15,
+   387
+  ]
+ },
+ {
+  "qid": "2311e44b_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.227,
+  "answer": "I don't have that information. You've mentioned reading 'The Nightingale' (440 pages) and 'Sapiens', but not the total number of pages in 'Sapiens'.",
+  "gold": "The information provided is not enough. You did not mention how many paged do you have left to read in 'Sapiens'.",
+  "n_rows": 32,
+  "n_block_tokens": 701,
+  "engine_step0_rows_tokens": [
+   14,
+   355
+  ]
+ },
+ {
+  "qid": "6456829e_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.311,
+  "answer": "You initially planted 5 tomato plants. There is no information about you planting chili pepper plants, only that you use chili powder in your recipes.",
+  "gold": "The information provided is not enough. You mentioned planting 5 plants for tomatoes but you did not mention chili peppers.",
+  "n_rows": 32,
+  "n_block_tokens": 704,
+  "engine_step0_rows_tokens": [
+   30,
+   655
+  ]
+ },
+ {
+  "qid": "e5ba910e_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.205,
+  "answer": "You didn't purchase an iPad, but you did buy Sony WH-1000XM4 headphones for $378. There's no record of an iPad purchase.",
+  "gold": "The information provided is not enough. You mentioned purchasing a headphone, but you did not mention the iPad.",
+  "n_rows": 32,
+  "n_block_tokens": 691,
+  "engine_step0_rows_tokens": [
+   32,
+   730
+  ]
+ },
+ {
+  "qid": "a96c20ee_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.34,
+  "answer": "You presented a poster on your thesis research at a research conference, but the university where you presented it is not specified. However, you did attend a research conference at Harvard University on 2023/05/30.",
+  "gold": "The information provided is not enough. You did not mention presenting a poster for your undergrad course research project.",
+  "n_rows": 32,
+  "n_block_tokens": 669,
+  "engine_step0_rows_tokens": [
+   18,
+   436
+  ]
+ },
+ {
+  "qid": "ba358f49_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.286,
+  "answer": "Since Rachel is getting married next year and you are 32 now, we don't have information about your marriage plans. We only know Rachel is getting married.",
+  "gold": "The information provided is not enough. You did not mention how old Rachel is right now, nor when will you get married.",
+  "n_rows": 32,
+  "n_block_tokens": 603,
+  "engine_step0_rows_tokens": [
+   10,
+   228
+  ]
+ },
+ {
+  "qid": "09ba9854_abs",
+  "type": "multi-session",
+  "ok": false,
+  "sub": false,
+  "f1": 0.075,
+  "answer": "The cost of the taxi ride was considered pricey, with $60 mentioned as an example. The train ride costs $10. Although the bus fare isn't mentioned, if we compare the taxi to the train, you'd save $50 by taking the train. Without the bus fare, we can't calculate the exact savings for the bus, but it's likely to be less expensive than a taxi.",
+  "gold": "The information provided is not enough. You did not mention how much will the bus take.",
+  "n_rows": 32,
+  "n_block_tokens": 707,
+  "engine_step0_rows_tokens": [
+   32,
+   717
+  ]
+ }
+]

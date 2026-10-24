@@ -1,0 +1,32 @@
+=== step3 chain start 2026-09-29T17:16:59+09:00 ===
+e196d84e066fa6d26bc534b14fc144e6  $DATA/llama.cpp/build/bin/llama-server
+83a3b58bb74c7164cd330af567e5e497  $DATA/models/Llama-3.3-70B-Instruct-Q8_0/Llama-3.3-70B-Instruct-Q8_0/Llama-3.3-70B-Instruct-Q8_0-00001-of-00002.gguf
+03a516c72ddc68a72013fdecae3f3006  $DATA/models/bge-m3-f16.gguf
+09ef24c2fc732b2a464f34957055c57b  $REPO/ieee-rev1/scripts/reviewer1_edit_17_step3_e2e_embedding.py
+14021c8e5cbb18dba9aed954c7c13f4f  $REPO/ieee-rev1/scripts/reviewer1_edit_16_step1_oracle_context.py
+step3 python rc=0 2026-09-29T17:56:13+09:00
+[lex] reproduction: answers identical to step0 224/266; injected (rows, tokens) identical to the engine log 205/266
+[lex] msf string-match metric 68/133 = 0.511 (official judge follows)
+[lex] trf string-match metric 44/133 = 0.331 (official judge follows)
+[emb] msf string-match metric 78/133 = 0.586 (official judge follows)
+[emb] trf string-match metric 49/133 = 0.368 (official judge follows)
+judge lex msf rc=1 2026-09-29T17:56:13+09:00
+judge lex trf rc=1 2026-09-29T17:56:13+09:00
+judge emb msf rc=1 2026-09-29T17:56:13+09:00
+judge emb trf rc=1 2026-09-29T17:56:13+09:00
+mv: cannot stat '$REPO/ieee-rev1/data/results_step3_lex_msf_paperjudged.json': No such file or directory
+mv: cannot stat '$REPO/ieee-rev1/data/results_step3_lex_trf_paperjudged.json': No such file or directory
+mv: cannot stat '$REPO/ieee-rev1/data/results_step3_emb_msf_paperjudged.json': No such file or directory
+mv: cannot stat '$REPO/ieee-rev1/data/results_step3_emb_trf_paperjudged.json': No such file or directory
+servers stopped: 3118317 2026-09-29T17:56:13+09:00
+=== step3 done 2026-09-29T17:56:13+09:00 ===
+=== oracle start 2026-09-29T17:56:13+09:00 ===
+oracle python rc=0 2026-09-29T18:37:19+09:00
+done: 266 rows, 0 over the context window
+oracle judge rc=0 2026-09-29T18:38:40+09:00
+temporal-reasoning      : 89/133 = 0.669
+TOTAL                   : 177/266 = 0.665
+saved: $REPO/ieee-rev1/data/reviewer1_edit_16_step1_oracle_results_paperjudged.json
+servers stopped: 2026-09-29T18:38:40+09:00
+=== chain end 2026-09-29T18:38:40+09:00 ===
+servers stopped: 2026-09-29T18:38:40+09:00

@@ -1,0 +1,16 @@
+=== Orin adoption cost (fresh store+server per rep) Fri Sep  4 09:08:11 AM KST 2026 ===
+power mode: NV Power Mode: MAXN
+/dev/nvme0n1    234G   20G  203G   9% $NVME_MOUNT
+[stock-r1] gpu_mem_mib=
+[stock-r1] 12 sessions x ~1500 tokens: total 16.9s  mean 1,406 ms  p50 1,486 ms  GPU prefill total 17,642  correct 12/12
+[stock-r2] gpu_mem_mib=
+[stock-r2] 12 sessions x ~1500 tokens: total 16.8s  mean 1,398 ms  p50 1,483 ms  GPU prefill total 17,642  correct 12/12
+[stock-r3] gpu_mem_mib=
+[stock-r3] 12 sessions x ~1500 tokens: total 16.8s  mean 1,399 ms  p50 1,488 ms  GPU prefill total 17,642  correct 12/12
+[qml-r1] gpu_mem_mib=
+[qml-r1] 12 sessions x ~1500 tokens: total 17.2s  mean 1,435 ms  p50 1,502 ms  GPU prefill total 18,240  correct 12/12
+[qml-r2] gpu_mem_mib=
+[qml-r2] 12 sessions x ~1500 tokens: total 17.3s  mean 1,441 ms  p50 1,506 ms  GPU prefill total 18,240  correct 12/12
+[qml-r3] gpu_mem_mib=
+[qml-r3] 12 sessions x ~1500 tokens: total 17.4s  mean 1,447 ms  p50 1,510 ms  GPU prefill total 18,240  correct 12/12
+ORIN PANEL DONE Fri Sep  4 09:15:06 AM KST 2026

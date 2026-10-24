@@ -1,0 +1,104 @@
+#### file: result_qwen3-4b-stock-t500.log
+=== x32k qwen3-4b-stock-t500 (2 sessions) Wed Sep  9 22:29:19 UTC 2026 ===
+/dev/nvme0n1p1
+[qwen3-4b-stock-t500] wrong s0A expected=137 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0B expected=178 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0C expected=219 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0D expected=260 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1A expected=160 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1B expected=201 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1C expected=242 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1D expected=283 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] turn 100 checkpoint: block p50 1,221 ms  mean 1,481 ms  correct 0/8 (s0A=X s0B=X s0C=X s0D=X s1A=X s1B=X s1C=X s1D=X)
+[qwen3-4b-stock-t500] wrong s0A expected=137 response="The answer is: 601\nOkay, let's see."
+[qwen3-4b-stock-t500] wrong s0B expected=178 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0C expected=219 response="The answer is: 629\nOkay, let's see."
+[qwen3-4b-stock-t500] wrong s0D expected=260 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0E expected=301 response="The answer is: 629\nOkay, let's see."
+[qwen3-4b-stock-t500] wrong s0F expected=342 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0G expected=383 response="The answer is: 689\nOkay, let's see."
+[qwen3-4b-stock-t500] wrong s0H expected=424 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0I expected=465 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0J expected=506 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0K expected=547 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0L expected=588 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1A expected=160 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1B expected=201 response="The answer is: 623\nOkay, let's see."
+[qwen3-4b-stock-t500] wrong s1C expected=242 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1D expected=283 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1E expected=324 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1F expected=365 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1G expected=406 response="The answer is: 798\nOkay, let's see."
+[qwen3-4b-stock-t500] wrong s1H expected=447 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1I expected=488 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1J expected=529 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1K expected=570 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1L expected=611 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] turn 300 checkpoint: block p50 3,569 ms  mean 3,517 ms  correct 0/24 (s0A=X s0B=X s0C=X s0D=X s0E=X s0F=X s0G=X s0H=X s0I=X s0J=X s0K=X s0L=X s1A=X s1B=X s1C=X s1D=X s1E=X s1F=X s1G=X s1H=X s1I=X s1J=X s1K=X s1L=X)
+[qwen3-4b-stock-t500] wrong s0A expected=137 response='Answer:\nAnswer:\n1080\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s0B expected=178 response='Answer:\nAnswer:\n1080\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s0C expected=219 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0D expected=260 response='Answer:\nAnswer: 1050\nAnswer: 10'
+[qwen3-4b-stock-t500] wrong s0E expected=301 response='Answer:\nAnswer:\n1080\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s0F expected=342 response='Answer:\nAnswer:\n1080\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s0G expected=383 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0H expected=424 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0I expected=465 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0J expected=506 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0K expected=547 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0L expected=588 response='Answer:\nAnswer:\n1080\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s0M expected=629 response='Answer:\nAnswer:\n1023\nAnswer:\n1023'
+[qwen3-4b-stock-t500] wrong s0N expected=670 response='Answer:\nAnswer:\n1080\n\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s0O expected=711 response='Answer: 1050\nAnswer: 1050'
+[qwen3-4b-stock-t500] wrong s0P expected=752 response='Answer:\nAnswer:\n1080\nAnswer:\n1121'
+[qwen3-4b-stock-t500] wrong s0Q expected=793 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0R expected=834 response='Answer:\nAnswer: 1050\nAnswer: 10'
+[qwen3-4b-stock-t500] wrong s0S expected=875 response='Answer:\nAnswer:\n1080\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s0T expected=916 response='Answer:\nAnswer:\n1050\nAnswer:\n1050'
+[qwen3-4b-stock-t500] wrong s0U expected=957 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s0V expected=998 response='Answer:\nAnswer:\n1070\nAnswer:\n1070'
+[qwen3-4b-stock-t500] wrong s0W expected=1039 response='Answer:\nAnswer:\n1080\nAnswer:\n1080'
+[qwen3-4b-stock-t500] wrong s1A expected=160 response='Answer:\nAnswer: 1103\nAnswer: 11'
+[qwen3-4b-stock-t500] wrong s1B expected=201 response='Answer:\nAnswer:\n1103\nAnswer:\n1144'
+[qwen3-4b-stock-t500] wrong s1C expected=242 response='Answer: 1103\nAnswer: 1144'
+[qwen3-4b-stock-t500] wrong s1D expected=283 response='Answer: 1103\nAnswer: 1103'
+[qwen3-4b-stock-t500] wrong s1E expected=324 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1F expected=365 response='Answer:\nAnswer: 1103\nAnswer: 11'
+[qwen3-4b-stock-t500] wrong s1G expected=406 response='Answer: 1123\nAnswer: 1123'
+[qwen3-4b-stock-t500] wrong s1H expected=447 response='The development of transcontinental railroads in the nineteenth century reshaped commerce,'
+[qwen3-4b-stock-t500] wrong s1I expected=488 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1J expected=529 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1K expected=570 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1L expected=611 response='Answer:\nAnswer: 1125\nAnswer: 11'
+[qwen3-4b-stock-t500] wrong s1M expected=652 response='Answer: 1103\nAnswer: 1144'
+[qwen3-4b-stock-t500] wrong s1N expected=693 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1O expected=734 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1P expected=775 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1Q expected=816 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1R expected=857 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1S expected=898 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1T expected=939 response='Answer:\nAnswer:\n1103\n\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1U expected=980 response='Answer:\nAnswer:\n1103\nAnswer:\n1103'
+[qwen3-4b-stock-t500] wrong s1V expected=1021 response='Answer:\nAnswer:\n1133\nAnswer:\n1133'
+[qwen3-4b-stock-t500] wrong s1W expected=1062 response='Answer: 1103\nAnswer: 1144'
+[qwen3-4b-stock-t500] turn 500 checkpoint: block p50 3,363 ms  mean 3,408 ms  correct 0/46 (s0A=X s0B=X s0C=X s0D=X s0E=X s0F=X s0G=X s0H=X s0I=X s0J=X s0K=X s0L=X s0M=X s0N=X s0O=X s0P=X s0Q=X s0R=X s0S=X s0T=X s0U=X s0V=X s0W=X s1A=X s1B=X s1C=X s1D=X s1E=X s1F=X s1G=X s1H=X s1I=X s1J=X s1K=X s1L=X s1M=X s1N=X s1O=X s1P=X s1Q=X s1R=X s1S=X s1T=X s1U=X s1V=X s1W=X)
+[qwen3-4b-stock-t500] llama/stock, 2 sessions, 500 turns, ~306 tokens per turn, window 32,768: total 3,119.1s  0.32 turn/s  overall p50 3,203 ms  GPU prefill total 17,519,139  correct total 0/78
+[qwen3-4b-stock-t500] store: 4.0K
+X32K DONE qwen3-4b-stock-t500 Wed Sep  9 23:21:30 UTC 2026
+
+#### file: result_qwen3-4b-qml-t500.log
+=== x32k qwen3-4b-qml-t500 (2 sessions) Wed Sep  9 23:21:30 UTC 2026 ===
+/dev/nvme0n1p1
+[qwen3-4b-qml-t500] wrong s0A expected=137 response='301'
+[qwen3-4b-qml-t500] wrong s1A expected=160 response='324'
+[qwen3-4b-qml-t500] turn 100 checkpoint: block p50 231 ms  mean 454 ms  correct 6/8 (s0A=X s0B=O s0C=O s0D=O s1A=X s1B=O s1C=O s1D=O)
+[qwen3-4b-qml-t500] wrong s0A expected=137 response='711'
+[qwen3-4b-qml-t500] wrong s0K expected=547 response='742'
+[qwen3-4b-qml-t500] wrong s1A expected=160 response='734'
+[qwen3-4b-qml-t500] turn 300 checkpoint: block p50 1,266 ms  mean 1,469 ms  correct 25/28 (s0A=X s0B=O s0C=O s0D=O s0E=O s0F=O s0G=O s0H=O s0I=O s0J=O s0K=X s0L=O s0M=O s0N=O s1A=X s1B=O s1C=O s1D=O s1E=O s1F=O s1G=O s1H=O s1I=O s1J=O s1K=O s1L=O s1M=O s1N=O)
+[qwen3-4b-qml-t500] wrong s0A expected=137 response='1121'
+[qwen3-4b-qml-t500] wrong s1A expected=160 response='1144'
+[qwen3-4b-qml-t500] turn 500 checkpoint: block p50 1,271 ms  mean 1,472 ms  correct 46/48 (s0A=X s0B=O s0C=O s0D=O s0E=O s0F=O s0G=O s0H=O s0I=O s0J=O s0K=O s0L=O s0M=O s0N=O s0O=O s0P=O s0Q=O s0R=O s0S=O s0T=O s0U=O s0V=O s0W=O s0X=O s1A=X s1B=O s1C=O s1D=O s1E=O s1F=O s1G=O s1H=O s1I=O s1J=O s1K=O s1L=O s1M=O s1N=O s1O=O s1P=O s1Q=O s1R=O s1S=O s1T=O s1U=O s1V=O s1W=O s1X=O)
+[qwen3-4b-qml-t500] llama/qml, 2 sessions, 500 turns, ~306 tokens per turn, window 32,768: total 2,268.2s  0.44 turn/s  overall p50 1,237 ms  GPU prefill total 3,102,975  correct total 77/84
+[qwen3-4b-qml-t500] store: 4.4G
+X32K DONE qwen3-4b-qml-t500 Wed Sep  9 23:59:29 UTC 2026

@@ -1,0 +1,10 @@
+[paperjudge/oraclej] 50/266 (15s)
+[paperjudge/oraclej] 100/266 (28s)
+[paperjudge/oraclej] 150/266 (43s)
+[paperjudge/oraclej] 200/266 (59s)
+[paperjudge/oraclej] 250/266 (73s)
+--- OFFICIAL LongMemEval protocol, tag=oraclej (judge prompts verbatim) ---
+multi-session           : 88/133 = 0.662
+temporal-reasoning      : 89/133 = 0.669
+TOTAL                   : 177/266 = 0.665
+saved: $REPO/ieee-rev1/data/reviewer1_edit_16_step1_oracle_results_paperjudged.json

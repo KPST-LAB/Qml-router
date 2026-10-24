@@ -1,0 +1,68 @@
+===== POWER MODE mode30w (entered at boot, no mode-switch call) =====
+[env] pmode=pmode:0002 cores=8 nvme_fault=0
+--- [mode30w] 8000tok build ---
+[build] prefilled 7,996 tokens in 12s
+[build] stored state: 0.24 GiB for 7,996 tokens (31 KiB/token)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 8000tok restore rep1 try1 ---
+[page cache] data.mdb: resident 246 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=2,165 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=400 ms + predict=1,504 ms = 1,904 ms; non-compute remainder=261 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 8000tok restore rep2 try1 ---
+[page cache] data.mdb: resident 494 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=2,224 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=394 ms + predict=1,561 ms = 1,955 ms; non-compute remainder=269 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 8000tok restore rep3 try1 ---
+[page cache] data.mdb: resident 496 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=2,167 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=397 ms + predict=1,505 ms = 1,902 ms; non-compute remainder=265 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 8000tok recompute rep1 try1 ---
+[recompute-8000] latency=13,923 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=12,335 ms + predict=1,493 ms = 13,828 ms; non-compute remainder=95 ms
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 8000tok recompute rep2 try1 ---
+[recompute-8000] latency=13,915 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=12,330 ms + predict=1,490 ms = 13,821 ms; non-compute remainder=94 ms
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 8000tok recompute rep3 try1 ---
+[recompute-8000] latency=13,920 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=12,343 ms + predict=1,498 ms = 13,842 ms; non-compute remainder=79 ms
+--- [mode30w] 32000tok build ---
+[build] prefilled 32,008 tokens in 85s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 32000tok restore rep1 try1 ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=4,242 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=697 ms + predict=2,651 ms = 3,348 ms; non-compute remainder=894 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 32000tok restore rep2 try1 ---
+[page cache] data.mdb: resident 1,975 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=4,240 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=690 ms + predict=2,651 ms = 3,341 ms; non-compute remainder=899 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 32000tok restore rep3 try1 ---
+[page cache] data.mdb: resident 1,976 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=4,221 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=698 ms + predict=2,648 ms = 3,346 ms; non-compute remainder=875 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 32000tok recompute rep1 try1 ---
+[recompute-32000] latency=87,908 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=85,105 ms + predict=2,665 ms = 87,770 ms; non-compute remainder=138 ms
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 32000tok recompute rep2 try1 ---
+[recompute-32000] latency=87,811 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=85,015 ms + predict=2,665 ms = 87,680 ms; non-compute remainder=131 ms
+[env] pmode=pmode:0002 cores=8 nvme_fault=6
+--- [mode30w] 32000tok recompute rep3 try1 ---
+[recompute-32000] latency=87,871 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=85,037 ms + predict=2,666 ms = 87,704 ms; non-compute remainder=168 ms

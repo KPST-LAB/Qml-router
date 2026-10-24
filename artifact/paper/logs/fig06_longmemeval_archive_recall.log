@@ -1,0 +1,52 @@
+#### file: msf_ing.log
+[filter] LME_TYPES=['multi-session', 'temporal-reasoning'] -> 266 questions
+[ingest] 50 sessions, 38s
+[ingest] 100 sessions, 80s
+[ingest] done: 133 new sessions in 105s; answer ranges -> $REPO/answers_msf.json
+
+#### file: msf_ask.log
+[filter] LME_TYPES=['multi-session', 'temporal-reasoning'] -> 266 questions
+[ask/msf] 25/133 acc=0.360 (123s)
+[ask/msf] 50/133 acc=0.380 (240s)
+[ask/msf] 75/133 acc=0.440 (342s)
+[ask/msf] 100/133 acc=0.500 (432s)
+[ask/msf] 125/133 acc=0.536 (527s)
+--- summary cond=msf (string-match metric: substring OR token-F1>=0.5) ---
+multi-session           : 69/133 = 0.519
+TOTAL                   : 69/133 = 0.519
+saved: $REPO/results_msf.json
+
+#### file: msf_pj.log
+[paperjudge/msfj] 50/133 (13s)
+[paperjudge/msfj] 100/133 (24s)
+--- OFFICIAL LongMemEval protocol, tag=msfj (judge prompts verbatim) ---
+multi-session           : 84/133 = 0.632
+TOTAL                   : 84/133 = 0.632
+saved: results_msf_final_paperjudged.json
+
+#### file: trf_ing.log
+[filter] LME_TYPES=['temporal-reasoning'] -> 133 questions
+[ingest] 50 sessions, 40s
+[ingest] 100 sessions, 78s
+[ingest] done: 133 new sessions in 103s; answer ranges -> $REPO/answers_trf.json
+
+#### file: trf_ask.log
+[filter] LME_TYPES=['temporal-reasoning'] -> 133 questions
+[ask/trf] 25/133 acc=0.360 (128s)
+[ask/trf] 50/133 acc=0.320 (253s)
+[ask/trf] 75/133 acc=0.267 (373s)
+[ask/trf] 100/133 acc=0.320 (496s)
+[ask/trf] 125/133 acc=0.360 (632s)
+--- summary cond=trf (string-match metric: substring OR token-F1>=0.5) ---
+temporal-reasoning      : 46/133 = 0.346
+TOTAL                   : 46/133 = 0.346
+saved: $REPO/results_trf.json
+
+#### file: trf_pj.log
+[paperjudge/trfj] 50/133 (15s)
+[paperjudge/trfj] 100/133 (28s)
+--- OFFICIAL LongMemEval protocol, tag=trfj (judge prompts verbatim) ---
+temporal-reasoning      : 95/133 = 0.714
+TOTAL                   : 95/133 = 0.714
+saved: results_trf_final_paperjudged.json
+

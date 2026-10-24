@@ -1,0 +1,40 @@
+=== reviewer1_edit_17_step2_latency_4090gpu start 2026-09-29T13:38:10+09:00 ===
+ec6dfa6ad60d9bcea790b4e6560b7bf6  $NVME_MOUNT/qml-router/ablation/with-patch/build/bin/llama-server
+03a516c72ddc68a72013fdecae3f3006  $NVME_MOUNT/qml-router/models/bge-m3-f16.gguf
+87c64f88cabc4082b908da5830ea3bd3  $NVME_MOUNT/qml-router/ieee-rev1/scripts/reviewer1_edit_17_step2_retrieval_latency.py
+0f295c1a36f99165c2d12b1b5b45167b  $NVME_MOUNT/qml-router/ieee-rev1/data/reviewer1_edit_17_step2_subset.db
+4a049592e6e3380d33b4f55f4c4b686b  $NVME_MOUNT/qml-router/ieee-rev1/data/reviewer1_edit_17_step2_questions.json
+NVIDIA GeForce RTX 4090, 595.45.04
+CPU(s):              12
+Model name:          Intel(R) Core(TM) i7-5820K CPU @ 3.30GHz
+device run: db=$NVME_MOUNT/qml-router/ieee-rev1/data/reviewer1_edit_17_step2_subset.db questions=266 emb=http://127.0.0.1:58173 mode=all sqlite=3.22.0
+[write] 25 sessions, last 955 rows fetch 284.2 ms embed 5524 ms
+[write] 50 sessions, last 1111 rows fetch 270.8 ms embed 6665 ms
+[write] 75 sessions, last 954 rows fetch 269.7 ms embed 5467 ms
+Traceback (most recent call last):
+  File "$NVME_MOUNT/qml-router/ieee-rev1/scripts/reviewer1_edit_17_step2_retrieval_latency.py", line 85, in <module>
+    t = now(); v = embed([c for _, c in rows]); te = now() - t
+  File "$NVME_MOUNT/qml-router/ieee-rev1/scripts/reviewer1_edit_17_step2_retrieval_latency.py", line 50, in embed
+    for item in json.loads(urllib.request.urlopen(req, timeout=600).read()):
+  File "/usr/lib/python3.7/urllib/request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/lib/python3.7/urllib/request.py", line 525, in open
+    response = self._open(req, data)
+  File "/usr/lib/python3.7/urllib/request.py", line 543, in _open
+    '_open', req)
+  File "/usr/lib/python3.7/urllib/request.py", line 503, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.7/urllib/request.py", line 1352, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+  File "/usr/lib/python3.7/urllib/request.py", line 1327, in do_open
+    r = h.getresponse()
+  File "/usr/lib/python3.7/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/usr/lib/python3.7/http/client.py", line 315, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.7/http/client.py", line 284, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+python rc=1 2026-09-29T13:46:55+09:00
+=== reviewer1_edit_17_step2_latency_4090gpu done 2026-09-29T13:46:55+09:00 ===
+embedding server stopped pid=14738 2026-09-29T13:46:55+09:00

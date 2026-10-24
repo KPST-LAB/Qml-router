@@ -1,0 +1,23 @@
+== GPU before 18:09:51
+472 MiB, 0 %
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.154s correct=True prompt_n=22
+[qml] ~7455 tok: 0.194s correct=True prompt_n=22
+[qml] ~15855 tok: 0.404s correct=True prompt_n=22
+[qml] ~32655 tok: 0.737s correct=True prompt_n=22
+[qml] ~49455 tok: 1.351s correct=True prompt_n=22
+[stock] ~1855 tok: 0.191s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.476s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.523s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.418s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.3s correct=True prompt_n=49500
+cleanup done
+== GPU after-crossover 18:11:13
+11763 MiB, 0 %
+8864, third_party/llama.cpp/build/bin/llama-server, 11286 MiB
+XOVER_R23_DONE

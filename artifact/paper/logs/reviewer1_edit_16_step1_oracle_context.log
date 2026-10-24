@@ -1,0 +1,11 @@
+[oracle] 25/266, 319s, last tokens=9367 evidence=3
+[oracle] 50/266, 627s, last tokens=10292 evidence=3
+[oracle] 75/266, 854s, last tokens=5421 evidence=2
+[oracle] 100/266, 1042s, last tokens=6933 evidence=2
+[oracle] 125/266, 1232s, last tokens=5176 evidence=2
+[oracle] 150/266, 1441s, last tokens=3524 evidence=1
+[oracle] 175/266, 1720s, last tokens=3644 evidence=1
+[oracle] 200/266, 1911s, last tokens=7466 evidence=2
+[oracle] 225/266, 2129s, last tokens=7108 evidence=2
+[oracle] 250/266, 2319s, last tokens=8475 evidence=3
+done: 266 rows, 0 over the context window

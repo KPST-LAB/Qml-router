@@ -1,0 +1,18 @@
+=== TEST 8: qml connector (async save + pipelined load) warm, Sun Aug  2 18:51:24 KST 2026 ===
+disk 29G free at start
+server up
+[build] session 0: 7s
+[build] session 1: 7s
+[build] session 2: 24s
+[build] session 3: 27s
+[build] session 4: 28s
+[build] session 5: 34s
+19G	$REPO/tests/_lm/qml_store/qml_lmdb
+--- warm mixed load 150s ---
+
+=== stateless-openai: 6 long sessions x 32,000 tokens + short requests 3 workers, 151s ===
+  short requests   : completed 328  correct 328  p50=1,082  p90=1,147 ms  throughput 2.18 req/s
+  long-session reconnects: completed 109  correct 109  p50=1,081  p90=1,152 ms
+  GPU prefill      : short requests 13,556 tokens, long sessions 3,510,554 tokens
+disk 4.7G free at end
+=== TEST 8 DONE ===

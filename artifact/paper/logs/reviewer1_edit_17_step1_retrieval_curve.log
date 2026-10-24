@@ -1,0 +1,55 @@
+=== reviewer1_edit_17_step1 start 2026-09-29T10:58:02+09:00 ===
+e196d84e066fa6d26bc534b14fc144e6  $DATA/llama.cpp/build/bin/llama-server
+03a516c72ddc68a72013fdecae3f3006  $DATA/models/bge-m3-f16.gguf
+8175bed6568d34daa6768b670655a821  $REPO/ieee-rev1/scripts/reviewer1_edit_17_step1_retrieval_curve.py
+embedding server up pid=3107012 2026-09-29T10:58:07+09:00
+[msf] 25/133 questions, 24466 fact rows embedded, 204s
+[msf] 50/133 questions, 49225 fact rows embedded, 400s
+[msf] 75/133 questions, 73709 fact rows embedded, 593s
+[msf] 100/133 questions, 97482 fact rows embedded, 780s
+[msf] 125/133 questions, 121966 fact rows embedded, 971s
+[trf] 25/133 questions, 24603 fact rows embedded, 188s
+[trf] 50/133 questions, 49215 fact rows embedded, 375s
+[trf] 75/133 questions, 74142 fact rows embedded, 565s
+[trf] 100/133 questions, 98501 fact rows embedded, 752s
+[trf] 125/133 questions, 122758 fact rows embedded, 945s
+--- checks (lexical ranker must reproduce the v61 Fig. 6(a) record) ---
+msf any@3: s1 127 / kcurve133 127 -> OK
+msf all@3: s1 49 / kcurve133 49 -> OK
+msf any@5: s1 129 / kcurve133 129 -> OK
+msf all@5: s1 71 / kcurve133 71 -> OK
+msf any@8: s1 131 / kcurve133 131 -> OK
+msf all@8: s1 91 / kcurve133 91 -> OK
+msf any@12: s1 131 / kcurve133 131 -> OK
+msf all@12: s1 104 / kcurve133 104 -> OK
+msf any@24: s1 131 / kcurve133 131 -> OK
+msf all@24: s1 112 / kcurve133 113 -> MISMATCH
+msf any@50: s1 131 / kcurve133 131 -> OK
+msf all@50: s1 117 / kcurve133 117 -> OK
+msf all@32: s1 116 / ledger 116 -> OK
+trf any@3: s1 120 / kcurve133 120 -> OK
+trf all@3: s1 57 / kcurve133 57 -> OK
+trf any@5: s1 124 / kcurve133 124 -> OK
+trf all@5: s1 80 / kcurve133 81 -> MISMATCH
+trf any@8: s1 126 / kcurve133 126 -> OK
+trf all@8: s1 97 / kcurve133 97 -> OK
+trf any@12: s1 128 / kcurve133 127 -> MISMATCH
+trf all@12: s1 105 / kcurve133 104 -> MISMATCH
+trf any@24: s1 130 / kcurve133 130 -> OK
+trf all@24: s1 117 / kcurve133 117 -> OK
+trf any@50: s1 131 / kcurve133 131 -> OK
+trf all@50: s1 121 / kcurve133 121 -> OK
+trf all@32: s1 119 / ledger 119 -> OK
+--- recall@k, lexical vs embedding (count / n) ---
+msf recall_any lexical   (n=133): @3=127 @5=129 @8=131 @12=131 @24=131 @32=131 @50=131
+msf recall_any embedding (n=133): @3=131 @5=132 @8=133 @12=133 @24=133 @32=133 @50=133
+msf recall_all lexical   (n=133): @3=49 @5=71 @8=91 @12=104 @24=112 @32=116 @50=117
+msf recall_all embedding (n=133): @3=74 @5=99 @8=116 @12=120 @24=128 @32=129 @50=132
+trf recall_any lexical   (n=133): @3=120 @5=124 @8=126 @12=128 @24=130 @32=131 @50=131
+trf recall_any embedding (n=133): @3=129 @5=129 @8=130 @12=131 @24=131 @32=132 @50=133
+trf recall_all lexical   (n=133): @3=57 @5=80 @8=97 @12=105 @24=117 @32=119 @50=121
+trf recall_all embedding (n=133): @3=71 @5=96 @8=108 @12=117 @24=125 @32=127 @50=131
+saved $REPO/ieee-rev1/data/reviewer1_edit_17_step1_retrieval_curve.json, total 2037s
+python rc=0 2026-09-29T11:32:08+09:00
+=== reviewer1_edit_17_step1 done 2026-09-29T11:32:08+09:00 ===
+embedding server stopped pid=3107012 2026-09-29T11:32:09+09:00

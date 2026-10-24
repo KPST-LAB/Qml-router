@@ -1,0 +1,51 @@
+#### file: fullhist13.log
+[2026-09-06 02:55:19] server started
+[2026-09-06 02:55:39] server ready, running 13 questions
+target 13, existing 253, n_ctx 131072
+[1/13] gpt4_1a1dc16d tokens=107140 dropped=0(evidence 0) 146s | 'The meeting with Rachel happened first, on April 10th, and t'
+[2/13] gpt4_2f584639 tokens=103414 dropped=0(evidence 0) 285s | 'You bought the necklace for your sister first, which cost ar'
+[3/13] gpt4_213fd887 tokens=103756 dropped=0(evidence 0) 425s | 'You participated in the charity 5K run to raise money for a '
+[4/13] gpt4_5438fa52 tokens=103937 dropped=0(evidence 0) 565s | 'Your attendance at a cultural festival happened first, as yo'
+[5/13] gpt4_c27434e8 tokens=106271 dropped=0(evidence 0) 711s | 'You started building the Ferrari 288 GTO model first, on a S'
+[6/13] gpt4_fe651585 tokens=103843 dropped=0(evidence 0) 851s | 'Rachel became a parent first, as she gave birth to twins Jac'
+[7/13] 8c18457d tokens=104788 dropped=0(evidence 0) 994s | 'The conversation started on March 29, 2023, at 05:24, and th'
+[8/13] gpt4_70e84552_abs tokens=106309 dropped=0(evidence 0) 1138s | 'You completed fixing the fence first, which was done three w'
+[9/13] gpt4_93159ced_abs tokens=101747 dropped=0(evidence 0) 1275s | "I'm not aware of any information about your work history or "
+[10/13] 982b5123_abs tokens=106635 dropped=0(evidence 0) 1419s | "I don't have any information about booking an Airbnb in Sacr"
+[11/13] c8090214_abs tokens=104563 dropped=0(evidence 0) 1561s | 'You attended the Holiday Market a week before Black Friday, '
+[12/13] gpt4_c27434e8_abs tokens=106131 dropped=0(evidence 0) 1705s | 'You started the Ferrari 288 GTO model first, and then you st'
+[13/13] gpt4_fe651585_abs tokens=104956 dropped=0(evidence 0) 1847s | "I'm not aware of any information about Tom or Alex becoming "
+done: 266 rows total
+[2026-09-06 03:26:30] official judge (266 rows)
+[paperjudge/fullhistj2] 250/266 (61s)
+--- OFFICIAL LongMemEval protocol, tag=fullhistj2 (judge prompts verbatim) ---
+multi-session           : 33/133 = 0.248
+temporal-reasoning      : 43/133 = 0.323
+TOTAL                   : 76/266 = 0.286
+saved: results_fullhist_paperjudged.json
+[2026-09-06 03:27:44] shutdown
+
+#### file: fullhist_pj.log
+[paperjudge/fullhistj] 50/253 (15s)
+[paperjudge/fullhistj] 100/253 (27s)
+[paperjudge/fullhistj] 150/253 (39s)
+[paperjudge/fullhistj] 200/253 (53s)
+[paperjudge/fullhistj] 250/253 (66s)
+--- OFFICIAL LongMemEval protocol, tag=fullhistj (judge prompts verbatim) ---
+multi-session           : 33/133 = 0.248
+temporal-reasoning      : 39/120 = 0.325
+TOTAL                   : 72/253 = 0.285
+saved: results_fullhist_paperjudged.json
+
+#### file: fullhist13_pj.log
+[paperjudge/fullhistj2] 50/266 (12s)
+[paperjudge/fullhistj2] 100/266 (23s)
+[paperjudge/fullhistj2] 150/266 (35s)
+[paperjudge/fullhistj2] 200/266 (49s)
+[paperjudge/fullhistj2] 250/266 (61s)
+--- OFFICIAL LongMemEval protocol, tag=fullhistj2 (judge prompts verbatim) ---
+multi-session           : 33/133 = 0.248
+temporal-reasoning      : 43/133 = 0.323
+TOTAL                   : 76/266 = 0.286
+saved: results_fullhist_paperjudged.json
+

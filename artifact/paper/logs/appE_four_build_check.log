@@ -1,0 +1,276 @@
+#### file: stock_no-patch_r1.log
+== bench_density_curve stock | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[stock] N=8: recon p50=0.651s p95=0.659s correct=8/8 prompt_n=5192 | short p95=0.064s rate=70.19/s (n=2246) | wall=32.0s
+{
+ "stock": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.651,
+   "p95": 0.659,
+   "max": 0.66,
+   "correct": 8,
+   "mean_prompt_n": 5192,
+   "short_p50": 0.058,
+   "short_p95": 0.064,
+   "short_rate": 70.19,
+   "short_n": 2246,
+   "errors": []
+  }
+ }
+}
+
+#### file: stock_no-patch_r2.log
+== bench_density_curve stock | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[stock] N=8: recon p50=0.643s p95=0.652s correct=8/8 prompt_n=5192 | short p95=0.064s rate=71.22/s (n=2279) | wall=32.0s
+{
+ "stock": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.643,
+   "p95": 0.652,
+   "max": 0.671,
+   "correct": 8,
+   "mean_prompt_n": 5192,
+   "short_p50": 0.057,
+   "short_p95": 0.064,
+   "short_rate": 71.22,
+   "short_n": 2279,
+   "errors": []
+  }
+ }
+}
+
+#### file: stock_no-patch_r3.log
+== bench_density_curve stock | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[stock] N=8: recon p50=0.652s p95=0.661s correct=8/8 prompt_n=5192 | short p95=0.065s rate=69.56/s (n=2226) | wall=32.0s
+{
+ "stock": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.652,
+   "p95": 0.661,
+   "max": 0.661,
+   "correct": 8,
+   "mean_prompt_n": 5192,
+   "short_p50": 0.058,
+   "short_p95": 0.065,
+   "short_rate": 69.56,
+   "short_n": 2226,
+   "errors": []
+  }
+ }
+}
+
+#### file: stock_with-patch_r1.log
+== bench_density_curve stock | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[stock] N=8: recon p50=0.644s p95=0.663s correct=8/8 prompt_n=5192 | short p95=0.064s rate=69.69/s (n=2230) | wall=32.0s
+{
+ "stock": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.644,
+   "p95": 0.663,
+   "max": 0.673,
+   "correct": 8,
+   "mean_prompt_n": 5192,
+   "short_p50": 0.058,
+   "short_p95": 0.064,
+   "short_rate": 69.69,
+   "short_n": 2230,
+   "errors": []
+  }
+ }
+}
+
+#### file: stock_with-patch_r2.log
+== bench_density_curve stock | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[stock] N=8: recon p50=0.656s p95=0.662s correct=8/8 prompt_n=5192 | short p95=0.066s rate=69.38/s (n=2220) | wall=32.0s
+{
+ "stock": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.656,
+   "p95": 0.662,
+   "max": 0.667,
+   "correct": 8,
+   "mean_prompt_n": 5192,
+   "short_p50": 0.058,
+   "short_p95": 0.066,
+   "short_rate": 69.38,
+   "short_n": 2220,
+   "errors": []
+  }
+ }
+}
+
+#### file: stock_with-patch_r3.log
+== bench_density_curve stock | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[stock] N=8: recon p50=0.656s p95=0.663s correct=8/8 prompt_n=5192 | short p95=0.066s rate=70.56/s (n=2258) | wall=32.0s
+{
+ "stock": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.656,
+   "p95": 0.663,
+   "max": 0.665,
+   "correct": 8,
+   "mean_prompt_n": 5192,
+   "short_p50": 0.057,
+   "short_p95": 0.066,
+   "short_rate": 70.56,
+   "short_n": 2258,
+   "errors": []
+  }
+ }
+}
+
+#### file: qml_no-patch_r1.log
+== bench_density_curve qml | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[qml] N=8: recon p50=1.749s p95=1.773s correct=8/8 prompt_n=22 | short p95=0.068s rate=58.25/s (n=1864) | wall=32.0s
+{
+ "qml": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 1.749,
+   "p95": 1.773,
+   "max": 1.787,
+   "correct": 8,
+   "mean_prompt_n": 22,
+   "short_p50": 0.057,
+   "short_p95": 0.068,
+   "short_rate": 58.25,
+   "short_n": 1864,
+   "errors": []
+  }
+ }
+}
+
+#### file: qml_no-patch_r2.log
+== bench_density_curve qml | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[qml] N=8: recon p50=1.74s p95=1.765s correct=8/8 prompt_n=22 | short p95=0.072s rate=53.41/s (n=1709) | wall=32.0s
+{
+ "qml": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 1.74,
+   "p95": 1.765,
+   "max": 1.776,
+   "correct": 8,
+   "mean_prompt_n": 22,
+   "short_p50": 0.062,
+   "short_p95": 0.072,
+   "short_rate": 53.41,
+   "short_n": 1709,
+   "errors": []
+  }
+ }
+}
+
+#### file: qml_no-patch_r3.log
+== bench_density_curve qml | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[qml] N=8: recon p50=1.744s p95=1.75s correct=8/8 prompt_n=22 | short p95=0.076s rate=50.75/s (n=1624) | wall=32.0s
+{
+ "qml": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 1.744,
+   "p95": 1.75,
+   "max": 1.766,
+   "correct": 8,
+   "mean_prompt_n": 22,
+   "short_p50": 0.053,
+   "short_p95": 0.076,
+   "short_rate": 50.75,
+   "short_n": 1624,
+   "errors": []
+  }
+ }
+}
+
+#### file: qml_with-patch_r1.log
+== bench_density_curve qml | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[qml] N=8: recon p50=0.2s p95=0.207s correct=8/8 prompt_n=22 | short p95=0.067s rate=74.31/s (n=2378) | wall=32.0s
+{
+ "qml": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.2,
+   "p95": 0.207,
+   "max": 0.21,
+   "correct": 8,
+   "mean_prompt_n": 22,
+   "short_p50": 0.058,
+   "short_p95": 0.067,
+   "short_rate": 74.31,
+   "short_n": 2378,
+   "errors": []
+  }
+ }
+}
+
+#### file: qml_with-patch_r2.log
+== bench_density_curve qml | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[qml] N=8: recon p50=0.2s p95=0.203s correct=8/8 prompt_n=22 | short p95=0.069s rate=74.25/s (n=2376) | wall=32.0s
+{
+ "qml": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.2,
+   "p95": 0.203,
+   "max": 0.206,
+   "correct": 8,
+   "mean_prompt_n": 22,
+   "short_p50": 0.058,
+   "short_p95": 0.069,
+   "short_rate": 74.25,
+   "short_n": 2376,
+   "errors": []
+  }
+ }
+}
+
+#### file: qml_with-patch_r3.log
+== bench_density_curve qml | levels=[8] total=8 h_reps=850 ctx=65536 stagger=4.0 ==
+engine up
+[qml] N=8: recon p50=0.198s p95=0.202s correct=8/8 prompt_n=22 | short p95=0.069s rate=72.91/s (n=2333) | wall=32.0s
+{
+ "qml": {
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "p50": 0.198,
+   "p95": 0.202,
+   "max": 0.203,
+   "correct": 8,
+   "mean_prompt_n": 22,
+   "short_p50": 0.061,
+   "short_p95": 0.069,
+   "short_rate": 72.91,
+   "short_n": 2333,
+   "errors": []
+  }
+ }
+}
+

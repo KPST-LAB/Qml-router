@@ -1,0 +1,596 @@
+{
+ "qml": {
+  "2": {
+   "N": 2,
+   "wall_s": 8.0,
+   "median": 0.359,
+   "p95_nr": 0.379,
+   "min": 0.339,
+   "max": 0.379,
+   "v61_p50_index": 0.379,
+   "v61_p95_index": 0.339,
+   "lats": [
+    0.339,
+    0.379
+   ],
+   "per_user": {
+    "0": {
+     "latency": 0.339,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K0QQ7"
+    },
+    "1": {
+     "latency": 0.379,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K1QQ7"
+    }
+   },
+   "correct": 2,
+   "mean_prompt_n": 22,
+   "short_p50": 0.056,
+   "short_p95": 0.088,
+   "short_rate": 80.5,
+   "short_n": 644,
+   "errors": []
+  },
+  "4": {
+   "N": 4,
+   "wall_s": 16.0,
+   "median": 0.4775,
+   "p95_nr": 0.508,
+   "min": 0.433,
+   "max": 0.508,
+   "v61_p50_index": 0.493,
+   "v61_p95_index": 0.493,
+   "lats": [
+    0.433,
+    0.462,
+    0.493,
+    0.508
+   ],
+   "per_user": {
+    "2": {
+     "latency": 0.433,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K2QQ7"
+    },
+    "3": {
+     "latency": 0.493,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K3QQ7"
+    },
+    "4": {
+     "latency": 0.462,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K4QQ7"
+    },
+    "5": {
+     "latency": 0.508,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K5QQ7"
+    }
+   },
+   "correct": 4,
+   "mean_prompt_n": 22,
+   "short_p50": 0.124,
+   "short_p95": 0.193,
+   "short_rate": 35.62,
+   "short_n": 570,
+   "errors": []
+  },
+  "8": {
+   "N": 8,
+   "wall_s": 32.0,
+   "median": 0.53,
+   "p95_nr": 0.572,
+   "min": 0.425,
+   "max": 0.572,
+   "v61_p50_index": 0.537,
+   "v61_p95_index": 0.561,
+   "lats": [
+    0.425,
+    0.491,
+    0.509,
+    0.523,
+    0.537,
+    0.553,
+    0.561,
+    0.572
+   ],
+   "per_user": {
+    "6": {
+     "latency": 0.537,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K6QQ7"
+    },
+    "7": {
+     "latency": 0.425,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K7QQ7"
+    },
+    "8": {
+     "latency": 0.509,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K8QQ7"
+    },
+    "9": {
+     "latency": 0.561,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K9QQ7"
+    },
+    "10": {
+     "latency": 0.553,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K10QQ7"
+    },
+    "11": {
+     "latency": 0.572,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K11QQ7"
+    },
+    "12": {
+     "latency": 0.491,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K12QQ7"
+    },
+    "13": {
+     "latency": 0.523,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K13QQ7"
+    }
+   },
+   "correct": 8,
+   "mean_prompt_n": 22,
+   "short_p50": 0.127,
+   "short_p95": 0.245,
+   "short_rate": 30.16,
+   "short_n": 965,
+   "errors": []
+  },
+  "16": {
+   "N": 16,
+   "wall_s": 64.1,
+   "median": 0.4885,
+   "p95_nr": 0.513,
+   "min": 0.434,
+   "max": 0.513,
+   "v61_p50_index": 0.489,
+   "v61_p95_index": 0.512,
+   "lats": [
+    0.434,
+    0.464,
+    0.471,
+    0.477,
+    0.478,
+    0.48,
+    0.486,
+    0.488,
+    0.489,
+    0.492,
+    0.501,
+    0.501,
+    0.501,
+    0.512,
+    0.512,
+    0.513
+   ],
+   "per_user": {
+    "14": {
+     "latency": 0.501,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K14QQ7"
+    },
+    "15": {
+     "latency": 0.489,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K15QQ7"
+    },
+    "16": {
+     "latency": 0.512,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K16QQ7"
+    },
+    "17": {
+     "latency": 0.501,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K17QQ7"
+    },
+    "18": {
+     "latency": 0.492,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K18QQ7"
+    },
+    "19": {
+     "latency": 0.464,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K19QQ7"
+    },
+    "20": {
+     "latency": 0.478,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K20QQ7"
+    },
+    "21": {
+     "latency": 0.434,
+     "correct": false,
+     "prompt_n": 22,
+     "answer": "K21"
+    },
+    "22": {
+     "latency": 0.471,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K22QQ7"
+    },
+    "23": {
+     "latency": 0.488,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K23QQ7"
+    },
+    "24": {
+     "latency": 0.486,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K24QQ7"
+    },
+    "25": {
+     "latency": 0.501,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K25QQ7"
+    },
+    "26": {
+     "latency": 0.513,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K26QQ7"
+    },
+    "27": {
+     "latency": 0.512,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K27QQ7"
+    },
+    "28": {
+     "latency": 0.477,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K28QQ7"
+    },
+    "29": {
+     "latency": 0.48,
+     "correct": true,
+     "prompt_n": 22,
+     "answer": "K29QQ7"
+    }
+   },
+   "correct": 15,
+   "mean_prompt_n": 22,
+   "short_p50": 0.127,
+   "short_p95": 0.252,
+   "short_rate": 28.97,
+   "short_n": 1857,
+   "errors": [
+    "K21"
+   ]
+  }
+ },
+ "stock": {
+  "2": {
+   "N": 2,
+   "wall_s": 8.0,
+   "median": 1.7945,
+   "p95_nr": 2.293,
+   "min": 1.296,
+   "max": 2.293,
+   "v61_p50_index": 2.293,
+   "v61_p95_index": 1.296,
+   "lats": [
+    1.296,
+    2.293
+   ],
+   "per_user": {
+    "0": {
+     "latency": 1.296,
+     "correct": true,
+     "prompt_n": 17650,
+     "answer": "K0QQ7"
+    },
+    "1": {
+     "latency": 2.293,
+     "correct": true,
+     "prompt_n": 17650,
+     "answer": "K1QQ7"
+    }
+   },
+   "correct": 2,
+   "mean_prompt_n": 17650,
+   "short_p50": 0.051,
+   "short_p95": 0.081,
+   "short_rate": 65.5,
+   "short_n": 524,
+   "errors": []
+  },
+  "4": {
+   "N": 4,
+   "wall_s": 17.3,
+   "median": 5.737,
+   "p95_nr": 9.252,
+   "min": 3.282,
+   "max": 9.252,
+   "v61_p50_index": 6.262,
+   "v61_p95_index": 6.262,
+   "lats": [
+    3.282,
+    5.212,
+    6.262,
+    9.252
+   ],
+   "per_user": {
+    "2": {
+     "latency": 3.282,
+     "correct": true,
+     "prompt_n": 17650,
+     "answer": "K2QQ7"
+    },
+    "3": {
+     "latency": 6.262,
+     "correct": true,
+     "prompt_n": 17650,
+     "answer": "K3QQ7"
+    },
+    "4": {
+     "latency": 9.252,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K4QQ7"
+    },
+    "5": {
+     "latency": 5.212,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K5QQ7"
+    }
+   },
+   "correct": 4,
+   "mean_prompt_n": 17642,
+   "short_p50": 0.083,
+   "short_p95": 3.166,
+   "short_rate": 8.73,
+   "short_n": 151,
+   "errors": []
+  },
+  "8": {
+   "N": 8,
+   "wall_s": 36.0,
+   "median": 7.607,
+   "p95_nr": 23.971,
+   "min": 6.603,
+   "max": 23.971,
+   "v61_p50_index": 7.944,
+   "v61_p95_index": 11.85,
+   "lats": [
+    6.603,
+    7.054,
+    7.269,
+    7.27,
+    7.944,
+    11.805,
+    11.85,
+    23.971
+   ],
+   "per_user": {
+    "6": {
+     "latency": 6.603,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K6QQ7"
+    },
+    "7": {
+     "latency": 7.269,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K7QQ7"
+    },
+    "8": {
+     "latency": 7.944,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K8QQ7"
+    },
+    "9": {
+     "latency": 23.971,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K9QQ7"
+    },
+    "10": {
+     "latency": 11.805,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K10QQ7"
+    },
+    "11": {
+     "latency": 7.27,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K11QQ7"
+    },
+    "12": {
+     "latency": 11.85,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K12QQ7"
+    },
+    "13": {
+     "latency": 7.054,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K13QQ7"
+    }
+   },
+   "correct": 8,
+   "mean_prompt_n": 17633,
+   "short_p50": 0.124,
+   "short_p95": 5.021,
+   "short_rate": 2.22,
+   "short_n": 80,
+   "errors": []
+  },
+  "16": {
+   "N": 16,
+   "wall_s": 71.9,
+   "median": 9.9965,
+   "p95_nr": 59.935,
+   "min": 6.794,
+   "max": 59.935,
+   "v61_p50_index": 10.16,
+   "v61_p95_index": 47.829,
+   "lats": [
+    6.794,
+    6.889,
+    7.065,
+    7.366,
+    7.594,
+    8.051,
+    8.582,
+    9.833,
+    10.16,
+    11.411,
+    11.423,
+    12.131,
+    14.723,
+    15.762,
+    47.829,
+    59.935
+   ],
+   "per_user": {
+    "14": {
+     "latency": 11.423,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K14QQ7"
+    },
+    "15": {
+     "latency": 6.889,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K15QQ7"
+    },
+    "16": {
+     "latency": 7.594,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K16QQ7"
+    },
+    "17": {
+     "latency": 59.935,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K17QQ7"
+    },
+    "18": {
+     "latency": 7.366,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K18QQ7"
+    },
+    "19": {
+     "latency": 8.051,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K19QQ7"
+    },
+    "20": {
+     "latency": 47.829,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K20QQ7"
+    },
+    "21": {
+     "latency": 6.794,
+     "correct": true,
+     "prompt_n": 17631,
+     "answer": "K21QQ7"
+    },
+    "22": {
+     "latency": 12.131,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K22QQ7"
+    },
+    "23": {
+     "latency": 7.065,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K23QQ7"
+    },
+    "24": {
+     "latency": 9.833,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K24QQ7"
+    },
+    "25": {
+     "latency": 14.723,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K25QQ7"
+    },
+    "26": {
+     "latency": 8.582,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K26QQ7"
+    },
+    "27": {
+     "latency": 11.411,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K27QQ7"
+    },
+    "28": {
+     "latency": 15.762,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K28QQ7"
+    },
+    "29": {
+     "latency": 10.16,
+     "correct": true,
+     "prompt_n": 17633,
+     "answer": "K29QQ7"
+    }
+   },
+   "correct": 16,
+   "mean_prompt_n": 17633,
+   "short_p50": 0.139,
+   "short_p95": 0.64,
+   "short_rate": 1.0,
+   "short_n": 72,
+   "errors": []
+  }
+ }
+}

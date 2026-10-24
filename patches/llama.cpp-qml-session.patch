@@ -1,0 +1,1594 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 3df1d82db..106c12ad3 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -5,6 +5,9 @@ include(CheckIncludeFileCXX)
+ #set(CMAKE_WARN_DEPRECATED YES)
+ set(CMAKE_WARN_UNUSED_CLI YES)
+ 
++set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -rdynamic")
++set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -rdynamic")
++
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+ 
+ if (NOT XCODE AND NOT MSVC AND NOT CMAKE_BUILD_TYPE)
+@@ -128,6 +131,10 @@ option(LLAMA_OPENSSL    "llama: use openssl to support HTTPS" ON)
+ option(LLAMA_SUBPROCESS "llama-common: use subprocess, required by server tools and server router mode" ${LLAMA_SUBPROCESS_DEFAULT})
+ option(LLAMA_LLGUIDANCE "llama-common: include LLGuidance library for structured output in common utils" OFF)
+ 
++# qml-router persistent session restore (llama-server)
++option(LLAMA_QML_SESSION "llama: enable qml-router persistent session restore in llama-server" OFF)
++set(QML_ROUTER_DIR "" CACHE PATH "Path to the qml-router checkout (required when LLAMA_QML_SESSION=ON)")
++
+ 
+ # Required for relocatable CMake package
+ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/build-info.cmake)
+@@ -204,6 +211,13 @@ endif()
+ 
+ add_subdirectory(src)
+ 
++if (LLAMA_QML_SESSION)
++    if (NOT QML_ROUTER_DIR)
++        message(FATAL_ERROR "LLAMA_QML_SESSION=ON requires -DQML_ROUTER_DIR=/path/to/qml-router")
++    endif()
++    add_subdirectory(${QML_ROUTER_DIR} ${CMAKE_BINARY_DIR}/qml_router_build)
++endif()
++
+ #
+ # utils, programs, examples and tests
+ #
+diff --git a/common/arg.cpp b/common/arg.cpp
+index 975344131..9de2aceb6 100644
+--- a/common/arg.cpp
++++ b/common/arg.cpp
+@@ -3449,6 +3449,54 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
+             }
+         }
+     ).set_examples({LLAMA_EXAMPLE_SERVER}));
++    add_opt(common_arg(
++        {"--qml-session-store"}, "PATH",
++        "path to qml-router SQLite session metadata db (enables persistent session restore, default: disabled)",
++        [](common_params & params, const std::string & value) {
++            params.qml_sqlite_path = value;
++        }
++    ).set_env("LLAMA_ARG_QML_SESSION_STORE").set_examples({LLAMA_EXAMPLE_SERVER}));
++    add_opt(common_arg(
++        {"--qml-lmdb-store"}, "PATH",
++        "path to qml-router LMDB KV-blob store directory (required together with --qml-session-store)",
++        [](common_params & params, const std::string & value) {
++            params.qml_lmdb_path = value;
++        }
++    ).set_env("LLAMA_ARG_QML_LMDB_STORE").set_examples({LLAMA_EXAMPLE_SERVER}));
++    add_opt(common_arg(
++        {"--qml-restore-under-load"},
++        "qml-router: when a slot holds ANOTHER session's KV, drop it and restore this session's "
++        "saved KV instead of re-prefilling its history (default: disabled). Measured on ~430-token "
++        "sessions: no latency gain (the restore transfer offsets the prefill saved) and outputs can "
++        "differ from the idle-slot path, so it is opt-in. Intended for long sessions where prefill "
++        "dominates -- measure before enabling.",
++        [](common_params & params) {
++            params.qml_restore_under_load = true;
++        }
++    ).set_env("LLAMA_ARG_QML_RESTORE_UNDER_LOAD").set_examples({LLAMA_EXAMPLE_SERVER}));
++    add_opt(common_arg(
++        {"--qml-restore-on-start"}, "SESSION_ID[,SESSION_ID...]|auto",
++        "qml-router: restore these sessions into slots at startup, before the server accepts "
++        "requests. This is the eager path: the client's first message then pays only its own "
++        "evaluation, exactly like llama.cpp's own file restore issued by an operator after a "
++        "restart. Measured resume TTFT on an 8K session: 112 ms eager vs 248 ms when the restore "
++        "happens inside the first request. The single value 'auto' restores the most recently "
++        "updated sessions instead, one per slot, so a restarted server picks up where it left "
++        "off without an operator-maintained list.",
++        [](common_params & params, const std::string & value) {
++            params.qml_restore_on_start.clear();
++            size_t start = 0;
++            while (start <= value.size()) {
++                const size_t comma = value.find(',', start);
++                const std::string one = value.substr(start, comma == std::string::npos ? std::string::npos : comma - start);
++                if (!one.empty()) {
++                    params.qml_restore_on_start.push_back(one);
++                }
++                if (comma == std::string::npos) break;
++                start = comma + 1;
++            }
++        }
++    ).set_env("LLAMA_ARG_QML_RESTORE_ON_START").set_examples({LLAMA_EXAMPLE_SERVER}));
+     add_opt(common_arg(
+         {"--media-path"}, "PATH",
+         "directory for loading local media files; files can be accessed via file:// URLs using relative paths (default: disabled)",
+diff --git a/common/common.h b/common/common.h
+index 279252183..676249ab3 100644
+--- a/common/common.h
++++ b/common/common.h
+@@ -572,6 +572,17 @@ struct common_params {
+     bool ctx_shift         = false; // context shift on infinite text generation
+     bool swa_full          = false; // use full-size SWA cache (https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)
+     bool kv_unified        = false; // enable unified KV cache
++    // qml-router: when a slot's cached KV belongs to another session, drop it and
++    // restore ours instead of re-prefilling. Measured OFF-by-default because at
++    // ~430-token sessions restoring costs as much as prefilling (see
++    // docs/analysis-vllm-comparison-and-kv-proposals.md) and it changes output
++    // relative to the idle path; expected to pay off for long sessions.
++    bool qml_restore_under_load = false;
++    // qml-router: session ids to restore at startup, before the first request.
++    // Restoring at init (rather than lazily inside the first request) was the
++    // original design and is what makes the resume TTFT match llama.cpp's own
++    // file restore -- measured 112ms eager vs 248ms lazy on an 8K session.
++    std::vector<std::string> qml_restore_on_start;
+ 
+     bool input_prefix_bos  = false; // prefix BOS to user inputs, preceding input_prefix
+     bool verbose_prompt    = false; // print prompt tokens before generation
+@@ -684,6 +695,9 @@ struct common_params {
+     std::string slot_save_path;
+     std::string media_path; // path to directory for loading media files
+ 
++    std::string qml_sqlite_path; // path to qml-router SQLite session metadata db (empty = disabled)
++    std::string qml_lmdb_path;   // path to qml-router LMDB KV-blob store directory
++
+     float slot_prompt_similarity = 0.1f;
+ 
+     // batched-bench params
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 320784c3a..d905de00c 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -55,6 +55,11 @@ target_compile_features   (llama PRIVATE cxx_std_17) # don't bump
+ 
+ target_link_libraries(llama PUBLIC ggml)
+ 
++if (LLAMA_QML_SESSION)
++    # qml-session: contiguous-first state restore in llama-kv-cache.cpp
++    target_compile_definitions(llama PRIVATE LLAMA_QML_SESSION=1)
++endif()
++
+ if (BUILD_SHARED_LIBS)
+     set_target_properties(llama PROPERTIES POSITION_INDEPENDENT_CODE ON)
+     target_compile_definitions(llama PRIVATE LLAMA_BUILD)
+diff --git a/src/llama-kv-cache.cpp b/src/llama-kv-cache.cpp
+index 44cb1668d..05d6c3684 100644
+--- a/src/llama-kv-cache.cpp
++++ b/src/llama-kv-cache.cpp
+@@ -2443,7 +2443,22 @@ bool llama_kv_cache::state_read_meta(llama_io_read_i & io, uint32_t strm, uint32
+             ubatch.seq_id[i]   = &dest_seq_id;
+         }
+ 
++#ifdef LLAMA_QML_SESSION
++        // qml-session (2026-08-11): prefer a CONTIGUOUS allocation for state
++        // restores. state_read_data copies scattered cells one by one -- with
++        // a fragmented pool (concurrent short requests) a 17.6K-token restore
++        // degraded from 67 ms to 5.4 s (measured, ~1M tiny tensor writes).
++        // A contiguous run keeps the bulk per-layer copy path; fall back to
++        // the scattered allocation only when no run exists.
++        sinfo = find_slot(ubatch, true);
++        if (sinfo.empty()) {
++            LLAMA_LOG_WARN("%s: no contiguous run of %d cells -- falling back to scattered restore (slow path)\n",
++                    __func__, cell_count);
++            sinfo = find_slot(ubatch, false);
++        }
++#else
+         sinfo = find_slot(ubatch, false);
++#endif
+         if (sinfo.empty()) {
+             LLAMA_LOG_ERROR("%s: failed to find %d available cells in kv cache\n", __func__,  cell_count);
+             return false;
+diff --git a/tools/server/CMakeLists.txt b/tools/server/CMakeLists.txt
+index 280bd9e19..6b2477d5b 100644
+--- a/tools/server/CMakeLists.txt
++++ b/tools/server/CMakeLists.txt
+@@ -33,6 +33,12 @@ target_include_directories(${TARGET} PRIVATE ../mtmd)
+ target_include_directories(${TARGET} PRIVATE ${CMAKE_SOURCE_DIR})
+ target_link_libraries(${TARGET} PUBLIC llama-common mtmd ${CMAKE_THREAD_LIBS_INIT})
+ 
++if (LLAMA_QML_SESSION)
++    target_compile_definitions(${TARGET} PRIVATE LLAMA_QML_SESSION=1)
++    target_include_directories(${TARGET} PRIVATE ${QML_ROUTER_DIR}/include)
++    target_link_libraries(${TARGET} PUBLIC qml_llama_hook)
++endif()
++
+ # llama-server-impl: server logic, reusable by app
+ 
+ set(TARGET llama-server-impl)
+diff --git a/tools/server/server-context.cpp b/tools/server/server-context.cpp
+index 744593c76..0ae99d9d5 100644
+--- a/tools/server/server-context.cpp
++++ b/tools/server/server-context.cpp
+@@ -17,6 +17,12 @@
+ #include "mtmd.h"
+ #include "mtmd-helper.h"
+ 
++#ifdef LLAMA_QML_SESSION
++#include "qml_llama_hook.h"
++#include "qml_model_hash.h"
++#include <unistd.h> // getpid() -- session ownership lock (qml_session_acquire/release_lock)
++#endif
++
+ #include <algorithm>
+ #include <cstddef>
+ #include <cinttypes>
+@@ -25,6 +31,7 @@
+ #include <filesystem>
+ #include <utility>
+ #include <fstream>
++#include <thread>
+ 
+ // fix problem with std::min and std::max
+ #if defined(_WIN32)
+@@ -215,6 +222,36 @@ struct server_slot {
+ 
+     server_prompt prompt;
+ 
++#ifdef LLAMA_QML_SESSION
++    // session_id currently resident in this slot's KV cache via qml-router
++    // (empty = none / native-cache-only). set on restore and on fresh launch
++    // from task.params.session_id, cleared in prompt_clear().
++    std::string qml_session_id;
++    // true when this slot's cached KV belongs to a DIFFERENT session than the
++    // task about to run. Needed because qml_session_id is (re)assigned to the
++
++    // incoming session in launch_slot_with_task(), so by the time update_slots()
++    // runs it can no longer tell whose content the cache actually holds. Set in
++    // the auto-continue branches, consumed by the restore block, reset after.
++    bool qml_cache_foreign = false;
++    // token array already fetched from the store for THIS task by
++    // launch_slot_with_task()'s peek. Reused by the restore below so the token
++    // log is read once per restore instead of twice (7,953 rows twice on an 8K
++    // session, which is where our 250ms restore lost to stock's 87ms file
++    // restore). Cleared once consumed.
++    llama_tokens qml_pending_tokens;
++    // user_id associated with qml_session_id above, stored alongside it for
++    // qml-router's per-user querying. set/cleared in lockstep with
++    // qml_session_id; empty = unknown.
++    std::string qml_user_id;
++    // store key qml_pending_tokens (and the background fetch started with it)
++    // actually refer to. Normally the task's session_id; under template
++    // seeding it is the TEMPLATE's id, because the blob and token log being
++    // restored are the template's while the slot binding is the new session.
++    // empty = same as the task's session_id. Cleared with qml_pending_tokens.
++    std::string qml_restore_key;
++#endif
++
+     bool prompt_save(server_prompt_cache & prompt_cache) const {
+         if (prompt.tokens.size() == 0) {
+             return false;
+@@ -258,6 +295,14 @@ struct server_slot {
+             common_context_seq_rm(ctx_dft, id, -1, -1);
+         }
+ 
++#ifdef LLAMA_QML_SESSION
++        qml_session_id.clear();
++        qml_user_id.clear();
++        qml_cache_foreign = false;
++        qml_pending_tokens.clear();
++        qml_restore_key.clear();
++#endif
++
+         prompt.clear();
+     }
+ 
+@@ -285,6 +330,12 @@ struct server_slot {
+ 
+     std::function<void(int /* id_slot */)> callback_on_release;
+ 
++#ifdef LLAMA_QML_SESSION
++    std::function<void(llama_context * ctx_tgt, int32_t slot_id,
++                        const std::string & session_id, const std::string & user_id,
++                        const llama_tokens & tokens)> callback_qml_persist;
++#endif
++
+     // Speculative decoding stats
+     int32_t n_draft_total = 0;      // Total draft tokens generated
+     int32_t n_draft_accepted = 0;   // Draft tokens actually accepted
+@@ -490,6 +541,15 @@ struct server_slot {
+                 prompt_clear();
+             }
+ 
++#ifdef LLAMA_QML_SESSION
++            // qml-router: hand off to the hook module (owns the KV capture
++            // + persister thread entirely -- see qml_llama_hook.cpp)
++            if (callback_qml_persist && !qml_session_id.empty() &&
++                !prompt.tokens.empty() && !prompt.tokens.has_media()) {
++                callback_qml_persist(ctx_tgt, id, qml_session_id, qml_user_id, prompt.tokens.get_text_tokens());
++            }
++#endif
++
+             reset();
+ 
+             callback_on_release(id);
+@@ -846,6 +906,63 @@ struct server_metrics {
+ // server_context_impl (private implementation)
+ //
+ 
++//===========================================================================//
++// [FTS-RECALL] BEGIN — shared injection helper for both auto-continue
++// branches (resident and stored). Additive-only; removal instructions in
++// storage/sqlite/qml_sqlite_store.h. Placement contract: call AFTER the
++// history tokens are inserted and BEFORE the new turn is inserted, so the
++// history prefix (and any blob restore of it) stays byte-identical.
++//===========================================================================//
++static void qml_fts_recall_inject(server_slot & slot, server_task & task,
++                                  llama_tokens & new_part, size_t n_hist) {
++    if (!qml_llama_recall_on()) {
++        return;
++    }
++    const llama_vocab * rec_vocab =
++        llama_model_get_vocab(llama_get_model(slot.ctx_tgt));
++    const std::string rec_query =
++        common_detokenize(slot.ctx_tgt, new_part, false);
++    auto rec_detok = +[](void * ud, const int32_t * toks, size_t n) -> char * {
++        const std::string s2 = common_detokenize(
++            (llama_context *) ud, std::vector<llama_token>(toks, toks + n), false);
++        return strdup(s2.c_str());
++    };
++    int32_t * rec_toks = nullptr;
++    // [v1.1 RIG] n_ctx_avail = context size - history - new turn - generation
++    // reserve; the hook derives its dynamic budget and per-turn size cap
++    // from this instead of a fixed constant.
++    const size_t rec_reserve = 512;
++    const size_t rec_used    = n_hist + new_part.size() + rec_reserve;
++    const size_t ren_ctx_avail   = ((size_t) slot.n_ctx > rec_used)
++                                 ? (size_t) slot.n_ctx - rec_used : 0;
++    const size_t rec_n = qml_llama_recall(
++        task.params.session_id.c_str(), rec_query.c_str(),
++        (int32_t) llama_vocab_eot(rec_vocab), ren_ctx_avail,
++        rec_detok, (void *) slot.ctx_tgt, &rec_toks);
++    if (rec_n > 0 && n_hist + rec_n + new_part.size() < (size_t) slot.n_ctx) {
++        // [RECALL-EOT] The stored history can end inside an open assistant turn
++        // (generation stopped at n_predict, no end-of-turn token); the client then
++        // starts the new turn with the end-of-turn token that closes it. Records
++        // inserted before that token would leave the assistant turn open and put
++        // a second end-of-turn token after them, so the token moves in front of
++        // the records.
++        const llama_token eot = llama_vocab_eot(rec_vocab);
++        if (task.tokens.size() > 0 && task.tokens[task.tokens.size() - 1] != eot &&
++            !new_part.empty() && new_part.front() == eot) {
++            task.tokens.insert(llama_tokens(1, eot));
++            new_part.erase(new_part.begin());
++        }
++        task.tokens.insert(llama_tokens(rec_toks, rec_toks + rec_n));
++        SLT_INF(slot, "qml-router: [fts-recall] re-injected %zu archived token(s) between history and the new turn\n",
++                rec_n);
++    }
++    free(rec_toks);
++}
++//===========================================================================//
++// [FTS-RECALL] END (helper)
++//===========================================================================//
++
++
+ struct server_context_impl {
+     friend struct server_context;
+ 
+@@ -929,11 +1046,27 @@ private:
+     std::set<std::string> model_aliases; // additional names for the model
+     std::set<std::string> model_tags;    // informational tags
+ 
++#ifdef LLAMA_QML_SESSION
++    // real content fingerprint of the model FILE (qml_model_file_hash,
++    // see include/qml_model_hash.h) -- used as "model_hash" everywhere qml-router
++    // needs to detect a same-path checkpoint swap. Deliberately NOT model_name
++    // (a bare filename string, no content verification at all -- task #22/#48's
++    // original placeholder). Computed once in load_model(), right after
++    // model_name/params_base.model.path are both known.
++    std::string qml_model_fingerprint;
++#endif
++
+     bool sleeping = false;
+ 
+     int64_t t_last_load_progress_ms = 0;
+ 
+     void destroy() {
++#ifdef LLAMA_QML_SESSION
++        if (!params_base.qml_sqlite_path.empty()) {
++            qml_llama_shutdown();
++        }
++#endif
++
+         spec.reset();
+         spec_init.reset();
+ 
+@@ -1314,6 +1447,15 @@ private:
+                 queue_tasks.pop_deferred_task(id_slot);
+             };
+ 
++#ifdef LLAMA_QML_SESSION
++            slot.callback_qml_persist = [this](llama_context * ctx_tgt, int32_t slot_id,
++                                                const std::string & session_id, const std::string & user_id,
++                                                const llama_tokens & tokens) {
++                qml_llama_save(ctx_tgt, slot_id, session_id.c_str(), user_id.c_str(),
++                                               qml_model_fingerprint.c_str(), tokens.data(), tokens.size());
++            };
++#endif
++
+             slot.reset();
+         }
+ 
+@@ -1377,6 +1519,39 @@ private:
+         model_aliases = params_base.model_alias;
+         model_tags    = params_base.model_tags;
+ 
++#ifdef LLAMA_QML_SESSION
++        {
++            char fp_hex[65] = {0};
++            if (qml_model_file_hash(params_base.model.path.c_str(), fp_hex) == 0) {
++                qml_model_fingerprint = fp_hex;
++            } else {
++                // file unreadable for some reason (shouldn't happen -- we just
++                // loaded it) -- fall back to the old placeholder rather than
++                // an empty string, which would compare equal to "skip the
++                // model_hash check" (qml_session_load treats "" as
++                // "don't check") and silently defeat the whole point.
++                SRV_WRN("%s", "qml-router: failed to compute model fingerprint -- falling back to model_name as model_hash\n");
++                qml_model_fingerprint = model_name;
++            }
++            SRV_INF("qml-router: model fingerprint = %s\n", qml_model_fingerprint.c_str());
++        }
++
++        if (!params_base.qml_sqlite_path.empty()) {
++            if (qml_llama_init(params_base.qml_sqlite_path.c_str(), params_base.qml_lmdb_path.c_str()) != 0) {
++                SRV_WRN("%s", "qml-router: failed to open session storage -- persistence disabled for this run\n");
++            } else {
++                // lets the persister thread force an update_slots() tick when
++                // it queues a live-KV control op (RESTORE/MIGRATE/BACKUP_NOW/
++                // PREWARM) -- queue_tasks only re-runs update_slots() in
++                // response to a posted task (see server-queue.cpp's
++                // start_loop), so without this a queued op could sit
++                // unexecuted indefinitely if no unrelated HTTP request
++                // happens to arrive.
++                qml_llama_set_wake(&qml_wake_trampoline, this);
++            }
++        }
++#endif
++
+         // propagate new defaults back to caller
+         params = params_base;
+ 
+@@ -1396,6 +1571,15 @@ private:
+         GGML_ASSERT(ctx_tgt   != nullptr);
+         GGML_ASSERT(model_tgt != nullptr);
+ 
++#ifdef LLAMA_QML_SESSION
++        // hand the slot geometry to the storage layer before ANY session work:
++        // the async fetch thread can read a blob before the first restore call
++        // would otherwise have set it (see qml_llama_sync_geometry)
++        if (!params_base.qml_sqlite_path.empty()) {
++            qml_llama_sync_geometry(ctx_tgt);
++        }
++#endif
++
+         GGML_ASSERT(!sleeping);
+ 
+         // wiring up server queues
+@@ -1497,6 +1681,12 @@ private:
+             }
+         }
+ 
++#ifdef LLAMA_QML_SESSION
++        // eager restore, last thing before the server starts serving: the slots
++        // exist, the context is live, and no request has arrived yet.
++        qml_restore_on_start();
++#endif
++
+         return true;
+     }
+ 
+@@ -1587,6 +1777,51 @@ private:
+             }
+         }
+ 
++#ifdef LLAMA_QML_SESSION
++        // qml-router: session_id fast-path. The generic LCP-similarity scan
++        // above has no notion of session_id and can select an unrelated
++        // "dirty" slot purely by incidental token overlap (e.g. a shared
++        // BOS/instruction-format prefix) -- which would silently defeat the
++        // qml restore check in update_slots() (it requires
++        // slot.prompt.tokens.empty()). When this task carries a session_id
++        // (and no explicit id_slot was requested), prefer (a) the slot that
++        // already has this exact session resident, or (b) an idle slot with
++        // no cached tokens at all, overriding whatever was selected above.
++        if (task.id_slot == -1 && !params_base.qml_sqlite_path.empty() && !task.params.session_id.empty()) {
++            server_slot * session_match = nullptr;
++            server_slot * idle          = nullptr;
++
++            for (server_slot & slot : slots) {
++                if (slot.is_processing()) {
++                    continue;
++                }
++
++                if (slot.qml_session_id == task.params.session_id) {
++                    session_match = &slot;
++                    break;
++                }
++
++                if (idle == nullptr && slot.prompt.tokens.empty()) {
++                    idle = &slot;
++                }
++            }
++
++            if (session_match != nullptr) {
++                ret          = session_match;
++                update_cache = false; // already the right content, nothing to reconcile via native prompt_cache
++                SLT_INF(*ret, "qml-router: selected slot by session_id match ('%s')\n",
++                        task.params.session_id.c_str());
++            } else if (ret == nullptr || !ret->prompt.tokens.empty()) {
++                if (idle != nullptr) {
++                    ret          = idle;
++                    update_cache = false; // idle slot has nothing to save/load via native prompt_cache
++                    SLT_INF(*ret, "qml-router: selected idle slot for session_id '%s' restore\n",
++                            task.params.session_id.c_str());
++                }
++            }
++        }
++#endif
++
+         // find the slot that has been least recently used
+         if (ret == nullptr) {
+             int64_t t_last = -1;
+@@ -1753,6 +1988,238 @@ private:
+             return false;
+         }
+ 
++#ifdef LLAMA_QML_SESSION
++        // qml-router: auto-continue a session without requiring the client
++        // to resend the prior turns. Applies when this task's session_id
++        // matches content ALREADY resident in this slot -- either a live,
++        // never-evicted conversation (slot.qml_session_id was set by an
++        // earlier real turn on this same slot) or a session a control-plane
++        // RESTORE/PREWARM command (qml_dispatch_live_control_op, see
++        // update_slots()) already loaded here ahead of this request. If the
++        // new task's own tokens don't already start with that resident
++        // content, prepend it -- get_common_prefix() then finds the full
++        // resident prefix as a genuine cache hit later in update_slots(),
++        // exactly as if the client had resent it. Does NOT cover the
++        // separate "slot was completely empty, restore triggered mid-
++        // request" fallback further down in update_slots() -- that path is
++        // unchanged and still requires the client to resend (see
++        // docs/udf-control-plane-proposal.md for the distinction).
++        // slot.alora_invocation_start < 0 excludes the (unused in this
++        // project, but real) case where an alora activation index was just
++        // computed above against the PRE-prepend token positions -- that
++        // index would silently point at the wrong offset if we prepend
++        // afterward. Left as a known non-goal rather than re-deriving it.
++        if (!task.params.session_id.empty() &&
++            slot.qml_session_id == task.params.session_id &&
++            !slot.prompt.tokens.empty() &&
++            !task.tokens.has_media() &&
++            slot.alora_invocation_start < 0) {
++
++            slot.qml_cache_foreign = false; // this slot already holds THIS session
++
++            const llama_tokens resident   = slot.prompt.tokens.get_text_tokens();
++            const size_t        n_resident = resident.size();
++
++            bool already_prefixed = task.tokens.size() >= n_resident;
++            if (already_prefixed) {
++                for (size_t i = 0; i < n_resident; ++i) {
++                    if (task.tokens[i] != resident[i]) {
++                        already_prefixed = false;
++                        break;
++                    }
++                }
++            }
++
++            if (!already_prefixed) {
++                llama_tokens new_part = task.tokens.get_text_tokens();
++                task.tokens.clear();
++                task.tokens.insert(resident);
++                // [FTS-RECALL] resident-branch injection (see helper above)
++                qml_fts_recall_inject(slot, task, new_part, n_resident);
++                task.tokens.insert(new_part);
++
++                SLT_INF(slot, "qml-router: auto-continuing session '%s' -- prepended %zu resident token(s) ahead of %zu new token(s)\n",
++                        task.params.session_id.c_str(), n_resident, new_part.size());
++            }
++        }
++
++        // qml-router: same auto-continue, for the case the block above cannot
++        // cover -- the slot holds NOTHING yet (fresh server, evicted session,
++        // or a slot that was just handed to this session), so there is no
++        // resident prefix to copy from. The stored token log is the prefix in
++        // that case. Without this, update_slots()'s restore puts the KV back
++        // but get_common_prefix() then compares the bare request against the
++        // restored token array, matches ~1 token, and the whole restored
++        // context is silently thrown away -- the model answers as if the
++        // session never existed (measured 2026-07-30). Only the SQLite token
++        // log is read here (qml_llama_peek); the actual KV
++        // restore still happens once in update_slots().
++        // NOTE the condition: it is NOT "the slot is empty". Requiring an empty
++        // slot is what made this silently wrong under load -- measured
++        // 2026-07-30 with 4 slots / 16 sessions: every slot held the previous
++        // request's content, so neither this branch nor update_slots()'s lazy
++        // restore fired, and a request carrying a valid session_id was served
++        // with ONLY its new question. The model then answered from no history
++        // at all (session cs-3, whose stored fact was "milepost 21", replied
++        // "1 mile east of the intersection..." with prompt_n=1). Correctness
++        // has to hold whenever the slot does not ALREADY hold this session:
++        // in that case prepend the stored token log and let stock LCP decide
++        // how much it can reuse. Slower than a KV restore, never wrong.
++        if (!task.params.session_id.empty() &&
++            (slot.prompt.tokens.empty() || slot.qml_session_id != task.params.session_id) &&
++            !task.tokens.has_media() &&
++            slot.alora_invocation_start < 0 &&
++            !params_base.qml_sqlite_path.empty()) {
++
++            // non-empty here means the cache is another session's (the resident
++            // branch above already handled "same session"). Recording it lets
++            // update_slots() drop that cache and do a real KV restore instead of
++            // re-prefilling our whole history against a useless prefix.
++            slot.qml_cache_foreign = !slot.prompt.tokens.empty();
++
++            llama_token * qml_hist   = nullptr;
++            size_t        qml_n_hist = 0;
++
++            // the store key the peek (and any restore that follows) refers
++            // to: normally this session; on a first visit with a template_id
++            // it becomes the template (identity-addressed seeding -- an
++            // explicit name, never content matching)
++            std::string qml_peek_key = task.params.session_id;
++
++            int qml_peek_rc = qml_llama_peek(qml_peek_key.c_str(),
++                                                           qml_model_fingerprint.c_str(),
++                                                           &qml_hist, &qml_n_hist);
++            if (qml_peek_rc != 1 && !task.params.template_id.empty()) {
++                // brand-new session: seed it from the template's record. The
++                // release save afterwards writes the combined history under
++                // the session's OWN id, so this branch runs once per session.
++                qml_peek_rc = qml_llama_peek(task.params.template_id.c_str(),
++                                                           qml_model_fingerprint.c_str(),
++                                                           &qml_hist, &qml_n_hist);
++                if (qml_peek_rc == 1) {
++                    qml_peek_key = task.params.template_id;
++                    SLT_INF(slot, "qml-router: seeding NEW session '%s' from template '%s' (%zu stored tokens)\n",
++                            task.params.session_id.c_str(), qml_peek_key.c_str(), qml_n_hist);
++                }
++            }
++
++            if (qml_peek_rc != 1) {
++                // a request NAMED this session but the store had nothing usable
++                // (no pending save, no token log). Logged because the silent
++                // variant of this cost a day of debugging: an externally
++                // imported session read as empty with no trace of why.
++                SLT_INF(slot, "qml-router: session '%s' named but nothing usable in the store (peek rc=%d)\n",
++                        task.params.session_id.c_str(), qml_peek_rc);
++
++                // GUARD: if the session ROW says real history exists but the
++                // peek came back empty, answering would silently rebuild the
++                // session from nothing and the release save would then
++                // OVERWRITE the real record (destroyed a session live,
++                // 2026-08-06, under the still-open host-runtime read anomaly
++                // -- see the defect notes). Refuse loudly until the root cause is
++                // fixed; a brand-new session (no row / last_pos < 0) passes.
++                int32_t qml_last_pos = -1;
++                if (qml_sqlite_last_pos(task.params.session_id.c_str(), &qml_last_pos) == 0 &&
++                    qml_last_pos >= 8) {
++                    SLT_WRN(slot, "qml-router: session '%s' records last_pos=%d but its token log read as empty -- refusing to avoid overwriting the stored history\n",
++                            task.params.session_id.c_str(), (int) qml_last_pos);
++                    send_error(task.id,
++                               string_format("session '%s' has stored history (last_pos=%d) that could not "
++                                             "be read right now -- retry after an engine restart; refusing "
++                                             "so the stored conversation is not overwritten",
++                                             task.params.session_id.c_str(), (int) qml_last_pos),
++                               ERROR_TYPE_EXCEED_CONTEXT_SIZE,
++                               (int32_t) task.tokens.size(), slot.n_ctx);
++                    return false;
++                }
++            }
++
++            if (qml_peek_rc == 1) {
++                const llama_tokens stored(qml_hist, qml_hist + qml_n_hist);
++
++                // How much of the stored history does the request ALREADY begin
++                // with? The old test demanded an exact prefix match of the whole
++                // stored array, which fails in the most common case there is: a
++                // client that sends the full conversation it knows about, while the
++                // store also holds the previous turn's GENERATED tokens that the
++                // client never saw. Measured 2026-07-31 on an 8K session: stored
++                // 7,972 vs sent 7,960 (12 generated tokens of difference) made the
++                // test fail, the history got prepended on top of itself, the request
++                // became ~15,900 tokens and prompt_n came back 7,960 -- a 1,228 ms
++                // TTFT, worse than running with no persistence at all (791 ms).
++                size_t       overlap = 0;
++                const size_t cmp_n   = std::min(qml_n_hist, task.tokens.size());
++                while (overlap < cmp_n && task.tokens[overlap] == stored[overlap]) {
++                    ++overlap;
++                }
++
++                // A one-token match is just BOS and means nothing. Require a real
++                // overlap covering at least half the stored history before deciding
++                // the client supplied it: then prepending would only duplicate, and
++                // get_common_prefix() already reuses what it can.
++                const bool already_prefixed = overlap >= 16 && overlap * 2 >= qml_n_hist;
++
++                // prepending must not push the request past the context the
++                // slot actually has -- if it would, leave the request alone
++                // (restore then simply does not help, same as before)
++                const bool fits = (qml_n_hist + task.tokens.size()) < (size_t) slot.n_ctx;
++
++                // hand the array to the restore below instead of making it query again
++                slot.qml_pending_tokens = stored;
++                slot.qml_restore_key    = qml_peek_key;
++
++                // start the blob fetch NOW on the hook's background thread: by
++                // the time update_slots() reaches the restore, the disk read is
++                // done or well underway, and the model loop never blocks on it
++                // (measured cost of blocking: docs/engine-llama-cpp.md 7-7).
++                qml_llama_fetch_begin(qml_peek_key.c_str(),
++                                             qml_model_fingerprint.c_str());
++
++                if (!already_prefixed && fits) {
++                    llama_tokens new_part = task.tokens.get_text_tokens();
++                    task.tokens.clear();
++                    task.tokens.insert(stored);
++
++                    // [FTS-RECALL] stored-branch injection (see helper above)
++                    qml_fts_recall_inject(slot, task, new_part, qml_n_hist);
++                    
++                    task.tokens.insert(new_part);
++
++                    SLT_INF(slot, "qml-router: auto-continuing STORED session '%s' -- prepended %zu stored token(s) ahead of %zu new token(s) (overlap was %zu)\n",
++                            task.params.session_id.c_str(), qml_n_hist, new_part.size(), overlap);
++                } else if (already_prefixed) {
++                    SLT_INF(slot, "qml-router: session '%s' -- client already sent %zu of %zu stored token(s), not prepending\n",
++                            task.params.session_id.c_str(), overlap, qml_n_hist);
++                } else if (!fits) {
++                    // The stored conversation is larger than this slot can hold
++                    // (e.g. the server was restarted with more slots, shrinking
++                    // each one). Before 2026-08-02 this only logged and carried
++                    // on, so the request was answered with the bare new question
++                    // and NO history -- a confidently wrong answer, the worst
++                    // possible outcome. Refuse instead: the operator gets an
++                    // actionable message and the client never receives an answer
++                    // silently generated from nothing.
++                    SLT_WRN(slot, "qml-router: stored session '%s' (%zu tokens) + request does not fit in n_ctx %d -- refusing\n",
++                            task.params.session_id.c_str(), qml_n_hist, slot.n_ctx);
++                    qml_llama_restore_done(qml_hist);
++                    // NOTE: ERROR_TYPE_EXCEED_CONTEXT_SIZE asserts that the token
++                    // counts are supplied, so use the id_task overload and pass
++                    // them (the assert aborts the server otherwise -- hit live).
++                    send_error(task.id,
++                               string_format("stored session '%s' holds %zu tokens, which does not fit "
++                                             "this slot's context of %d tokens -- restart with a larger "
++                                             "--ctx-size, fewer slots (-np), or --kv-unified",
++                                             task.params.session_id.c_str(), qml_n_hist, slot.n_ctx),
++                               ERROR_TYPE_EXCEED_CONTEXT_SIZE,
++                               (int32_t) (qml_n_hist + task.tokens.size()), slot.n_ctx);
++                    return false;
++                }
++            }
++
++            qml_llama_restore_done(qml_hist);
++        }
++#endif
++
+         SLT_DBG(slot, "launching slot : %s\n", safe_json_to_str(slot.to_json()).c_str());
+ 
+         // initialize samplers
+@@ -1792,6 +2259,20 @@ private:
+ 
+         slot.task = std::make_unique<const server_task>(std::move(task));
+ 
++#ifdef LLAMA_QML_SESSION
++        // unconditional (re)assignment, INCLUDING clearing when the task
++        // carries no session_id: a stateless request that lands on this slot
++        // must not inherit the previous occupant's session, or the release
++        // capture would overwrite that session's blob and token log with the
++        // stateless request's content (measured: sustained mixed load
++        // corrupted 2/12 sessions, every later revisit replayed a foreign
++        // 57-token record). Slot selection gives no same-slot guarantee, so
++        // "omit session_id to continue" was never a safe contract -- a
++        // continuing client sends its session_id on every turn.
++        slot.qml_session_id = slot.task->params.session_id;
++        slot.qml_user_id    = slot.task->params.user_id;
++#endif
++
+         slot.state = slot.task->is_child()
+             ? SLOT_STATE_WAIT_OTHER // wait for the parent to process prompt
+             : SLOT_STATE_STARTED;
+@@ -2291,9 +2772,15 @@ private:
+     }
+ 
+     // n_tokens_cur: the number of tokens added to the batch for the current slot
+-    void create_checkpoint(server_slot & slot, const int64_t n_tokens_cur, llama_pos pos_min, llama_pos pos_max) {
+-        const int id_task = slot.task->id;
+-
++    // id_task tags the checkpoint for the eviction logic below ("don't evict
++    // a checkpoint the CURRENT task just created"). Taken as an explicit
++    // parameter rather than read from slot.task->id here, because
++    // qml_dispatch_live_control_op's RESTORE/PREWARM path calls this on an
++    // idle slot with no task assigned at all (slot.task is null there) --
++    // reading slot.task->id unconditionally would dereference a null
++    // unique_ptr. Real task-driven call sites just pass slot.task->id,
++    // unchanged from before this became a parameter.
++    void create_checkpoint(server_slot & slot, const int64_t n_tokens_cur, llama_pos pos_min, llama_pos pos_max, int id_task) {
+         // evict checkpoints within min-step of a previous checkpoint, unless they were
+         // created by the current task
+         int64_t last = -1;
+@@ -2729,6 +3216,437 @@ private:
+     };
+ #endif
+ 
++#ifdef LLAMA_QML_SESSION
++    // qml-router: forces one more update_slots() tick by posting the same
++    // no-op task update_slots() itself already self-posts when !all_idle
++    // (SERVER_TASK_TYPE_NEXT_RESPONSE, "do nothing" -- see its case below).
++    // Registered as the persister thread's wake callback right after
++    // qml_llama_init() above; called from THAT thread, so this must
++    // only touch queue_tasks (already safe for cross-thread posting -- HTTP
++    // handler threads already do this) and nothing slot-related.
++    void wake_for_control_op() {
++        server_task task(SERVER_TASK_TYPE_NEXT_RESPONSE);
++        task.id = queue_tasks.get_new_id();
++        queue_tasks.post(std::move(task));
++    }
++
++    static void qml_wake_trampoline(void * userdata) {
++        static_cast<server_context_impl *>(userdata)->wake_for_control_op();
++    }
++
++    // qml-router: engine-truth validation of a just-applied restore. The count
++    // gate that admits a blob reads qml_session.n_tokens -- a row SHARED across
++    // engines, which another engine may have advanced since this llama-format
++    // blob was written (hit live 2026-08-04: vLLM extended the session
++    // 8,017 -> 8,027 tokens; the stale blob passed the gate and the request
++    // died with "Invalid input batch"). The engine itself is the source of
++    // truth: after set_data, the restored range must cover exactly the token
++    // history being prepended. On mismatch the state is dropped so the caller
++    // falls back to a full prefill of the token log -- correctness over reuse.
++    // returns how many leading tokens of the log the restored state covers
++    // (0 = unusable, state removed). A PREFIX (covered < n_expected) is valid:
++    // the capture throttle intentionally leaves blobs a few turns stale, and
++    // the prompt machinery recomputes just the tail. Only covered > n_expected
++    // (a blob from a different lineage) is discarded.
++    size_t qml_restore_covers(server_slot & slot, size_t n_expected, const char * session_id) {
++        llama_memory_t  mem  = llama_get_memory(ctx_tgt);
++        const llama_pos pmax = llama_memory_seq_pos_max(mem, slot.id);
++        const size_t covered = (size_t) (pmax + 1);
++        if (covered > 0 && covered <= n_expected) {
++            if (covered < n_expected) {
++                SLT_INF(slot, "qml-router: '%s' blob covers %zu of %zu token(s) -- prefix restore, tail recomputes\n",
++                        session_id, covered, n_expected);
++            }
++            return covered;
++        }
++        SLT_WRN(slot, "qml-router: restored state for '%s' covers %zu token(s) but the token log holds %zu -- foreign blob (another engine rewrote this session?); discarding, will recompute\n",
++                session_id, covered, n_expected);
++        llama_memory_seq_rm(mem, slot.id, -1, -1);
++        return 0;
++    }
++
++    // unified-pool room maker (2026-08-11 density campaign): when the shared
++    // KV pool cannot fit an incoming restore, evict idle resident caches
++    // (they are fully persisted -- eviction is a demotion, not a loss) instead
++    // of letting the restore fall back to a full recompute.
++    void qml_make_room(size_t needed_cells, int keep_slot_id) {
++        size_t used = 0;
++        for (auto & s : slots) {
++            used += s.prompt.tokens.size();
++        }
++        const size_t total = (size_t) llama_n_ctx(ctx_tgt);
++        if (used + needed_cells <= total) {
++            return;
++        }
++        for (auto & s : slots) {
++            if (s.id == keep_slot_id || s.is_processing() || s.prompt.tokens.empty()) {
++                continue;
++            }
++            const size_t freed = s.prompt.tokens.size();
++            SLT_INF(s, "qml-router: evicting %zu resident token(s) (pool full) to fit a %zu-token restore\n",
++                    freed, needed_cells);
++            common_context_seq_rm(s.ctx_tgt, s.id, -1, -1);
++            s.prompt.clear();
++            s.qml_session_id.clear();
++            used -= freed;
++            if (used + needed_cells <= total) {
++                return;
++            }
++        }
++    }
++
++    // qml-router: restore a stored session into a slot, using the SAME steps the
++    // native SLOT_RESTORE handler uses for its files (load the state, then
++    // prompt.clear() + tokens.insert()). Having one implementation is the point:
++    // the lazy in-request restore, the RESTORE control command and the startup
++    // restore below all go through here, so they cannot drift apart -- three of
++    // this project's bugs (#52, #60, #62) came from restore logic duplicated at
++    // different points in the request lifecycle.
++    // returns true if the session was restored into the slot.
++    bool qml_restore_into_slot(server_slot & slot, const std::string & session_id) {
++        if (session_id.empty() || params_base.qml_sqlite_path.empty()) {
++            return false;
++        }
++        if (n_swa != 0) {
++            SRV_WRN("qml-router: windowed SWA cache -- refusing to restore '%s' (use --swa-full)\n",
++                    session_id.c_str());
++            return false;
++        }
++
++        llama_token * tokens   = nullptr;
++        size_t        n_tokens = 0;
++
++        {
++            // pool pressure: the stored size is known before the blob loads
++            int32_t qml_last_pos = -1;
++            if (qml_sqlite_last_pos(session_id.c_str(), &qml_last_pos) == 0 && qml_last_pos > 0) {
++                qml_make_room((size_t) qml_last_pos + 1, slot.id);
++            }
++        }
++
++        int rc = qml_llama_restore(
++            ctx_tgt, slot.id, session_id.c_str(), qml_model_fingerprint.c_str(), &tokens, &n_tokens);
++
++        bool ok = false;
++        size_t covered = 0;
++        if (rc == 1) {
++            covered = qml_restore_covers(slot, n_tokens, session_id.c_str());
++            if (covered == 0) {
++                rc = -1; // foreign blob dropped -> reported as a failed restore
++            }
++        }
++        if (rc == 1) {
++            slot.prompt.clear();
++            slot.prompt.tokens.insert(llama_tokens(tokens, tokens + covered));
++            slot.qml_session_id = session_id;
++
++            llama_memory_t mem = llama_get_memory(ctx_tgt);
++            create_checkpoint(slot, /* n_tokens_cur */ 0,
++                              llama_memory_seq_pos_min(mem, slot.id),
++                              llama_memory_seq_pos_max(mem, slot.id),
++                              /* id_task */ -1);
++            ok = true;
++        } else if (rc < 0) {
++            slot.prompt.clear();
++            SRV_WRN("qml-router: failed to restore session '%s' KV state\n", session_id.c_str());
++        }
++
++        qml_llama_restore_done(tokens);
++        return ok;
++    }
++
++    // qml-router: eager restore at startup -- the original design intent. Runs
++    // after the slots exist and before any request is served, so a restarted
++    // server is READY rather than making the first client pay for the reload.
++    void qml_restore_on_start() {
++        if (params_base.qml_restore_on_start.empty() || params_base.qml_sqlite_path.empty()) {
++            return;
++        }
++
++        // "auto": restore the most recently updated sessions, one per slot,
++        // instead of an operator-maintained list. The store is already open
++        // at this point (init() ran qml storage setup before slot creation).
++        std::vector<std::string> session_ids = params_base.qml_restore_on_start;
++        if (session_ids.size() == 1 && session_ids[0] == "auto") {
++            char ** ids = nullptr;
++            size_t  n   = 0;
++            session_ids.clear();
++            if (qml_llama_recent(slots.size(), &ids, &n) == 0) {
++                for (size_t k = 0; k < n; ++k) {
++                    session_ids.emplace_back(ids[k]);
++                }
++                qml_llama_recent_free(ids, n);
++            }
++            if (session_ids.empty()) {
++                SRV_INF("%s", "qml-router: --qml-restore-on-start auto found no stored sessions\n");
++                return;
++            }
++        }
++
++        size_t i = 0;
++        for (auto & slot : slots) {
++            if (i >= session_ids.size()) break;
++            if (!slot.prompt.tokens.empty()) continue;
++            const std::string & sid = session_ids[i];
++            const int64_t t0 = ggml_time_us();
++            if (qml_restore_into_slot(slot, sid)) {
++                SRV_INF("qml-router: restored session '%s' into slot %d at startup (%.1f ms, %d tokens)\n",
++                        sid.c_str(), slot.id, (ggml_time_us() - t0) / 1000.0, slot.prompt.n_tokens());
++            } else {
++                SRV_WRN("qml-router: startup restore of session '%s' did not happen\n", sid.c_str());
++            }
++            ++i;
++        }
++        if (i < session_ids.size()) {
++            SRV_WRN("qml-router: %zu session(s) left unrestored at startup -- more sessions than slots\n",
++                    session_ids.size() - i);
++        }
++    }
++
++    // qml-router: executes one already-CLAIMED live-KV control op
++    // (RESTORE/MIGRATE/BACKUP_NOW/PREWARM) queued by the persister thread
++    // (hooks/llama/qml_llama_hook.cpp's g_ctrl_ops). Called only from
++    // update_slots(), i.e. the model thread -- never from the persister
++    // thread -- since these touch live KV state via the same llama.cpp API
++    // calls task #17's request-triggered restore already uses.
++    void qml_dispatch_live_control_op(const qml_control_cmd_t & cmd) {
++        const std::string cmd_type(cmd.cmd_type);
++        const std::string session_id(cmd.session_id);
++
++        if (cmd_type == "PURGE_CACHE") {
++            // Evict any idle slot cache held for this session. The gateway
++            // sends this before record-level surgery (window trim, delete):
++            // a stale resident cache otherwise resurrects superseded content
++            // on the next request -- observed 2026-08-11, a deleted 25K-token
++            // session revived wholesale from its slot cache. Busy slots make
++            // this FAIL (caller retries); same seq_rm+clear idiom as the
++            // foreign-cache eviction in update_slots().
++            int  n_purged = 0;
++            bool busy     = false;
++            for (auto & slot : slots) {
++                if (slot.qml_session_id != session_id) {
++                    continue;
++                }
++                if (slot.is_processing()) {
++                    busy = true;
++                    continue;
++                }
++                common_context_seq_rm(slot.ctx_tgt, slot.id, -1, -1);
++                slot.prompt.clear();
++                slot.qml_session_id.clear();
++                n_purged++;
++            }
++            SRV_INF("qml-router: control cmd_id=%lld PURGE_CACHE '%s': %d slot(s) purged%s\n",
++                    (long long) cmd.cmd_id, session_id.c_str(), n_purged,
++                    busy ? " (busy slot skipped -- FAILED)" : "");
++            qml_llama_control_done(cmd.cmd_id, busy ? "FAILED" : "DONE");
++            return;
++        }
++
++        if (cmd_type == "RESTORE" || cmd_type == "PREWARM") {
++            // A windowed SWA cache (n_swa > 0, i.e. an SWA model started WITHOUT
++            // --swa-full) cannot be restored correctly: the saved blob only holds
++            // each layer's sliding window, and injecting it leaves the sequence in
++            // a partially-populated state that also perturbs the recompute of the
++            // missing tail -- measured 2026-07-30, two restores of the SAME blob
++            // produced DIFFERENT continuations (non-deterministic), so this is not
++            // merely "slower", it is wrong. Refuse loudly instead. The session is
++            // not lost: its token log is still prepended by the auto-continue in
++            // launch_slot_with_task(), so the next request rebuilds the context by
++            // a normal full prefill. Run the server with --swa-full to get real
++            // KV restore on SWA models (verified bit-exact there).
++            if (n_swa != 0) {
++                SRV_WRN("qml-router: control cmd_id=%lld (%s) refused: windowed SWA cache (n_swa=%d) cannot be restored -- restart with --swa-full for KV restore on this model\n",
++                        (long long) cmd.cmd_id, cmd_type.c_str(), n_swa);
++                qml_llama_control_done(cmd.cmd_id, "FAILED");
++                return;
++            }
++
++            // split-brain guard (docs/udf-control-plane-proposal.md's blocker
++            // #2): refuse to load this session live here if another process
++            // already holds it. Acquiring is a no-op success if THIS pid
++            // already owns it (e.g. a second PREWARM for the same session).
++            const int32_t self_pid = (int32_t) getpid();
++            const int lock_rc = qml_session_lock(session_id.c_str(), self_pid);
++            if (lock_rc == 1) {
++                SRV_WRN("qml-router: control cmd_id=%lld (%s) failed: session '%s' is locked by another process\n",
++                        (long long) cmd.cmd_id, cmd_type.c_str(), session_id.c_str());
++                qml_llama_control_done(cmd.cmd_id, "FAILED");
++                return;
++            }
++            if (lock_rc != 0) {
++                SRV_WRN("qml-router: control cmd_id=%lld (%s) failed: could not acquire lock for session '%s' (rc=%d, likely unknown session_id)\n",
++                        (long long) cmd.cmd_id, cmd_type.c_str(), session_id.c_str(), lock_rc);
++                qml_llama_control_done(cmd.cmd_id, "FAILED");
++                return;
++            }
++
++            server_slot * target = nullptr;
++            for (auto & slot : slots) {
++                if (!slot.is_processing() && slot.prompt.tokens.empty()) {
++                    target = &slot;
++                    break;
++                }
++            }
++            if (target == nullptr) {
++                // second pass (2026-08-11): no empty slot -- evict an idle
++                // resident cache instead of failing. The evicted session is
++                // fully persisted; eviction is a demotion, not a loss.
++                for (auto & slot : slots) {
++                    if (slot.is_processing()) {
++                        continue;
++                    }
++                    SLT_INF(slot, "qml-router: evicting %zu resident token(s) to host a %s of '%s'\n",
++                            slot.prompt.tokens.size(), cmd_type.c_str(), session_id.c_str());
++                    common_context_seq_rm(slot.ctx_tgt, slot.id, -1, -1);
++                    slot.prompt.clear();
++                    slot.qml_session_id.clear();
++                    target = &slot;
++                    break;
++                }
++            }
++
++            if (target == nullptr) {
++                SRV_WRN("qml-router: control cmd_id=%lld (%s) failed: no idle empty slot available\n",
++                        (long long) cmd.cmd_id, cmd_type.c_str());
++                qml_session_unlock(session_id.c_str(), self_pid); // nothing actually loaded -- don't hold a false claim
++                qml_llama_control_done(cmd.cmd_id, "FAILED");
++                return;
++            }
++
++            {
++                // pool pressure: free enough shared cells before the load
++                int32_t qml_lp = -1;
++                if (qml_sqlite_last_pos(session_id.c_str(), &qml_lp) == 0 && qml_lp > 0) {
++                    qml_make_room((size_t) qml_lp + 1, target->id);
++                }
++            }
++
++            llama_token * qml_tokens   = nullptr;
++            size_t        qml_n_tokens = 0;
++
++            const int qml_rc = qml_llama_restore(
++                target->ctx_tgt, target->id, session_id.c_str(), qml_model_fingerprint.c_str(),
++                &qml_tokens, &qml_n_tokens);
++
++            if (qml_rc == 1) {
++                target->prompt.clear();
++                target->prompt.tokens.insert(llama_tokens(qml_tokens, qml_tokens + qml_n_tokens));
++                target->qml_session_id = session_id;
++
++                // Same SWA-safety idiom as the request-triggered restore path
++                // (task #19) -- id_task=-1 since this slot has no owning task
++                // (control-plane restore, not a real request); the eviction
++                // logic only ever compares id_task for equality, so a
++                // sentinel is safe.
++                //
++                // (2026-07-29 note: an earlier version of this code omitted
++                // this call, based on a misdiagnosis -- a bare-follow-up-
++                // question test kept getting wrong answers after RESTORE, and
++                // create_checkpoint() looked like the cause. Root cause was
++                // actually the TEST, not this code: llama.cpp's raw
++                // /completion API requires the caller to resend the full
++                // prior token sequence (see scripts/qml_llama_server_benchmark.sh's
++                // proven [STORED_TOKENS, NEW_TOKENS] pattern) -- a bare
++                // question with no prior context can never correctly recall
++                // anything, restore or not. Re-verified end-to-end with that
++                // correct methodology: this call is safe and correct.)
++                // pos_max is the LAST OCCUPIED position (inclusive) -- the native
++                // call site passes llama_memory_seq_pos_max() for exactly this, so
++                // n restored tokens at positions 0..n-1 means pos_max = n-1, NOT n.
++                // Passing n made the checkpoint claim one position more than the KV
++                // actually holds; the checkpoint gate then let n_past run one past
++                // the restored range, so the first new prompt token was skipped and
++                // every following position was shifted by one -- restored sessions
++                // continued with visibly wrong text (found 2026-07-30 by a
++                // deterministic continuation-match probe; the earlier semantic
++                // recall tests were too weak to catch it). Query the memory instead
++                // of trusting a count, same as native.
++                // SWA models (llama_model_n_swa() > 0, e.g. gemma-2/3) keep only a
++                // sliding window per layer, so a restored blob does NOT contain valid
++                // K/V for positions older than that window. Claiming a checkpoint over
++                // the whole restored range tells the server it may reuse all of it --
++                // false, and it produces silently wrong continuations (measured
++                // 2026-07-30: a resident gemma-3 session itself only reuses ~24 of 59
++                // tokens and recomputes the rest, while our restored session reused all
++                // 59 and diverged). For SWA we therefore register no checkpoint and let
++                // the native gate recompute what it must from the restored token log --
++                // less speedup, but correct. Non-SWA models are bit-exact (verified).
++                // n_swa is the server's own field: llama_model_n_swa(model), but forced
++                // to 0 when --swa-full is set (a full-size SWA cache behaves like a
++                // non-SWA one, so a restored blob IS complete and fully reusable).
++                if (ctx_tgt_seq_rm_type == COMMON_CONTEXT_SEQ_RM_TYPE_FULL ||
++                                            ctx_tgt_seq_rm_type == COMMON_CONTEXT_SEQ_RM_TYPE_RS ||
++                                            n_swa > 0) {
++                    llama_memory_t qml_mem = llama_get_memory(target->ctx_tgt);
++                    const llama_pos qml_pos_min = llama_memory_seq_pos_min(qml_mem, target->id);
++                    const llama_pos qml_pos_max = llama_memory_seq_pos_max(qml_mem, target->id);
++                    create_checkpoint(*target, /* n_tokens_cur */ 0, qml_pos_min, qml_pos_max, /* id_task */ -1);
++                }   // n_swa != 0 never reaches here -- refused above
++
++                qml_llama_restore_done(qml_tokens);
++
++                SRV_INF("qml-router: control cmd_id=%lld (%s) restored session '%s' into slot %d: %zu tokens\n",
++                        (long long) cmd.cmd_id, cmd_type.c_str(), session_id.c_str(), target->id, qml_n_tokens);
++                qml_llama_control_done(cmd.cmd_id, "DONE");
++            } else {
++                SRV_WRN("qml-router: control cmd_id=%lld (%s) failed: nothing to restore for session '%s' (rc=%d)\n",
++                        (long long) cmd.cmd_id, cmd_type.c_str(), session_id.c_str(), qml_rc);
++                qml_session_unlock(session_id.c_str(), self_pid); // restore didn't actually happen -- don't hold a false claim
++                qml_llama_control_done(cmd.cmd_id, "FAILED");
++            }
++            return;
++        }
++
++        if (cmd_type == "BACKUP_NOW" || cmd_type == "MIGRATE") {
++            server_slot * target = nullptr;
++            for (auto & slot : slots) {
++                if (slot.qml_session_id == session_id && !slot.is_processing()) {
++                    target = &slot;
++                    break;
++                }
++            }
++
++            if (target == nullptr || target->prompt.tokens.empty() || !target->callback_qml_persist) {
++                SRV_WRN("qml-router: control cmd_id=%lld (%s) failed: session '%s' not idle-resident on this process\n",
++                        (long long) cmd.cmd_id, cmd_type.c_str(), session_id.c_str());
++                qml_llama_control_done(cmd.cmd_id, "FAILED");
++                return;
++            }
++
++            // same trigger release() itself uses (see server_slot::release()) --
++            // just invoked on demand instead of waiting for the slot to finish
++            // its current turn naturally. An explicit backup must not be
++            // swallowed by the capture throttle -- clear its entry first.
++            qml_llama_capture(session_id.c_str());
++            target->callback_qml_persist(target->ctx_tgt, target->id, target->qml_session_id,
++                                          target->qml_user_id, target->prompt.tokens.get_text_tokens());
++
++            if (cmd_type == "MIGRATE") {
++                target->prompt_clear(); // evict -- frees this slot for other sessions
++                // release the ownership lock this process acquired back when
++                // it RESTOREd/originally launched this session -- another
++                // process is now free to RESTORE it elsewhere without a
++                // split-brain conflict. Safe even if this process never
++                // actually held the lock (release is a no-op unless you're
++                // the current owner, see qml_sqlite_unlock).
++                qml_session_unlock(session_id.c_str(), (int32_t) getpid());
++                SRV_INF("qml-router: control cmd_id=%lld (MIGRATE) saved+evicted session '%s' from slot %d\n",
++                        (long long) cmd.cmd_id, session_id.c_str(), target->id);
++            } else {
++                SRV_INF("qml-router: control cmd_id=%lld (BACKUP_NOW) saved session '%s' (slot %d) without evicting\n",
++                        (long long) cmd.cmd_id, session_id.c_str(), target->id);
++            }
++            qml_llama_control_done(cmd.cmd_id, "DONE");
++            return;
++        }
++
++        SRV_WRN("qml-router: control cmd_id=%lld unexpected cmd_type '%s' reached live-KV dispatch\n",
++                (long long) cmd.cmd_id, cmd_type.c_str());
++        qml_llama_control_done(cmd.cmd_id, "FAILED");
++    }
++#endif
++
+     void update_slots() {
+ #ifdef DEBUG_TIMINGS
+         static int64_t t_prev = 0;
+@@ -2743,6 +3661,23 @@ private:
+         }
+ #endif
+ 
++#ifdef LLAMA_QML_SESSION
++        // qml-router: drain any live-KV control-plane ops (RESTORE/MIGRATE/
++        // BACKUP_NOW/PREWARM) the persister thread has queued (see
++        // hooks/llama/qml_llama_hook.cpp). Must run here,
++        // unconditionally and BEFORE the all-idle early return just below --
++        // these ops are exactly what needs to happen when slots ARE idle,
++        // and wake_for_control_op() (registered as the persister thread's
++        // wake callback) is what gets update_slots() to run again at all in
++        // that case.
++        {
++            qml_control_cmd_t qml_cmd;
++            while (qml_llama_control_poll(&qml_cmd) == 0) {
++                qml_dispatch_live_control_op(qml_cmd);
++            }
++        }
++#endif
++
+         // check if all slots are idle
+         {
+             bool all_idle = true;
+@@ -3074,6 +4009,31 @@ private:
+ 
+                     // TODO: maybe move branch to outside of this loop in the future
+                     if (slot.state == SLOT_STATE_STARTED) {
++#ifdef LLAMA_QML_SESSION
++                        // qml-router async restore: this task's state blob is
++                        // still being fetched on the hook's background thread.
++                        // Leave the slot in STARTED (this branch re-runs next
++                        // iteration) and keep serving the other slots -- a
++                        // synchronous restore here blocked the whole loop for
++                        // the disk read and cost 18% of short-request
++                        // throughput under mixed load (docs 7-7). The fetch
++                        // thread fires the wake callback on completion, so an
++                        // otherwise-idle loop does not spin.
++                        // Mirrors the restore conditions below: if the restore
++                        // would not run, do not wait for its data either.
++                        if (slot.task->params.cache_prompt &&
++                            !slot.task->params.session_id.empty() &&
++                            !slot.qml_pending_tokens.empty() &&
++                            (slot.prompt.tokens.empty() || slot.qml_cache_foreign) &&
++                            !input_tokens.has_media() &&
++                            n_swa == 0 &&
++                            !params_base.qml_sqlite_path.empty() &&
++                            qml_llama_fetch_pending(slot.task->params.session_id.c_str()) == 1) {
++                            SLT_DBG(slot, "qml-router: state fetch for '%s' in progress -- deferring slot\n",
++                                    slot.task->params.session_id.c_str());
++                            return;
++                        }
++#endif
+                         slot.t_start_process_prompt = ggml_time_us();
+                         slot.t_start_generation = 0;
+ 
+@@ -3150,6 +4110,212 @@ private:
+                             }
+ 
+                             if (slot.task->params.cache_prompt) {
++#ifdef LLAMA_QML_SESSION
++                                // qml-router: fallback restore beneath the native prompt/context
++                                // cache above -- only when this slot has nothing cached yet and a
++                                // session_id was supplied. All llama.cpp API calls + the token
++                                // array conversion live in qml_llama_restore() (see
++                                // qml_llama_hook.cpp); this call site only handles the
++                                // server-local objects (slot.prompt, logging).
++                                // n_swa != 0 (SWA model without --swa-full): do NOT inject a
++                                // windowed blob -- see the matching comment in
++                                // qml_dispatch_live_control_op(). The stored token log was
++                                // already prepended in launch_slot_with_task(), so this
++                                // request prefills the full history normally (correct, no
++                                // speedup) instead of continuing from a partial cache.
++                                if ((slot.prompt.tokens.empty() || slot.qml_cache_foreign) &&
++                                    !slot.task->params.session_id.empty() &&
++                                    !input_tokens.has_media() &&
++                                    n_swa == 0 &&
++                                    !params_base.qml_sqlite_path.empty()) {
++
++                                    // A foreign cache is worth LESS than a restore: it shares
++                                    // almost no prefix with our history, so keeping it means
++                                    // re-prefilling the whole session (measured: 0 KV restores
++                                    // and ~437 prompt tokens per request under 4-slot load).
++                                    // Dropping it is safe -- the outgoing session's bytes were
++                                    // already captured synchronously by
++                                    // qml_llama_save() at its release(), so the
++                                    // live copy is redundant. Use server_prompt::clear() and
++                                    // NOT prompt_clear(), which would also wipe the
++                                    // qml_session_id/user just assigned for THIS task.
++                                    if (!slot.prompt.tokens.empty()) {
++                                        SLT_INF(slot, "qml-router: dropping %zu cached token(s) of another session to restore '%s'\n",
++                                                slot.prompt.tokens.size(), slot.task->params.session_id.c_str());
++                                        common_context_seq_rm(ctx_tgt, slot.id, -1, -1);
++                                        slot.prompt.clear();
++                                    }
++                                    slot.qml_cache_foreign = false;
++
++                                    bool qml_handled = false;
++
++                                    // fast path: the peek in launch_slot_with_task() already
++                                    // read this session's token log, so restore only needs the
++                                    // blob -- which the background fetch (started at launch)
++                                    // normally has ready by now; the STARTED gate above
++                                    // deferred this slot until it was. Falls through to the
++                                    // paired load when the counts disagree (another writer
++                                    // moved in between) or when there was no peek (e.g. the
++                                    // slot was simply empty).
++                                    if (!slot.qml_pending_tokens.empty()) {
++                                        int rc_known = 0;
++
++                                        // the key the pending tokens/fetch belong to -- the
++                                        // session itself, or its template on a seeded first visit
++                                        const std::string qml_rkey = !slot.qml_restore_key.empty()
++                                            ? slot.qml_restore_key
++                                            : slot.task->params.session_id;
++
++                                        // pool pressure: make room BEFORE applying, or set_data
++                                        // fails / the restore degrades to a full recompute
++                                        qml_make_room(slot.qml_pending_tokens.size(), slot.id);
++
++                                        void * qml_fetched      = nullptr;
++                                        size_t qml_fetched_size = 0;
++                                        const int rc_take = qml_llama_fetch_take(
++                                            qml_rkey.c_str(),
++                                            slot.qml_pending_tokens.size(),
++                                            &qml_fetched, &qml_fetched_size);
++
++                                        if (rc_take == 0) {
++                                            // loop-thread half only: set_data of a buffer the
++                                            // background thread already assembled
++                                            rc_known = qml_llama_state_apply(
++                                                ctx_tgt, slot.id, qml_fetched, qml_fetched_size);
++                                            free(qml_fetched);
++                                            qml_fetched = nullptr;
++                                        } else {
++                                            // no usable fetch (failed, stale count, or -- not
++                                            // expected after the gate -- still running):
++                                            // synchronous paired-load fallback, correct if slow
++                                            rc_known = qml_llama_restore_known(
++                                                ctx_tgt, slot.id,
++                                                qml_rkey.c_str(),
++                                                qml_model_fingerprint.c_str(),
++                                                slot.qml_pending_tokens.size());
++                                        }
++
++                                        size_t qml_covered = 0;
++                                        if (rc_known == 1) {
++                                            qml_covered = qml_restore_covers(slot, slot.qml_pending_tokens.size(),
++                                                                             qml_rkey.c_str());
++                                            if (qml_covered == 0) {
++                                                rc_known = -1; // foreign blob dropped -> the failure branch below clears and recomputes
++                                            }
++                                        }
++
++                                        if (rc_known == 1) {
++                                            const auto t_ins0 = std::chrono::steady_clock::now();
++                                            slot.prompt.clear();
++                                            slot.prompt.tokens.insert(llama_tokens(
++                                                slot.qml_pending_tokens.begin(),
++                                                slot.qml_pending_tokens.begin() + qml_covered));
++                                            slot.qml_session_id = slot.task->params.session_id;
++                                            const auto t_ins1 = std::chrono::steady_clock::now();
++
++                                            // Checkpoint only when upstream itself would (see the
++                                            // do_checkpoint conditions in update_slots): models that
++                                            // cannot partially seq_rm (FULL/RS) or SWA. A plain
++                                            // causal model rolls back via llama_memory_seq_rm and
++                                            // never reads a checkpoint -- profiled 2026-08-03: this
++                                            // call was re-capturing the just-applied 1 GiB state for
++                                            // 502 ms per 32K restore, for a checkpoint nothing uses.
++                                            // (A blob-reuse copy was tried first and measured just as
++                                            // slow -- 553 ms -- because fresh-page memcpy on this
++                                            // class of host runs at ~2 GB/s, page-fault-bound.)
++                                            if (ctx_tgt_seq_rm_type == COMMON_CONTEXT_SEQ_RM_TYPE_FULL ||
++                                                ctx_tgt_seq_rm_type == COMMON_CONTEXT_SEQ_RM_TYPE_RS ||
++                                                n_swa > 0) {
++                                                llama_memory_t qml_mem = llama_get_memory(ctx_tgt);
++                                                create_checkpoint(slot, /* n_tokens_cur */ 0,
++                                                                  llama_memory_seq_pos_min(qml_mem, slot.id),
++                                                                  llama_memory_seq_pos_max(qml_mem, slot.id),
++                                                                  slot.task->id);
++                                            }
++                                            const auto t_ins2 = std::chrono::steady_clock::now();
++                                            fprintf(stderr,
++                                                    "[qml][timing] post-apply insert_ms=%.1f checkpoint_ms=%.1f\n",
++                                                    std::chrono::duration<double, std::milli>(t_ins1 - t_ins0).count(),
++                                                    std::chrono::duration<double, std::milli>(t_ins2 - t_ins1).count());
++
++                                            SLT_INF(slot, "qml-router: restored '%s' for session '%s': %zu tokens (token log read once)\n",
++                                                    qml_rkey.c_str(),
++                                                    slot.task->params.session_id.c_str(),
++                                                    slot.qml_pending_tokens.size());
++                                            slot.qml_pending_tokens.clear();
++                                            slot.qml_restore_key.clear();
++                                            qml_handled = true;
++                                        }
++
++                                        if (!qml_handled && rc_known < 0) {
++                                            slot.prompt.clear();
++                                            SLT_WRN(slot, "qml-router: failed to restore '%s' KV state\n",
++                                                    qml_rkey.c_str());
++                                            slot.qml_pending_tokens.clear();
++                                            slot.qml_restore_key.clear();
++                                            qml_handled = true;
++                                        }
++                                    }
++
++                                    if (!qml_handled) {
++                                    llama_token * qml_tokens   = nullptr;
++                                    size_t        qml_n_tokens = 0;
++
++                                    int qml_rc = qml_llama_restore(
++                                        ctx_tgt, slot.id,
++                                        slot.task->params.session_id.c_str(), qml_model_fingerprint.c_str(),
++                                        &qml_tokens, &qml_n_tokens);
++
++                                    if (qml_rc == 1 &&
++                                        !qml_restore_covers(slot, qml_n_tokens,
++                                                            slot.task->params.session_id.c_str())) {
++                                        qml_rc = -1; // stale blob dropped -> failure branch clears and recomputes
++                                    }
++
++                                    if (qml_rc == 1) {
++                                        slot.prompt.clear();
++                                        slot.prompt.tokens.insert(llama_tokens(qml_tokens, qml_tokens + qml_n_tokens));
++                                        slot.qml_session_id = slot.task->params.session_id;
++
++                                        // register a context checkpoint covering the full restored
++                                        // range: SWA models (e.g. gemma-3) require a checkpoint to
++                                        // trust that a cached/restored KV range survives sliding-
++                                        // window eviction semantics -- without one, the native
++                                        // checkpoint-gate below resets n_past back to 0 even though
++                                        // get_common_prefix() computed it correctly. n_tokens_cur=0
++                                        // because none of the restored tokens were "just added by
++                                        // the current batch" -- reuses the exact native idiom, not a
++                                        // reimplementation (also respects checkpoint_min_step /
++                                        // n_ctx_checkpoints eviction policy for free).
++                                        // pos_max is INCLUSIVE (native passes
++                                        // llama_memory_seq_pos_max()); see the matching
++                                        // comment in qml_dispatch_live_control_op() for the
++                                        // off-by-one this fixes.
++                                        if (ctx_tgt_seq_rm_type == COMMON_CONTEXT_SEQ_RM_TYPE_FULL ||
++                                            ctx_tgt_seq_rm_type == COMMON_CONTEXT_SEQ_RM_TYPE_RS ||
++                                            n_swa > 0) {   // see the n_swa/--swa-full note in qml_dispatch_live_control_op()
++                                            llama_memory_t qml_mem = llama_get_memory(ctx_tgt);
++                                            const llama_pos qml_pos_min = llama_memory_seq_pos_min(qml_mem, slot.id);
++                                            const llama_pos qml_pos_max = llama_memory_seq_pos_max(qml_mem, slot.id);
++                                            create_checkpoint(slot, /* n_tokens_cur */ 0, qml_pos_min, qml_pos_max, slot.task->id);
++                                        }   // n_swa != 0 never reaches here -- guarded above
++
++                                        SLT_INF(slot, "qml-router: restored session '%s': %zu tokens\n",
++                                                slot.task->params.session_id.c_str(), qml_n_tokens);
++                                    } else if (qml_rc < 0) {
++                                        // KV may already have been invalidated -- mirror
++                                        // SLOT_RESTORE's nread==0 handling
++                                        slot.prompt.clear();
++                                        SLT_WRN(slot, "qml-router: failed to restore session '%s' KV state\n",
++                                                slot.task->params.session_id.c_str());
++                                    }
++
++                                    qml_llama_restore_done(qml_tokens);
++                                    } // !qml_handled
++
++                                    slot.qml_pending_tokens.clear();
++                                }
++#endif
+                                 // reuse any previously computed tokens that are common with the new prompt
+                                 n_past = slot.prompt.tokens.get_common_prefix(input_tokens);
+ 
+@@ -3561,7 +4727,7 @@ private:
+                     // note: we create the checkpoint before calling llama_decode(), so the current batch is not
+                     //       yet processed and therefore it is not part of the checkpoint.
+                     if (do_checkpoint) {
+-                        create_checkpoint(slot, n_tokens_cur, pos_min, pos_max);
++                        create_checkpoint(slot, n_tokens_cur, pos_min, pos_max, slot.task->id);
+                     }
+                 }
+ 
+diff --git a/tools/server/server-schema.cpp b/tools/server/server-schema.cpp
+index e880f4ca7..f023a4cde 100644
+--- a/tools/server/server-schema.cpp
++++ b/tools/server/server-schema.cpp
+@@ -31,6 +31,24 @@ std::vector<std::unique_ptr<field>> make_llama_cmpl_schema(const common_params &
+     add((new field_bool("cache_prompt", params.cache_prompt))
+         ->set_desc("Re-use KV cache from a previous request if possible. This way the common prefix does not have to be re-processed, only the suffix that differs between the requests"));
+ 
++    add((new field_str("session_id"))
++        ->set_desc("Opaque session identifier for qml-router KV-cache persistence/restore across process restarts (requires --qml-session-store)")
++        ->set_handler([&](field_eval_context & ctx, const json & data) {
++            ctx.params.session_id = data.at("session_id").get<std::string>();
++        }));
++
++    add((new field_str("user_id"))
++        ->set_desc("Opaque user identifier stored alongside session_id for qml-router's per-user querying (requires --qml-session-store)")
++        ->set_handler([&](field_eval_context & ctx, const json & data) {
++            ctx.params.user_id = data.at("user_id").get<std::string>();
++        }));
++
++    add((new field_str("template_id"))
++        ->set_desc("qml-router: session to seed a brand-new session_id from -- its stored history is prepended and its saved state restored, then everything is saved under session_id itself. Ignored when session_id already has a record (requires --qml-session-store)")
++        ->set_handler([&](field_eval_context & ctx, const json & data) {
++            ctx.params.template_id = data.at("template_id").get<std::string>();
++        }));
++
+     add((new field_bool("return_tokens", params.return_tokens))
+         ->set_desc("Return the raw generated token ids in the `tokens` field"));
+ 
+diff --git a/tools/server/server-task.h b/tools/server/server-task.h
+index c3eea2ecb..d3e60c32e 100644
+--- a/tools/server/server-task.h
++++ b/tools/server/server-task.h
+@@ -52,6 +52,21 @@ struct task_params {
+     bool include_usage   = false;
+     bool cache_prompt    = true; // remember the prompt to avoid reprocessing all prompt
+     bool return_tokens   = false;
++
++    // opaque external session key for qml-router KV-cache persistence/restore
++    // across process restarts; empty = feature not requested for this task
++    std::string session_id;
++    // opaque external user key stored alongside the session for qml-router's
++    // per-user querying (usage/quota/audit); empty = unknown
++    std::string user_id;
++    // qml-router template seeding: when session_id has NO stored record yet,
++    // the session named here is used as its seed -- the template's token log
++    // is prepended and its saved state restored, then the combined record is
++    // saved under session_id itself. Never consulted for a session that
++    // already has a record. Identity-addressed (an explicit name, no content
++    // matching), so cross-session contamination stays excluded by
++    // construction. empty = no seeding
++    std::string template_id;
+     bool return_progress = false;
+ 
+     int32_t sse_ping_interval = 30; // seconds between SSE comment pings while the stream stays silent, -1 disables
+diff --git a/vendor/sheredom/subprocess.h b/vendor/sheredom/subprocess.h
+index 5e809023a..a4aa388b8 100644
+--- a/vendor/sheredom/subprocess.h
++++ b/vendor/sheredom/subprocess.h
+@@ -1207,6 +1207,14 @@ cleanup:
+   if (process_cwd) {
+ #if defined(__APPLE__) && MAC_OS_X_VERSION_MIN_REQUIRED >= 260000
+     posix_error = posix_spawn_file_actions_addchdir(&actions, process_cwd);
++#elif defined(__GLIBC__) &&                                                    \
++    (__GLIBC__ < 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ < 29))
++    // posix_spawn_file_actions_addchdir_np() first appeared in glibc 2.29.
++    // On older systems (Ubuntu 18.04 ships glibc 2.27, RHEL/CentOS 7 ships
++    // 2.17) referring to it is a compile error, which blocks the whole build
++    // even for callers that never pass a working directory. Report the
++    // request as unsupported at runtime instead.
++    posix_error = ENOSYS;
+ #else
+ #if defined(__APPLE__) && defined(__clang__)
+ #pragma clang diagnostic push

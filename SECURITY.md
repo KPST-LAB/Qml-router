@@ -22,7 +22,6 @@ corrupted identity mapping.
 |---|---|
 | Encryption of stored state at rest | Not implemented (roadmap: per-user encryption) |
 | Persister in a separate process | Not implemented (roadmap) |
-| API-key checks on the legacy console routes of the gateway (`/api/chat` and `/api/chat_stream` without a key, `/api/sessions`, `/api/prewarm`, `/api/cmd_status` in `router/qml_webui.py`) | Missing in this release. The OpenAI-compatible route `/v1/chat/completions` and `/api/session_cmd` check the key and the session owner. Run the gateway only on a trusted network until this is fixed. |
 
 ## Reporting a vulnerability
 

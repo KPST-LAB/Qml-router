@@ -1,0 +1,286 @@
+== phase 1: live feed 20,000 turns (recall off) ==
+[feed] 100/20000 turns, 2 trims, 42s
+[feed] 200/20000 turns, 4 trims, 83s
+[feed] 300/20000 turns, 7 trims, 127s
+[feed] 400/20000 turns, 10 trims, 172s
+[feed] 500/20000 turns, 13 trims, 217s
+[feed] 600/20000 turns, 15 trims, 256s
+[feed] 700/20000 turns, 18 trims, 301s
+[feed] 800/20000 turns, 21 trims, 345s
+[feed] 900/20000 turns, 23 trims, 386s
+[feed] 1000/20000 turns, 26 trims, 431s
+[feed] 1100/20000 turns, 29 trims, 476s
+[feed] 1200/20000 turns, 31 trims, 518s
+[feed] 1300/20000 turns, 34 trims, 562s
+[feed] 1400/20000 turns, 37 trims, 606s
+[feed] 1500/20000 turns, 39 trims, 648s
+[feed] 1600/20000 turns, 42 trims, 693s
+[feed] 1700/20000 turns, 45 trims, 737s
+[feed] 1800/20000 turns, 48 trims, 783s
+[feed] 1900/20000 turns, 50 trims, 824s
+[feed] 2000/20000 turns, 53 trims, 869s
+[feed] 2100/20000 turns, 56 trims, 914s
+[feed] 2200/20000 turns, 58 trims, 956s
+[feed] 2300/20000 turns, 61 trims, 1000s
+[feed] 2400/20000 turns, 64 trims, 1044s
+[feed] 2500/20000 turns, 67 trims, 1089s
+[feed] 2600/20000 turns, 69 trims, 1131s
+[feed] 2700/20000 turns, 72 trims, 1175s
+[feed] 2800/20000 turns, 75 trims, 1220s
+[feed] 2900/20000 turns, 77 trims, 1262s
+[feed] 3000/20000 turns, 80 trims, 1306s
+[feed] 3100/20000 turns, 83 trims, 1351s
+[feed] 3200/20000 turns, 85 trims, 1392s
+[feed] 3300/20000 turns, 88 trims, 1436s
+[feed] 3400/20000 turns, 91 trims, 1481s
+[feed] 3500/20000 turns, 94 trims, 1525s
+[feed] 3600/20000 turns, 96 trims, 1567s
+[feed] 3700/20000 turns, 99 trims, 1611s
+[feed] 3800/20000 turns, 102 trims, 1656s
+[feed] 3900/20000 turns, 104 trims, 1698s
+[feed] 4000/20000 turns, 107 trims, 1741s
+[feed] 4100/20000 turns, 110 trims, 1785s
+[feed] 4200/20000 turns, 112 trims, 1828s
+[feed] 4300/20000 turns, 115 trims, 1872s
+[feed] 4400/20000 turns, 118 trims, 1917s
+[feed] 4500/20000 turns, 121 trims, 1962s
+[feed] 4600/20000 turns, 123 trims, 2002s
+[feed] 4700/20000 turns, 126 trims, 2047s
+[feed] 4800/20000 turns, 129 trims, 2092s
+[feed] 4900/20000 turns, 131 trims, 2134s
+[feed] 5000/20000 turns, 134 trims, 2178s
+[feed] 5100/20000 turns, 137 trims, 2222s
+[feed] 5200/20000 turns, 139 trims, 2264s
+[feed] 5300/20000 turns, 142 trims, 2308s
+[feed] 5400/20000 turns, 145 trims, 2352s
+[feed] 5500/20000 turns, 148 trims, 2397s
+[feed] 5600/20000 turns, 150 trims, 2439s
+[feed] 5700/20000 turns, 153 trims, 2483s
+[feed] 5800/20000 turns, 156 trims, 2528s
+[feed] 5900/20000 turns, 158 trims, 2570s
+[feed] 6000/20000 turns, 161 trims, 2614s
+[feed] 6100/20000 turns, 164 trims, 2658s
+[feed] 6200/20000 turns, 167 trims, 2702s
+[feed] 6300/20000 turns, 169 trims, 2743s
+[feed] 6400/20000 turns, 172 trims, 2788s
+[feed] 6500/20000 turns, 175 trims, 2833s
+[feed] 6600/20000 turns, 177 trims, 2874s
+[feed] 6700/20000 turns, 180 trims, 2918s
+[feed] 6800/20000 turns, 183 trims, 2962s
+[feed] 6900/20000 turns, 185 trims, 3004s
+[feed] 7000/20000 turns, 188 trims, 3049s
+[feed] 7100/20000 turns, 191 trims, 3093s
+[feed] 7200/20000 turns, 194 trims, 3138s
+[feed] 7300/20000 turns, 196 trims, 3179s
+[feed] 7400/20000 turns, 199 trims, 3224s
+[feed] 7500/20000 turns, 202 trims, 3268s
+[feed] 7600/20000 turns, 204 trims, 3310s
+[feed] 7700/20000 turns, 207 trims, 3354s
+[feed] 7800/20000 turns, 210 trims, 3398s
+[feed] 7900/20000 turns, 212 trims, 3440s
+[feed] 8000/20000 turns, 215 trims, 3484s
+[feed] 8100/20000 turns, 218 trims, 3527s
+[feed] 8200/20000 turns, 221 trims, 3572s
+[feed] 8300/20000 turns, 223 trims, 3613s
+[feed] 8400/20000 turns, 226 trims, 3657s
+[feed] 8500/20000 turns, 229 trims, 3702s
+[feed] 8600/20000 turns, 231 trims, 3744s
+[feed] 8700/20000 turns, 234 trims, 3788s
+[feed] 8800/20000 turns, 237 trims, 3832s
+[feed] 8900/20000 turns, 240 trims, 3877s
+[feed] 9000/20000 turns, 242 trims, 3918s
+[feed] 9100/20000 turns, 245 trims, 3962s
+[feed] 9200/20000 turns, 248 trims, 4007s
+[feed] 9300/20000 turns, 250 trims, 4048s
+[feed] 9400/20000 turns, 253 trims, 4092s
+[feed] 9500/20000 turns, 256 trims, 4137s
+[feed] 9600/20000 turns, 258 trims, 4179s
+[feed] 9700/20000 turns, 261 trims, 4223s
+[feed] 9800/20000 turns, 264 trims, 4268s
+[feed] 9900/20000 turns, 267 trims, 4312s
+[feed] 10000/20000 turns, 269 trims, 4354s
+[feed] 10100/20000 turns, 272 trims, 4399s
+[feed] 10200/20000 turns, 275 trims, 4444s
+[feed] 10300/20000 turns, 277 trims, 4485s
+[feed] 10400/20000 turns, 280 trims, 4529s
+[feed] 10500/20000 turns, 283 trims, 4574s
+[feed] 10600/20000 turns, 285 trims, 4616s
+[feed] 10700/20000 turns, 288 trims, 4660s
+[feed] 10800/20000 turns, 291 trims, 4705s
+[feed] 10900/20000 turns, 294 trims, 4750s
+[feed] 11000/20000 turns, 296 trims, 4791s
+[feed] 11100/20000 turns, 299 trims, 4835s
+[feed] 11200/20000 turns, 302 trims, 4880s
+[feed] 11300/20000 turns, 304 trims, 4922s
+[feed] 11400/20000 turns, 307 trims, 4966s
+[feed] 11500/20000 turns, 310 trims, 5010s
+[feed] 11600/20000 turns, 312 trims, 5052s
+[feed] 11700/20000 turns, 315 trims, 5097s
+[feed] 11800/20000 turns, 318 trims, 5141s
+[feed] 11900/20000 turns, 321 trims, 5187s
+[feed] 12000/20000 turns, 323 trims, 5228s
+[feed] 12100/20000 turns, 326 trims, 5272s
+[feed] 12200/20000 turns, 329 trims, 5317s
+[feed] 12300/20000 turns, 331 trims, 5360s
+[feed] 12400/20000 turns, 334 trims, 5404s
+[feed] 12500/20000 turns, 337 trims, 5448s
+[feed] 12600/20000 turns, 340 trims, 5492s
+[feed] 12700/20000 turns, 342 trims, 5534s
+[feed] 12800/20000 turns, 345 trims, 5578s
+[feed] 12900/20000 turns, 348 trims, 5623s
+[feed] 13000/20000 turns, 350 trims, 5664s
+[feed] 13100/20000 turns, 353 trims, 5708s
+[feed] 13200/20000 turns, 356 trims, 5753s
+[feed] 13300/20000 turns, 358 trims, 5795s
+[feed] 13400/20000 turns, 361 trims, 5840s
+[feed] 13500/20000 turns, 364 trims, 5884s
+[feed] 13600/20000 turns, 367 trims, 5928s
+[feed] 13700/20000 turns, 369 trims, 5969s
+[feed] 13800/20000 turns, 372 trims, 6014s
+[feed] 13900/20000 turns, 375 trims, 6058s
+[feed] 14000/20000 turns, 377 trims, 6100s
+[feed] 14100/20000 turns, 380 trims, 6142s
+[feed] 14200/20000 turns, 383 trims, 6186s
+[feed] 14300/20000 turns, 385 trims, 6227s
+[feed] 14400/20000 turns, 388 trims, 6271s
+[feed] 14500/20000 turns, 391 trims, 6316s
+[feed] 14600/20000 turns, 394 trims, 6361s
+[feed] 14700/20000 turns, 396 trims, 6411s
+[feed] 14800/20000 turns, 399 trims, 6485s
+[feed] 14900/20000 turns, 402 trims, 6530s
+[feed] 15000/20000 turns, 404 trims, 6572s
+[feed] 15100/20000 turns, 407 trims, 6617s
+[feed] 15200/20000 turns, 410 trims, 6661s
+[feed] 15300/20000 turns, 413 trims, 6704s
+[feed] 15400/20000 turns, 415 trims, 6746s
+[feed] 15500/20000 turns, 418 trims, 6791s
+[feed] 15600/20000 turns, 421 trims, 6835s
+[feed] 15700/20000 turns, 423 trims, 6876s
+[feed] 15800/20000 turns, 426 trims, 6920s
+[feed] 15900/20000 turns, 429 trims, 6964s
+[feed] 16000/20000 turns, 431 trims, 7006s
+[feed] 16100/20000 turns, 434 trims, 7050s
+[feed] 16200/20000 turns, 437 trims, 7095s
+[feed] 16300/20000 turns, 440 trims, 7139s
+[feed] 16400/20000 turns, 442 trims, 7181s
+[feed] 16500/20000 turns, 445 trims, 7224s
+[feed] 16600/20000 turns, 448 trims, 7270s
+[feed] 16700/20000 turns, 450 trims, 7311s
+[feed] 16800/20000 turns, 453 trims, 7356s
+[feed] 16900/20000 turns, 456 trims, 7400s
+[feed] 17000/20000 turns, 458 trims, 7442s
+[feed] 17100/20000 turns, 461 trims, 7484s
+[feed] 17200/20000 turns, 464 trims, 7528s
+[feed] 17300/20000 turns, 467 trims, 7574s
+[feed] 17400/20000 turns, 469 trims, 7615s
+[feed] 17500/20000 turns, 472 trims, 7659s
+[feed] 17600/20000 turns, 475 trims, 7704s
+[feed] 17700/20000 turns, 477 trims, 7747s
+[feed] 17800/20000 turns, 480 trims, 7791s
+[feed] 17900/20000 turns, 483 trims, 7835s
+[feed] 18000/20000 turns, 486 trims, 7880s
+[feed] 18100/20000 turns, 488 trims, 7921s
+[feed] 18200/20000 turns, 491 trims, 7966s
+[feed] 18300/20000 turns, 494 trims, 8011s
+[feed] 18400/20000 turns, 496 trims, 8052s
+[feed] 18500/20000 turns, 499 trims, 8096s
+[feed] 18600/20000 turns, 502 trims, 8141s
+[feed] 18700/20000 turns, 504 trims, 8183s
+[feed] 18800/20000 turns, 507 trims, 8227s
+[feed] 18900/20000 turns, 510 trims, 8272s
+[feed] 19000/20000 turns, 513 trims, 8317s
+[feed] 19100/20000 turns, 515 trims, 8358s
+[feed] 19200/20000 turns, 518 trims, 8403s
+[feed] 19300/20000 turns, 521 trims, 8448s
+[feed] 19400/20000 turns, 523 trims, 8490s
+[feed] 19500/20000 turns, 526 trims, 8533s
+[feed] 19600/20000 turns, 529 trims, 8578s
+[feed] 19700/20000 turns, 531 trims, 8620s
+[feed] 19800/20000 turns, 534 trims, 8665s
+[feed] 19900/20000 turns, 537 trims, 8709s
+[feed] 20000/20000 turns, 540 trims, 8754s
+[feed] done: 20000 turns, 540 trims, archive=1221494 tokens, 8754s
+[clone] 27 question clones for arm on
+[clone] 27 question clones for arm off
+== phase 2: ask arm OFF (control) ==
+[ask/off] fact@10 direct: X ('Peak wind speed was 93 km/h.')
+[ask/off] fact@10 paraphrase: X ('Winds reached 48 km/h from the north on day 19985 and 46 km/')
+[ask/off] fact@10 indirect: X ('There is no record of a typhoon making landfall near Busan i')
+[ask/off] fact@500 direct: X ('No record high temperature for Daegu was reported.')
+[ask/off] fact@500 paraphrase: X ('40.0 C.')
+[ask/off] fact@500 indirect: X ('Suwon, with a high of 32.0 C on day 19991.')
+[ask/off] fact@2000 direct: X ('No hailstorm was reported in Gwangju.')
+[ask/off] fact@2000 paraphrase: X ('No hail report was received from Gwangju.')
+[ask/off] fact@2000 indirect: X ('No hailstorm report was received.')
+[ask/off] fact@5000 direct: X ('There is no report of a blackout in Incheon.')
+[ask/off] fact@5000 paraphrase: X ('There is no report of a lightning strike or power outage in ')
+[ask/off] fact@5000 indirect: X ('Daegu, on day 19994.')
+[ask/off] fact@8000 direct: X ('23 flights were cancelled.')
+[ask/off] fact@8000 paraphrase: X ('23 flights were cancelled.')
+[ask/off] fact@8000 indirect: X ('Incheon airport.')
+[ask/off] fact@11000 direct: X ("Seoul's worst air quality day had a PM2.5 level of 215 micro")
+[ask/off] fact@11000 paraphrase: X ('Peak fine dust reading in Seoul was 187 micrograms per cubic')
+[ask/off] fact@11000 indirect: X ('Particulate Matter 2.5.')
+[ask/off] fact@14000 direct: X ('Data not available.')
+[ask/off] fact@14000 paraphrase: X ('No flood report from Daejeon was received.')
+[ask/off] fact@14000 indirect: X ('Daegu, due to 46.4 mm of precipitation.')
+[ask/off] fact@17000 direct: X ('No snowfall was reported for Suwon.')
+[ask/off] fact@17000 paraphrase: X ('No snowfall data was reported for Suwon.')
+[ask/off] fact@17000 indirect: X ('Busan, day 19985, with 64.5 mm of precipitation.')
+[ask/off] fact@19500 direct: X ('The air quality index in Busan reached 187.')
+[ask/off] fact@19500 paraphrase: X ('Not reported.')
+[ask/off] fact@19500 indirect: X ('Industrial emissions and vehicle exhaust.')
+[ask/off] total 0/27
+== phase 3: ask arm ON (recall) ==
+[ask/on] fact@10 direct: O ('187 km/h.')
+[ask/on] fact@10 paraphrase: O ('Peak winds reached 187 km/h.')
+[ask/on] fact@10 indirect: O ('Typhoon Verena.')
+[ask/on] fact@500 direct: O ('41.3 degrees Celsius.')
+[ask/on] fact@500 paraphrase: O ('41.3 degrees Celsius.')
+[ask/on] fact@500 indirect: O ('Daegu set an all-time record high temperature.')
+[ask/on] fact@2000 direct: O ('6.8 centimeters.')
+[ask/on] fact@2000 paraphrase: O ('6.8 centimeters.')
+[ask/on] fact@2000 indirect: O ('Gwangju.')
+[ask/on] fact@5000 direct: O ('13 hours.')
+[ask/on] fact@5000 paraphrase: O ('13 hours.')
+[ask/on] fact@5000 indirect: O ('Incheon.')
+[ask/on] fact@8000 direct: O ('143 flights were cancelled.')
+[ask/on] fact@8000 paraphrase: O ('143 flights were cancelled.')
+[ask/on] fact@8000 indirect: O ('Gimpo airport.')
+[ask/on] fact@11000 direct: O ('217 micrograms per cubic meter.')
+[ask/on] fact@11000 paraphrase: O ('217 micrograms per cubic meter.')
+[ask/on] fact@11000 indirect: O ('PM2.5 reading of 217 micrograms per cubic meter.')
+[ask/on] fact@14000 direct: O ('3.9 meters.')
+[ask/on] fact@14000 paraphrase: O ('3.9 meters.')
+[ask/on] fact@14000 indirect: O ('Daejeon.')
+[ask/on] fact@17000 direct: O ('128 centimeters.')
+[ask/on] fact@17000 paraphrase: O ('128 centimeters.')
+[ask/on] fact@17000 indirect: O ('Suwon recorded 128 cm of snow.')
+[ask/on] fact@19500 direct: O ('349.')
+[ask/on] fact@19500 paraphrase: O ('349.')
+[ask/on] fact@19500 indirect: O ('Wildfire smoke.')
+[ask/on] total 27/27
+== report ==
+--- accuracy by fact age (turn index; higher = younger) ---
+ fact@turn age(turns) |   ON d/p/i |  OFF d/p/i
+        10      19990 |      O/O/O |      X/X/X
+       500      19500 |      O/O/O |      X/X/X
+      2000      18000 |      O/O/O |      X/X/X
+      5000      15000 |      O/O/O |      X/X/X
+      8000      12000 |      O/O/O |      X/X/X
+     11000       9000 |      O/O/O |      X/X/X
+     14000       6000 |      O/O/O |      X/X/X
+     17000       3000 |      O/O/O |      X/X/X
+     19500        500 |      O/O/O |      X/X/X
+arm  on: 27/27
+arm off: 0/27
+--- per-turn latency flatness (quintiles of the feed) ---
+turns     0- 4000: p50=275ms p95=707ms
+turns  4000- 8000: p50=275ms p95=700ms
+turns  8000-12000: p50=274ms p95=708ms
+turns 12000-16000: p50=275ms p95=709ms
+turns 16000-20000: p50=275ms p95=707ms
+trims: 540
+archive tokens: 1221494
+index documents (one clone): 19446
+WX_SCALE_DONE

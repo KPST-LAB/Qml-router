@@ -1,0 +1,35 @@
+=== reviewer1_edit_10_step1_shared_prefix_storage start 2026-09-29T20:21:20+09:00 ===
+ec6dfa6ad60d9bcea790b4e6560b7bf6  $NVME_MOUNT/qml-router/ablation/with-patch/build/bin/llama-server
+e110dbf987750371367370d6da0b8982  $NVME_MOUNT/qml-router/models/Llama-3.2-3B-Instruct-F16.gguf
+7e4d6b840fb618b6c1ea913c0ef51ceb  $NVME_MOUNT/qml-router/ieee-rev1/scripts/reviewer1_edit_10_step1_shared_prefix_storage.py
+prefix tokens=3911 (filler 24 tokens x 170)
+store before: lmdb=16384 db=127728
+[ 1] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=126.6 MB db_cum=0.3 MB resp=0.29s
+[ 2] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=253.2 MB db_cum=0.5 MB resp=0.23s
+[ 3] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=379.8 MB db_cum=0.8 MB resp=0.23s
+[ 4] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=506.4 MB db_cum=1.1 MB resp=0.22s
+[ 5] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=633.0 MB db_cum=1.4 MB resp=0.23s
+[ 6] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=759.5 MB db_cum=1.6 MB resp=0.22s
+[ 7] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=886.1 MB db_cum=1.9 MB resp=0.23s
+[ 8] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=1012.7 MB db_cum=2.2 MB resp=0.23s
+[ 9] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=1139.3 MB db_cum=2.5 MB resp=0.23s
+[10] prompt_n=3916 cached=3919 state=126.5 MB lmdb_cum=1265.9 MB db_cum=2.8 MB resp=0.23s
+{
+ "sessions": 10,
+ "prefix_tokens": 3911,
+ "state_size_first": 126458988,
+ "state_size_sum": 1264589880,
+ "bytes_per_token_median": 32259.945918367346,
+ "lmdb_growth_bytes": 1265881088,
+ "db_growth_bytes": 2776880,
+ "predicted_paper_31_4KB": 1230880000.0,
+ "content_keying_one_copy": 126458988,
+ "prompt_n_first": 3916,
+ "prompt_n_rest_max": 3916
+}
+python rc=0 2026-09-29T20:21:52+09:00
+68719489024	$NVME_MOUNT/qml-router/ieee-rev1/store-shared-prefix/qml_lmdb
+4096	$NVME_MOUNT/qml-router/ieee-rev1/store-shared-prefix/qml.db
+server capture lines: 10
+=== reviewer1_edit_10_step1_shared_prefix_storage done 2026-09-29T20:21:55+09:00 ===
+server stopped pid=9077 2026-09-29T20:21:56+09:00

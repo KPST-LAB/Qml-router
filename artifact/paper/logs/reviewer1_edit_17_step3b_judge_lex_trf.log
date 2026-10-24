@@ -1,0 +1,6 @@
+[paperjudge/s3blextrfj] 50/133 (15s)
+[paperjudge/s3blextrfj] 100/133 (28s)
+--- OFFICIAL LongMemEval protocol, tag=s3blextrfj (judge prompts verbatim) ---
+temporal-reasoning      : 98/133 = 0.737
+TOTAL                   : 98/133 = 0.737
+saved: $REPO/ieee-rev1/data/reviewer1_edit_17_step3_results_lex_trf_paperjudged.json

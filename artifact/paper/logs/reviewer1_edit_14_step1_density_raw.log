@@ -1,0 +1,34 @@
+=== reviewer1_edit_14_step1_density_raw start 2026-09-30T05:53:01+09:00 ===
+ec6dfa6ad60d9bcea790b4e6560b7bf6  $NVME_MOUNT/qml-router/ablation/with-patch/build/bin/llama-server
+e110dbf987750371367370d6da0b8982  $NVME_MOUNT/qml-router/models/Llama-3.2-3B-Instruct-F16.gguf
+685c768fc9f8f012b16cbae35126df32  $NVME_MOUNT/qml-router/ieee-rev1/scripts/reviewer1_edit_14_step1_density_raw.py
+free on /nvme: 20 GB
+== reviewer1_edit_14_step1_density_raw all | levels=[2, 4, 8, 16] total=30 h_reps=2650 ctx=131072 stagger=4.0 ==
+engine up
+built 0/30 (1s) prompt_n=17595
+built 20/30 (141s) prompt_n=17595
+blobs persisted: 30/30
+build done: 30 sessions, 528060 tokens total, 215s
+engine up
+[qml] N=2: recon median=0.359s max=0.379s lats=[0.339, 0.379] correct=2/2 prompt_n=22 | short p95=0.088s rate=80.5/s (n=644) | wall=8.0s
+[qml] N=4: recon median=0.4775s max=0.508s lats=[0.433, 0.462, 0.493, 0.508] correct=4/4 prompt_n=22 | short p95=0.193s rate=35.62/s (n=570) | wall=16.0s
+[qml] N=8: recon median=0.53s max=0.572s lats=[0.425, 0.491, 0.509, 0.523, 0.537, 0.553, 0.561, 0.572] correct=8/8 prompt_n=22 | short p95=0.245s rate=30.16/s (n=965) | wall=32.0s
+[qml] N=16: recon median=0.4885s max=0.513s lats=[0.434, 0.464, 0.471, 0.477, 0.478, 0.48, 0.486, 0.488, 0.489, 0.492, 0.501, 0.501, 0.501, 0.512, 0.512, 0.513] correct=15/16 prompt_n=22 | short p95=0.252s rate=28.97/s (n=1857) | wall=64.1s
+engine up
+[stock] N=2: recon median=1.7945s max=2.293s lats=[1.296, 2.293] correct=2/2 prompt_n=17650 | short p95=0.081s rate=65.5/s (n=524) | wall=8.0s
+[stock] N=4: recon median=5.737s max=9.252s lats=[3.282, 5.212, 6.262, 9.252] correct=4/4 prompt_n=17642 | short p95=3.166s rate=8.73/s (n=151) | wall=17.3s
+[stock] N=8: recon median=7.607s max=23.971s lats=[6.603, 7.054, 7.269, 7.27, 7.944, 11.805, 11.85, 23.971] correct=8/8 prompt_n=17633 | short p95=5.021s rate=2.22/s (n=80) | wall=36.0s
+[stock] N=16: recon median=9.9965s max=59.935s lats=[6.794, 6.889, 7.065, 7.366, 7.594, 8.051, 8.582, 9.833, 10.16, 11.411, 11.423, 12.131, 14.723, 15.762, 47.829, 59.935] correct=16/16 prompt_n=17633 | short p95=0.64s rate=1.0/s (n=72) | wall=71.9s
+cleanup done
+qml 2 median 0.359 p95_nr 0.379 max 0.379 correct 2
+qml 4 median 0.4775 p95_nr 0.508 max 0.508 correct 4
+qml 8 median 0.53 p95_nr 0.572 max 0.572 correct 8
+qml 16 median 0.4885 p95_nr 0.513 max 0.513 correct 15
+stock 2 median 1.7945 p95_nr 2.293 max 2.293 correct 2
+stock 4 median 5.737 p95_nr 9.252 max 9.252 correct 4
+stock 8 median 7.607 p95_nr 23.971 max 23.971 correct 8
+stock 16 median 9.9965 p95_nr 59.935 max 59.935 correct 16
+python rc=0 2026-09-30T06:02:01+09:00
+/dev/nvme0n1p1  469G  443G  2.2G 100% /nvme
+18G	$NVME_MOUNT/qml-router/ieee-rev1/store-density-raw
+=== reviewer1_edit_14_step1_density_raw done 2026-09-30T06:02:01+09:00 ===

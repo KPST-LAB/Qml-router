@@ -1,0 +1,418 @@
+//------------------------------------------------------------
+// qml-router : one log per reported number, plus the inputs of every run
+//   "Persistent Session-State Management for LLM Serving:
+//    An Identity-Keyed Architecture for Durable, Engine-Agnostic Sessions"
+// Purpose : verification. A reader opens logs/<name>.log to see the run that
+//           produced a number, and data/ to see exactly what was sent to the
+//           engines. The source code is released upon publication at
+//           https://github.com/KPST-LAB/Qml-router.
+// Layout  : logs/<name>.log   the client result log of one run (engine server
+//                             logs, where kept, as <name>_srv.log.gz)
+//           logs/<name>.json  runs whose result is a JSON file (Fig. 1(c))
+//           data/             the inputs (prompts, planted facts, questions, gold
+//                             answers) and result files, one file per experiment
+//           scripts/          the scripts that produced each log (scripts/bin:
+//                             the bench programs they call)
+//           reader.txt        this file; one block per log: the run conditions
+//                             ("run"), where the number is in the log (".log")
+//           VERSIONS.txt      which log, script and data file stand behind each
+//                             table and figure
+// Names   : <table|figure|section id>_<experiment>_<condition>; no bench-internal
+//           abbreviations in file names (tags inside the logs are explained per block).
+// Merged  : when one run wrote several result files they are concatenated
+//           into the one .log; each part starts with "#### file: <original>".
+// Paths   : masked. $REPO repository root, $BENCH benchmark store root,
+//           $DATA model/data root (H200), $HOME user home, $SCRATCH session
+//           scratch dir, $NVME_MOUNT NVMe mount point, <host-ip> LAN address.
+// Labels  : the bench clients print their result labels in Korean; the copies
+//           here carry the same lines with English labels (numbers, order,
+//           and line counts unchanged; the untouched originals stay on the
+//           measurement hosts and in the repository history).
+// Not here: Table 10 (mixed workload A/B/C) and the baseline-vLLM row of
+//           Table 11 -- only engine server logs of those runs survive; the
+//           counts are taken from docs/4-engines/engine-comparison.md.
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// How to read a result line
+//  [tag] 12 sessions x ~1500 tokens: total T s  mean M ms  p50 P ms  GPU prefill total K  correct a/b
+//        = adoption-cost run: sessions x tokens, wall, mean, median, prefill tokens, correct/asked
+//  [tag] ... total T s  R turn/s  overall p50 P ms  GPU prefill total K  correct a/b
+//        = 500-turn run: wall, throughput, median per turn, prefill tokens, correct/asked
+//  [restore-N] latency=X ms  correct=OK  GPU prefill=n tokens
+//  [recompute-N] latency=X ms correct=OK  GPU prefill=n tokens
+//        = single reconnect at N tokens: qml restore vs baseline recompute
+//  short requests : completed a correct a p50 .. / long-session reconnects : completed b correct b p50 ..
+//        = mixed load, 150 s: short requests completed / long-session reconnects completed
+//  [qml|stock] N=8: recon p50=.. p95=.. correct=8/8 | short .. rate=..
+//        = density bench line (ablation)
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// tab04_adoption_llama            Table 4, llama.cpp row (Section V-A1)
+//  run  fresh store + fresh server per repetition, 12 sessions x ~1,500 tokens
+//  .log [stock-r1..3] mean 225/226/225 -> [qml-r1..3] 256/252/252 ms; table = median of 3
+//  RTX 4090 host, development container, store on overlay
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab04_adoption_vllm_sglang      Table 4, vLLM and SGLang rows
+//  run  same protocol as above for vLLM (qml connector) and SGLang (qml backend)
+//  .log [vllm-stock] 179/180/181 -> [vllm-qml] 259/257/263
+//       [sgl-stock] 166/168/166 -> [sgl-qml] 185/191/182 (median of 3 in the table)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab04_adoption_orin             Table 4 protocol on the Jetson AGX Orin (not in the article's Table 4)
+//  run  same protocol, Orin build of the same source
+//  .log [stock-r1..3] p50 1,486/1,483/1,488 -> [qml-r1..3] 1,502/1,506/1,510 ms
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// tab05_500turn_4090              Table 5, rows 1-6 (Section V-A2)
+//  run  panel: engine x {stock, qml}, 32K window, 500 turns, 2 sessions, 25 facts
+//       asked only after the trim (tests/bench_tab5_crossover_32k.py)
+//  .log six parts, one per engine x arm; the "total ... turn/s ... correct a/b" line
+//       of each part is the table row (llama 0/78 -> 78/80, vllm 0/78 -> 78/78,
+//       sglang 0/78 -> 72/78)
+//  RTX 4090, NVMe store
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab05_500turn_orin              Table 5, rows 7-8 (Orin, MAXN)
+//  run  Orin variant of the same panel
+//  .log two parts: stock 0.06 turn/s 0/78; qml 0.13 turn/s 78/80
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// tab04_adoption_qwen4b           Table 4 protocol on a size-matched non-Llama model (Section V-A2)
+//  run  Qwen3-4B F16 GGUF, RTX 4090 (container environment of Table 4), llama.cpp;
+//       fresh store + fresh server per repetition, 12 sessions x ~1,500 tokens,
+//       stock x3 then qml x3; same binary and flags as the Llama-3.2-3B run
+//  .log [stock-r1..3] mean 294/290/288 -> [qml-r1..3] 316/319/316 ms (+26 ms);
+//       gpu_mem_mib 11,050 in both arms; 12/12 correct in every run
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab05_500turn_qwen4b            Table 5, last two rows (size-matched non-Llama check)
+//  run  same panel protocol, host, container, NVMe store, binary and flags as
+//       tab05_500turn_4090 (32K window, 2 sessions, 500 turns, 25 facts), model
+//       Qwen3-4B F16 GGUF with Q4_0 KV, llama.cpp only; the bench used its Qwen3
+//       chat-template setting (QML_BENCH_TEMPLATE=qwen3)
+//  .log two parts: stock 0/8, 0/24, 0/46, p50 3,363 ms at turn 500, 0.32 turn/s;
+//       qml 6/8, 25/28, 46/48, p50 1,271 ms, 0.44 turn/s. The qml misses are the
+//       oldest fact of each session, answered with the value of the newest fact
+//       still inside the live window (lines "wrong s0A", "wrong s1A"). Inputs are the
+//       same generated texts as data/tab05_500turn.json (token counts differ by tokenizer)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// (Fig. 4)                        Table 5 at turn 500, drawn from the tab05_* logs
+//  no separate log: tests/plot_overflow_latency.py reads tab05_500turn_4090.log,
+//  tab05_500turn_orin.log and tab05_500turn_qwen4b.log (p50 at turn 500 and the
+//  "correct a/b" count of the turn-500 checkpoint line) and draws the bar pairs
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab06_repeat_crossover          Table 6, rows 1-2 (Section V-A3)
+//  run  campaign controller; 10 runs of tests/bench_crossover.py, engine
+//       restarted cold before each side, n_predict 8
+//  .log ten parts; lines "[qml] ~32655 tok: X s" / "[stock] ~32655 tok: X s"
+//       median over 10: 32K 0.760 vs 5.433 s, 49K 1.329 vs 14.400 s
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab06_repeat_mixed              Table 6, rows 3-4
+//  run  five repetitions of the 150 s mixed load, original geometry (-np 4)
+//  .log mix4_session1..5 (qml) then mix4_stateless1..5 (baseline);
+//       short requests 803/945/786/781/784 vs 181/185/201/244/242 (median 786 vs 201)
+//       32K reconnects 203/205/202/200/200 vs 47/47/46/47/47 (median 202 vs 47)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab06_tab07_orin_repeat_maxn    Table 6 row 5, Table 7 row 3 (Orin, MAXN)
+//  run  per rep: power mode read from nvpmodel status, NVMe dmesg check,
+//       cold proven by mincore, engine restarted (tests/bench_long_context.py)
+//  .log 32K restore 2,234/2,233/2,208 + the three reps labelled mode30w in
+//       this run (2,296/2,275/2,275; the mode switch had not applied, the
+//       device stayed in MAXN) = n=6, median 2.255 s; recompute median 23.934 s
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab06_tab07_orin_repeat_30w     Table 6 row 6, Table 7 row 4 (Orin, 30 W)
+//  run  same protocol, 30 W mode confirmed per rep
+//  .log 32K restore 4,242/4,240/4,221 (median 4.240 s); recompute 87,908/87,811/87,871 (87.871 s)
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// tab07_hw_devserver              Table 7 row 1 (same GPU, 0.55 GB/s storage)
+//  run  container run of tests/bench_long_context.py; rerun with the same
+//       protocol after the checkpoint fix
+//  .log two parts: results_devsrv_verified.log (before the checkpoint fix:
+//       restore 2,809 / recompute 3,209 ms) and results_verified.log (after:
+//       restore 2,240 / recompute 3,159 ms)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab07_hw_nvme                   Table 7 row 2 (same GPU, NVMe host)
+//  run  host run, same bench; rerun after the checkpoint fix
+//  .log [restore-32000] 661 ms / [recompute-32000] 3,033 ms; 8K 275 / 580 ms
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// fig01_crossover                 Fig. 1(c)
+//  run  tests/bench_crossover.py: single reconnect, cold engine per side
+//  .json 1.9K..49.5K tokens; 49K 1.278 vs 14.468 s, 32K 0.723 vs 5.432 s
+//  Fig. 1 is drawn by scripts/reviewer2_minor1_plot_fig1.py: charts (a)-(b) from
+//  data/reviewer2_minor1_density_verified_only.json, chart (c) from this json
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// secVB1_20000turn_session        Section V-B1, the 20,000-turn session (H200)
+//  run  feeds one session, 9 planted facts at turns 10..19,500 (tests/bench_weather_longevity.py)
+//  .log "[feed] done: 20000 turns, 540 trims, archive=1221494 tokens"
+//------------------------------------------------------------
+//------------------------------------------------------------
+// secVB1_20000turn_recall         Section V-B1, recall gate on that session
+//  run  three conditions on the same store: conf 0 / 0.2 / 0.5
+//  .log all three 27/27; conf 0.2 injects 228 tokens per question
+//------------------------------------------------------------
+//------------------------------------------------------------
+// secVB1_20000turn_latency        Section V-B1, per-question latency split
+//  run  two conditions: recall off / conf 0.2
+//  .log hook timer lines (index / search / fetch) and prompt_ms per question
+//------------------------------------------------------------
+//------------------------------------------------------------
+// secVB2_restart_recovery         Section V-B2 (restart recovery, 242 ms)
+//  run  one turn, save confirmed, SIGKILL
+//       during generation, restart, reconnect with the new question only
+//  .log "[reconnect after recovery] 242 ms correct=OK prefill=14"
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// fig05_continuation_vllm         Fig. 5, bars 1-3 (llama.cpp -> vLLM -> llama.cpp)
+//  run  tests/bench_migration.py build_llama /
+//       continue_vllm / continue_llama
+//  .log the vLLM step: "[2.continue@vLLM] latency=957 ms correct=OK", 8,027-token
+//       replay, one prefill (steps 1 and 3 were logged to the terminal only;
+//       their times, 601 ms and 695 ms, are in docs/4-engines/engine-comparison.md 4-6)
+//  script reconstructed from this log; its vLLM command is the one recorded at the end of
+//       the log (QmlVllmConnector, store paths in kv_connector_extra_config, port 8331)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// fig05_sglang_to_llama           Fig. 5, bar 4 (SGLang -> llama.cpp)
+//  run  SGLang with the qml backend builds the session,
+//       llama.cpp continues it with only the new question
+//  .log two parts. results_sg37.log: first attempt answered without history
+//       (135 ms, WRONG, prefill 11) = defect 7 of Appendix B.
+//       results_step2.log: after the token-log fallback, 385 ms, OK, prefill 3,038
+//  script reconstructed from this log; its SGLang and llama.cpp commands are the ones
+//       recorded in the log (dynamic HiCache backend qml_sglang_storage on port 8333,
+//       llama.cpp -c 8192 -np 1 on port 8398); the session identity alice::sg-1 is sent
+//       as extra_key
+//------------------------------------------------------------
+//------------------------------------------------------------
+// fig06_longmemeval_archive_recall  Fig. 6, Section V-C (LongMemEval_S, H200; qml archive recall, k=32)
+//  run  per arm ingest -> ask -> paperjudge, 70B Q8_0 reader
+//  .log six parts. The "[ask/..] acc=" and "string-match metric" lines are
+//       the bench's own token-overlap check during the run, not the reported
+//       number. The reported numbers are the OFFICIAL protocol lines:
+//       msf_pj: multi-session 84/133 = 0.632; trf_pj: temporal-reasoning 95/133 = 0.714
+//       (msf = multi-session, trf = temporal-reasoning, pj = official judge; bench tags).
+//       The log names its own output files answers_<arm>.json and
+//       results_<arm>_final*.json; in data/ they are gold_evidence_<class>.json and
+//       archive_recall_<class>_answers/judged.json
+//  data data/longmemeval/archive_recall_<class>_answers.json and
+//       archive_recall_<class>_judged.json, gold_evidence_<class>.json
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// fig06_longmemeval_full_history  Fig. 6(b) row "Full history, same reader" (Section V-C)
+//  run  same reader (Llama-3.3-70B Q8_0, H200), stateless server, n_ctx 131,072;
+//       the whole haystack of each question sent as one Non-CoN reading prompt,
+//       greedy, 256-token answer; 266 questions. The 2026-09-04 run stopped at
+//       253; the 13 remaining temporal-reasoning questions were run on 09-06
+//       with the same prompt format and all 266 rows re-judged (TEST-LEDGER 91)
+//  .log three parts: fullhist13.log (the 13-question resume, prompt tokens per
+//       question ~105K, dropped sessions 0), fullhist_pj.log (09-04 judge over
+//       253), fullhist13_pj.log (final judge over 266):
+//       multi-session 33/133 = 0.248, temporal-reasoning 43/133 = 0.323
+//  data data/longmemeval/full_history_answers.json (every answer),
+//       full_history_judged.json (with the official verdict)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// fig06_longmemeval_recent_window Fig. 6(b) rows "Recent window" (Section V-C)
+//  run  same reader and prompt format as fig06_longmemeval_full_history, but the history
+//       is cut to the most recent W tokens by recency alone (newest turns
+//       first, across session boundaries, the last turn's tail cut to fill
+//       the budget), no retrieval; W = 594 (the qml injection budget) and
+//       32,768; 266 questions each; official judge (TEST-LEDGER 94)
+//  .log three parts: recent_window.log (per-question lines "hist=<tokens>
+//       kept=<sessions> evid=<evidence sessions inside>/<total>"; a first
+//       attempt that cut by whole sessions was stopped after two questions
+//       and is not in this log), recent594_pj.log and recent32768_pj.log:
+//       594: multi-session 11/133 = 0.083, temporal 7/133 = 0.053
+//       32K: multi-session 27/133 = 0.203, temporal 24/133 = 0.180
+//  data data/longmemeval/recent_window_{594,32768}_answers.json and
+//       recent_window_{594,32768}_judged.json
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab11_lmcache_mp                Table 11 row 1, Section V-D (LMCache, MP mode)
+//  run  LMCache out-of-process server + vLLM, warm, 6 x 32K sessions, 150 s
+//  .log short requests completed 184 / long-session reconnects completed 31 p50=4,919 ms, 100% correct
+//------------------------------------------------------------
+//------------------------------------------------------------
+// tab11_qml_connector             Table 11 row 2 (vLLM + qml connector)
+//  run  same load, async save + pipelined load
+//  .log short requests completed 328 / long-session reconnects completed 109 p50=1,081 ms
+//  row 3 (baseline vLLM 99 / 32) is experiment A of Table 10 -- see "Not here"
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// appE_four_build_check           Appendix A-E, four-build check
+//  run  builds with / without the restore-path change, stock and qml,
+//       3 reps each, N=8 staggered 4 s (tests/bench_density_ablation.py)
+//  .log twelve parts; "recon p50" per part:
+//       stock no-change 0.651/0.643/0.652, stock + change 0.644/0.656/0.656,
+//       qml no-change 1.749/1.740/1.744, qml + change 0.200/0.200/0.198
+//       (table = medians 0.651 / 0.656 / 1.744 / 0.200)
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// Lines in the logs that are not results
+//  "<script>: line N: <pid> Killed <engine command>"
+//        bash job-control notice: the run script stopped the engine between
+//        conditions (tab07_*, tab11_*, fig04_*, secVB2_restart). Not a failure.
+//  tab05_500turn_4090.log, part result_llama-qml-t500.log
+//        26 lines removed between the header and the "turn 100" line: a Python
+//        traceback (RemoteDisconnected) printed by the client of a superseded
+//        earlier attempt. The panel restarted at 17:35:30, truncated the file
+//        and killed the previous engine; the orphaned client still held the
+//        file open and wrote its exception after the new header. Nothing else
+//        in the file was changed; the run that follows (turn 100 .. DONE
+//        18:09:41, 34 min = 500 turns at 0.49 turn/s) is the reported one.
+//  tab06_tab07_orin_repeat_maxn.log "NVPM ERROR: bad input!"
+//        the power-mode switch to 30 W failed in this run, so the three reps
+//        labelled mode30w ran in MAXN; they are counted as MAXN (n=6), see above.
+//  fig05_sglang_to_llama.log "correct=WRONG"  first attempt, defect 7 (see above).
+//  appE_four_build_check.log  "errors": []   the bench's per-level error list, empty.
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// data/   the inputs of every run, regenerated from the bench generators
+//         (all inputs are deterministic text; no external corpus except
+//         LongMemEval). Token counts were re-checked with the Llama-3.2
+//         tokenizer against the prompt_n values in the logs.
+//  tab04_adoption.json      12 prompts (history + ask), expected codes ZK-8200..8211
+//        1,519 tokens + BOS = 1,520 x 12 = 18,240 = the vLLM/SGLang prefill totals
+//        in tab04_adoption_vllm_sglang.log; llama.cpp reports 17,642 because its
+//        slot reuses the prefix shared by consecutive prompts (TEST-LEDGER 88-1)
+//  tab05_500turn.json       2 sessions x 500 turn texts, 25 facts per session
+//        (slot, turn, typhoon name, wind speed), 25 questions with expected
+//        answers, window/trim parameters. "~306 tokens per turn" in the log is
+//        the nominal setting (TOKENS=306 -> 12 filler units); a turn text is
+//        281-283 tokens before the chat wrapper
+//  fig01_crossover.json     5 build prompts (1,845 / 7,445 / 15,845 / 32,645 /
+//        49,445 tokens = the "built ~N tokens" lines), codes, probe
+//  tab06_tab11_mixed_workload.json  6 histories of 32,017 tokens with needles ZK-6000..6005,
+//        ask, short-request template
+//  tab07_long_context.json  the 8K and 32K histories (7,995 / 32,007 tokens; the
+//        logs' 7,996 / 32,008 include BOS), needle ZK-7777, request shapes
+//  fig05_continuation.json  the 8K history + ask (8,005 tokens; log: 8,017 log rows
+//        after the 12-token answer, 8,027 prefill with the ask on vLLM)
+//  secVB1_20000turn_session.json  the 20,000 turn texts (daily report i, or the planted
+//        bulletin at turns 10/500/2000/5000/8000/11000/14000/17000/19500), the
+//        9 facts x 3 question forms with gold answers, system prompt, wrapper
+//  longmemeval/             dataset_identity.txt (identity of the LongMemEval_S
+//        cleaned file: 500 items, md5, size); per question class
+//        (multi_session, temporal_reasoning): archive_recall_<class>_answers.json
+//        (every model answer), archive_recall_<class>_judged.json (with the
+//        official judge verdict), gold_evidence_<class>.json (gold-session token
+//        ranges); full_history_answers/judged.json and
+//        recent_window_{594,32768}_answers/judged.json for the two baselines
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// Runs added during review
+//  Names   : reviewerR_edit_N / reviewerR_minorN is the reviewer comment a run
+//            answers; stepN numbers the runs it needed, in order. A script and its
+//            log share the name; result files in data/ add a short suffix. Engine
+//            server logs are gzip-compressed (_srv.log.gz, _server_*.log.gz).
+//  Paths   : masked as above ($REPO is the repository on the RTX 4090 NVMe host).
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_14_step1_density_raw  Fig. 1(a)-(b) data, Section V-A concurrency, Table 8 row
+//  run  the concurrent-reconnect curve with every sample kept: N = 2, 4, 8, 16
+//       users 4 s apart, 2,650 filler items (17.6K tokens per user), 131,072-token
+//       context, fresh store. The script was tidied after the run (comments only);
+//       the md5 at the top of its log (685c768fc9f8f012b16cbae35126df32) is the copy
+//       that ran, and the tidied copy has the same code token for token.
+//  data data/reviewer1_edit_14_step1_density_raw.json (per-reconnect samples)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer2_minor1_density_verified_only  Fig. 1(a) values (no new run)
+//  run  latency statistics recomputed from reviewer1_edit_14 using only the
+//       reconnects that passed the exact check: 29/30 with qml-router, 30/30 without.
+//       The failed reconnect (N = 16, a truncated code) was the fastest sample of
+//       that point, so the slowest reconnect at N = 16 stays 0.51 s and the median
+//       is 0.489 s. Short-request throughput is copied unchanged; those requests
+//       carry no planted fact and are not answer-checked.
+//  data data/reviewer2_minor1_density_verified_only.json
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_17_step1_retrieval_curve  Fig. 6(a); Section V-C recall figures
+//  run  the lexical retrieval of the paper and an embedding ranker (bge-m3) on the
+//       same LongMemEval_S rows; recall per k
+//  data reviewer1_edit_17_step1_retrieval_curve.json, _perquestion_{msf,trf}.json;
+//       figure: scripts/plot_lme_recall.py
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_17_step2_latency_*        Appendix A-G, Table 13 cost rows
+//  run  query and ingest cost of both rankers on H200 GPU, RTX 4090 GPU (with and
+//       without CUDA graphs) and RTX 4090 CPU; question subset in
+//       data/reviewer1_edit_17_step2_questions.json
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_17_step3_*, _step3b_*     Appendix A-G, Table 13 accuracy rows; Section V-C
+//  run  end-to-end accuracy with the rows each ranker selects (H200, Llama-3.3-70B
+//       reader, official judge); step3b re-ran the lexical condition on the H200
+//  data reviewer1_edit_17_step3_results_{lex,emb}_{msf,trf}[_paperjudged].json
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_16_step1_oracle_context   Section V-C oracle-context sentence
+//  run  the reader is given only the labeled evidence sessions
+//  data reviewer1_edit_16_step1_oracle_results[_paperjudged].json; judge log _judge.log
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_18_step1_durability_window, _step2_burst_kill
+//                                          Section III-B persistence window; Appendix A-H, Table 14
+//  run  step1: time from the response until the turn is persisted; step2: turns
+//       lost when the process is killed after back-to-back turns (SIGKILL)
+//  data reviewer1_edit_18_step1_durability_window.json, _step2_burst_kill.json;
+//       server command: scripts/reviewer1_edit_18_step2_burst_kill_server_cmd.txt
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_10_step1_shared_prefix_storage  Section III-B shared-prefix check
+//  run  store space taken by ten sessions that share one prefix (LMDB file measured
+//       by its allocated size)
+//  data reviewer1_edit_10_step1_shared_prefix_storage.json; chain runner for edit 10
+//       and edit 18 on the RTX 4090: reviewer1_edit_10_18_chain_4090.sh (_chain.log)
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer1_edit_4_step1_longevity_slope   Section V-B1 p50/p95 per fifth and regression slope
+//  run  no new run: the slope and the first and last 1,000-turn means are computed
+//       from logs/secVB1_20000turn_session.log, which also prints p50/p95 per fifth
+//------------------------------------------------------------
+//------------------------------------------------------------
+// gateway_usage_log_2026-08-07_09.csv      Section I and Appendix B item 11 (86.8%)
+//  data the 45 usage-log rows of the web-UI gateway (llama.cpp gateway with Open
+//       WebUI, Llama-3.2-3B-Instruct, 7 users, 16 sessions, two days); user and
+//       session ids hashed, no conversation content; the token counts are the
+//       engine's prompt counts: saved 25,418 of 29,296 prefill tokens
+//------------------------------------------------------------
+//------------------------------------------------------------
+// reviewer2_minor3_step1_engine_config, _step2_crossover, _step1b_*
+//                                          Table 6 caption (same-day re-run of both 32K procedures)
+//  run  step1: the Table 7 procedure (32K document session, 12 generated tokens,
+//       engine restarted per measurement) under engine configuration A (Table 7:
+//       -c 34048 -np 1) and B (Table 6: -c 131072 --kv-unified -np 8);
+//       recomputation 3,023 ms in both, restore 677 / 703 ms.
+//       step2: the Table 6 crossover procedure re-run on the same host the same
+//       day: 32K recomputation 5.418 s, restore 0.737 s; then step1 again
+//       (step1b): 3,023 / 698 ms under A and 3,036 / 672 ms under B.
+//       Differences from the original Table 6 run: an empty test store, port 8597
+//       instead of 8397, one run instead of ten. During step1b the crossover's
+//       engine instance still held 11,286 MiB of GPU memory at 0% utilization
+//       (logs/reviewer2_minor3_step1b_gpu_state.log).
+//  data data/reviewer2_minor3_step2_crossover.json
+//------------------------------------------------------------

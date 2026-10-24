@@ -1,0 +1,37 @@
+=== R2-3 CONTROL 2026. 10. 19. (Mon) 16:10:00 KST ===
+<nvme-host>
+NVIDIA GeForce RTX 4090, 471 MiB, 595.45.04
+
+########## config A: -c 34048 -np 1 ##########
+[build] prefilled 32,008 tokens in 3s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+986M	$REPO/r2-3-check/store_A/qml_lmdb
+r2-3-check/run_r23.sh: line 19:  4571 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $W/srv_$tag.log 2>&1
+--- qml restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=677 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=191 ms + predict=121 ms = 312 ms; non-compute remainder=365 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+r2-3-check/run_r23.sh: line 19:  6313 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $W/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-32000] latency=3,023 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=2,848 ms + predict=123 ms = 2,971 ms; non-compute remainder=52 ms
+r2-3-check/run_r23.sh: line 19:  7865 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $W/srv_$tag.log 2>&1
+
+########## config B: -c 131072 --kv-unified -np 8 ##########
+[build] prefilled 32,008 tokens in 3s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+986M	$REPO/r2-3-check/store_B/qml_lmdb
+r2-3-check/run_r23.sh: line 19:  9084 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $W/srv_$tag.log 2>&1
+--- qml restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=703 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=185 ms + predict=121 ms = 306 ms; non-compute remainder=397 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+r2-3-check/run_r23.sh: line 19: 10899 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $W/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-32000] latency=3,023 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=2,849 ms + predict=120 ms = 2,969 ms; non-compute remainder=54 ms
+r2-3-check/run_r23.sh: line 19: 12237 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $W/srv_$tag.log 2>&1
+
+=== R2-3 CONTROL DONE 2026. 10. 19. (Mon) 16:11:38 KST ===

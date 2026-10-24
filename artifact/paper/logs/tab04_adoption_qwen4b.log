@@ -1,0 +1,15 @@
+=== Qwen3-4B F16 adoption cost, fresh store+server per rep (RTX 4090 container, llama.cpp) Thu Sep 10 07:27:30 KST 2026 ===
+NVIDIA GeForce RTX 4090, 2317 MiB
+[stock-r1] gpu_mem_mib=11050
+[stock-r1] 12 sessions x ~1500 tokens: total 3.5s  mean 294 ms  p50 309 ms  GPU prefill total 17,650  correct 12/12
+[stock-r2] gpu_mem_mib=11050
+[stock-r2] 12 sessions x ~1500 tokens: total 3.5s  mean 290 ms  p50 307 ms  GPU prefill total 17,650  correct 12/12
+[stock-r3] gpu_mem_mib=11050
+[stock-r3] 12 sessions x ~1500 tokens: total 3.5s  mean 288 ms  p50 298 ms  GPU prefill total 17,650  correct 12/12
+[qml-r1] gpu_mem_mib=11050
+[qml-r1] 12 sessions x ~1500 tokens: total 3.8s  mean 316 ms  p50 318 ms  GPU prefill total 18,252  correct 12/12
+[qml-r2] gpu_mem_mib=11050
+[qml-r2] 12 sessions x ~1500 tokens: total 3.8s  mean 319 ms  p50 324 ms  GPU prefill total 18,252  correct 12/12
+[qml-r3] gpu_mem_mib=11050
+[qml-r3] 12 sessions x ~1500 tokens: total 3.8s  mean 316 ms  p50 320 ms  GPU prefill total 18,252  correct 12/12
+ADOPTION PANEL DONE Thu Sep 10 07:29:13 KST 2026

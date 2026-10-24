@@ -1,0 +1,4 @@
+$NVME_MOUNT/qml-router/ablation/with-patch/build/bin/llama-server -m $NVME_MOUNT/qml-router/models/Llama-3.2-3B-Instruct-F16.gguf -ngl 99 -fa on -c 34816 -np 1 -ctk q4_0 -ctv q4_0 --cache-ram 0
+CUDA_MPS_PIPE_DIRECTORY=$NVME_MOUNT/qml-router/ieee-rev1/no-mps
+CUDA_MPS_LOG_DIRECTORY=$NVME_MOUNT/qml-router/ieee-rev1/no-mps
+LD_LIBRARY_PATH=$NVME_MOUNT/qml-router/env/lib:/usr/local/cuda/lib64

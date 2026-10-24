@@ -1,0 +1,580 @@
+#### file: recent_window.log
+[2026-09-08 10:10:19] server started
+[2026-09-08 10:10:40] running window 594
+window 594: target 266, existing 0
+[1/266] 0a995998 hist=594 kept=2 evid=0/3 2s | 'There is no information in the chat history about picking up'
+[2/266] 6d550036 hist=594 kept=1 evid=0/4 3s | "You haven't mentioned any projects that you're leading. You'"
+[3/266] gpt4_59c863d7 hist=594 kept=1 evid=0/4 5s | 'There is no information in our chat history about model kits'
+[4/266] b5ef892d hist=594 kept=1 evid=0/3 6s | 'There is no information in the chat history about your campi'
+[5/266] e831120c hist=594 kept=1 evid=0/2 8s | 'There is no information in the chat history about watching M'
+[6/266] 3a704032 hist=594 kept=1 evid=0/3 10s | "There's no information about acquiring plants in our previou"
+[7/266] gpt4_d84a3211 hist=594 kept=1 evid=0/4 12s | 'There is no information about bike-related expenses in our c'
+[8/266] aae3761f hist=594 kept=1 evid=0/3 13s | 'There is no information about driving or road trip destinati'
+[9/266] gpt4_f2262a51 hist=594 kept=1 evid=0/3 14s | "0, there's no mention of visiting doctors in our conversatio"
+[10/266] dd2973ad hist=594 kept=2 evid=0/2 16s | 'There is no information in the chat history about your sleep'
+[11/266] c4a1ceb8 hist=594 kept=1 evid=1/4 17s | "You haven't mentioned using any citrus fruits in your cockta"
+[12/266] gpt4_a56e767c hist=571 kept=1 evid=0/3 19s | "You didn't mention attending any movie festivals in our prev"
+[13/266] 6cb6f249 hist=594 kept=1 evid=0/2 20s | 'There is no information about social media breaks in the cha'
+[14/266] 46a3abf7 hist=594 kept=1 evid=0/3 22s | 'There is no information in the chat history about tanks. The'
+[15/266] 36b9f61e hist=594 kept=1 evid=0/3 23s | 'There is no information in our chat history about your spend'
+[16/266] 28dc39ac hist=594 kept=1 evid=0/5 25s | 'There is no information about playing games in our chat hist'
+[17/266] gpt4_2f8be40d hist=594 kept=1 evid=0/3 26s | 'There is no information about you attending any weddings in '
+[18/266] 2e6d26dc hist=594 kept=1 evid=0/4 28s | 'There is no mention of babies being born to friends and fami'
+[19/266] gpt4_15e38248 hist=594 kept=1 evid=0/4 30s | 'There is no information in our chat history about buying, as'
+[20/266] 88432d0a hist=594 kept=1 evid=0/4 32s | 'There is no information in our chat history about you baking'
+[21/266] 80ec1f4f hist=594 kept=1 evid=0/3 34s | 'There is no information in our chat history about your visit'
+[22/266] d23cf73b hist=594 kept=1 evid=0/4 36s | 'There is no information in our chat history about the cuisin'
+[23/266] gpt4_7fce9456 hist=594 kept=1 evid=0/5 38s | 'There is no information in the chat history about viewing pr'
+[24/266] d682f1a2 hist=594 kept=1 evid=0/3 39s | 'There is no information about the number of different types '
+[25/266] 7024f17c hist=594 kept=1 evid=0/3 41s | 'There is no information about your jogging and yoga activiti'
+[26/266] gpt4_5501fe77 hist=594 kept=1 evid=0/3 42s | 'This information is not available in our chat history. We on'
+[27/266] gpt4_2ba83207 hist=568 kept=1 evid=0/4 44s | 'There is no information in our chat history about your groce'
+[28/266] 2318644b hist=594 kept=1 evid=0/2 46s | 'There is no information in the chat history about your spend'
+[29/266] 2ce6a0f2 hist=591 kept=1 evid=0/4 48s | 'There is no information in our chat history about the number'
+[30/266] gpt4_d12ceb0e hist=594 kept=1 evid=0/3 50s | 'There is no information in the chat history about your age o'
+[31/266] 00ca467f hist=583 kept=1 evid=0/3 51s | "There is no information about your doctor's appointments in "
+[32/266] b3c15d39 hist=594 kept=1 evid=0/2 53s | 'There is no information in the chat history about ordering a'
+[33/266] gpt4_31ff4165 hist=594 kept=1 evid=0/5 54s | 'There is no information in the chat history about the number'
+[34/266] eeda8a6d hist=594 kept=1 evid=0/2 56s | 'There is no information in our chat history about your aquar'
+[35/266] 2788b940 hist=581 kept=1 evid=0/4 58s | 'There is no information about your fitness classes in our co'
+[36/266] 60bf93ed hist=594 kept=1 evid=0/2 59s | 'There is no information in the chat history about a laptop b'
+[37/266] 9d25d4e0 hist=594 kept=1 evid=0/3 61s | 'There is no information in our chat history about you acquir'
+[38/266] 129d1232 hist=592 kept=1 evid=0/3 62s | 'There is no information about charity events or fundraising '
+[39/266] 60472f9c hist=594 kept=1 evid=0/3 64s | "This conversation just started. There's no information about"
+[40/266] gpt4_194be4b3 hist=594 kept=1 evid=0/5 65s | 'There is no information in our chat history about you owning'
+[41/266] a9f6b44c hist=594 kept=1 evid=0/3 67s | "There's no mention of bikes in our conversation. We only dis"
+[42/266] d851d5ba hist=594 kept=1 evid=0/4 68s | "There's no information about charity or fundraising in our c"
+[43/266] 5a7937c8 hist=594 kept=1 evid=0/3 70s | 'There is no information in the chat history about participat'
+[44/266] gpt4_ab202e7f hist=594 kept=1 evid=0/5 72s | "You didn't mention replacing or fixing any kitchen items in "
+[45/266] gpt4_e05b82a6 hist=594 kept=1 evid=0/4 74s | 'There is no information in the chat history about attending '
+[46/266] gpt4_731e37d7 hist=594 kept=1 evid=0/4 75s | 'There is no information in the chat history about attending '
+[47/266] edced276 hist=594 kept=1 evid=0/2 77s | 'There is no information in the chat history about traveling '
+[48/266] 10d9b85a hist=593 kept=1 evid=0/2 78s | 'There is no information in the chat history about attending '
+[49/266] e3038f8c hist=594 kept=1 evid=0/4 80s | "There's no information about rare items in our conversation "
+[50/266] 2b8f3739 hist=594 kept=1 evid=1/3 82s | "You haven't mentioned selling any products at markets or ear"
+[51/266] 1a8a66a6 hist=594 kept=2 evid=0/4 83s | 'There is no information in our chat history about your magaz'
+[52/266] c2ac3c61 hist=594 kept=1 evid=0/2 85s | 'There is no information in our chat history about you comple'
+[53/266] bf659f65 hist=594 kept=1 evid=0/3 87s | 'There is no information in our chat history about you purcha'
+[54/266] gpt4_372c3eed hist=594 kept=2 evid=0/3 88s | 'There is no information in the chat history about your forma'
+[55/266] gpt4_2f91af09 hist=594 kept=1 evid=0/3 90s | 'There is no information in the chat history about your writi'
+[56/266] 81507db6 hist=594 kept=1 evid=0/5 92s | 'There is no information in our chat history about you attend'
+[57/266] 88432d0a_abs hist=592 kept=1 evid=0/4 93s | 'There is no information about baking egg tarts in our conver'
+[58/266] 80ec1f4f_abs hist=594 kept=1 evid=0/3 95s | "There's no information about visiting museums or galleries i"
+[59/266] eeda8a6d_abs hist=594 kept=1 evid=0/2 96s | 'There is no information about your fish tank in our conversa'
+[60/266] 60bf93ed_abs hist=594 kept=2 evid=0/2 98s | 'There is no information in our chat history about your iPad '
+[61/266] edced276_abs hist=594 kept=1 evid=0/2 99s | 'There is no information in the chat history about your trave'
+[62/266] gpt4_372c3eed_abs hist=593 kept=1 evid=0/3 100s | 'There is no information in the chat history about your educa'
+[63/266] d3ab962e hist=594 kept=1 evid=0/2 102s | 'There is no information about hikes in our conversation hist'
+[64/266] 2311e44b hist=594 kept=1 evid=0/2 104s | "There is no information about the book 'The Nightingale' in "
+[65/266] cc06de0d hist=594 kept=1 evid=0/2 105s | "There's no information about taxi rides or train fares in ou"
+[66/266] a11281a2 hist=594 kept=1 evid=0/2 107s | 'There is no information about your Instagram followers in ou'
+[67/266] 4f54b7c9 hist=594 kept=1 evid=0/2 109s | "You didn't mention anything about inheriting or acquiring an"
+[68/266] 85fa3a3f hist=594 kept=1 evid=0/2 111s | 'There is no information about the cost of a food bowl, measu'
+[69/266] 9aaed6a3 hist=567 kept=1 evid=0/2 112s | 'There is no information about your cashback earnings at Save'
+[70/266] 1f2b8d4f hist=594 kept=1 evid=0/2 114s | 'There is no information in the chat history about your luxur'
+[71/266] e6041065 hist=594 kept=1 evid=0/2 115s | 'There is no information about packed shoes or your last trip'
+[72/266] 51c32626 hist=594 kept=1 evid=0/2 117s | 'There is no information about submitting a research paper on'
+[73/266] d905b33f hist=592 kept=2 evid=0/2 118s | 'There is no information about a book or a discount in our ch'
+[74/266] 7405e8b1 hist=594 kept=1 evid=0/2 120s | 'There is no information in our chat history about your order'
+[75/266] f35224e0 hist=594 kept=2 evid=0/2 122s | 'There is no information in the chat history about the number'
+[76/266] 6456829e hist=594 kept=2 evid=0/2 124s | 'There is no information in the chat history about planting t'
+[77/266] a4996e51 hist=593 kept=1 evid=0/2 126s | 'There is no information in the chat history about your work '
+[78/266] 3c1045c8 hist=594 kept=1 evid=0/2 128s | 'There is no information provided about your age or the avera'
+[79/266] 60036106 hist=572 kept=1 evid=0/2 130s | 'There is no information about a Facebook ad campaign or Inst'
+[80/266] 681a1674 hist=594 kept=1 evid=0/2 131s | 'There is no information in the chat history about re-watchin'
+[81/266] e25c3b8d hist=575 kept=1 evid=0/2 133s | "There's no information about a designer handbag or TK Maxx i"
+[82/266] 4adc0475 hist=594 kept=1 evid=0/2 134s | 'There is no information about your recreational indoor socce'
+[83/266] 4bc144e2 hist=594 kept=1 evid=0/2 136s | "There's no information about your spending on car wash and p"
+[84/266] ef66a6e5 hist=594 kept=1 evid=0/2 137s | 'There is no information in the chat history about the number'
+[85/266] 5025383b hist=575 kept=1 evid=1/2 139s | 'There is no information in the chat history about your hobbi'
+[86/266] a1cc6108 hist=594 kept=1 evid=0/2 140s | "There is no information about Alex's birth or your age in th"
+[87/266] 9ee3ecd6 hist=594 kept=1 evid=0/2 142s | 'There is no information about Sephora or skincare products i'
+[88/266] 3fdac837 hist=594 kept=1 evid=0/2 144s | 'There is no information about your travel to Japan or Chicag'
+[89/266] 91b15a6e hist=594 kept=1 evid=0/2 146s | 'There is no mention of a vintage diamond necklace or an anti'
+[90/266] 27016adc hist=594 kept=1 evid=0/2 148s | 'The conversation history provided does not mention anything '
+[91/266] 720133ac hist=567 kept=1 evid=0/2 150s | "There is no information about Lola's vet visit or flea medic"
+[92/266] 77eafa52 hist=594 kept=1 evid=0/2 151s | 'There is no information about a trip or an initial quote in '
+[93/266] 8979f9ec hist=594 kept=1 evid=0/2 153s | "There's no information about lunch meals, chicken fajitas, o"
+[94/266] 0100672e hist=578 kept=1 evid=0/2 155s | 'There is no information about spending on coffee mugs in our'
+[95/266] a96c20ee hist=594 kept=1 evid=0/2 157s | 'There is no information about you presenting a poster on you'
+[96/266] 92a0aa75 hist=594 kept=1 evid=0/2 158s | "This conversation just started, and we haven't discussed you"
+[97/266] 3fe836c9 hist=594 kept=1 evid=0/2 160s | 'There is no information about a house sale in our conversati'
+[98/266] 1c549ce4 hist=594 kept=1 evid=0/2 161s | 'There is no information about a car cover or detailing spray'
+[99/266] 6c49646a hist=594 kept=1 evid=0/2 163s | 'There is no information about road trips in our conversation'
+[100/266] 1192316e hist=594 kept=1 evid=0/2 165s | 'There is no information in the chat history about your daily'
+[101/266] 0ea62687 hist=594 kept=1 evid=0/2 167s | "There is no information about your car's mileage in our conv"
+[102/266] 67e0d0f2 hist=594 kept=1 evid=0/2 168s | 'There is no information about online courses in our chat his'
+[103/266] bb7c3b45 hist=594 kept=1 evid=0/2 169s | 'There is no mention of Jimmy Choo heels or any savings in ou'
+[104/266] ba358f49 hist=594 kept=1 evid=0/2 171s | "There's no information about your age, Rachel's age, or any "
+[105/266] 61f8c8f8 hist=594 kept=1 evid=0/2 172s | 'There is no information about your 5K run times in our conve'
+[106/266] 60159905 hist=594 kept=1 evid=0/2 174s | 'There is no information in our chat history about you attend'
+[107/266] ef9cf60a hist=594 kept=1 evid=0/2 175s | 'There is no information about spending on gifts for your sis'
+[108/266] 73d42213 hist=594 kept=1 evid=0/2 176s | 'There is no information about you reaching a clinic on Monda'
+[109/266] bc149d6b hist=594 kept=1 evid=0/2 178s | 'There is no information about purchasing feed in our chat hi'
+[110/266] 099778bb hist=594 kept=1 evid=0/2 180s | 'There is no information in the chat history about the percen'
+[111/266] 09ba9854 hist=594 kept=1 evid=0/2 182s | "I don't have any information about your travel plans or the "
+[112/266] d6062bb9 hist=594 kept=1 evid=0/2 185s | "I don't have any information about your YouTube or TikTok vi"
+[113/266] 157a136e hist=594 kept=1 evid=0/2 186s | "There's no information about your age or your grandma's age "
+[114/266] c18a7dc8 hist=594 kept=1 evid=0/2 188s | 'There is no information in the chat history about your age o'
+[115/266] a3332713 hist=594 kept=1 evid=0/2 189s | 'There is no information in the chat history about spending o'
+[116/266] 55241a1f hist=594 kept=1 evid=0/2 191s | 'There is no information about your Facebook Live session or '
+[117/266] a08a253f hist=594 kept=1 evid=0/2 192s | 'There is no information in the chat history about attending '
+[118/266] f0e564bc hist=594 kept=1 evid=0/2 194s | 'There is no information about a designer handbag or high-end'
+[119/266] 078150f1 hist=594 kept=1 evid=0/2 196s | 'There is no information about a charity cycling event in our'
+[120/266] 8cf4d046 hist=594 kept=1 evid=0/2 198s | 'There is no information about your undergraduate and graduat'
+[121/266] a346bb18 hist=594 kept=1 evid=0/2 200s | 'There is no information about a marathon in our conversation'
+[122/266] 37f165cf hist=594 kept=1 evid=0/2 201s | 'There is no information about the page count of the two nove'
+[123/266] 8e91e7d9 hist=594 kept=1 evid=0/2 203s | "You didn't mention having any siblings in our conversation. "
+[124/266] 87f22b4a hist=594 kept=1 evid=0/2 205s | "There's no mention of selling eggs in our previous conversat"
+[125/266] e56a43b9 hist=594 kept=1 evid=0/2 206s | 'There is no information about FreshMart or any purchase in o'
+[126/266] efc3f7c2 hist=594 kept=2 evid=0/2 208s | "There's no information about your wake-up times in our chat "
+[127/266] 21d02d0d hist=594 kept=2 evid=0/2 210s | 'There is no information in the chat history about fun runs o'
+[128/266] 2311e44b_abs hist=594 kept=1 evid=1/2 212s | 'This information is not available in the provided chat histo'
+[129/266] 6456829e_abs hist=594 kept=1 evid=0/2 213s | 'There is no information about planting tomatoes and chili pe'
+[130/266] e5ba910e_abs hist=594 kept=1 evid=0/2 215s | 'There is no information in the chat history about purchasing'
+[131/266] a96c20ee_abs hist=594 kept=1 evid=0/2 217s | 'There is no information in the chat history about you presen'
+[132/266] ba358f49_abs hist=594 kept=1 evid=0/2 219s | 'There is no information about Rachel or your marriage plans '
+[133/266] 09ba9854_abs hist=594 kept=1 evid=0/2 221s | "There's no information in our chat history about bus or taxi"
+[134/266] gpt4_59149c77 hist=594 kept=1 evid=0/2 223s | 'There is no information in the chat history about your visit'
+[135/266] gpt4_f49edff3 hist=594 kept=1 evid=0/3 226s | 'There is no information in the chat history about the events'
+[136/266] 71017276 hist=587 kept=1 evid=0/1 228s | 'There is no information in the chat history about meeting up'
+[137/266] b46e15ed hist=594 kept=1 evid=1/4 230s | 'There is no information in the chat history about you partic'
+[138/266] gpt4_fa19884c hist=594 kept=1 evid=0/2 232s | 'There is no information in the chat history about the day yo'
+[139/266] 0bc8ad92 hist=594 kept=1 evid=0/3 234s | 'There is no information in the chat history about visiting a'
+[140/266] af082822 hist=594 kept=1 evid=0/1 235s | 'There is no information in the chat history about attending '
+[141/266] gpt4_4929293a hist=594 kept=1 evid=0/2 237s | "There is no information about your cousin's wedding or Micha"
+[142/266] gpt4_b5700ca9 hist=594 kept=1 evid=0/1 239s | 'There is no information in our chat history about attending '
+[143/266] 9a707b81 hist=594 kept=1 evid=0/2 240s | 'There is no information in the chat history about attending '
+[144/266] gpt4_1d4ab0c9 hist=589 kept=1 evid=0/2 242s | 'There is no information in the chat history about watering a'
+[145/266] gpt4_e072b769 hist=594 kept=1 evid=0/1 244s | 'There is no information in our conversation history about yo'
+[146/266] 0db4c65d hist=594 kept=1 evid=0/2 246s | 'There is no information in the chat history about you readin'
+[147/266] gpt4_1d80365e hist=594 kept=1 evid=0/2 247s | 'There is no information about a solo camping trip to Yosemit'
+[148/266] gpt4_7f6b06db hist=563 kept=1 evid=0/3 249s | 'There is no information about the trips you took in the past'
+[149/266] gpt4_6dc9b45b hist=594 kept=1 evid=0/1 251s | 'There is no information in the chat history about attending '
+[150/266] gpt4_8279ba02 hist=594 kept=1 evid=0/1 252s | 'There is no information in the chat history about buying a s'
+[151/266] gpt4_18c2b244 hist=594 kept=1 evid=0/3 254s | 'There is no information in the chat history about the events'
+[152/266] gpt4_a1b77f9c hist=594 kept=2 evid=0/6 257s | "There is no information in the chat history about reading 'T"
+[153/266] gpt4_1916e0ea hist=594 kept=1 evid=0/2 258s | 'There is no information in the chat history about cancelling'
+[154/266] gpt4_7a0daae1 hist=588 kept=1 evid=0/2 260s | "There's no information in our chat history about you buying "
+[155/266] gpt4_468eb063 hist=594 kept=1 evid=0/1 261s | 'There is no information about meeting Emma in the provided c'
+[156/266] gpt4_7abb270c hist=594 kept=1 evid=0/6 262s | 'There is no information about visiting museums in the provid'
+[157/266] gpt4_1e4a8aeb hist=594 kept=1 evid=0/2 264s | 'There is no information in the chat history about attending '
+[158/266] gpt4_4fc4f797 hist=594 kept=2 evid=0/2 266s | 'There is no information in the chat history about receiving '
+[159/266] 4dfccbf7 hist=594 kept=1 evid=0/2 268s | 'There is no information in the chat history about you taking'
+[160/266] gpt4_61e13b3c hist=594 kept=1 evid=0/2 270s | 'There is no information in the chat history about selling ho'
+[161/266] gpt4_45189cb4 hist=594 kept=1 evid=0/3 271s | 'There is no information about the sports events you watched '
+[162/266] 2ebe6c90 hist=594 kept=1 evid=0/2 273s | 'There is no information in the chat history about you readin'
+[163/266] gpt4_e061b84f hist=594 kept=1 evid=0/3 274s | 'There is no information in the chat history about the sports'
+[164/266] 370a8ff4 hist=594 kept=1 evid=0/2 276s | 'There is no information in the chat history about you recove'
+[165/266] gpt4_d6585ce8 hist=594 kept=1 evid=1/5 277s | 'There is no information about the concerts or musical events'
+[166/266] gpt4_4ef30696 hist=594 kept=1 evid=0/2 280s | 'There is no information in the chat history about you readin'
+[167/266] gpt4_ec93e27f hist=594 kept=1 evid=0/2 281s | 'There is no information about your mode of transport in our '
+[168/266] 6e984301 hist=594 kept=1 evid=0/2 283s | 'There is no information in the chat history about you taking'
+[169/266] 8077ef71 hist=594 kept=1 evid=0/1 284s | 'There is no mention of attending a networking event in the p'
+[170/266] gpt4_f420262c hist=594 kept=1 evid=0/5 286s | 'There is no information about airlines you flew with in our '
+[171/266] gpt4_8e165409 hist=594 kept=1 evid=0/2 288s | 'There is no information in the chat history about repotting '
+[172/266] gpt4_74aed68e hist=594 kept=1 evid=0/2 290s | 'There is no information in the chat history about replacing '
+[173/266] bcbe585f hist=594 kept=1 evid=0/1 291s | 'There is no information in the chat history about attending '
+[174/266] gpt4_21adecb5 hist=594 kept=1 evid=0/2 293s | 'There is no information in the chat history about your under'
+[175/266] 5e1b23de hist=594 kept=1 evid=0/1 294s | 'There is no information in the chat history about attending '
+[176/266] gpt4_98f46fc6 hist=594 kept=1 evid=0/2 296s | 'There is no information in the chat history about participat'
+[177/266] gpt4_af6db32f hist=594 kept=1 evid=0/1 299s | 'The Super Bowl typically takes place on the first Sunday in '
+[178/266] eac54adc hist=581 kept=1 evid=0/2 300s | 'There is no information in the chat history about you launch'
+[179/266] gpt4_7ddcf75f hist=594 kept=1 evid=0/1 302s | 'There is no information in the chat history about a whitewat'
+[180/266] gpt4_a2d1d1f6 hist=594 kept=1 evid=0/1 303s | 'There is no information in the chat history about harvesting'
+[181/266] gpt4_85da3956 hist=594 kept=1 evid=0/1 305s | 'There is no information in the chat history about attending '
+[182/266] gpt4_b0863698 hist=594 kept=1 evid=0/1 306s | 'There is no information in the chat history about participat'
+[183/266] gpt4_68e94287 hist=583 kept=1 evid=0/2 308s | 'There is no information in the chat history about your parti'
+[184/266] gpt4_e414231e hist=572 kept=1 evid=0/2 310s | 'There is no information in the chat history about fixing a m'
+[185/266] gpt4_7ca326fa hist=594 kept=1 evid=0/3 312s | 'There is no information in the chat history about Emma, Rach'
+[186/266] gpt4_7bc6cf22 hist=566 kept=1 evid=0/1 314s | "You didn't mention reading the March 15th issue of The New Y"
+[187/266] 2ebe6c92 hist=594 kept=1 evid=0/2 315s | "There's no information about a book you finished. The conver"
+[188/266] gpt4_e061b84g hist=594 kept=2 evid=0/3 317s | 'There is no mention of a sports event in the provided chat h'
+[189/266] 71017277 hist=594 kept=1 evid=0/1 318s | "There's no information in the chat history about receiving a"
+[190/266] b46e15ee hist=581 kept=1 evid=0/4 320s | 'There is no information about a charity event in our previou'
+[191/266] gpt4_d6585ce9 hist=594 kept=1 evid=0/5 322s | 'There is no information in the chat history about attending '
+[192/266] gpt4_1e4a8aec hist=593 kept=2 evid=0/2 323s | "You didn't discuss any gardening-related activity in our pre"
+[193/266] gpt4_f420262d hist=594 kept=1 evid=0/5 325s | 'There is no information about your airline or travel on Vale'
+[194/266] gpt4_59149c78 hist=594 kept=1 evid=0/2 326s | 'There is no mention of an art-related event in our previous '
+[195/266] gpt4_e414231f hist=594 kept=1 evid=0/2 328s | 'There is no information in the chat history about fixing or '
+[196/266] gpt4_4929293b hist=594 kept=2 evid=0/2 330s | "You didn't participate in a life event of a relative a week "
+[197/266] gpt4_468eb064 hist=593 kept=3 evid=0/1 332s | 'There is no information in the chat history about you meetin'
+[198/266] gpt4_fa19884d hist=594 kept=1 evid=0/2 334s | 'There is no information about an artist you started listenin'
+[199/266] 9a707b82 hist=594 kept=1 evid=0/2 336s | "You didn't mention cooking anything for your friend in our p"
+[200/266] eac54add hist=565 kept=1 evid=0/2 338s | "You didn't mention a business milestone four weeks ago. You "
+[201/266] 4dfccbf8 hist=594 kept=1 evid=0/2 340s | 'There is no information in the chat history about you doing '
+[202/266] 0bc8ad93 hist=594 kept=1 evid=0/3 342s | 'There is no mention of visiting a museum in our chat history'
+[203/266] 6e984302 hist=580 kept=1 evid=0/2 344s | "You didn't mention an investment for a competition four week"
+[204/266] gpt4_8279ba03 hist=594 kept=1 evid=0/1 346s | "You didn't mention buying a kitchen appliance in our previou"
+[205/266] gpt4_b5700ca0 hist=594 kept=1 evid=0/1 347s | 'There is no information in the chat history about attending '
+[206/266] gpt4_68e94288 hist=594 kept=1 evid=0/2 350s | 'You had a conversation with me about the borders between Ger'
+[207/266] gpt4_2655b836 hist=594 kept=1 evid=0/3 352s | 'There is no information about your car or its service in our'
+[208/266] gpt4_2487a7cb hist=594 kept=1 evid=0/2 353s | 'There is no information in the chat history about attending '
+[209/266] gpt4_76048e76 hist=586 kept=1 evid=0/2 355s | "I don't have any information about you taking care of a bike"
+[210/266] gpt4_2312f94c hist=594 kept=1 evid=0/2 357s | 'There is no information in the chat history about you owning'
+[211/266] 0bb5a684 hist=594 kept=1 evid=0/2 359s | 'There is no information in the chat history about attending '
+[212/266] 08f4fc43 hist=573 kept=1 evid=0/2 361s | 'There is no information in the chat history about a Sunday m'
+[213/266] 2c63a862 hist=594 kept=1 evid=0/2 362s | 'There is no information in the chat history about you workin'
+[214/266] gpt4_385a5000 hist=594 kept=1 evid=0/2 364s | 'There is no information about seeds, tomatoes, or marigolds '
+[215/266] 2a1811e2 hist=594 kept=1 evid=0/2 366s | 'There is no information provided about the Hindu festival of'
+[216/266] bbf86515 hist=594 kept=1 evid=0/2 367s | "There is no information in the chat history about 'Rack Fest"
+[217/266] gpt4_5dcc0aab hist=594 kept=1 evid=0/5 369s | 'There is no information in our chat history about cleaning s'
+[218/266] gpt4_0b2f1d21 hist=577 kept=1 evid=0/2 371s | 'There is no information about a coffee maker or a stand mixe'
+[219/266] f0853d11 hist=583 kept=1 evid=0/2 372s | "There is no information about the 'Walk for Hunger' event or"
+[220/266] gpt4_6ed717ea hist=579 kept=1 evid=0/2 374s | 'There is no information in the chat history about purchasing'
+[221/266] gpt4_70e84552 hist=594 kept=1 evid=0/2 376s | 'There is no information in our chat history about fixing a f'
+[222/266] a3838d2b hist=594 kept=1 evid=0/6 377s | 'There is no information in the chat history about participat'
+[223/266] gpt4_93159ced hist=594 kept=1 evid=0/2 379s | 'There is no information in the chat history about your work '
+[224/266] gpt4_2d58bcd6 hist=580 kept=1 evid=0/2 381s | "There's no information about the books you've read in our co"
+[225/266] gpt4_65aabe59 hist=573 kept=1 evid=0/2 383s | 'There is no information in the chat history about setting up'
+[226/266] 982b5123 hist=594 kept=2 evid=0/2 384s | 'There is no information about booking an Airbnb in San Franc'
+[227/266] b9cfe692 hist=594 kept=1 evid=0/3 386s | "There is no information about you reading 'The Seven Husband"
+[228/266] gpt4_4edbafa2 hist=594 kept=1 evid=1/2 388s | 'There is no information about attending a BBQ event in June.'
+[229/266] c8090214 hist=594 kept=1 evid=0/2 389s | 'There is no information in the chat history about attending '
+[230/266] gpt4_483dd43c hist=594 kept=1 evid=0/2 391s | 'There is no information in our chat history about you watchi'
+[231/266] e4e14d04 hist=594 kept=1 evid=0/2 393s | 'There is no information in the chat history about you being '
+[232/266] c9f37c46 hist=594 kept=1 evid=0/2 394s | 'There is no information in the chat history about watching s'
+[233/266] gpt4_2c50253f hist=594 kept=1 evid=0/2 396s | 'There is no information about your wake-up time on Tuesdays '
+[234/266] dcfa8644 hist=594 kept=1 evid=0/2 398s | 'There is no information in the chat history about buying Adi'
+[235/266] gpt4_b4a80587 hist=594 kept=1 evid=0/2 400s | 'There is no information about a road trip to the coast or th'
+[236/266] gpt4_9a159967 hist=594 kept=1 evid=0/3 402s | 'There is no information about your flight history in our cha'
+[237/266] cc6d1ec1 hist=594 kept=1 evid=1/2 404s | 'There is no information in the chat history about attending '
+[238/266] gpt4_8c8961ae hist=594 kept=1 evid=0/2 405s | "There's no information about your trips in our conversation "
+[239/266] gpt4_d9af6064 hist=594 kept=1 evid=0/2 407s | 'There is no information in the chat history about setting up'
+[240/266] gpt4_7de946e7 hist=566 kept=1 evid=0/2 409s | 'There is no information about any health issues in our chat '
+[241/266] d01c6aa8 hist=594 kept=1 evid=0/2 410s | 'There is no information about you moving to the United State'
+[242/266] 993da5e2 hist=594 kept=1 evid=0/2 412s | 'There is no information about a new area rug or rearranging '
+[243/266] a3045048 hist=568 kept=1 evid=0/2 414s | 'There is no information in the chat history about your frien'
+[244/266] gpt4_d31cdae3 hist=594 kept=2 evid=0/2 415s | 'There is no information about the narrator taking any trips '
+[245/266] gpt4_cd90e484 hist=594 kept=1 evid=0/2 417s | 'There is no information about binoculars or American goldfin'
+[246/266] gpt4_88806d6e hist=594 kept=1 evid=0/2 419s | 'There is no information in the chat history about meeting Ma'
+[247/266] gpt4_4cd9eba1 hist=594 kept=1 evid=0/2 420s | 'There is no information in the chat history about being acce'
+[248/266] gpt4_93f6379c hist=594 kept=1 evid=0/3 422s | 'There is no information in the chat history about you joinin'
+[249/266] b29f3365 hist=594 kept=1 evid=0/2 424s | 'There is no information in the chat history about you taking'
+[250/266] gpt4_2f56ae70 hist=594 kept=2 evid=0/3 425s | 'There is no information in the chat history about which stre'
+[251/266] 6613b389 hist=594 kept=1 evid=0/3 427s | 'There is no information about Rachel or an anniversary in th'
+[252/266] gpt4_78cf46a3 hist=594 kept=1 evid=0/2 429s | 'There is no information about the narrator losing their phon'
+[253/266] gpt4_0a05b494 hist=594 kept=1 evid=0/2 430s | 'There is no information in the chat history about meeting a '
+[254/266] gpt4_1a1dc16d hist=565 kept=1 evid=0/2 432s | 'There is no information about a meeting with Rachel or a pri'
+[255/266] gpt4_2f584639 hist=594 kept=1 evid=0/2 434s | 'There is no information about buying gifts in our chat histo'
+[256/266] gpt4_213fd887 hist=594 kept=1 evid=0/2 436s | 'There is no information in the chat history about participat'
+[257/266] gpt4_5438fa52 hist=594 kept=1 evid=0/2 438s | 'There is no information in the chat history about your atten'
+[258/266] gpt4_c27434e8 hist=594 kept=1 evid=0/2 440s | 'There is no mention of a Ferrari model or a Japanese Zero fi'
+[259/266] gpt4_fe651585 hist=594 kept=1 evid=0/2 441s | 'There is no information about Rachel or Alex in the provided'
+[260/266] 8c18457d hist=594 kept=1 evid=0/2 443s | 'There is no information in the chat history about buying a g'
+[261/266] gpt4_70e84552_abs hist=594 kept=1 evid=1/2 445s | "You didn't mention either task in our previous conversation."
+[262/266] gpt4_93159ced_abs hist=593 kept=1 evid=0/2 447s | 'There is no information in the chat history about your work '
+[263/266] 982b5123_abs hist=594 kept=2 evid=0/2 448s | 'There is no information in the chat history about booking an'
+[264/266] c8090214_abs hist=594 kept=1 evid=0/2 450s | 'There is no information in the chat history about attending '
+[265/266] gpt4_c27434e8_abs hist=594 kept=1 evid=0/2 452s | 'There is no information about you starting any model project'
+[266/266] gpt4_fe651585_abs hist=594 kept=1 evid=0/2 453s | 'There is no information about Tom or Alex in our conversatio'
+done: 266 rows total
+[2026-09-08 10:18:16] window 594 official judge
+[paperjudge/recent594] 250/266 (60s)
+--- OFFICIAL LongMemEval protocol, tag=recent594 (judge prompts verbatim) ---
+multi-session           : 11/133 = 0.083
+temporal-reasoning      : 7/133 = 0.053
+TOTAL                   : 18/266 = 0.068
+saved: results_recent594_paperjudged.json
+[2026-09-08 10:19:23] running window 32768
+window 32768: target 266, existing 0
+[1/266] 0a995998 hist=32766 kept=15 evid=1/3 31s | 'You need to pick up a new pair of boots that you exchanged o'
+[2/266] 6d550036 hist=32767 kept=14 evid=1/4 62s | 'You are currently leading a team of five engineers, and you '
+[3/266] gpt4_59c863d7 hist=32768 kept=15 evid=3/4 95s | "You've mentioned working on or buying the following model ki"
+[4/266] b5ef892d hist=32768 kept=16 evid=1/3 127s | 'You spent at least 3 days on a camping trip in Big Sur in ea'
+[5/266] e831120c hist=32768 kept=17 evid=0/2 160s | "You didn't mention watching all the Marvel Cinematic Univers"
+[6/266] 3a704032 hist=32738 kept=13 evid=0/3 191s | "You didn't mention acquiring any plants in the last month."
+[7/266] gpt4_d84a3211 hist=32768 kept=15 evid=1/4 225s | 'You mentioned earlier that you spent $40 on a new set of bik'
+[8/266] aae3761f hist=32765 kept=16 evid=0/3 257s | "You didn't mention driving to any road trip destinations or "
+[9/266] gpt4_f2262a51 hist=32737 kept=16 evid=0/3 289s | "You didn't mention visiting any doctors in our conversation."
+[10/266] dd2973ad hist=32768 kept=16 evid=1/2 321s | "You didn't mention the specific time you went to bed on the "
+[11/266] c4a1ceb8 hist=32768 kept=14 evid=1/4 355s | "You've mentioned using lime juice in your Cucumber Gimlet re"
+[12/266] gpt4_a56e767c hist=32768 kept=16 evid=1/3 386s | 'You attended AFI Fest.'
+[13/266] 6cb6f249 hist=32768 kept=12 evid=0/2 417s | "You didn't mention taking any social media breaks."
+[14/266] 46a3abf7 hist=32768 kept=14 evid=1/3 448s | 'You currently have 2 tanks, including the one you set up for'
+[15/266] 36b9f61e hist=32759 kept=13 evid=0/3 480s | "You didn't provide any information about your spending on lu"
+[16/266] 28dc39ac hist=32768 kept=11 evid=1/5 512s | "You haven't mentioned playing games at all in our conversati"
+[17/266] gpt4_2f8be40d hist=32768 kept=15 evid=1/3 543s | 'You have attended at least one wedding this year, which was '
+[18/266] 2e6d26dc hist=32768 kept=17 evid=0/4 575s | "I don't have any information about the number of babies born"
+[19/266] gpt4_15e38248 hist=32768 kept=15 evid=2/4 608s | 'You assembled 1 bookshelf for your home office about 2 month'
+[20/266] 88432d0a hist=32768 kept=14 evid=2/4 640s | 'You baked something at least twice in the past two weeks. Yo'
+[21/266] 80ec1f4f hist=32768 kept=13 evid=1/3 672s | "You didn't mention visiting any museums or galleries in Febr"
+[22/266] d23cf73b hist=32768 kept=16 evid=2/4 703s | "You've learned to cook or tried out Korean and vegan cuisine"
+[23/266] gpt4_7fce9456 hist=32768 kept=13 evid=2/5 735s | "You didn't mention viewing any specific properties before ma"
+[24/266] d682f1a2 hist=32768 kept=15 evid=1/3 766s | "You've mentioned using one food delivery service, called Fre"
+[25/266] 7024f17c hist=32768 kept=13 evid=0/3 798s | "I don't have any information about your jogging and yoga act"
+[26/266] gpt4_5501fe77 hist=32768 kept=17 evid=3/3 829s | 'TikTok'
+[27/266] gpt4_2ba83207 hist=32768 kept=16 evid=2/4 860s | 'You spent $60 at Publix in the past month.'
+[28/266] 2318644b hist=32768 kept=12 evid=0/2 892s | "You didn't provide any information about your spending on ac"
+[29/266] 2ce6a0f2 hist=32768 kept=14 evid=2/4 923s | 'You attended at least 2 art-related events in the past month'
+[30/266] gpt4_d12ceb0e hist=32768 kept=16 evid=0/3 961s | 'To calculate the average age, I would need to know the indiv'
+[31/266] 00ca467f hist=32755 kept=13 evid=1/3 993s | "You went to at least two doctor's appointments in March, one"
+[32/266] b3c15d39 hist=32768 kept=18 evid=0/2 1025s | "I'm not aware of any information about you ordering a new re"
+[33/266] gpt4_31ff4165 hist=32768 kept=12 evid=2/5 1057s | 'You use 4 health-related devices in a day: a health journal,'
+[34/266] eeda8a6d hist=32768 kept=17 evid=1/2 1089s | "I don't have any information about your aquariums or the num"
+[35/266] 2788b940 hist=32768 kept=13 evid=3/4 1120s | 'You attend at least two fitness classes in a typical week: H'
+[36/266] 60bf93ed hist=32768 kept=14 evid=0/2 1152s | "I don't have any information about your laptop backpack purc"
+[37/266] 9d25d4e0 hist=32768 kept=14 evid=2/3 1183s | "You didn't mention acquiring any new pieces of jewelry in th"
+[38/266] 129d1232 hist=32768 kept=13 evid=2/3 1217s | 'You raised a total of $5,000 through the Bike-a-Thon for Can'
+[39/266] 60472f9c hist=32768 kept=15 evid=1/3 1249s | 'You have been working on 3 projects simultaneously, excludin'
+[40/266] gpt4_194be4b3 hist=32768 kept=15 evid=1/5 1280s | 'You currently own a Korg B1 digital piano and are considerin'
+[41/266] a9f6b44c hist=32768 kept=15 evid=1/3 1312s | 'You mentioned that you got your road bike serviced at Pedal '
+[42/266] d851d5ba hist=32738 kept=15 evid=2/4 1342s | 'You raised $2,000 for a local animal shelter on January 20th'
+[43/266] 5a7937c8 hist=32768 kept=15 evid=1/3 1375s | 'You spent at least 2 days participating in faith-related act'
+[44/266] gpt4_ab202e7f hist=32768 kept=14 evid=2/5 1407s | 'You replaced your old coffee maker with a new espresso machi'
+[45/266] gpt4_e05b82a6 hist=32768 kept=13 evid=2/4 1439s | 'You rode the Mako, Kraken, and Manta rollercoasters all in o'
+[46/266] gpt4_731e37d7 hist=32768 kept=14 evid=0/4 1471s | "You didn't mention attending any workshops or spending money"
+[47/266] edced276 hist=32768 kept=14 evid=0/2 1503s | "You didn't mention traveling in Hawaii or New York City in o"
+[48/266] 10d9b85a hist=32768 kept=15 evid=2/2 1535s | 'You spent at least 2 days attending workshops, lectures, and'
+[49/266] e3038f8c hist=32768 kept=15 evid=0/4 1567s | "You didn't mention any rare items in our conversation, so I "
+[50/266] 2b8f3739 hist=32768 kept=14 evid=2/3 1600s | 'You earned a total of $120 from selling 12 bunches of fresh '
+[51/266] 1a8a66a6 hist=32768 kept=20 evid=1/4 1631s | 'You have a subscription to The New Yorker magazine, which yo'
+[52/266] c2ac3c61 hist=32768 kept=19 evid=1/2 1662s | "You've completed 2 online courses on edX so far."
+[53/266] bf659f65 hist=32768 kept=18 evid=1/3 1693s | "You've purchased or downloaded at least one music album or E"
+[54/266] gpt4_372c3eed hist=32755 kept=15 evid=1/3 1725s | "I don't have enough information to calculate the total numbe"
+[55/266] gpt4_2f91af09 hist=32768 kept=17 evid=2/3 1756s | "You've completed a total of 9 pieces of writing since you st"
+[56/266] 81507db6 hist=32768 kept=16 evid=0/5 1788s | "You haven't mentioned attending any graduation ceremonies in"
+[57/266] 88432d0a_abs hist=32768 kept=14 evid=2/4 1820s | "You didn't mention baking egg tarts in our conversation, so "
+[58/266] 80ec1f4f_abs hist=32748 kept=14 evid=1/3 1851s | "You didn't mention visiting any museums or galleries in Dece"
+[59/266] eeda8a6d_abs hist=32768 kept=15 evid=0/2 1883s | "I don't have any information about your 30-gallon tank or th"
+[60/266] 60bf93ed_abs hist=32768 kept=17 evid=1/2 1915s | "I'm not aware of any information about you buying an iPad ca"
+[61/266] edced276_abs hist=32768 kept=17 evid=0/2 1948s | "You didn't mention traveling in Hawaii and Seattle in our co"
+[62/266] gpt4_372c3eed_abs hist=32755 kept=13 evid=0/3 1980s | "Unfortunately, I don't have enough information to provide an"
+[63/266] d3ab962e hist=32768 kept=16 evid=1/2 2010s | '5 miles + (no other hike distance mentioned) = 5 miles'
+[64/266] 2311e44b hist=32768 kept=18 evid=2/2 2041s | "You have 190 pages left to read in 'The Nightingale'."
+[65/266] cc06de0d hist=32768 kept=14 evid=1/2 2073s | "You didn't mention the cost of the taxi ride or the train fa"
+[66/266] a11281a2 hist=32768 kept=14 evid=1/2 2105s | 'You started the year with 250 followers on Instagram, but th'
+[67/266] 4f54b7c9 hist=32768 kept=15 evid=1/2 2137s | 'You inherited or acquired 3 antique items from your family m'
+[68/266] 85fa3a3f hist=32768 kept=15 evid=0/2 2172s | 'To calculate the total cost, I would need to know the indivi'
+[69/266] 9aaed6a3 hist=32768 kept=17 evid=0/2 2204s | "You didn't earn any cashback at SaveMart last Thursday becau"
+[70/266] 1f2b8d4f hist=32768 kept=17 evid=0/2 2236s | "I don't have any information about your luxury boots or the "
+[71/266] e6041065 hist=32768 kept=17 evid=1/2 2268s | "Unfortunately, I don't have any information about your last "
+[72/266] 51c32626 hist=32768 kept=16 evid=1/2 2299s | "You didn't mention submitting a research paper on sentiment "
+[73/266] d905b33f hist=32768 kept=15 evid=1/2 2330s | 'You got a 30% discount on the book from your favorite author'
+[74/266] 7405e8b1 hist=32768 kept=16 evid=0/2 2362s | 'There is no information provided about your orders from Hell'
+[75/266] f35224e0 hist=32768 kept=18 evid=1/2 2394s | "You've listened to 15 episodes of 'How I Built This'. You di"
+[76/266] 6456829e hist=32768 kept=17 evid=2/2 2425s | 'You initially planted 5 tomato plants and 3 cucumber plants.'
+[77/266] a4996e51 hist=32768 kept=15 evid=1/2 2455s | 'You work up to 50 hours per week during peak campaign season'
+[78/266] 3c1045c8 hist=32768 kept=16 evid=0/2 2488s | 'To determine how much older you are than the average age of '
+[79/266] 60036106 hist=32768 kept=13 evid=2/2 2519s | 'The total number of people reached by your Facebook ad campa'
+[80/266] 681a1674 hist=32768 kept=15 evid=1/2 2550s | "You didn't mention re-watching any Marvel movies in our conv"
+[81/266] e25c3b8d hist=32768 kept=13 evid=0/2 2583s | "I don't have any information about your shopping trip to TK "
+[82/266] 4adc0475 hist=32768 kept=16 evid=1/2 2614s | 'You have 2 assists in the recreational indoor soccer league.'
+[83/266] 4bc144e2 hist=32749 kept=17 evid=1/2 2645s | 'You spent $50 on a parking ticket. There is no information a'
+[84/266] ef66a6e5 hist=32768 kept=13 evid=0/2 2677s | "You haven't mentioned playing any sports competitively in th"
+[85/266] 5025383b hist=32768 kept=14 evid=2/2 2708s | 'The two hobbies that led you to join online communities are '
+[86/266] a1cc6108 hist=32761 kept=15 evid=0/2 2739s | "I don't have enough information to answer that question. Thi"
+[87/266] 9ee3ecd6 hist=32768 kept=19 evid=1/2 2770s | 'You need 300 points to redeem a free skincare product at Sep'
+[88/266] 3fdac837 hist=32768 kept=15 evid=1/2 2802s | 'You spent 7 days in Japan (from April 15th to 22nd) and no d'
+[89/266] 91b15a6e hist=32768 kept=21 evid=1/2 2839s | 'Based on our previous conversation, the minimum amount you c'
+[90/266] 27016adc hist=32768 kept=15 evid=1/2 2874s | "To estimate the percentage of the countryside property's pri"
+[91/266] 720133ac hist=32738 kept=15 evid=1/2 2905s | "The total cost of Lola's vet visit is not mentioned in the c"
+[92/266] 77eafa52 hist=32768 kept=17 evid=1/2 2937s | 'There is no information provided about the initial quote or '
+[93/266] 8979f9ec hist=32768 kept=14 evid=1/2 2968s | 'You got 5 lunches from the lentil soup. The number of lunche'
+[94/266] 0100672e hist=32768 kept=16 evid=2/2 3000s | 'You spent $60 in total on 5 coffee mugs for your coworkers, '
+[95/266] a96c20ee hist=32767 kept=16 evid=0/2 3032s | "You didn't mention presenting a poster on your thesis resear"
+[96/266] 92a0aa75 hist=32768 kept=13 evid=2/2 3063s | "You've been working in your current role for 3 years and 9 m"
+[97/266] 3fe836c9 hist=32768 kept=16 evid=1/2 3095s | 'The pre-approval amount was $350,000, but the final sale pri'
+[98/266] 1c549ce4 hist=32768 kept=16 evid=1/2 3127s | "I don't have enough information to calculate the total cost "
+[99/266] 6c49646a hist=32753 kept=15 evid=1/2 3159s | "Unfortunately, I don't have enough information to calculate "
+[100/266] 1192316e hist=32768 kept=14 evid=0/2 3190s | "I don't have enough information to provide an answer."
+[101/266] 0ea62687 hist=32768 kept=13 evid=0/2 3222s | 'To determine how much more miles per gallon your car was get'
+[102/266] 67e0d0f2 hist=32768 kept=21 evid=1/2 3253s | "You've completed 12 online courses on Coursera."
+[103/266] bb7c3b45 hist=32768 kept=16 evid=1/2 3285s | "You didn't mention saving any amount on the Jimmy Choo heels"
+[104/266] ba358f49 hist=32768 kept=14 evid=1/2 3316s | "I'm not able to provide information about your age or your f"
+[105/266] 61f8c8f8 hist=32768 kept=16 evid=0/2 3348s | "You didn't mention your previous year's time or your current"
+[106/266] 60159905 hist=32768 kept=15 evid=0/2 3380s | "You haven't mentioned attending any dinner parties in the pa"
+[107/266] ef9cf60a hist=32768 kept=17 evid=1/2 3411s | "You spent $100 on a gift card to your sister's favorite spa,"
+[108/266] 73d42213 hist=32744 kept=15 evid=1/2 3442s | "You didn't mention the time you reached the clinic on Monday"
+[109/266] bc149d6b hist=32768 kept=15 evid=0/2 3474s | "I don't have any information about the weight of the new fee"
+[110/266] 099778bb hist=32768 kept=15 evid=1/2 3511s | 'To determine the percentage of leadership positions held by '
+[111/266] 09ba9854 hist=32768 kept=13 evid=0/2 3543s | "I don't have enough information to provide a specific answer"
+[112/266] d6062bb9 hist=32767 kept=15 evid=0/2 3575s | "I don't have the ability to access or view your personal You"
+[113/266] 157a136e hist=32756 kept=14 evid=2/2 3607s | 'To determine how many years older your grandma is than you, '
+[114/266] c18a7dc8 hist=32768 kept=14 evid=0/2 3639s | "I'm not able to provide a specific answer to that question a"
+[115/266] a3332713 hist=32768 kept=13 evid=2/2 3671s | "You spent $100 on a gift for your coworker's baby shower and"
+[116/266] 55241a1f hist=32767 kept=16 evid=0/2 3708s | "I don't have access to real-time data or specific informatio"
+[117/266] a08a253f hist=32768 kept=17 evid=1/2 3739s | 'You attend fitness classes 2 days a week, specifically Zumba'
+[118/266] f0e564bc hist=32768 kept=16 evid=1/2 3772s | "You didn't mention purchasing a designer handbag or high-end"
+[119/266] 078150f1 hist=32768 kept=13 evid=1/2 3804s | 'You raised $250 in the charity cycling event, but your initi'
+[120/266] 8cf4d046 hist=32768 kept=14 evid=1/2 3835s | 'Based on the information provided, your undergraduate GPA is'
+[121/266] a346bb18 hist=32768 kept=17 evid=0/2 3867s | "You didn't mention running a marathon or having a target tim"
+[122/266] 37f165cf hist=32768 kept=14 evid=1/2 3898s | 'The page count of the two novels you finished in January and'
+[123/266] 8e91e7d9 hist=32768 kept=15 evid=0/2 3930s | "I don't have any information about your siblings. This conve"
+[124/266] 87f22b4a hist=32768 kept=15 evid=1/2 3963s | "You've made $3 per dozen eggs, but I don't have real-time in"
+[125/266] e56a43b9 hist=32768 kept=17 evid=1/2 3994s | 'You will get a $5 discount on your next purchase at FreshMar'
+[126/266] efc3f7c2 hist=32768 kept=17 evid=1/2 4025s | 'You wake up 1 hour earlier on Fridays compared to other week'
+[127/266] 21d02d0d hist=32768 kept=16 evid=0/2 4057s | "You didn't mention anything about fun runs or work commitmen"
+[128/266] 2311e44b_abs hist=32768 kept=17 evid=1/2 4089s | 'You didn\'t mention how many pages you\'ve already read in "Sa'
+[129/266] 6456829e_abs hist=32768 kept=17 evid=1/2 4121s | "You didn't mention planting tomatoes and chili peppers in ou"
+[130/266] e5ba910e_abs hist=32768 kept=15 evid=1/2 4154s | "You didn't mention purchasing an iPad. You mentioned buying "
+[131/266] a96c20ee_abs hist=32754 kept=17 evid=1/2 4184s | 'You presented a poster for your undergrad course research pr'
+[132/266] ba358f49_abs hist=32768 kept=16 evid=1/2 4215s | "I don't have enough information to determine how old Rachel "
+[133/266] 09ba9854_abs hist=32768 kept=15 evid=0/2 4253s | 'To provide an accurate estimate of the cost savings, I would'
+[134/266] gpt4_59149c77 hist=32761 kept=13 evid=0/2 4284s | 'I am not able to provide information about your personal exp'
+[135/266] gpt4_f49edff3 hist=32767 kept=14 evid=2/3 4319s | 'Based on the conversation, the correct order of events from '
+[136/266] 71017276 hist=32768 kept=17 evid=1/1 4350s | 'You met up with your aunt and received the crystal chandelie'
+[137/266] b46e15ed hist=32768 kept=14 evid=2/4 4382s | 'You participated in the "Ride to Cure Cancer" charity bike r'
+[138/266] gpt4_fa19884c hist=32738 kept=14 evid=1/2 4415s | "Let's calculate the number of days between the two events.\n\n"
+[139/266] 0bc8ad92 hist=32768 kept=17 evid=0/3 4446s | 'Since the last visit to the museum was on 2023/02/18, and th'
+[140/266] af082822 hist=32768 kept=15 evid=0/1 4477s | 'You attended the friends and family sale at Nordstrom 2 week'
+[141/266] gpt4_4929293a hist=32768 kept=15 evid=0/2 4509s | "I don't have enough information to determine which event hap"
+[142/266] gpt4_b5700ca9 hist=32768 kept=17 evid=0/1 4542s | "You didn't mention attending a Maundy Thursday service at th"
+[143/266] 9a707b81 hist=32768 kept=16 evid=1/2 4573s | "You didn't attend a baking class at a local culinary school."
+[144/266] gpt4_1d4ab0c9 hist=32768 kept=14 evid=0/2 4605s | 'There is no information provided about the day you started w'
+[145/266] gpt4_e072b769 hist=32768 kept=14 evid=0/1 4637s | "You didn't mention when you started using the cashback app '"
+[146/266] 0db4c65d hist=32768 kept=14 evid=1/2 4671s | 'To answer this question, we need to refer to the conversatio'
+[147/266] gpt4_1d80365e hist=32767 kept=17 evid=0/2 4703s | "You didn't mention going on a solo camping trip to Yosemite "
+[148/266] gpt4_7f6b06db hist=32768 kept=18 evid=2/3 4736s | 'Based on our conversation, the order of the three trips you '
+[149/266] gpt4_6dc9b45b hist=32768 kept=17 evid=1/1 4767s | 'You attended the Seattle International Film Festival 4 month'
+[150/266] gpt4_8279ba02 hist=32752 kept=14 evid=0/1 4798s | "You didn't mention buying a smoker in our conversation. This"
+[151/266] gpt4_18c2b244 hist=32768 kept=13 evid=2/3 4832s | 'Based on the chat history, the order of the three events is:'
+[152/266] gpt4_a1b77f9c hist=32768 kept=14 evid=4/6 4864s | "You spent a total of 3 weeks on reading 'The Nightingale' an"
+[153/266] gpt4_1916e0ea hist=32759 kept=20 evid=0/2 4895s | 'I am not able to determine the number of days between the da'
+[154/266] gpt4_7a0daae1 hist=32757 kept=22 evid=0/2 4926s | "Unfortunately, I don't have enough information to answer tha"
+[155/266] gpt4_468eb063 hist=32768 kept=15 evid=0/1 4958s | "I'm not aware of any information about you meeting someone n"
+[156/266] gpt4_7abb270c hist=32750 kept=15 evid=1/6 4993s | 'Based on our conversation, the order of the museums you visi'
+[157/266] gpt4_1e4a8aeb hist=32768 kept=12 evid=1/2 5031s | 'To answer your question, I need to find the dates of the gar'
+[158/266] gpt4_4fc4f797 hist=32768 kept=15 evid=1/2 5066s | 'To calculate the number of days between the day you received'
+[159/266] 4dfccbf7 hist=32761 kept=18 evid=2/2 5098s | 'You started taking ukulele lessons on 2023/02/25 (Sat) and d'
+[160/266] gpt4_61e13b3c hist=32768 kept=14 evid=1/2 5134s | 'To calculate the number of weeks between the two events, we '
+[161/266] gpt4_45189cb4 hist=32768 kept=16 evid=0/3 5167s | 'You watched the following sports events in January: \n\n1. Aut'
+[162/266] 2ebe6c90 hist=32768 kept=15 evid=0/2 5198s | "I don't have any information about you reading 'The Nighting"
+[163/266] gpt4_e061b84f hist=32768 kept=15 evid=0/3 5230s | "I don't have any information about the sports events you par"
+[164/266] 370a8ff4 hist=32739 kept=15 evid=1/2 5260s | '6 weeks'
+[165/266] gpt4_d6585ce8 hist=32768 kept=16 evid=1/5 5294s | 'Based on our conversation, here is the order of the concerts'
+[166/266] gpt4_4ef30696 hist=32768 kept=14 evid=1/2 5330s | 'To answer your question, I need to find the dates when you f'
+[167/266] gpt4_ec93e27f hist=32768 kept=17 evid=0/2 5362s | "You didn't mention using either a bus or a train in our conv"
+[168/266] 6e984301 hist=32768 kept=15 evid=2/2 5392s | '6 weeks'
+[169/266] 8077ef71 hist=32768 kept=17 evid=0/1 5424s | "You didn't mention attending a networking event, so I don't "
+[170/266] gpt4_f420262c hist=32768 kept=14 evid=3/5 5456s | 'Based on our conversation, the order of airlines you flew wi'
+[171/266] gpt4_8e165409 hist=32768 kept=15 evid=0/2 5488s | 'There is no information provided about the day you repotted '
+[172/266] gpt4_74aed68e hist=32768 kept=16 evid=1/2 5526s | 'To determine the number of days between the day you replaced'
+[173/266] bcbe585f hist=32768 kept=15 evid=0/1 5559s | "You didn't mention attending a bird watching workshop at the"
+[174/266] gpt4_21adecb5 hist=32768 kept=15 evid=1/2 5590s | 'I am not able to complete this task as it falls outside of t'
+[175/266] 5e1b23de hist=32768 kept=16 evid=0/1 5620s | 'You attended the photography workshop 6 months ago.'
+[176/266] gpt4_98f46fc6 hist=32768 kept=15 evid=0/2 5653s | "You didn't mention participating in either a charity gala or"
+[177/266] gpt4_af6db32f hist=32768 kept=11 evid=1/1 5683s | 'You watched the Super Bowl 18 days ago.'
+[178/266] eac54adc hist=32768 kept=13 evid=0/2 5716s | 'I am not able to provide a specific answer to this question '
+[179/266] gpt4_7ddcf75f hist=32768 kept=16 evid=0/1 5748s | "You didn't mention going on a whitewater rafting trip in the"
+[180/266] gpt4_a2d1d1f6 hist=32768 kept=17 evid=0/1 5780s | "You didn't mention harvesting any herbs from an herb garden "
+[181/266] gpt4_85da3956 hist=32768 kept=14 evid=0/1 5812s | "You didn't mention attending the 'Summer Nights' festival at"
+[182/266] gpt4_b0863698 hist=32768 kept=14 evid=1/1 5843s | 'You participated in the 5K charity run 17 days ago.'
+[183/266] gpt4_68e94287 hist=32768 kept=15 evid=0/2 5875s | 'Your participation in the #PlankChallenge happened first, on'
+[184/266] gpt4_e414231e hist=32768 kept=15 evid=0/2 5908s | 'There is no information provided about the day you fixed you'
+[185/266] gpt4_7ca326fa hist=32746 kept=19 evid=1/3 5939s | 'There is no information provided about Emma, Rachel, and Ale'
+[186/266] gpt4_7bc6cf22 hist=32737 kept=14 evid=0/1 5969s | 'You read the March 15th issue of The New Yorker 17 days ago.'
+[187/266] 2ebe6c92 hist=32768 kept=15 evid=1/2 6000s | 'You finished "The Nightingale" by Kristin Hannah a week ago,'
+[188/266] gpt4_e061b84g hist=32768 kept=20 evid=1/3 6031s | 'You mentioned participating in a charity soccer tournament t'
+[189/266] 71017277 hist=32768 kept=17 evid=1/1 6063s | "You didn't mention receiving a piece of jewelry last Saturda"
+[190/266] b46e15ee hist=32768 kept=15 evid=1/4 6094s | 'You participated in the "Walk for Hunger" charity event a mo'
+[191/266] gpt4_d6585ce9 hist=32768 kept=16 evid=0/5 6126s | "You didn't mention going to a music event last Saturday. Thi"
+[192/266] gpt4_1e4a8aec hist=32768 kept=18 evid=1/2 6158s | "You didn't mention what gardening-related activity you did t"
+[193/266] gpt4_f420262d hist=32768 kept=14 evid=3/5 6190s | "You didn't mention flying with any airline on Valentine's Da"
+[194/266] gpt4_59149c78 hist=32768 kept=15 evid=0/2 6222s | "You didn't mention participating in an art-related event two"
+[195/266] gpt4_e414231f hist=32768 kept=13 evid=2/2 6254s | "You didn't mention fixing or servicing a bike the past weeke"
+[196/266] gpt4_4929293b hist=32768 kept=15 evid=1/2 6285s | "You attended your cousin Rachel's baby shower a week ago, bu"
+[197/266] gpt4_468eb064 hist=32768 kept=18 evid=0/1 6317s | "You didn't mention meeting with anyone during lunch last Tue"
+[198/266] gpt4_fa19884d hist=32768 kept=15 evid=0/2 6349s | "Unfortunately, I don't have any information about the artist"
+[199/266] 9a707b82 hist=32768 kept=16 evid=0/2 6381s | "You didn't mention cooking something for your friend a coupl"
+[200/266] eac54add hist=32768 kept=11 evid=1/2 6413s | 'You mentioned that you had just signed a contract with your '
+[201/266] 4dfccbf8 hist=32768 kept=15 evid=2/2 6444s | 'You had a ukulele lesson with Rachel on Wednesday, two month'
+[202/266] 0bc8ad93 hist=32768 kept=16 evid=0/3 6476s | "You didn't mention visiting a museum two months ago, and you"
+[203/266] 6e984302 hist=32749 kept=15 evid=1/2 6508s | "You didn't mention an investment for a competition four week"
+[204/266] gpt4_8279ba03 hist=32768 kept=13 evid=1/1 6540s | "You didn't mention buying a kitchen appliance 10 days ago. T"
+[205/266] gpt4_b5700ca0 hist=32768 kept=16 evid=0/1 6572s | "You didn't mention attending a religious activity last week."
+[206/266] gpt4_68e94288 hist=32768 kept=13 evid=2/2 6603s | 'You participated in the #PlankChallenge on social media 5 da'
+[207/266] gpt4_2655b836 hist=32768 kept=14 evid=0/3 6635s | "I don't have any information about your car or its service h"
+[208/266] gpt4_2487a7cb hist=32768 kept=14 evid=1/2 6666s | "You attended the 'Effective Time Management' workshop first,"
+[209/266] gpt4_76048e76 hist=32766 kept=14 evid=0/2 6698s | "I don't have any information about you taking care of a bike"
+[210/266] gpt4_2312f94c hist=32768 kept=15 evid=0/2 6730s | "You didn't mention getting either of those devices in our co"
+[211/266] 0bb5a684 hist=32768 kept=14 evid=0/2 6762s | 'There is no information provided about attending a workshop '
+[212/266] 08f4fc43 hist=32768 kept=15 evid=0/2 6794s | 'There is no information provided about the Sunday mass at St'
+[213/266] 2c63a862 hist=32768 kept=18 evid=1/2 6826s | 'You started working with Rachel on an unspecified date, and '
+[214/266] gpt4_385a5000 hist=32768 kept=19 evid=1/2 6857s | "The user didn't mention starting marigold seeds. They mentio"
+[215/266] 2a1811e2 hist=32768 kept=18 evid=0/2 6888s | "I don't have enough information to provide an answer."
+[216/266] bbf86515 hist=32768 kept=16 evid=1/2 6919s | 'There is no information provided about participating in the '
+[217/266] gpt4_5dcc0aab hist=32768 kept=16 evid=1/5 6950s | 'You cleaned your white Adidas sneakers last month.'
+[218/266] gpt4_0b2f1d21 hist=32768 kept=15 evid=1/2 6982s | 'The purchase of the coffee maker happened first, as it was b'
+[219/266] f0853d11 hist=32767 kept=13 evid=0/2 7013s | "There is no information provided about the 'Walk for Hunger'"
+[220/266] gpt4_6ed717ea hist=32768 kept=17 evid=0/2 7045s | "You didn't purchase either a dog bed for Max or training pad"
+[221/266] gpt4_70e84552 hist=32768 kept=17 evid=1/2 7076s | "You didn't mention trimming the goats' hooves. You mentioned"
+[222/266] a3838d2b hist=32768 kept=14 evid=3/6 7107s | 'You participated in the "Walk for Wildlife" charity event be'
+[223/266] gpt4_93159ced hist=32768 kept=14 evid=0/2 7139s | "I don't have any information about your work history or curr"
+[224/266] gpt4_2d58bcd6 hist=32768 kept=16 evid=1/2 7170s | "You finished reading 'The Nightingale' last weekend."
+[225/266] gpt4_65aabe59 hist=32768 kept=14 evid=1/2 7201s | 'You set up the smart thermostat first.'
+[226/266] 982b5123 hist=32759 kept=15 evid=1/2 7233s | "You didn't mention booking an Airbnb in San Francisco in our"
+[227/266] b9cfe692 hist=32768 kept=17 evid=0/3 7266s | "You didn't mention how long it took you to finish 'The Seven"
+[228/266] gpt4_4edbafa2 hist=32767 kept=12 evid=2/2 7297s | 'The date on which you attended the first BBQ event in June w'
+[229/266] c8090214 hist=32768 kept=19 evid=0/2 7330s | "I'm not aware of any information about you attending a Holid"
+[230/266] gpt4_483dd43c hist=32768 kept=17 evid=1/2 7361s | "You started watching 'Game of Thrones' first, about a month "
+[231/266] e4e14d04 hist=32768 kept=13 evid=1/2 7393s | "You didn't mention how long you had been a member of 'Book L"
+[232/266] c9f37c46 hist=32768 kept=15 evid=0/2 7424s | 'You had been watching stand-up comedy specials regularly for'
+[233/266] gpt4_2c50253f hist=32768 kept=20 evid=1/2 7455s | 'You wake up 15 minutes earlier on Tuesdays and Thursdays to '
+[234/266] dcfa8644 hist=32768 kept=15 evid=1/2 7487s | 'You bought your Adidas running shoes on January 10th, and yo'
+[235/266] gpt4_b4a80587 hist=32768 kept=15 evid=0/2 7518s | 'The conversation history provided does not mention a road tr'
+[236/266] gpt4_9a159967 hist=32768 kept=14 evid=0/3 7550s | "You didn't mention flying with any airline in March and Apri"
+[237/266] cc6d1ec1 hist=32768 kept=13 evid=2/2 7582s | 'You had been bird watching for about 3 months when you atten'
+[238/266] gpt4_8c8961ae hist=32768 kept=17 evid=0/2 7614s | "You didn't mention taking a trip to Europe with family or a "
+[239/266] gpt4_d9af6064 hist=32768 kept=14 evid=2/2 7646s | 'You set up the new router on January 15th, and the smart the'
+[240/266] gpt4_7de946e7 hist=32768 kept=17 evid=1/2 7676s | 'The persistent cough.'
+[241/266] d01c6aa8 hist=32749 kept=15 evid=0/2 7708s | "I'm not aware of any information about your age when you mov"
+[242/266] 993da5e2 hist=32768 kept=15 evid=1/2 7739s | 'You had been using the new area rug for three weeks when you'
+[243/266] a3045048 hist=32768 kept=18 evid=0/2 7770s | "I don't have enough information to answer that question. Can"
+[244/266] gpt4_d31cdae3 hist=32768 kept=19 evid=0/2 7803s | 'The narrator did not mention taking a solo trip to Europe or'
+[245/266] gpt4_cd90e484 hist=32768 kept=17 evid=1/2 7834s | 'You used your new binoculars for a week before you saw the A'
+[246/266] gpt4_88806d6e hist=32768 kept=12 evid=1/2 7864s | 'You met Tom first.'
+[247/266] gpt4_4cd9eba1 hist=32768 kept=15 evid=0/2 7895s | '2 weeks'
+[248/266] gpt4_93f6379c hist=32768 kept=15 evid=1/3 7926s | "You joined the 'Marketing Professionals' group first."
+[249/266] b29f3365 hist=32768 kept=13 evid=0/2 7958s | "You hadn't mentioned taking guitar lessons or buying a new g"
+[250/266] gpt4_2f56ae70 hist=32768 kept=16 evid=1/3 7990s | "You didn't mention starting to use a new streaming service. "
+[251/266] 6613b389 hist=32768 kept=14 evid=0/3 8022s | "I don't have any information about Rachel or her engagement."
+[252/266] gpt4_78cf46a3 hist=32746 kept=14 evid=1/2 8053s | 'The narrator lost their phone charger about two weeks ago, a'
+[253/266] gpt4_0a05b494 hist=32768 kept=13 evid=1/2 8084s | "You met the woman selling jam at the farmer's market first, "
+[254/266] gpt4_1a1dc16d hist=32768 kept=15 evid=2/2 8115s | 'The pride parade happened first, on May 1st. The meeting wit'
+[255/266] gpt4_2f584639 hist=32768 kept=14 evid=0/2 8147s | "You didn't mention buying a gift for your sister or your mom"
+[256/266] gpt4_213fd887 hist=32748 kept=15 evid=0/2 8180s | "You didn't mention participating in either a volleyball leag"
+[257/266] gpt4_5438fa52 hist=32768 kept=16 evid=0/2 8213s | "You didn't mention attending a cultural festival or starting"
+[258/266] gpt4_c27434e8 hist=32768 kept=14 evid=0/2 8246s | "You didn't mention starting any projects related to a Ferrar"
+[259/266] gpt4_fe651585 hist=32767 kept=15 evid=2/2 8278s | 'Rachel became a parent first, as she gave birth to twins Jac'
+[260/266] 8c18457d hist=32768 kept=13 evid=1/2 8311s | 'To answer your question, I need to find the relevant informa'
+[261/266] gpt4_70e84552_abs hist=32768 kept=19 evid=1/2 8342s | 'You fixed the fence first, three weeks ago. There is no ment'
+[262/266] gpt4_93159ced_abs hist=32768 kept=16 evid=1/2 8374s | "You didn't mention how long you've been working before start"
+[263/266] 982b5123_abs hist=32768 kept=14 evid=2/2 8405s | "You didn't book an Airbnb in Sacramento. You mentioned booki"
+[264/266] c8090214_abs hist=32768 kept=19 evid=2/2 8437s | 'You attended the Holiday Market a week before Black Friday, '
+[265/266] gpt4_c27434e8_abs hist=32768 kept=16 evid=1/2 8469s | "You didn't mention starting a Porsche 991 Turbo S model proj"
+[266/266] gpt4_fe651585_abs hist=32768 kept=13 evid=0/2 8502s | 'There is no information provided about Tom or Alex becoming '
+done: 266 rows total
+[2026-09-08 12:41:08] window 32768 official judge
+[paperjudge/recent32768] 250/266 (67s)
+--- OFFICIAL LongMemEval protocol, tag=recent32768 (judge prompts verbatim) ---
+multi-session           : 27/133 = 0.203
+temporal-reasoning      : 24/133 = 0.180
+TOTAL                   : 51/266 = 0.192
+saved: results_recent32768_paperjudged.json
+[2026-09-08 12:42:29] shutdown
+
+#### file: recent594_pj.log
+[paperjudge/recent594] 50/266 (11s)
+[paperjudge/recent594] 100/266 (22s)
+[paperjudge/recent594] 150/266 (34s)
+[paperjudge/recent594] 200/266 (47s)
+[paperjudge/recent594] 250/266 (60s)
+--- OFFICIAL LongMemEval protocol, tag=recent594 (judge prompts verbatim) ---
+multi-session           : 11/133 = 0.083
+temporal-reasoning      : 7/133 = 0.053
+TOTAL                   : 18/266 = 0.068
+saved: results_recent594_paperjudged.json
+
+#### file: recent32768_pj.log
+[paperjudge/recent32768] 50/266 (13s)
+[paperjudge/recent32768] 100/266 (25s)
+[paperjudge/recent32768] 150/266 (39s)
+[paperjudge/recent32768] 200/266 (54s)
+[paperjudge/recent32768] 250/266 (67s)
+--- OFFICIAL LongMemEval protocol, tag=recent32768 (judge prompts verbatim) ---
+multi-session           : 27/133 = 0.203
+temporal-reasoning      : 24/133 = 0.180
+TOTAL                   : 51/266 = 0.192
+saved: results_recent32768_paperjudged.json
+

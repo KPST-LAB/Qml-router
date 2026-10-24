@@ -1,0 +1,82 @@
+=== reviewer1_edit_17_step2_latency_4090gpu_nograph start 2026-09-29T13:49:28+09:00 ===
+ec6dfa6ad60d9bcea790b4e6560b7bf6  $NVME_MOUNT/qml-router/ablation/with-patch/build/bin/llama-server
+03a516c72ddc68a72013fdecae3f3006  $NVME_MOUNT/qml-router/models/bge-m3-f16.gguf
+87c64f88cabc4082b908da5830ea3bd3  $NVME_MOUNT/qml-router/ieee-rev1/scripts/reviewer1_edit_17_step2_retrieval_latency.py
+0f295c1a36f99165c2d12b1b5b45167b  $NVME_MOUNT/qml-router/ieee-rev1/data/reviewer1_edit_17_step2_subset.db
+4a049592e6e3380d33b4f55f4c4b686b  $NVME_MOUNT/qml-router/ieee-rev1/data/reviewer1_edit_17_step2_questions.json
+NVIDIA GeForce RTX 4090, 595.45.04
+CPU(s):              12
+Model name:          Intel(R) Core(TM) i7-5820K CPU @ 3.30GHz
+device run: db=$NVME_MOUNT/qml-router/ieee-rev1/data/reviewer1_edit_17_step2_subset.db questions=266 emb=http://127.0.0.1:58173 mode=all sqlite=3.22.0
+[write] 25 sessions, last 955 rows fetch 270.7 ms embed 5280 ms
+[write] 50 sessions, last 1111 rows fetch 281.9 ms embed 6135 ms
+[write] 75 sessions, last 954 rows fetch 266.8 ms embed 5287 ms
+[write] 100 sessions, last 1012 rows fetch 282.8 ms embed 5662 ms
+[write] 125 sessions, last 888 rows fetch 264.8 ms embed 4974 ms
+[write] 150 sessions, last 965 rows fetch 272.9 ms embed 5184 ms
+[write] 175 sessions, last 887 rows fetch 271.9 ms embed 4701 ms
+[write] 200 sessions, last 1023 rows fetch 272.5 ms embed 5767 ms
+[write] 225 sessions, last 965 rows fetch 304.5 ms embed 5435 ms
+[write] 250 sessions, last 926 rows fetch 261.0 ms embed 5307 ms
+{
+ "lexical_query_cold": {
+  "n": 266,
+  "median_ms": 79.527,
+  "p95_ms": 112.964,
+  "mean_ms": 77.143,
+  "total_s": 20.52
+ },
+ "lexical_query_warm": {
+  "n": 266,
+  "median_ms": 35.884,
+  "p95_ms": 65.671,
+  "mean_ms": 38.862,
+  "total_s": 10.34
+ },
+ "embedding_query_cold": {
+  "n": 266,
+  "median_ms": 8.611,
+  "p95_ms": 18.032,
+  "mean_ms": 10.227,
+  "total_s": 2.72
+ },
+ "embedding_query_warm": {
+  "n": 266,
+  "median_ms": 13.965,
+  "p95_ms": 21.461,
+  "mean_ms": 14.363,
+  "total_s": 3.82
+ },
+ "embedding_rank_only_warm": {
+  "n": 266,
+  "median_ms": 1.207,
+  "p95_ms": 7.518,
+  "mean_ms": 2.431,
+  "total_s": 0.65
+ },
+ "embedding_write_fetch_per_session": {
+  "n": 266,
+  "median_ms": 277.751,
+  "p95_ms": 321.0,
+  "mean_ms": 283.808,
+  "total_s": 75.49
+ },
+ "embedding_write_embed_per_session": {
+  "n": 266,
+  "median_ms": 5378.481,
+  "p95_ms": 6006.163,
+  "mean_ms": 5384.423,
+  "total_s": 1432.26
+ },
+ "embedding_write_rows": 260324,
+ "recall_all_at_32": {
+  "lexical": 235,
+  "embedding": 256
+ },
+ "mode": "all",
+ "sqlite": "3.22.0",
+ "embedding_write_rows_per_s": 181.8
+}
+python rc=0 2026-09-29T14:16:06+09:00
+=== reviewer1_edit_17_step2_latency_4090gpu_nograph done 2026-09-29T14:16:06+09:00 ===
+embedding server stopped pid=23125 2026-09-29T14:16:06+09:00

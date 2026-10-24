@@ -1,0 +1,201 @@
+diff --git a/tools/server/server-context.cpp b/tools/server/server-context.cpp
+index 0ae99d9d5..16377fe57 100644
+--- a/tools/server/server-context.cpp
++++ b/tools/server/server-context.cpp
+@@ -250,6 +250,18 @@ struct server_slot {
+     // restored are the template's while the slot binding is the new session.
+     // empty = same as the task's session_id. Cleared with qml_pending_tokens.
+     std::string qml_restore_key;
++    // [REFERENCE-EVICT 2026-08-31] The records RIG inserted for this turn,
++    // as [start position, length). They serve only this turn and are not
++    // session history, so they are removed from the KV cache and the token
++    // list when generation ends. Kept, they would be saved to the log and the
++    // session would keep growing (measured: a 751-token rule document grew to
++    // 7,850 tokens over the judgments and passed the 8,192-token context), and
++    // the records would cycle between the archive and the log.
++    size_t qml_ref_pos = 0;
++    size_t qml_ref_len = 0;
++    // [TRANSIENT-TURN] Position up to which the session is kept when this turn
++    // is not to be kept; 0 keeps everything as usual.
++    int32_t qml_transient_from = 0;
+ #endif
+ 
+     bool prompt_save(server_prompt_cache & prompt_cache) const {
+@@ -544,6 +556,67 @@ struct server_slot {
+ #ifdef LLAMA_QML_SESSION
+             // qml-router: hand off to the hook module (owns the KV capture
+             // + persister thread entirely -- see qml_llama_hook.cpp)
++            // [REFERENCE-EVICT 2026-08-31] Remove the inserted records before
++            // the save: delete them from the KV cache and shift the positions
++            // of what follows, so the blob and the token log both hold the same
++            // array without the records. The conversation tokens and tensors
++            // stay; discarding the blob instead would discard the stored state.
++            // [TRANSIENT-TURN 2026-08-31] When the request body itself is
++            // material for this turn only (a batch of independent judgments),
++            // it is removed by the same rule: with the header QML-Transient: 1
++            // this user turn and its answer are not kept in the session. Reason:
++            // 4,847 tokens of earlier requests kept in a judgment session
++            // degraded retrieval (their shared words displaced the rule
++            // document) and accuracy fell from the 73.9% baseline to 43.5%.
++            // [2026-09-01 correction] The earlier code skipped the turn removal
++            // when records had been inserted (condition qml_ref_len == 0), so
++            // the two removals cancelled each other: measured, the turn removal
++            // ran in only 8 of 23 judgments and 6,421 tokens of requests piled
++            // up in the judgment session. The records are inserted right after
++            // the end of the history (qml_transient_from), so removing from that
++            // point to the end removes both the records and the turn at once;
++            // the two paths are handled as one.
++            if (qml_transient_from > 0) {
++                llama_tokens keep = prompt.tokens.get_text_tokens();
++                if ((size_t) qml_transient_from < keep.size()) {
++                    llama_memory_t mem = llama_get_memory(ctx_tgt);
++                    if (mem != nullptr) {
++                        llama_memory_seq_rm(mem, id, (llama_pos) qml_transient_from, -1);
++                    }
++                    keep.resize((size_t) qml_transient_from);
++                    prompt.tokens.clear();
++                    prompt.tokens.insert(keep);
++                    SRV_INF("qml-router: [transient] evicted turn tail from %d"
++                            " (reference span %zu token(s) included)\n",
++                            (int) qml_transient_from, qml_ref_len);
++                }
++                qml_transient_from = 0;
++                qml_ref_pos = 0;
++                qml_ref_len = 0;   // the records were removed with the turn
++            }
++            if (qml_ref_len > 0) {
++                llama_tokens keep = prompt.tokens.get_text_tokens();
++                if (qml_ref_pos + qml_ref_len <= keep.size()) {
++                    keep.erase(keep.begin() + qml_ref_pos,
++                               keep.begin() + qml_ref_pos + qml_ref_len);
++                    llama_memory_t mem = llama_get_memory(ctx_tgt);
++                    if (mem != nullptr) {
++                        llama_memory_seq_rm(mem, id,
++                                            (llama_pos) qml_ref_pos,
++                                            (llama_pos) (qml_ref_pos + qml_ref_len));
++                        llama_memory_seq_add(mem, id,
++                                             (llama_pos) (qml_ref_pos + qml_ref_len),
++                                             -1,
++                                             -(llama_pos) qml_ref_len);
++                    }
++                    prompt.tokens.clear();
++                    prompt.tokens.insert(keep);
++                    SRV_INF("qml-router: [fts-recall] evicted %zu reference token(s) before save\n",
++                            qml_ref_len);
++                }
++                qml_ref_pos = 0;
++                qml_ref_len = 0;
++            }
+             if (callback_qml_persist && !qml_session_id.empty() &&
+                 !prompt.tokens.empty() && !prompt.tokens.has_media()) {
+                 callback_qml_persist(ctx_tgt, id, qml_session_id, qml_user_id, prompt.tokens.get_text_tokens());
+@@ -921,7 +994,9 @@ static void qml_fts_recall_inject(server_slot & slot, server_task & task,
+     const llama_vocab * rec_vocab =
+         llama_model_get_vocab(llama_get_model(slot.ctx_tgt));
+     const std::string rec_query =
+-        common_detokenize(slot.ctx_tgt, new_part, false);
++        !task.params.qml_recall_query.empty()
++            ? task.params.qml_recall_query
++            : common_detokenize(slot.ctx_tgt, new_part, false);
+     auto rec_detok = +[](void * ud, const int32_t * toks, size_t n) -> char * {
+         const std::string s2 = common_detokenize(
+             (llama_context *) ud, std::vector<llama_token>(toks, toks + n), false);
+@@ -952,9 +1027,33 @@ static void qml_fts_recall_inject(server_slot & slot, server_task & task,
+             task.tokens.insert(llama_tokens(1, eot));
+             new_part.erase(new_part.begin());
+         }
+-        task.tokens.insert(llama_tokens(rec_toks, rec_toks + rec_n));
+-        SLT_INF(slot, "qml-router: [fts-recall] re-injected %zu archived token(s) between history and the new turn\n",
+-                rec_n);
++        // [RESIDENT-DEDUP 2026-08-31] Do not insert what is already in the
++        // context. Without this check the same question asked in a row inserted
++        // the same document every turn (measured: a 275-token document inserted
++        // in 3 turns in a row, prompt_n 17 -> 292, n_ctx_avail 3443 -> 2843).
++        // task.tokens holds only the history (resident or stored) at this
++        // point, so the insertion is skipped when the records are already in it.
++        const llama_tokens hist_toks = task.tokens.get_text_tokens();
++        bool rec_present = false;
++        if (hist_toks.size() >= rec_n) {
++            for (size_t i = 0; i + rec_n <= hist_toks.size() && !rec_present; ++i) {
++                bool same = true;
++                for (size_t j = 0; j < rec_n && same; ++j) {
++                    same = (hist_toks[i + j] == rec_toks[j]);
++                }
++                rec_present = same;
++            }
++        }
++        if (rec_present) {
++            SLT_INF(slot, "qml-router: [fts-recall] skipped %zu archived token(s) -- already in context\n",
++                    rec_n);
++        } else {
++            slot.qml_ref_pos = task.tokens.size();   // where the records start (after a moved end-of-turn token)
++            slot.qml_ref_len = rec_n;
++            task.tokens.insert(llama_tokens(rec_toks, rec_toks + rec_n));
++            SLT_INF(slot, "qml-router: [fts-recall] re-injected %zu archived token(s) between history and the new turn\n",
++                    rec_n);
++        }
+     }
+     free(rec_toks);
+ }
+@@ -2034,6 +2133,11 @@ private:
+                 llama_tokens new_part = task.tokens.get_text_tokens();
+                 task.tokens.clear();
+                 task.tokens.insert(resident);
++                // [TRANSIENT-TURN] For a request whose turn is not kept, note the
++                // end of the history; everything after it is removed before the save.
++                if (task.params.qml_transient) {
++                    slot.qml_transient_from = (int32_t) n_resident;
++                }
+                 // [FTS-RECALL] resident-branch injection (see helper above)
+                 qml_fts_recall_inject(slot, task, new_part, n_resident);
+                 task.tokens.insert(new_part);
+@@ -2179,6 +2283,9 @@ private:
+                     llama_tokens new_part = task.tokens.get_text_tokens();
+                     task.tokens.clear();
+                     task.tokens.insert(stored);
++                    if (task.params.qml_transient) {
++                        slot.qml_transient_from = (int32_t) qml_n_hist;
++                    }
+ 
+                     // [FTS-RECALL] stored-branch injection (see helper above)
+                     qml_fts_recall_inject(slot, task, new_part, qml_n_hist);
+diff --git a/tools/server/server-schema.cpp b/tools/server/server-schema.cpp
+index f023a4cde..6014052d4 100644
+--- a/tools/server/server-schema.cpp
++++ b/tools/server/server-schema.cpp
+@@ -31,6 +31,14 @@ std::vector<std::unique_ptr<field>> make_llama_cmpl_schema(const common_params &
+     add((new field_bool("cache_prompt", params.cache_prompt))
+         ->set_desc("Re-use KV cache from a previous request if possible. This way the common prefix does not have to be re-processed, only the suffix that differs between the requests"));
+ 
++    add((new field_bool("qml_transient", params.qml_transient))
++        ->set_desc("qml-router: do not persist this turn into the session"));
++
++    add((new field_str("qml_recall_query"))
++        ->set_desc("qml-router: explicit archive-retrieval query for this turn")
++        ->set_handler([&](field_eval_context & ctx, const json & data) {
++            ctx.params.qml_recall_query = data.at("qml_recall_query").get<std::string>();
++        }));
+     add((new field_str("session_id"))
+         ->set_desc("Opaque session identifier for qml-router KV-cache persistence/restore across process restarts (requires --qml-session-store)")
+         ->set_handler([&](field_eval_context & ctx, const json & data) {
+diff --git a/tools/server/server-task.h b/tools/server/server-task.h
+index d3e60c32e..59cedfa98 100644
+--- a/tools/server/server-task.h
++++ b/tools/server/server-task.h
+@@ -56,6 +56,16 @@ struct task_params {
+     // opaque external session key for qml-router KV-cache persistence/restore
+     // across process restarts; empty = feature not requested for this task
+     std::string session_id;
++    // [TRANSIENT-TURN 2026-08-31] When true, this user turn and its answer are
++    // not kept in the session (the same rule as for inserted records). It keeps
++    // earlier requests of a batch of independent judgments out of retrieval.
++    bool qml_transient = false;
++    // [RECALL-QUERY 2026-08-31] The request sets the retrieval query itself;
++    // when empty, the whole user turn is the query as before. Reason: a rule is
++    // chosen by matching condition fields and values, and with the whole request
++    // as the query, words such as project names, company names and dates
++    // dominate and BM25 ranks the wrong rule first (measured hit rate 4/21 = 19.0%).
++    std::string qml_recall_query;
+     // opaque external user key stored alongside the session for qml-router's
+     // per-user querying (usage/quota/audit); empty = unknown
+     std::string user_id;

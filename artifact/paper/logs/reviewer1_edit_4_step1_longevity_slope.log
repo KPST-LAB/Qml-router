@@ -1,0 +1,8 @@
+server-side per-turn latency, turns     0- 4000: p50 275 ms, p95 707 ms (printed in the log)
+server-side per-turn latency, turns  4000- 8000: p50 275 ms, p95 700 ms (printed in the log)
+server-side per-turn latency, turns  8000-12000: p50 274 ms, p95 708 ms (printed in the log)
+server-side per-turn latency, turns 12000-16000: p50 275 ms, p95 709 ms (printed in the log)
+server-side per-turn latency, turns 16000-20000: p50 275 ms, p95 707 ms (printed in the log)
+client-side 100-turn block means: 200 blocks, median 440 ms, min 390 ms, max 740 ms
+linear fit over all blocks: +0.34 ms per 1,000 turns (+6.8 ms over 20,000 turns)
+mean per-turn time, first 1,000 turns 431 ms, last 1,000 turns 437 ms

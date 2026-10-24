@@ -1,0 +1,29 @@
+=== TEST 7 MP MODE: Tue Aug  4 17:43:29 KST 2026 ===
+               total        used        free      shared  buff/cache   available
+Mem:              62          11           6           2          44          41
+lmcache mp server up (pid 15493)
+vllm up
+[build] session 0: 5s
+[build] session 1: 5s
+[build] session 2: 5s
+[build] session 3: 5s
+[build] session 4: 18s
+[build] session 5: 12s
+22G	$REPO/tests/_lm/lmcache_disk_mp
+--- warm mixed load 150s ---
+
+=== stateless-openai: 6 long sessions x 32,000 tokens + short requests 3 workers, 153s ===
+  short requests   : completed 184  correct 184  p50=3,901  p90=4,758 ms  throughput 1.20 req/s
+  long-session reconnects: completed 31  correct 31  p50=4,919  p90=4,969 ms
+  GPU prefill      : short requests 7,604 tokens, long sessions 993,988 tokens
+--- diagnosis: 6 isolated warm reconnects, needle verified ---
+[diag 0] expected=ZK-6000  got="ZK-6000. The development of transcontinental rail"  -> OK
+[diag 1] expected=ZK-6001  got="ZK-6001. The development of transcontinental rail"  -> OK
+[diag 2] expected=ZK-6002  got="ZK-6002. The development of transcontinental rail"  -> OK
+[diag 3] expected=ZK-6003  got="ZK-6003. The development of transcontinental rail"  -> OK
+[diag 4] expected=ZK-6004  got="ZK-6004. The development of transcontinental rail"  -> OK
+[diag 5] expected=ZK-6005  got="ZK-6005. The development of transcontinental rail"  -> OK
+[diag] wrong=0/6
+tests/_lm/run_test7_mp.sh: line 97: 15556 Killed                  VLLM_PLUGINS="" nohup python3 -m vllm.entrypoints.openai.api_server --model hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4 --port 8330 --max-model-len 34000 --gpu-memory-utilization 0.90 --kv-transfer-config '{"kv_connector":"LMCacheMPConnector","kv_role":"kv_both","kv_connector_extra_config":{"lmcache.mp.host":"127.0.0.1","lmcache.mp.port":5560}}' > $DN/vllm_lmc7mp.log 2>&1
+16497 MiB
+=== TEST 7 MP DONE ===

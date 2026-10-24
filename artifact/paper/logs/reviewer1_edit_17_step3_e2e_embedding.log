@@ -1,0 +1,26 @@
+[lex] 25/266, 82s
+[lex] 50/266, 140s
+[lex] 75/266, 188s
+[lex] 100/266, 233s
+[lex] 125/266, 278s
+[lex] 150/266, 324s
+[lex] 175/266, 388s
+[lex] 200/266, 439s
+[lex] 225/266, 492s
+[lex] 250/266, 550s
+[lex] reproduction: answers identical to step0 224/266; injected (rows, tokens) identical to the engine log 205/266
+[lex] msf string-match metric 68/133 = 0.511 (official judge follows)
+[lex] trf string-match metric 44/133 = 0.331 (official judge follows)
+[emb] 25/266, 99s
+[emb] 50/266, 207s
+[emb] 75/266, 299s
+[emb] 100/266, 382s
+[emb] 125/266, 464s
+[emb] 150/266, 560s
+[emb] 175/266, 659s
+[emb] 200/266, 745s
+[emb] 225/266, 840s
+[emb] 250/266, 931s
+[emb] msf string-match metric 78/133 = 0.586 (official judge follows)
+[emb] trf string-match metric 49/133 = 0.368 (official judge follows)
+done

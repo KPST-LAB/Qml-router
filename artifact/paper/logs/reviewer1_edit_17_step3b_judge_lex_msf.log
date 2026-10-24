@@ -1,0 +1,6 @@
+[paperjudge/s3blexmsfj] 50/133 (13s)
+[paperjudge/s3blexmsfj] 100/133 (25s)
+--- OFFICIAL LongMemEval protocol, tag=s3blexmsfj (judge prompts verbatim) ---
+multi-session           : 84/133 = 0.632
+TOTAL                   : 84/133 = 0.632
+saved: $REPO/ieee-rev1/data/reviewer1_edit_17_step3_results_lex_msf_paperjudged.json

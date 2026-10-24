@@ -1,0 +1,4 @@
+# Benchmark clients in tests/ use the Python standard library, except:
+transformers   # tests/multi-turn/continuous-session/bench_tab5_crossover_32k.py (tokenizer for the vLLM/SGLang runs)
+matplotlib     # tests/paper/**/plot_*.py
+numpy          # tests/paper/tab05_context_overflow_500turn/plot_overflow_latency.py

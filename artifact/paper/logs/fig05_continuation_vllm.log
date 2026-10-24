@@ -1,0 +1,9 @@
+=== MIGRATION step 3: continue on vLLM Tue Aug  4 17:26:55 KST 2026 ===
+[2.migrate] read 8,017 tokens from the token log (engine-neutral carrier)
+[2.continue@vLLM] latency=957 ms  correct=OK  (transfer cost = 1 prefill of 8,027 tokens on the target engine)
+session row: [('alice::mig-1', 8027)]
+vllm ext: [('alice::mig-1', 16, 501)]
+token log: 8027
+$SCRATCH/run_mig_vllm.sh: line 25: 13181 Killed                  VLLM_PLUGINS="" PYTHONPATH=$R/hooks/vllm nohup python3 -m vllm.entrypoints.openai.api_server --model unsloth/Llama-3.2-3B-Instruct --port 8331 --max-model-len 10240 --gpu-memory-utilization 0.90 --kv-transfer-config '{"kv_connector":"QmlVllmConnector","kv_connector_module_path":"qml_vllm_connector","kv_role":"kv_both","kv_buffer_device":"cpu","kv_connector_extra_config":{"qml_sqlite_path":"'$S'/qml.db","qml_lmdb_path":"'$S'/qml_lmdb","qml_self_url":"http://127.0.0.1:8331","qml_read_threads":"8"}}' > $R/tests/_mig/vllm_server.log 2>&1
+45 MiB
+STEP3 DONE

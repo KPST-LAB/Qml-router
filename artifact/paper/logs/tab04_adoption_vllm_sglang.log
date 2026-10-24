@@ -1,0 +1,34 @@
+=== vLLM/SGLang adoption cost, fresh store+server per rep (container) Fri Sep  4 04:43:06 KST 2026 ===
+########## vLLM ##########
+[vllm-stock-r1] VRAM=23254 MiB GPU KV cache size: 128
+[vllm-stock-r1] 12 sessions x ~1500 tokens: total 2.1s  mean 179 ms  p50 175 ms  GPU prefill total 18,240  correct 12/12
+[vllm-stock-r2] VRAM=23254 MiB GPU KV cache size: 128
+[vllm-stock-r2] 12 sessions x ~1500 tokens: total 2.2s  mean 180 ms  p50 176 ms  GPU prefill total 18,240  correct 12/12
+[vllm-stock-r3] VRAM=23254 MiB GPU KV cache size: 128
+[vllm-stock-r3] 12 sessions x ~1500 tokens: total 2.2s  mean 181 ms  p50 178 ms  GPU prefill total 18,240  correct 12/12
+[vllm-qml-r1] VRAM=23254 MiB GPU KV cache size: 128
+[vllm-qml-r1] 12 sessions x ~1500 tokens: total 3.1s  mean 259 ms  p50 252 ms  GPU prefill total 18,240  correct 12/12
+[vllm-qml-r2] VRAM=23255 MiB GPU KV cache size: 128
+[vllm-qml-r2] 12 sessions x ~1500 tokens: total 3.1s  mean 257 ms  p50 252 ms  GPU prefill total 18,240  correct 12/12
+[vllm-qml-r3] VRAM=23254 MiB GPU KV cache size: 128
+[vllm-qml-r3] 12 sessions x ~1500 tokens: total 3.2s  mean 263 ms  p50 258 ms  GPU prefill total 18,240  correct 12/12
+########## SGLang ##########
+[sgl-stock-r1] VRAM=21207 MiB KV Cache is allocated
+[sgl-stock-r1] 12 sessions x ~1500 tokens: total 2.0s  mean 166 ms  p50 166 ms  GPU prefill total 18,240  correct 12/12
+[sgl-stock-r2] VRAM=21207 MiB KV Cache is allocated
+[sgl-stock-r2] 12 sessions x ~1500 tokens: total 2.0s  mean 168 ms  p50 168 ms  GPU prefill total 18,240  correct 12/12
+[sgl-stock-r3] VRAM=21207 MiB KV Cache is allocated
+[sgl-stock-r3] 12 sessions x ~1500 tokens: total 2.0s  mean 166 ms  p50 166 ms  GPU prefill total 18,240  correct 12/12
+[sgl-hicache-r1] VRAM=21254 MiB KV Cache is allocated
+[sgl-hicache-r1] 12 sessions x ~1500 tokens: total 2.1s  mean 175 ms  p50 176 ms  GPU prefill total 18,240  correct 12/12
+[sgl-hicache-r2] VRAM=21255 MiB KV Cache is allocated
+[sgl-hicache-r2] 12 sessions x ~1500 tokens: total 2.1s  mean 176 ms  p50 175 ms  GPU prefill total 18,240  correct 12/12
+[sgl-hicache-r3] VRAM=21255 MiB KV Cache is allocated
+[sgl-hicache-r3] 12 sessions x ~1500 tokens: total 2.1s  mean 175 ms  p50 175 ms  GPU prefill total 18,240  correct 12/12
+[sgl-qml-r1] VRAM=21254 MiB KV Cache is allocated
+[sgl-qml-r1] 12 sessions x ~1500 tokens: total 2.2s  mean 185 ms  p50 183 ms  GPU prefill total 18,240  correct 12/12
+[sgl-qml-r2] VRAM=21254 MiB KV Cache is allocated
+[sgl-qml-r2] 12 sessions x ~1500 tokens: total 2.3s  mean 191 ms  p50 182 ms  GPU prefill total 18,240  correct 12/12
+[sgl-qml-r3] VRAM=21255 MiB KV Cache is allocated
+[sgl-qml-r3] 12 sessions x ~1500 tokens: total 2.2s  mean 182 ms  p50 182 ms  GPU prefill total 18,240  correct 12/12
+ENGINES FRESH PANEL DONE Fri Sep  4 05:04:11 KST 2026

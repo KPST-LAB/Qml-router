@@ -1,0 +1,1199 @@
+[
+ {
+  "qid": "gpt4_59149c77",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.15,
+  "answer": "You visited MoMA on 2023/01/08 and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art on 2023/01/15. \n7 days passed between these two visits.",
+  "gold": "7 days. 8 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_f49edff3",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": false,
+  "f1": 0.537,
+  "answer": "The order of events is:\n1. You helped your friend prepare the nursery on 2023/02/05.\n2. You helped your cousin pick out items for her baby shower on 2023/02/10.\n3. You ordered a customized phone case for your friend's birthday on 2023/02/20.",
+  "gold": "First, I helped my friend prepare the nursery, then I helped my cousin pick out stuff for her baby shower, and lastly, I ordered a customized phone case for my friend's birthday."
+ },
+ {
+  "qid": "71017276",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.133,
+  "answer": "You received the crystal chandelier on 2023/03/04. That was 4 weeks ago.",
+  "gold": "4"
+ },
+ {
+  "qid": "b46e15ed",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.067,
+  "answer": "You participated in the 24-Hour Bike Ride on 2023/02/14 and the 'Ride to Cure Cancer' on 2023/02/15. Approximately 2 months have passed since then.",
+  "gold": "2"
+ },
+ {
+  "qid": "gpt4_fa19884c",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.091,
+  "answer": "You started playing along to your favorite songs on your old keyboard on 2023/03/25 and discovered a bluegrass band on 2023/03/31. \n\n2023/03/31 - 2023/03/25 = 6 days.",
+  "gold": "6 days. 7 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "0bc8ad92",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "There is no information about you visiting a museum with a friend.",
+  "gold": "5"
+ },
+ {
+  "qid": "af082822",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.095,
+  "answer": "You attended the friends and family sale at Nordstrom on 2022/11/17. It has been approximately 2 weeks ago.",
+  "gold": "2"
+ },
+ {
+  "qid": "gpt4_4929293a",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.348,
+  "answer": "Michael's engagement party happened first, on 2023/05/05. Your cousin's wedding was on 2023/06/15.",
+  "gold": "Michael's engagement party"
+ },
+ {
+  "qid": "gpt4_b5700ca9",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.19,
+  "answer": "You attended the Maundy Thursday service at the Episcopal Church on 2023/04/06. That was 4 days ago.",
+  "gold": "4 days."
+ },
+ {
+  "qid": "9a707b81",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.1,
+  "answer": "You attended a baking class on 2022/03/20. You made the birthday cake on 2022/04/10. \n\nIt has been 26 days since you attended the baking class.",
+  "gold": "21 days. 22 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_1d4ab0c9",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.105,
+  "answer": "You started watering your herb garden on 2023/03/22 and harvested your first batch on 2023/04/15. \n\n2023/04/15 - 2023/03/22 = 24 days.",
+  "gold": "24 days. 25 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_e072b769",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.353,
+  "answer": "You started using Ibotta on 2023/04/16. That was approximately 3 weeks ago.",
+  "gold": "3 weeks ago"
+ },
+ {
+  "qid": "0db4c65d",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.182,
+  "answer": "You finished reading 'The Seven Husbands of Evelyn Hugo' on 2022/12/28. \nYou attended the book reading event on 2023/01/15. \nThe time difference between the two dates is 18 days.",
+  "gold": "18 days. 19 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_1d80365e",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.095,
+  "answer": "You started your solo camping trip to Yosemite on 2023/05/15 and returned on 2023/05/17. You spent 2 days on your solo camping trip to Yosemite National Park.",
+  "gold": "2 days. 3 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_7f6b06db",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.033,
+  "answer": "You didn't mention taking any trips in the past conversations. You only mentioned having upcoming trips on 2023/03/10.",
+  "gold": "I went on a day hike to Muir Woods National Monument with my family, then I went on a road trip with friends to Big Sur and Monterey, and finally I started my solo camping trip to Yosemite National Park."
+ },
+ {
+  "qid": "gpt4_6dc9b45b",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.316,
+  "answer": "You attended the Seattle International Film Festival in June 2021. It has been 4 months ago.",
+  "gold": "4 months ago"
+ },
+ {
+  "qid": "gpt4_8279ba02",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.16,
+  "answer": "You received a smoker on 2023/03/15. It has been 10 days.",
+  "gold": "10 days ago. 11 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_18c2b244",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": false,
+  "f1": 0.641,
+  "answer": "The order of the events is:\n1. You used a Buy One Get One Free coupon on Luvs diapers at Walmart (2023/04/01).\n2. You signed up for the rewards program at ShopRite (2023/04/15).\nThere is no information about the third event, 'I redeemed $12 cashback for a $10 Amazon gift card from Ibotta', so it cannot be included in the order.",
+  "gold": "First, I used a Buy One Get One Free coupon on Luvs diapers at Walmart. Then, I redeemed $12 cashback for a $10 Amazon gift card from Ibotta. Finally, I signed up for the rewards program at ShopRite."
+ },
+ {
+  "qid": "gpt4_a1b77f9c",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.432,
+  "answer": "You spent:\n- 2 weeks reading 'The Nightingale' (from 2022/01/01 to 2022/01/15)\n- 1 month (approximately 4 weeks) listening to 'Sapiens: A Brief History of Humankind' (from 2022/02/01 to 2022/03/01)\n- 2 weeks listening to 'The Power' (from 2022/03/06 to 202",
+  "gold": "2 weeks for 'The Nightingale', 4 weeks for 'Sapiens: A Brief History of Humankind', and 2 weeks for 'The Power', so a total of 8 weeks."
+ },
+ {
+  "qid": "gpt4_1916e0ea",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.1,
+  "answer": "You cancelled your FarmFresh subscription on 2023/01/05 and did your online grocery shopping from Instacart on 2023/02/28. \n\n2023/02/28 - 2023/01/05 = 54 days.",
+  "gold": "54 days. 55 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_7a0daae1",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.182,
+  "answer": "You bought the tennis racket on 2023/03/10 and received it on 2023/03/17. That's 1 week.",
+  "gold": "1 week"
+ },
+ {
+  "qid": "gpt4_468eb063",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.231,
+  "answer": "You had lunch with Emma on 2023/04/11, which was 9 days ago.",
+  "gold": "9 days ago. 10 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_7abb270c",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.304,
+  "answer": "Based on the known facts, the order of the museums you visited from earliest to latest is:\n\n1. Metropolitan Museum of Art (2023/02/10)\n2. Modern Art Gallery (2023/02/17)\n3. Modern Art Museum (2023/02/20)\n4. Museum of History's conservation lab (2023/02/15) -> corrected to be before 2023/02/17 and 2023/02/20",
+  "gold": "Science Museum, Museum of Contemporary Art, Metropolitan Museum of Art, Museum of History, Modern Art Museum, Natural History Museum"
+ },
+ {
+  "qid": "gpt4_1e4a8aeb",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.167,
+  "answer": "You attended the gardening workshop on 2023/04/15 and planted the tomato saplings on 2023/04/21. 6 days passed between those two dates.",
+  "gold": "6 days. 7 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_4fc4f797",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.125,
+  "answer": "You received feedback on 2023/03/17 and tested the new suspension setup on the same day, 2023/03/17, and also planned to test it at the track day on 2023/04/24, but since you tested it on 2023/03/17, the answer would be 0 days for the first test.",
+  "gold": "38 days. 39 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "4dfccbf7",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.163,
+  "answer": "You started taking ukulele lessons on 2023/02/01. You took your guitar to the tech on 2023/02/25. \n24 days had passed since you started taking ukulele lessons when you took your guitar to the tech.",
+  "gold": "24 days. 25 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_61e13b3c",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.033,
+  "answer": "You sold homemade baked goods at the Farmers' Market on 2023/02/26 and participated in the Spring Fling Market on 2023/03/20. \n\nThere are approximately 4 weeks between 2023/02/26 and 2023/03/20, and then about 1.5 weeks (or almost 2 weeks, but not quite) between 2023/03/20 and 2023/04/01, but",
+  "gold": "3 weeks"
+ },
+ {
+  "qid": "gpt4_45189cb4",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.171,
+  "answer": "The order of sports events you watched in January is:\n1. Lakers vs. Chicago Bulls (2023/01/05)\n2. College Football National Championship (Georgia vs. Alabama) (2023/01/14 or 15, exact date conflicting)\n3. Kansas City Chiefs vs. Buffalo Bills (2023/01/22)",
+  "gold": "First, I attended a NBA game at the Staples Center, then I watched the College Football National Championship game, and finally, I watched the NFL playoffs."
+ },
+ {
+  "qid": "2ebe6c90",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.167,
+  "answer": "You started reading 'The Nightingale' on 2023/01/10 and finished it on 2023/01/31. It took you 21 days to finish the book.",
+  "gold": "21 days. 22 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_e061b84f",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.459,
+  "answer": "The order of the sports events you participated in is: \n1. Triathlon (on a Friday, 2023/06/02)\n2. Midsummer 5K Run (2023/06/10)\n3. Company's annual charity soccer tournament (2023/06/17)",
+  "gold": "I first completed the Spring Sprint Triathlon, then took part in the Midsummer 5K Run, and finally participated in the company's annual charity soccer tournament."
+ },
+ {
+  "qid": "370a8ff4",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You recovered from the flu on 2023/01/19. \nYou went on your 10th jog outdoors on 2023/04/10. \nThe difference is 11 weeks and 5 days (or approximately 12 weeks, but since you asked for weeks, I'll calculate the exact weeks: \n2023/04/10 - 2023/01/19 = 11 weeks and 5 days, which is 11 weeks).",
+  "gold": "15"
+ },
+ {
+  "qid": "gpt4_d6585ce8",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": false,
+  "f1": 0.661,
+  "answer": "Based on the known facts, here's the order of concerts and musical events you attended:\n\n1. Billie Eilish concert at the Wells Fargo Center in Philly (2023/03/18)\n2. Free outdoor concert series in the park (2023/03/25)\n3. Music festival in Brooklyn (on or before 2023/04/01)\n4. Jazz night at a local bar (2023/04/08)\n5. Billie",
+  "gold": "The order of the concerts I attended is: 1. Billie Eilish concert at the Wells Fargo Center in Philly, 2. Free outdoor concert series in the park, 3. Music festival in Brooklyn, 4. Jazz night at a local bar, 5. Queen + Adam Lambert concert at the Prudential Center in Newark, NJ."
+ },
+ {
+  "qid": "gpt4_4ef30696",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.176,
+  "answer": "1 day. You finished 'The Nightingale' on 2022/01/15 and started 'The Hitchhiker's Guide to the Galaxy' on 2022/01/16.",
+  "gold": "1 day. 2 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_ec93e27f",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.067,
+  "answer": "Based on the known facts, your most recent mention of using a mode of transport was a 2-hour train journey to visit your family on 2023/03/03.",
+  "gold": "train"
+ },
+ {
+  "qid": "6e984301",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.045,
+  "answer": "You started taking sculpting classes on 2023/02/11 and invested in your own set of sculpting tools on 2023/03/04. \n\nSo, you had been taking sculpting classes for approximately 3 weeks when you invested in your own set of sculpting tools.",
+  "gold": "3"
+ },
+ {
+  "qid": "8077ef71",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.231,
+  "answer": "You attended the networking event on 2022/03/09. It has been 26 days ago.",
+  "gold": "26 days. 27 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_f420262c",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.138,
+  "answer": "Based on the known facts, the order of airlines you flew with from earliest to latest before today is:\n\n1. JetBlue (2022/11/17)\n2. Spirit Airlines (2022/11/17)\n3. American Airlines (2023/01/15 and other dates)\n4. United Airlines (2023/01/28)\n5. American Airlines (again, on 2023/02/10)",
+  "gold": "JetBlue, Delta, United, American Airlines"
+ },
+ {
+  "qid": "gpt4_8e165409",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.162,
+  "answer": "You repotted the spider plant on 2023/03/04 and gave cuttings to Mrs. Johnson on 2023/03/18. \n14 days passed between these two dates.",
+  "gold": "14 days. 15 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_74aed68e",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.052,
+  "answer": "You replaced your spark plugs on 2023/02/14 and again on 2023/03/15. You participated in the Turbocharged Tuesdays event on 2023/03/14 is not mentioned, but 2023/03/15 is mentioned as a Tuesday (given the event name), and the event is mentioned on this date, so it is assumed the event occurred on this date.\n\nBetween 2023/02/14 and 2023",
+  "gold": "29 days. 30 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "bcbe585f",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.143,
+  "answer": "You attended the workshop on 2023/04/01. That was 4 weeks ago.",
+  "gold": "4"
+ },
+ {
+  "qid": "gpt4_21adecb5",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.286,
+  "answer": "Between 2022/11/17 and 2023/05/15, approximately 6 months passed.",
+  "gold": "6 months"
+ },
+ {
+  "qid": "5e1b23de",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.133,
+  "answer": "You attended the photography workshop on 2023/11/01. That was 3 months ago.",
+  "gold": "3"
+ },
+ {
+  "qid": "gpt4_98f46fc6",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.296,
+  "answer": "The charity bake sale, which took place on 2023/03/15. The charity gala was on 2023/03/28.",
+  "gold": "I participated in the charity bake sale first."
+ },
+ {
+  "qid": "gpt4_af6db32f",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.308,
+  "answer": "You watched the Super Bowl on 2023/02/12. That was 17 days ago.",
+  "gold": "17 days ago. 18 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "eac54adc",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.125,
+  "answer": "You launched your website on 2023/02/10 and signed a contract with your first client on 2023/03/01. \n\nSo, when you signed the contract, it had been 19 days since you launched your website.",
+  "gold": "19 days ago. 20 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_7ddcf75f",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.25,
+  "answer": "You went on a whitewater rafting trip in the Oregon mountains on 2023/06/17. That was 3 days ago.",
+  "gold": "3 days ago. 4 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_a2d1d1f6",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.286,
+  "answer": "You harvested your first batch of fresh herbs from the herb garden kit 3 days ago.",
+  "gold": "3 days ago. 4 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_85da3956",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.261,
+  "answer": "You attended the 'Summer Nights' festival at Universal Studios Hollywood on 2023/07/15. It has been 3 weeks ago.",
+  "gold": "3 weeks ago"
+ },
+ {
+  "qid": "gpt4_b0863698",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.214,
+  "answer": "You participated in the 5K charity run on 2023/03/19. It has been 7 days.",
+  "gold": "7 days ago. 8 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_68e94287",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.324,
+  "answer": "Your post about the vegan chili recipe happened first, on 2023/03/10. Your participation in the #PlankChallenge was on 2023/03/15.",
+  "gold": "You posted a recipe for vegan chili on Instagram using the hashtag #FoodieAdventures first."
+ },
+ {
+  "qid": "gpt4_e414231e",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.1,
+  "answer": "You fixed your mountain bike on 2023/03/15 and decided to upgrade your road bike's pedals on 2023/03/19. \n\n4 days passed between those two dates.",
+  "gold": "4 days. 5 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_7ca326fa",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.136,
+  "answer": "Based on the known facts:\n- Emma graduated on 2022/05/27\n- Rachel graduated on 2022/06/21\n- Alex graduated about two weeks before 2022/07/15, so around 2022/07/01\n\nThe order is:\n1. Emma (2022/05/27)\n2. Rachel (2022/06/21)\n3. Alex (around 2022/07/01)",
+  "gold": "Emma graduated first, followed by Rachel and then Alex."
+ },
+ {
+  "qid": "gpt4_7bc6cf22",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.205,
+  "answer": "You read the March 15th issue of The New Yorker on 2023/03/20. Today is 2023/04/01. \n2023/04/01 - 2023/03/20 = 12 days.",
+  "gold": "12 days ago. 13 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "2ebe6c92",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.063,
+  "answer": "You were reading \"The Song of Achilles\" and hoped to finish it by the end of January 2023. Since today is 2023/02/07, it's likely you finished it, but it's not explicitly stated that you finished it. However, based on the information, it's probable that you finished \"The Song of Achilles\" around last week.",
+  "gold": "'The Nightingale' by Kristin Hannah"
+ },
+ {
+  "qid": "gpt4_e061b84g",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": false,
+  "f1": 0.667,
+  "answer": "The company's annual charity soccer tournament, which took place on 2023/06/17.",
+  "gold": "The company's annual charity soccer tournament."
+ },
+ {
+  "qid": "71017277",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.133,
+  "answer": "You received a crystal chandelier from your aunt last Saturday, 2023/03/04.",
+  "gold": "my aunt"
+ },
+ {
+  "qid": "b46e15ee",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.48,
+  "answer": "You participated in the Walk for Hunger charity event on 2023/03/19, which was about a month ago.",
+  "gold": "the 'Walk for Hunger' charity event"
+ },
+ {
+  "qid": "gpt4_d6585ce9",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "There's no information about you attending a music event last Saturday. The known facts mention attending the Turbocharged Tuesdays event, but not a music event.",
+  "gold": "my parents"
+ },
+ {
+  "qid": "gpt4_1e4a8aec",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "Two weeks ago would be around 2023/04/21. According to your previous conversations, you were tracking the weather and soil moisture levels using a gardening app, and you had also been planning gardening activities.",
+  "gold": "planting 12 new tomato saplings"
+ },
+ {
+  "qid": "gpt4_f420262d",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "There's no information about the airline you flew with on Valentine's Day. It's only mentioned that you're open to using any airline as of 2023/02/14.",
+  "gold": "American Airlines"
+ },
+ {
+  "qid": "gpt4_59149c78",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.217,
+  "answer": "You attended the Metropolitan Museum of Art on 2023/01/15, and also the City Art Museum on a Saturday (which would be 2023/01/14) for the Impressionist Masterpieces exhibition, and the Museum of Modern Art on 2023/01/08.",
+  "gold": "The Metropolitan Museum of Art."
+ },
+ {
+  "qid": "gpt4_e414231f",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.026,
+  "answer": "You didn't fix or service your bike the past weekend, according to the known facts. You had already fixed a flat tire on your mountain bike a few weeks before 2023/03/15 and cleaned its chain on 2023/03/15. You were planning a bike ride on the weekend of 2023/03/18, but there's no information about servicing a bike that weekend. However, you did decide to install Shimano Ultegra clip",
+  "gold": "road bike"
+ },
+ {
+  "qid": "gpt4_4929293b",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.039,
+  "answer": "I'm not aware of any life event of one of your relatives that you participated in a week ago, based on our previous conversations. However, I do recall that your niece's kindergarten graduation ceremony took place about 10 weeks ago, prior to 2023/04/15.",
+  "gold": "my cousin's wedding"
+ },
+ {
+  "qid": "gpt4_468eb064",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.182,
+  "answer": "You had lunch with Emma last Tuesday (2023/04/11).",
+  "gold": "Emma"
+ },
+ {
+  "qid": "gpt4_fa19884d",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.167,
+  "answer": "The bluegrass band. You started enjoying their music on 2023/03/31, which was last Friday.",
+  "gold": "a bluegrass band that features a banjo player"
+ },
+ {
+  "qid": "9a707b82",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.429,
+  "answer": "You baked a chocolate cake for your friend's birthday party.",
+  "gold": "a chocolate cake"
+ },
+ {
+  "qid": "eac54add",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.049,
+  "answer": "You mentioned a deadline for the Johnson account, which was two weeks from 2023/03/01. That would be around 2023/03/15, but you didn't mention a milestone four weeks ago.",
+  "gold": "I signed a contract with my first client."
+ },
+ {
+  "qid": "4dfccbf8",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.364,
+  "answer": "On the Wednesday two months ago (2023/02/01), you took ukulele lessons with Rachel.",
+  "gold": "I started taking ukulele lessons with Rachel."
+ },
+ {
+  "qid": "0bc8ad93",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.164,
+  "answer": "You visited the Natural History Museum on 2023/02/17 (a guided tour) and the Science Museum visit was on 2023/10/22, which is more than 2 months ago from the current date, but on 2023/01/11 and 2023/01/29, and 2023/02/18 and 2023/02/13 there is no mention of visiting a museum with or without a friend, however",
+  "gold": "No, you did not visit with a friend."
+ },
+ {
+  "qid": "6e984302",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You didn't mention buying something as an investment for a competition. However, four weeks ago would be around 2023/03/04, and on that day, you were considering entering a local art competition, specifically the sculpture category.",
+  "gold": "I got my own set of sculpting tools."
+ },
+ {
+  "qid": "gpt4_8279ba03",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.167,
+  "answer": "There's no information about you buying a kitchen appliance.",
+  "gold": "a smoker"
+ },
+ {
+  "qid": "gpt4_b5700ca0",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.061,
+  "answer": "You didn't mention attending a religious activity. However, you did participate in an Easter Egg Hunt event the week preceding 2023/04/06, but the location was not specified.",
+  "gold": "the Episcopal Church"
+ },
+ {
+  "qid": "gpt4_68e94288",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.348,
+  "answer": "You participated in the #PlankChallenge on 2023/03/15, which was 5 days ago.",
+  "gold": "You participated in a social media challenge called #PlankChallenge."
+ },
+ {
+  "qid": "gpt4_2655b836",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.087,
+  "answer": "You had a GPS issue with your car on March 22nd, after its first service on March 15th.",
+  "gold": "GPS system not functioning correctly"
+ },
+ {
+  "qid": "gpt4_2487a7cb",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.323,
+  "answer": "The 'Data Analysis using Python' webinar. It was two months prior to 2023/05/24, and the 'Effective Time Management' workshop was on 2023/05/20.",
+  "gold": "'Data Analysis using Python' webinar"
+ },
+ {
+  "qid": "gpt4_76048e76",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.074,
+  "answer": "You took your bike in for repairs in mid-February, and you washed your car on February 27th. So, you took care of your bike first.",
+  "gold": "bike"
+ },
+ {
+  "qid": "gpt4_2312f94c",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.2,
+  "answer": "The Dell XPS 13 laptop arrived on February 25th, and the Samsung Galaxy S22 was bought on February 20th. So, you got the Samsung Galaxy S22 first.",
+  "gold": "Samsung Galaxy S22"
+ },
+ {
+  "qid": "0bb5a684",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.169,
+  "answer": "You attended the workshop on January 10th. The team meeting is today, January 13th, or on January 17th (there are conflicting facts). \n\nIf the meeting is today, you attended the workshop 3 days ago. \nIf the meeting is on January 17th, you attended the workshop 7 days ago.",
+  "gold": "7 days. 8 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "08f4fc43",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.209,
+  "answer": "The Sunday mass at St. Mary's Church was on January 2nd and the Ash Wednesday service at the cathedral was on February 1st. \n\nJanuary has 31 days, so from January 2nd to January 31st is 29 days. \nFebruary 1st is the day after, so 29 + 1 = 30 days.\n\n30 days passed between the two events.",
+  "gold": "30 days. 31 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "2c63a862",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.074,
+  "answer": "You started working with Rachel on 2022/02/15 and found a house you loved on 2022/03/01. \n\nIt took 15 days (from 2022/02/15 to 2022/03/01) to find a house you loved after starting to work with Rachel.",
+  "gold": "14 days. 15 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_385a5000",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.074,
+  "answer": "The marigold seeds were started on March 3rd, and the other seeds (including tomatoes) were started on February 20th. So, the tomato seeds were started first.",
+  "gold": "Tomatoes"
+ },
+ {
+  "qid": "2a1811e2",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.139,
+  "answer": "The Hindu festival of Holi was on February 26th, and the Sunday mass at St. Mary's Church was on March 19th and also today (March 26th). \n\nTo find the number of days between Holi (February 26th) and the first Sunday mass (March 19th): \nFebruary has 28 days, so from February 26th to February 28th is 2 days. \nMarch 19th - 2",
+  "gold": "21 days. 22 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "bbf86515",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.114,
+  "answer": "You participated in the Turbocharged Tuesdays event on June 14th and the Rack Fest event on June 18th. So, you participated in the Turbocharged Tuesdays event 4 days before the Rack Fest event.",
+  "gold": "4 days."
+ },
+ {
+  "qid": "gpt4_5dcc0aab",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You cleaned your shoes on 2023/05/24, which is today, not last month. The type of shoes you cleaned is not specified, but you used a mixture of soap and water.",
+  "gold": "white Adidas sneakers"
+ },
+ {
+  "qid": "gpt4_0b2f1d21",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.188,
+  "answer": "The stand mixer was taken to a repair shop \"last month\", which would be April 2023, and it took 2 weeks to repair. The coffee maker was bought \"about three weeks ago\". Since 3 weeks ago would be around May 4, 2023, and the stand mixer was repaired in April, the malfunction of the stand mixer happened first.",
+  "gold": "The malfunction of the stand mixer"
+ },
+ {
+  "qid": "f0853d11",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.164,
+  "answer": "The 'Walk for Hunger' event was on February 21st and the 'Coastal Cleanup' event was on March 7th. \n\nFebruary has 28 days, so from February 21st to February 28th is 7 days. \nMarch 7th - February 28th is 7 days. \n7 + 7 = 14 days.\n\n14 days passed between the two events.",
+  "gold": "14 days. 8 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_6ed717ea",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.127,
+  "answer": "You purchased the dog bed for Max 3 weeks ago, which would be around May 8, 2023. There's no specific date mentioned for when you bought the training pads for Luna, but since you mentioned you recently purchased them and they're a lifesaver for her potty-training, it's likely you bought them after the dog bed.",
+  "gold": "Training pads for Luna"
+ },
+ {
+  "qid": "gpt4_70e84552",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.167,
+  "answer": "You fixed the fence 3 weeks ago and trimmed the goats' hooves 2 weeks ago, so you fixed the fence first.",
+  "gold": "Fixing the fence"
+ },
+ {
+  "qid": "a3838d2b",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You participated in at least 2 charity events before the 'Run for the Cure' event: the Bike-a-Thon and a charity golf tournament on July 17th.",
+  "gold": "4"
+ },
+ {
+  "qid": "gpt4_93159ced",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.238,
+  "answer": "You've been working professionally for 9 years and you've been at NovaTech for 4 years and 3 months. So, you were working for 9 - 4.25 = 4 years and 9 months before starting at NovaTech.",
+  "gold": "4 years and 9 months"
+ },
+ {
+  "qid": "gpt4_2d58bcd6",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.381,
+  "answer": "You finished reading both 'The Hate U Give' and 'The Nightingale', but the order is not specified.",
+  "gold": "'The Hate U Give'"
+ },
+ {
+  "qid": "gpt4_65aabe59",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.211,
+  "answer": "You set up the smart thermostat a month ago, so it was before the mesh network system.",
+  "gold": "Smart thermostat"
+ },
+ {
+  "qid": "982b5123",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.4,
+  "answer": "You booked the Airbnb 3 months ago.",
+  "gold": "Five months ago"
+ },
+ {
+  "qid": "b9cfe692",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.188,
+  "answer": "You took 2.5 weeks to finish 'The Seven Husbands of Evelyn Hugo' and 3 weeks to finish 'The Nightingale'. Combined, that's 2.5 + 3 = 5.5 weeks.",
+  "gold": "5.5 weeks"
+ },
+ {
+  "qid": "gpt4_4edbafa2",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.16,
+  "answer": "The date of the first BBQ event you attended in June was June 3rd, a backyard BBQ party at your colleague's house.",
+  "gold": "June 3rd"
+ },
+ {
+  "qid": "c8090214",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.133,
+  "answer": "You attended the Holiday Market a week before Black Friday, and you bought the iPhone 13 Pro on Black Friday. So, you attended the Holiday Market 7 days before buying the iPhone 13 Pro.",
+  "gold": "7 days. 8 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_483dd43c",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.176,
+  "answer": "You started watching 'Game of Thrones' about a month ago, and you started watching 'The Crown' on a Sunday afternoon. Since today is Monday, you started watching 'Game of Thrones' first.",
+  "gold": "'Game of Thrones'"
+ },
+ {
+  "qid": "e4e14d04",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "The information provided doesn't specify how long you had been a member of 'Book Lovers Unite' when you attended the meetup. It only mentions that you are a member and that you attended a meetup organized by the group last week.",
+  "gold": "Two weeks"
+ },
+ {
+  "qid": "c9f37c46",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.148,
+  "answer": "About 2 months. You started watching stand-up comedy 3 months ago and attended the open mic night in April, which is 1 month ago.",
+  "gold": "2 months"
+ },
+ {
+  "qid": "gpt4_2c50253f",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.065,
+  "answer": "You used to wake up at 8:30 AM, and on Tuesdays and Thursdays, you wake up 15 minutes earlier, so you wake up at 8:15 AM.",
+  "gold": "6:45 AM"
+ },
+ {
+  "qid": "dcfa8644",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.143,
+  "answer": "You bought your Adidas running shoes on January 10th and the shoelace broke on January 24th. \n\n14 days had passed since you bought your Adidas running shoes when the shoelace broke.",
+  "gold": "14 days. 15 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_b4a80587",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.207,
+  "answer": "The road trip to the coast happened before the user got the new 50mm f/1.8 prime lens, since the user got the lens a month ago and the trip occurred last week, and also before 2023/05/23, and the user had the lens as of 2023/05/23.",
+  "gold": "The arrival of the new prime lens"
+ },
+ {
+  "qid": "gpt4_9a159967",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.049,
+  "answer": "Based on the known facts, in March, you flew with Southwest Airlines (to Las Vegas) and also took a business trip to Chicago (airline not specified for the Chicago trip). In April, you flew with United Airlines (to Hawaii). Since the airline for the Chicago trip is not specified, it's not possible to determine the airline you flew with the most. However, among the specified flights, you flew with United Airlines (to Hawaii) and Southwest Airlines (to Las",
+  "gold": "United Airlines"
+ },
+ {
+  "qid": "cc6d1ec1",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.087,
+  "answer": "You had been interested in bird watching for approximately 2 months when you attended the workshop, which was a month ago.",
+  "gold": "Two months"
+ },
+ {
+  "qid": "gpt4_8c8961ae",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.323,
+  "answer": "The solo trip to Thailand was last year, and the Europe trip with family was last month, so you took the solo trip to Thailand first.",
+  "gold": "The solo trip to Thailand"
+ },
+ {
+  "qid": "gpt4_d9af6064",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.19,
+  "answer": "You set up the new router first, on January 15th. The smart thermostat was set up on February 10th.",
+  "gold": "new router"
+ },
+ {
+  "qid": "gpt4_7de946e7",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.08,
+  "answer": "You had a minor surgical procedure to remove a skin tag on February 22nd, 2023, and you've had a persistent cough for the past three weeks. Since three weeks before 2023/02/28 would be around 2023/02/07, the cough started before the skin tag removal.",
+  "gold": "Persistent cough"
+ },
+ {
+  "qid": "d01c6aa8",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.029,
+  "answer": "You are currently 32 years old and have been living in the United States for 5 years, so you were 32 - 5 = 27 years old when you moved to the United States. (Note: The fact that you are 20 years old is inconsistent with the fact that you are 32 years old, but based on the majority of the information, I'm using 32 as your current age.)",
+  "gold": "27"
+ },
+ {
+  "qid": "993da5e2",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.041,
+  "answer": "You got the new area rug a month ago and rearranged the furniture three weeks ago. So, you had been using the new area rug for about 1 week when you rearranged your living room furniture.",
+  "gold": "One week. Answers ranging from 7 days to 10 days are also acceptable."
+ },
+ {
+  "qid": "a3045048",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.082,
+  "answer": "Your best friend's birthday party was on April 22nd. You ordered the gift on an unspecified date, but since you gave the gift to your best friend on their birthday (which was last month) and you're considering other gifts today, it can be inferred that you ordered it before April 22nd. However, the exact date of ordering is not specified.",
+  "gold": "7 days. 8 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_d31cdae3",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.571,
+  "answer": "The family road trip across the American Southwest was taken first, as the solo trip to Europe was \"last summer\".",
+  "gold": "The family road trip across the American Southwest"
+ },
+ {
+  "qid": "gpt4_cd90e484",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.071,
+  "answer": "You got your new binoculars exactly 3 weeks before today (2023/05/20). So, you used them for 3 weeks before seeing the American goldfinches return.",
+  "gold": "Two weeks"
+ },
+ {
+  "qid": "gpt4_88806d6e",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.037,
+  "answer": "You met Mark and Sarah about a month ago on a beach trip, and you met Tom at a previous charity event, but the exact timing of meeting Tom is not specified. However, since you met Mark and Sarah about a month ago, it's likely you met them more recently than Tom.",
+  "gold": "Tom"
+ },
+ {
+  "qid": "gpt4_4cd9eba1",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.08,
+  "answer": "You got accepted on March 20th and the pre-departure orientation sessions started on March 27th, which is approximately 1 week after acceptance.",
+  "gold": "one week"
+ },
+ {
+  "qid": "gpt4_93f6379c",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.143,
+  "answer": "You joined 'Page Turners' first, as you joined it in the week prior to 2023/05/25, and you joined 'Marketing Professionals' on 2023/05/24.",
+  "gold": "Page Turners"
+ },
+ {
+  "qid": "b29f3365",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.053,
+  "answer": "You bought the new guitar amp 2 weeks ago. You've been taking guitar lessons for 6 weeks. So, when you bought the new amp, you had been taking guitar lessons for 6 - 2 = 4 weeks.",
+  "gold": "Four weeks"
+ },
+ {
+  "qid": "gpt4_2f56ae70",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.0,
+  "answer": "You've been using Apple TV+ for a few months, and Netflix and Hulu for the past 6 months, and Amazon Prime for the past 6 months. Since all of these were started before today and you're open to trying other services, it's likely Apple TV+ is the most recent one you started using.",
+  "gold": "Disney+"
+ },
+ {
+  "qid": "6613b389",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.069,
+  "answer": "Rachel got engaged on May 15th. Your anniversary is on July 22nd. May is 2 months before July. So, Rachel got engaged approximately 2 months before your anniversary.",
+  "gold": "2"
+ },
+ {
+  "qid": "gpt4_78cf46a3",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.163,
+  "answer": "The narrator lost their phone charger about two weeks ago, which would be around 2023/05/12. \n\nThe narrator got their new phone case about a month ago, which would be around 2023/04/26.\n\nSo, the narrator received their new phone case first.",
+  "gold": "Receiving the new phone case"
+ },
+ {
+  "qid": "gpt4_0a05b494",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.269,
+  "answer": "You met the jam maker at the farmer's market 2 weeks ago on a Saturday, which would be 2023/05/06. You met the tourist from Australia last Thursday, which would be 2023/05/18. So, you met the jam maker first.",
+  "gold": "the woman selling jam at the farmer's market"
+ },
+ {
+  "qid": "gpt4_1a1dc16d",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.421,
+  "answer": "The meeting with Rachel on April 10th happened before the pride parade on May 1st.",
+  "gold": "The meeting with Rachel"
+ },
+ {
+  "qid": "gpt4_2f584639",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.182,
+  "answer": "You ordered the photo album from Shutterfly two weeks ago, and you bought the necklace from Tiffany's last weekend. So, you bought the photo album first.",
+  "gold": "the photo album for my mom"
+ },
+ {
+  "qid": "gpt4_213fd887",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.129,
+  "answer": "The charity 5K run. You participated in it about a month ago, and you joined the volleyball league about 2 months ago, which means the volleyball league started first.",
+  "gold": "volleyball league"
+ },
+ {
+  "qid": "gpt4_5438fa52",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.19,
+  "answer": "Your Spanish classes started first, 3 months ago. Your attendance at the cultural festival was yesterday, 2023/05/26.",
+  "gold": "Spanish classes"
+ },
+ {
+  "qid": "gpt4_c27434e8",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.278,
+  "answer": "You started building the Japanese Zero fighter plane model about a month ago, and the Ferrari model about three weeks ago. So, you started the Japanese Zero fighter plane model first.",
+  "gold": "Japanese Zero fighter plane model"
+ },
+ {
+  "qid": "gpt4_fe651585",
+  "type": "temporal-reasoning",
+  "ok": true,
+  "sub": true,
+  "f1": 0.057,
+  "answer": "Alex became a parent first, having adopted a baby girl from China in January. Rachel's twins, Jackson and Julia, are having their first birthday party, implying they were born after Alex's adoption.",
+  "gold": "Alex"
+ },
+ {
+  "qid": "8c18457d",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.023,
+  "answer": "You bought a gift for your brother's graduation on an unspecified date, but his graduation was on 2023-03-08. You bought a gift for your best friend's 30th birthday on an unspecified date, but their birthday was on the 15th of March. \n\nAssuming you bought the gifts on or near these dates, the gift for your brother was bought around 2023-03-08, and the gift for your best friend was bought around",
+  "gold": "7 days. 8 days (including the last day) is also acceptable."
+ },
+ {
+  "qid": "gpt4_70e84552_abs",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.305,
+  "answer": "You fixed the fence first. According to our previous conversation, you fixed the broken fence on the east side of your property three weeks ago. There's no mention of purchasing cows from Peter, only considering purchasing a new cow.",
+  "gold": "The information provided is not enough. You mentioned fixing the fence but did not mention purchasing cows from Peter."
+ },
+ {
+  "qid": "gpt4_93159ced_abs",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.235,
+  "answer": "You haven't mentioned working at Google. You've mentioned working at NovaTech, where you've been working for 4 years and 3 months, and you've been working professionally for 9 years.",
+  "gold": "The information provided is not enough. From the information provided, You haven't started working at Google yet."
+ },
+ {
+  "qid": "982b5123_abs",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.154,
+  "answer": "You didn't book an Airbnb in Sacramento. According to our previous conversations, you booked an Airbnb in the city, considering Harajuku, and you had to book it three months in advance for your best friend's wedding.",
+  "gold": "The information provided is not enough. You only mentioned booking Airbnb in San Francisco."
+ },
+ {
+  "qid": "c8090214_abs",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.467,
+  "answer": "You didn't buy an iPad, you bought an iPhone 13 Pro on Black Friday. Also, the Holiday Market occurred a week before Black Friday, but the exact date of Black Friday is not provided.",
+  "gold": "The information provided is not enough. You mentioned getting the iPhone 13 Pro and attending the market, but you did not mention buying an iPad."
+ },
+ {
+  "qid": "gpt4_c27434e8_abs",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.264,
+  "answer": "You didn't mention a Porsche 991 Turbo S model in our previous conversations. You only talked about working on a Ferrari model, specifically a Ferrari 288 GTO model, which you started about three weeks ago.",
+  "gold": "The information provided is not enough. You did not mention starting the Porsche 991 Turbo S model."
+ },
+ {
+  "qid": "gpt4_fe651585_abs",
+  "type": "temporal-reasoning",
+  "ok": false,
+  "sub": false,
+  "f1": 0.478,
+  "answer": "There is no information about Tom becoming a parent. The information available is about Alex, who adopted a baby girl from China in January.",
+  "gold": "The information provided is not enough. You mentioned Alex becoming a parent in January, but you didn't mention anything about Tom."
+ }
+]

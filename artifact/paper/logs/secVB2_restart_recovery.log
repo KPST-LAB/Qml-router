@@ -1,0 +1,8 @@
+[turn1] correct=OK
+[turn1] save verified (258,693,252B)
+[kill] SIGKILL during generation
+run_t4.sh: line 45: 27758 Killed                  $LL --qml-session-store $S/qml.db --qml-lmdb-store $S/qml_lmdb > $R/srv_t4.log 2>&1
+--- reconnect after restart ---
+[reconnect after recovery] 242 ms correct=OK prefill=14
+run_t4.sh: line 9: 28877 Killed                  $LL --qml-session-store $S/qml.db --qml-lmdb-store $S/qml_lmdb > $R/srv_t4b.log 2>&1
+T4 DONE

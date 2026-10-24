@@ -14,10 +14,11 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
   <a href="#license"><img src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue" alt="License: AGPL-3.0 and commercial"></a>
   <a href="#paper"><img src="https://img.shields.io/badge/IEEE%20Access-accepted-2ea44f" alt="Paper: IEEE Access, accepted"></a>
   <a href="#engines"><img src="https://img.shields.io/badge/engines-llama.cpp%20%7C%20vLLM%20%7C%20SGLang%20%7C%20qml--engine-555" alt="Engines: llama.cpp, vLLM, SGLang, qml-engine"></a>
-  <img src="https://img.shields.io/badge/code-after%20final%20publication-lightgrey" alt="Code: after the final publication">
+  <a href="#quick-start"><img src="https://img.shields.io/badge/code-released-2ea44f" alt="Code: released"></a>
 </p>
 
 <p align="center">
+  <a href="#quick-start">Quick start</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#qml-engine">qml-engine</a> ·
   <a href="#results">Results</a> ·
@@ -43,9 +44,9 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 </table>
 
 > [!NOTE]
-> The source code, the benchmark programs and the paper's experiment artifact are published here
-> after the final publication of the paper. qml-engine, the own engine, follows at a later release.
-> Until then this repository holds the description, the license and the contribution terms.
+> This repository holds the source code, the benchmark programs and the paper's experiment artifact.
+> The SGLang storage backend (`hooks/sglang/`) follows shortly; qml-engine, the own engine, follows
+> at a later release.
 
 <a id="news"></a>
 <h2 align="center">News</h2>
@@ -53,7 +54,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 | Date | <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
 |---|---|
 | 2026‑10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
-| 2026‑10 | This repository opens; the code follows the final publication. |
+| 2026‑10 | Source code, benchmark programs and the paper's artifact released. |
 
 <a id="two-ways-to-run"></a>
 <h2 align="center">Two ways to run</h2>
@@ -319,6 +320,44 @@ documentation.
 | NVIDIA B200 (183 GB) | Qwen3-30B-A3B (GGUF Q3_K_M, Q4_K, Q8; BF16 on SGLang 0.5.20), gpt-oss-20b, gpt-oss-120b (also on vLLM 0.30.0), Qwen3.5-35B-A3B, Llama-3.1-8B-Instruct Q8_0, Llama-3.2-3B-Instruct F16, Qwen3-32B Q8_0, a 70B Q4_K_M model; architecture checks on Qwen3.5-0.8B/4B, Gemma 3/4, DeepSeek-V2-Lite | qml-engine | 20,000-turn memory stress test (500 questions); 32K restore and time to first token; 27-question weather recall | No |
 
 </details>
+
+<a id="quick-start"></a>
+<h2 align="center">Quick start</h2>
+
+```bash
+# 1. dependencies (Debian/Ubuntu)
+sudo apt install cmake build-essential libsqlite3-dev liblmdb-dev libssl-dev
+
+# 2. llama.cpp at the paper's commit, with the qml-router patch
+scripts/setup_llama_cpp.sh --cuda 89      # 89 = RTX 4090, 87 = Jetson AGX Orin, 90 = H200
+                                          # --cpu builds without CUDA
+
+# 3. run
+third_party/llama.cpp/build/bin/llama-server \
+  -m models/Llama-3.2-3B-Instruct-F16.gguf -ngl 99 -fa on \
+  -c 131072 --kv-unified -np 8 -ctk q4_0 -ctv q4_0 --cache-ram 0 --port 8397 \
+  --qml-session-store store/qml.db --qml-lmdb-store store/qml_lmdb
+```
+
+Clients send only the new turn with a `session_id`; the server prepends the stored history.
+vLLM and SGLang run with the qml-router connector or backend behind the session layer
+`router/qml_openai_gateway.py`. Setups, request format and options:
+[docs/RUNNING.md](docs/RUNNING.md) and [docs/API.md](docs/API.md).
+
+| Path | Contents |
+|---|---|
+| `core/`, `storage/`, `include/` | C session core, SQLite schema and store, LMDB payload store, public C API |
+| `hooks/` | Engine integrations: `llama.cpp/`, `vllm/`, `sglang/` |
+| `patches/` | The llama.cpp server patch |
+| `router/` | Session layer for vLLM and SGLang (Python, OpenAI-compatible) |
+| `comm/` | SQL/UDF communication layer (control-plane experiments) |
+| `tests/` | Benchmark programs and the run scripts of every paper experiment, one folder per table, figure or section (`tests/paper/`) |
+| `artifact/` | The supplementary material published with the paper: logs, scripts, data, result-to-file map (`artifact/paper/VERSIONS.txt`), SHA-256 manifest |
+| `docs/` | API, build and run documents, engine measurement records |
+
+To check a number of the paper, find its table or figure in `artifact/paper/VERSIONS.txt`, open
+the log, and read the matching block in `artifact/paper/reader.txt`; `tests/paper/` has the
+maintained run scripts.
 
 <a id="documentation"></a>
 <h2 align="center">Documentation</h2>

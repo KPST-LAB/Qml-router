@@ -1,0 +1,141 @@
+===== POWER MODE maxn =====
+[env] pmode=pmode:0000 cores=12 nvme_fault=11
+--- [maxn] 8000tok build ---
+[build] prefilled 7,996 tokens in 4s
+[build] stored state: 0.24 GiB for 7,996 tokens (31 KiB/token)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 8000tok restore rep1 try1 ---
+[page cache] data.mdb: resident 246 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=1,159 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=308 ms + predict=584 ms = 892 ms; non-compute remainder=266 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 8000tok restore rep2 try1 ---
+[page cache] data.mdb: resident 494 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=1,172 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=325 ms + predict=582 ms = 907 ms; non-compute remainder=265 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 8000tok restore rep3 try1 ---
+[page cache] data.mdb: resident 496 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=1,162 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=311 ms + predict=586 ms = 897 ms; non-compute remainder=265 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 8000tok recompute rep1 try1 ---
+[recompute-8000] latency=4,357 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=3,689 ms + predict=584 ms = 4,274 ms; non-compute remainder=83 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 8000tok recompute rep2 try1 ---
+[recompute-8000] latency=4,374 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=3,704 ms + predict=587 ms = 4,291 ms; non-compute remainder=83 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 8000tok recompute rep3 try1 ---
+[recompute-8000] latency=4,364 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=3,695 ms + predict=586 ms = 4,281 ms; non-compute remainder=83 ms
+--- [maxn] 32000tok build ---
+[build] prefilled 32,008 tokens in 23s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 32000tok restore rep1 try1 ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,234 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=478 ms + predict=851 ms = 1,329 ms; non-compute remainder=905 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 32000tok restore rep2 try1 ---
+[page cache] data.mdb: resident 1,975 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,233 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=488 ms + predict=859 ms = 1,347 ms; non-compute remainder=885 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 32000tok restore rep3 try1 ---
+[page cache] data.mdb: resident 1,976 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,208 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=470 ms + predict=855 ms = 1,325 ms; non-compute remainder=884 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 32000tok recompute rep1 try1 ---
+[recompute-32000] latency=23,883 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=22,915 ms + predict=868 ms = 23,782 ms; non-compute remainder=101 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 32000tok recompute rep2 try1 ---
+[recompute-32000] latency=23,866 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=22,846 ms + predict=864 ms = 23,710 ms; non-compute remainder=156 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [maxn] 32000tok recompute rep3 try1 ---
+[recompute-32000] latency=23,923 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=22,902 ms + predict=862 ms = 23,764 ms; non-compute remainder=159 ms
+NVPM WARN: Golden image context is already created
+NVPM WARN: Reboot required for changing to this power mode: 2
+NVPM WARN: DO YOU WANT TO REBOOT NOW? enter YES/yes to confirm:
+NVPM ERROR: bad input!
+NVPM ERROR: optMask is 1, no request for power mode
+===== POWER MODE mode30w =====
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 8000tok build ---
+[build] prefilled 7,996 tokens in 4s
+[build] stored state: 0.24 GiB for 7,996 tokens (31 KiB/token)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 8000tok restore rep1 try1 ---
+[page cache] data.mdb: resident 246 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=980 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=155 ms + predict=571 ms = 726 ms; non-compute remainder=254 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 8000tok restore rep2 try1 ---
+[page cache] data.mdb: resident 494 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=1,212 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=308 ms + predict=585 ms = 893 ms; non-compute remainder=319 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 8000tok restore rep3 try1 ---
+[page cache] data.mdb: resident 496 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=1,179 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=327 ms + predict=583 ms = 910 ms; non-compute remainder=269 ms
+[restore-8000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 8000tok recompute rep1 try1 ---
+[recompute-8000] latency=4,376 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=3,701 ms + predict=591 ms = 4,292 ms; non-compute remainder=84 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 8000tok recompute rep2 try1 ---
+[recompute-8000] latency=4,384 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=3,711 ms + predict=589 ms = 4,300 ms; non-compute remainder=84 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 8000tok recompute rep3 try1 ---
+[recompute-8000] latency=4,398 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=3,723 ms + predict=592 ms = 4,315 ms; non-compute remainder=83 ms
+--- [mode30w] 32000tok build ---
+[build] prefilled 32,008 tokens in 23s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 32000tok restore rep1 try1 ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,296 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=466 ms + predict=854 ms = 1,320 ms; non-compute remainder=976 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 32000tok restore rep2 try1 ---
+[page cache] data.mdb: resident 1,975 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,275 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=474 ms + predict=857 ms = 1,332 ms; non-compute remainder=943 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 32000tok restore rep3 try1 ---
+[page cache] data.mdb: resident 1,976 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,275 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=481 ms + predict=859 ms = 1,339 ms; non-compute remainder=935 ms
+[restore-32000] server log kv_restore events: +0 (provenance gate)
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 32000tok recompute rep1 try1 ---
+[recompute-32000] latency=23,945 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=22,920 ms + predict=867 ms = 23,787 ms; non-compute remainder=158 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 32000tok recompute rep2 try1 ---
+[recompute-32000] latency=23,992 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=22,963 ms + predict=871 ms = 23,833 ms; non-compute remainder=159 ms
+[env] pmode=pmode:0000 cores=12 nvme_fault=31
+--- [mode30w] 32000tok recompute rep3 try1 ---
+[recompute-32000] latency=23,947 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=22,919 ms + predict=871 ms = 23,790 ms; non-compute remainder=157 ms

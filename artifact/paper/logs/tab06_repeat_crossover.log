@@ -1,0 +1,190 @@
+#### file: xover_run1.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.14s correct=True prompt_n=22
+[qml] ~7455 tok: 0.179s correct=True prompt_n=22
+[qml] ~15855 tok: 0.372s correct=True prompt_n=22
+[qml] ~32655 tok: 0.744s correct=True prompt_n=22
+[qml] ~49455 tok: 1.242s correct=True prompt_n=22
+[stock] ~1855 tok: 0.18s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.474s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.523s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.422s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.37s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run2.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.141s correct=True prompt_n=22
+[qml] ~7455 tok: 0.2s correct=True prompt_n=22
+[qml] ~15855 tok: 0.372s correct=True prompt_n=22
+[qml] ~32655 tok: 0.78s correct=True prompt_n=22
+[qml] ~49455 tok: 1.302s correct=True prompt_n=22
+[stock] ~1855 tok: 0.186s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.475s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.521s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.434s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.421s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run3.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.146s correct=True prompt_n=22
+[qml] ~7455 tok: 0.178s correct=True prompt_n=22
+[qml] ~15855 tok: 0.401s correct=True prompt_n=22
+[qml] ~32655 tok: 0.789s correct=True prompt_n=22
+[qml] ~49455 tok: 1.341s correct=True prompt_n=22
+[stock] ~1855 tok: 0.181s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.477s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.531s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.441s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.435s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run4.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.154s correct=True prompt_n=22
+[qml] ~7455 tok: 0.192s correct=True prompt_n=22
+[qml] ~15855 tok: 0.374s correct=True prompt_n=22
+[qml] ~32655 tok: 0.693s correct=True prompt_n=22
+[qml] ~49455 tok: 1.313s correct=True prompt_n=22
+[stock] ~1855 tok: 0.18s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.474s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.525s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.42s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.386s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run5.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.146s correct=True prompt_n=22
+[qml] ~7455 tok: 0.195s correct=True prompt_n=22
+[qml] ~15855 tok: 0.36s correct=True prompt_n=22
+[qml] ~32655 tok: 0.697s correct=True prompt_n=22
+[qml] ~49455 tok: 1.449s correct=True prompt_n=22
+[stock] ~1855 tok: 0.185s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.473s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.529s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.432s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.397s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run6.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.136s correct=True prompt_n=22
+[qml] ~7455 tok: 0.206s correct=True prompt_n=22
+[qml] ~15855 tok: 0.369s correct=True prompt_n=22
+[qml] ~32655 tok: 0.776s correct=True prompt_n=22
+[qml] ~49455 tok: 1.245s correct=True prompt_n=22
+[stock] ~1855 tok: 0.179s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.476s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.534s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.429s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.402s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run7.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.139s correct=True prompt_n=22
+[qml] ~7455 tok: 0.209s correct=True prompt_n=22
+[qml] ~15855 tok: 0.39s correct=True prompt_n=22
+[qml] ~32655 tok: 0.801s correct=True prompt_n=22
+[qml] ~49455 tok: 1.352s correct=True prompt_n=22
+[stock] ~1855 tok: 0.186s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.477s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.526s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.432s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.399s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run8.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.147s correct=True prompt_n=22
+[qml] ~7455 tok: 0.178s correct=True prompt_n=22
+[qml] ~15855 tok: 0.374s correct=True prompt_n=22
+[qml] ~32655 tok: 0.798s correct=True prompt_n=22
+[qml] ~49455 tok: 1.346s correct=True prompt_n=22
+[stock] ~1855 tok: 0.178s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.479s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.531s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.438s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.397s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run9.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.149s correct=True prompt_n=22
+[qml] ~7455 tok: 0.197s correct=True prompt_n=22
+[qml] ~15855 tok: 0.376s correct=True prompt_n=22
+[qml] ~32655 tok: 0.729s correct=True prompt_n=22
+[qml] ~49455 tok: 1.343s correct=True prompt_n=22
+[stock] ~1855 tok: 0.18s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.48s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.532s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.443s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.422s correct=True prompt_n=49500
+cleanup done
+
+#### file: xover_run10.log
+built xover::s0: ~1845 tokens
+built xover::s1: ~7445 tokens
+built xover::s2: ~15845 tokens
+built xover::s3: ~32645 tokens
+built xover::s4: ~49445 tokens
+blobs persisted
+[qml] ~1855 tok: 0.146s correct=True prompt_n=22
+[qml] ~7455 tok: 0.208s correct=True prompt_n=22
+[qml] ~15855 tok: 0.392s correct=True prompt_n=22
+[qml] ~32655 tok: 0.74s correct=True prompt_n=22
+[qml] ~49455 tok: 1.318s correct=True prompt_n=22
+[stock] ~1855 tok: 0.182s correct=True prompt_n=1900
+[stock] ~7455 tok: 0.476s correct=True prompt_n=7500
+[stock] ~15855 tok: 1.53s correct=True prompt_n=15900
+[stock] ~32655 tok: 5.436s correct=True prompt_n=32700
+[stock] ~49455 tok: 14.432s correct=True prompt_n=49500
+cleanup done
+

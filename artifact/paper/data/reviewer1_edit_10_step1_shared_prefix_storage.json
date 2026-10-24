@@ -1,0 +1,137 @@
+{
+ "summary": {
+  "sessions": 10,
+  "prefix_tokens": 3911,
+  "state_size_first": 126458988,
+  "state_size_sum": 1264589880,
+  "bytes_per_token_median": 32259.945918367346,
+  "lmdb_growth_bytes": 1265881088,
+  "db_growth_bytes": 2776880,
+  "predicted_paper_31_4KB": 1230880000.0,
+  "content_keying_one_copy": 126458988,
+  "prompt_n_first": 3916,
+  "prompt_n_rest_max": 3916
+ },
+ "sessions": [
+  {
+   "session": "user01::shared",
+   "n": 1,
+   "resp_s": 0.291,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 126586880,
+   "db_bytes_cum": 255440
+  },
+  {
+   "session": "user02::shared",
+   "n": 2,
+   "resp_s": 0.227,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 253177856,
+   "db_bytes_cum": 527360
+  },
+  {
+   "session": "user03::shared",
+   "n": 3,
+   "resp_s": 0.226,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 379768832,
+   "db_bytes_cum": 803400
+  },
+  {
+   "session": "user04::shared",
+   "n": 4,
+   "resp_s": 0.224,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 506363904,
+   "db_bytes_cum": 1075320
+  },
+  {
+   "session": "user05::shared",
+   "n": 5,
+   "resp_s": 0.23,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 632954880,
+   "db_bytes_cum": 1359600
+  },
+  {
+   "session": "user06::shared",
+   "n": 6,
+   "resp_s": 0.224,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 759541760,
+   "db_bytes_cum": 1635640
+  },
+  {
+   "session": "user07::shared",
+   "n": 7,
+   "resp_s": 0.23,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 886128640,
+   "db_bytes_cum": 1911680
+  },
+  {
+   "session": "user08::shared",
+   "n": 8,
+   "resp_s": 0.233,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 1012711424,
+   "db_bytes_cum": 2195960
+  },
+  {
+   "session": "user09::shared",
+   "n": 9,
+   "resp_s": 0.228,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 1139294208,
+   "db_bytes_cum": 2484360
+  },
+  {
+   "session": "user10::shared",
+   "n": 10,
+   "resp_s": 0.227,
+   "prompt_n": 3916,
+   "tokens_evaluated": 3916,
+   "tokens_cached": 3919,
+   "session_tokens": 3920,
+   "state_size": 126458988,
+   "lmdb_bytes_cum": 1265881088,
+   "db_bytes_cum": 2776880
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+LongMemEval_S, cleaned release of the benchmark (file longmemeval_s_cleaned.json from the public
+LongMemEval distribution). Not included here because of its size; identity of the copy used:
+  items 500 (multi-session 133, temporal-reasoning 133, knowledge-update 78, single-session-user 70,
+  single-session-assistant 56, single-session-preference 30)
+  size 277,383,467 bytes, md5 9b009af4084c6207e9d41aa0dcb6506c, copy dated 2026-08-13
+Classes used in the paper: multi-session (arm msf) and temporal-reasoning (arm trf), 133 questions each.
+Per question: the haystack sessions are ingested as one qml session (lme-<arm>::<question_id>) and the
+question is asked with the reader prompt below; the answer is judged with the official LongMemEval
+judge prompts (paperjudge mode).
+
+reader system prompt:
+  <|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are a helpful assistant. Answer briefly and directly.<|eot_id|>
+question wrapper:
+  <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{question}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n
+
+files:
+  results_<arm>_final.json              per-question model answer (question_id, hypothesis, injected tokens)
+  results_<arm>_final_paperjudged.json  the same rows with the official judge verdict
+  answers_<arm>.json                    per question, token ranges of the gold sessions inside the ingested archive

@@ -1,0 +1,69 @@
+=== NVME HOST MEASUREMENT 2026. 08. 04. (Tue) 16:25:52 KST ===
+--- machine ---
+<host>
+NVIDIA GeForce RTX 4090, 24564 MiB, GPU-27a10498-4f8f-5a8b-42c3-d0c4021458eb, 595.45.04
+CPU(s):              12
+Model name:          Intel(R) Core(TM) i7-5820K CPU @ 3.30GHz
+Mem:             62          10           7           2          44          42
+PRETTY_NAME="Ubuntu 18.04.5 LTS"
+--- storage ---
+/dev/nvme0n1p1  469G   21G  424G   5% /nvme
+SAMSUNG MZVL2512HCJQ-00B00              
+PCIe link: 8.0 GT/s PCIe x4
+Python 3.7.5
+
+########## Context 8000 tokens ##########
+kv_unified = 'false'
+[build] prefilled 7,996 tokens in 0s
+[build] stored state: 0.24 GiB for 7,996 tokens (31 KiB/token)
+247M	$REPO/store/qml_lmdb
+run_nvme_test.sh: line 53: 32756 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- qml restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 246 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=275 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=71 ms + predict=107 ms = 177 ms; non-compute remainder=98 ms
+[restore-8000] server log kv_restore events: +1 (provenance gate)
+run_nvme_test.sh: line 53:  2133 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- qml restore, page cache resident (CPU-side floor) ---
+[restore_warm-8000] latency=223 ms  correct=OK  GPU prefill=11 tokens
+[restore_warm-8000] server compute: prompt=63 ms + predict=103 ms = 166 ms; non-compute remainder=56 ms
+[restore_warm-8000] server log kv_restore events: +1 (provenance gate)
+run_nvme_test.sh: line 53:  4154 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-8000] latency=580 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=457 ms + predict=102 ms = 559 ms; non-compute remainder=21 ms
+run_nvme_test.sh: line 53:  5140 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- device sequential read on the blob file ---
+[diskbw] run 1: 2.00 GiB in 0.76s = 2.84 GB/s (resident before read 0 MiB)
+[diskbw] run 2: 2.00 GiB in 0.83s = 2.58 GB/s (resident before read 0 MiB)
+[diskbw] run 3: 2.00 GiB in 0.85s = 2.51 GB/s (resident before read 0 MiB)
+[diskbw] median 2.58 GB/s  min 2.51  max 2.84
+
+########## Context 32000 tokens ##########
+kv_unified = 'false'
+[build] prefilled 32,008 tokens in 3s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+986M	$REPO/store/qml_lmdb
+run_nvme_test.sh: line 53:  6779 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- qml restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=661 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=196 ms + predict=127 ms = 323 ms; non-compute remainder=338 ms
+[restore-32000] server log kv_restore events: +1 (provenance gate)
+run_nvme_test.sh: line 53:  8799 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- qml restore, page cache resident (CPU-side floor) ---
+[restore_warm-32000] latency=604 ms  correct=OK  GPU prefill=11 tokens
+[restore_warm-32000] server compute: prompt=264 ms + predict=128 ms = 392 ms; non-compute remainder=212 ms
+[restore_warm-32000] server log kv_restore events: +1 (provenance gate)
+run_nvme_test.sh: line 53: 10702 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-32000] latency=3,033 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=2,844 ms + predict=119 ms = 2,963 ms; non-compute remainder=71 ms
+run_nvme_test.sh: line 53: 11904 Killed                  env LD_LIBRARY_PATH=$QML_LIBS $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/srv_$tag.log 2>&1
+--- device sequential read on the blob file ---
+[diskbw] run 1: 2.00 GiB in 0.89s = 2.41 GB/s (resident before read 0 MiB)
+[diskbw] run 2: 2.00 GiB in 1.46s = 1.47 GB/s (resident before read 0 MiB)
+[diskbw] run 3: 2.00 GiB in 1.77s = 1.22 GB/s (resident before read 0 MiB)
+[diskbw] median 1.47 GB/s  min 1.22  max 2.41
+
+=== NVME MEASUREMENT DONE ===

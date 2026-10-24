@@ -1,0 +1,134 @@
+#### file: results_devsrv_verified.log
+=== STORAGE DECOMPOSE (dev server) Mon Aug  3 19:31:47 KST 2026 ===
+--- device ---
+overlay         457G  348G   87G  81% /
+NAME    ROTA   SIZE
+loop0      0     4K
+loop1      0    74M
+loop2      0 614.5M
+loop3      0 349.7M
+loop4      0 321.1M
+loop5      0   402M
+loop6      0    74M
+loop7      0  62.1M
+loop8      0  63.8M
+loop9      0  63.8M
+loop10     0  21.1M
+cores: 12
+
+########## Context 8000 tokens ##########
+[build] prefilled 7,996 tokens in 1s
+[build] stored state: 0.24 GiB for 7,996 tokens (31 KiB/token)
+tests/bench_storage_decompose.sh: line 41:  2102 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 246 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=797 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  2164 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache resident (storage cost ~= 0, CPU-side floor) ---
+[restore_warm-8000] latency=393 ms  correct=OK  GPU prefill=11 tokens
+[restore_warm-8000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  2204 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-8000] latency=653 ms  correct=OK  GPU prefill=8,006 tokens
+tests/bench_storage_decompose.sh: line 41:  2247 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- device sequential read bandwidth ---
+[diskbw] run 1: 2.00 GiB in 3.92s = 0.55 GB/s (resident before read 0 MiB)
+[diskbw] run 2: 2.00 GiB in 3.93s = 0.55 GB/s (resident before read 0 MiB)
+[diskbw] run 3: 2.00 GiB in 3.91s = 0.55 GB/s (resident before read 0 MiB)
+[diskbw] median 0.55 GB/s  min 0.55  max 0.55
+
+########## Context 32000 tokens ##########
+[build] prefilled 32,008 tokens in 3s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+tests/bench_storage_decompose.sh: line 41:  2294 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,809 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  2356 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache resident (storage cost ~= 0, CPU-side floor) ---
+[restore_warm-32000] latency=1,042 ms  correct=OK  GPU prefill=11 tokens
+[restore_warm-32000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  2398 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-32000] latency=3,209 ms  correct=OK  GPU prefill=32,018 tokens
+tests/bench_storage_decompose.sh: line 41:  2440 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- device sequential read bandwidth ---
+[diskbw] run 1: 2.00 GiB in 3.94s = 0.54 GB/s (resident before read 0 MiB)
+[diskbw] run 2: 2.00 GiB in 3.91s = 0.55 GB/s (resident before read 0 MiB)
+[diskbw] run 3: 2.00 GiB in 3.95s = 0.54 GB/s (resident before read 0 MiB)
+[diskbw] median 0.54 GB/s  min 0.54  max 0.55
+
+=== STORAGE DECOMPOSE DONE ===
+
+#### file: results_verified.log
+=== STORAGE DECOMPOSE (dev server) Tue Aug  4 15:43:09 KST 2026 ===
+--- device ---
+overlay         457G  351G   83G  81% /
+NAME    ROTA   SIZE
+loop0      0     4K
+loop1      0    74M
+loop2      0 614.5M
+loop3      0 349.7M
+loop4      0 321.1M
+loop5      0   402M
+loop6      0    74M
+loop7      0  62.1M
+loop8      0  63.8M
+loop9      0  63.8M
+loop10     0  21.1M
+cores: 12
+
+########## Context 8000 tokens ##########
+[build] prefilled 7,996 tokens in 1s
+[build] stored state: 0.24 GiB for 7,996 tokens (31 KiB/token)
+tests/bench_storage_decompose.sh: line 54:  8945 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 246 MiB -> 0 MiB (cold verified)
+[restore-8000] latency=804 ms  correct=OK  GPU prefill=11 tokens
+[restore-8000] server compute: prompt=146 ms + predict=106 ms = 252 ms; non-compute remainder=553 ms
+[restore-8000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  8992 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache resident (storage cost ~= 0, CPU-side floor) ---
+[restore_warm-8000] latency=245 ms  correct=OK  GPU prefill=11 tokens
+[restore_warm-8000] server compute: prompt=72 ms + predict=105 ms = 177 ms; non-compute remainder=68 ms
+[restore_warm-8000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  9034 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-8000] latency=661 ms  correct=OK  GPU prefill=8,006 tokens
+[recompute-8000] server compute: prompt=531 ms + predict=103 ms = 634 ms; non-compute remainder=27 ms
+tests/bench_storage_decompose.sh: line 41:  9075 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- device sequential read bandwidth ---
+[diskbw] run 1: 2.00 GiB in 3.92s = 0.55 GB/s (resident before read 0 MiB)
+[diskbw] run 2: 2.00 GiB in 3.93s = 0.55 GB/s (resident before read 0 MiB)
+[diskbw] run 3: 2.00 GiB in 3.93s = 0.55 GB/s (resident before read 0 MiB)
+[diskbw] median 0.55 GB/s  min 0.55  max 0.55
+
+########## Context 32000 tokens ##########
+[build] prefilled 32,008 tokens in 3s
+[build] stored state: 0.96 GiB for 32,008 tokens (31 KiB/token)
+tests/bench_storage_decompose.sh: line 41:  9120 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache dropped (disk cold) ---
+[page cache] data.mdb: resident 986 MiB -> 0 MiB (cold verified)
+[restore-32000] latency=2,240 ms  correct=OK  GPU prefill=11 tokens
+[restore-32000] server compute: prompt=219 ms + predict=122 ms = 341 ms; non-compute remainder=1,899 ms
+[restore-32000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  9168 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- restore, page cache resident (storage cost ~= 0, CPU-side floor) ---
+[restore_warm-32000] latency=537 ms  correct=OK  GPU prefill=11 tokens
+[restore_warm-32000] server compute: prompt=206 ms + predict=126 ms = 331 ms; non-compute remainder=206 ms
+[restore_warm-32000] server log kv_restore events: +1 (provenance gate)
+tests/bench_storage_decompose.sh: line 41:  9210 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- stock prefill (qml not applied) ---
+[recompute-32000] latency=3,159 ms  correct=OK  GPU prefill=32,018 tokens
+[recompute-32000] server compute: prompt=2,978 ms + predict=121 ms = 3,099 ms; non-compute remainder=60 ms
+tests/bench_storage_decompose.sh: line 41:  9249 Killed                  $B/llama-server -m $M -ngl 99 -fa on --port $PORT "$@" > $R/tests/_dev3b/srv_$tag.log 2>&1
+--- device sequential read bandwidth ---
+[diskbw] run 1: 2.00 GiB in 3.98s = 0.54 GB/s (resident before read 0 MiB)
+[diskbw] run 2: 2.00 GiB in 3.97s = 0.54 GB/s (resident before read 0 MiB)
+[diskbw] run 3: 2.00 GiB in 3.96s = 0.54 GB/s (resident before read 0 MiB)
+[diskbw] median 0.54 GB/s  min 0.54  max 0.54
+
+=== STORAGE DECOMPOSE DONE ===
+

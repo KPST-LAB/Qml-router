@@ -1,0 +1,14 @@
+=== llama.cpp adoption cost, fresh store+server per rep (container) Fri Sep  4 04:40:57 KST 2026 ===
+[stock-r1] gpu_mem_mib=8928
+[stock-r1] 12 sessions x ~1500 tokens: total 2.7s  mean 225 ms  p50 237 ms  GPU prefill total 17,642  correct 12/12
+[stock-r2] gpu_mem_mib=8928
+[stock-r2] 12 sessions x ~1500 tokens: total 2.7s  mean 226 ms  p50 237 ms  GPU prefill total 17,642  correct 12/12
+[stock-r3] gpu_mem_mib=8928
+[stock-r3] 12 sessions x ~1500 tokens: total 2.7s  mean 225 ms  p50 233 ms  GPU prefill total 17,642  correct 12/12
+[qml-r1] gpu_mem_mib=8928
+[qml-r1] 12 sessions x ~1500 tokens: total 3.1s  mean 256 ms  p50 259 ms  GPU prefill total 18,240  correct 12/12
+[qml-r2] gpu_mem_mib=8928
+[qml-r2] 12 sessions x ~1500 tokens: total 3.0s  mean 252 ms  p50 257 ms  GPU prefill total 18,240  correct 12/12
+[qml-r3] gpu_mem_mib=8928
+[qml-r3] 12 sessions x ~1500 tokens: total 3.0s  mean 252 ms  p50 259 ms  GPU prefill total 18,240  correct 12/12
+FRESH PANEL DONE Fri Sep  4 04:42:35 KST 2026

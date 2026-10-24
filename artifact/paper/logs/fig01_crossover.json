@@ -1,0 +1,73 @@
+{
+ "sizes_tokens": [
+  1855,
+  7455,
+  15855,
+  32655,
+  49455
+ ],
+ "qml": [
+  {
+   "tokens": 1855,
+   "latency": 0.132,
+   "correct": true,
+   "prompt_n": 22
+  },
+  {
+   "tokens": 7455,
+   "latency": 0.179,
+   "correct": true,
+   "prompt_n": 22
+  },
+  {
+   "tokens": 15855,
+   "latency": 0.421,
+   "correct": true,
+   "prompt_n": 22
+  },
+  {
+   "tokens": 32655,
+   "latency": 0.723,
+   "correct": true,
+   "prompt_n": 22
+  },
+  {
+   "tokens": 49455,
+   "latency": 1.278,
+   "correct": true,
+   "prompt_n": 22
+  }
+ ],
+ "stock": [
+  {
+   "tokens": 1855,
+   "latency": 0.194,
+   "correct": true,
+   "prompt_n": 1900
+  },
+  {
+   "tokens": 7455,
+   "latency": 0.476,
+   "correct": true,
+   "prompt_n": 7500
+  },
+  {
+   "tokens": 15855,
+   "latency": 1.535,
+   "correct": true,
+   "prompt_n": 15900
+  },
+  {
+   "tokens": 32655,
+   "latency": 5.432,
+   "correct": true,
+   "prompt_n": 32700
+  },
+  {
+   "tokens": 49455,
+   "latency": 14.468,
+   "correct": true,
+   "prompt_n": 49500
+  }
+ ]
+}

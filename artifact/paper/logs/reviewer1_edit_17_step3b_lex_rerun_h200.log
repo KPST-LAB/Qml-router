@@ -1,0 +1,21 @@
+=== step3b start 2026-09-29T18:39:09+09:00 ===
+ABORT: another GPU process is running
+=== step3b start 2026-09-29T18:40:03+09:00 ===
+python rc=0 2026-09-29T19:05:42+09:00
+[lex] reproduction: answers identical to step0 266/266; injected (rows, tokens) identical to the engine log 266/266
+[lex] msf string-match metric 69/133 = 0.519 (official judge follows)
+[lex] trf string-match metric 46/133 = 0.346 (official judge follows)
+judge lex msf rc=0 2026-09-29T19:06:18+09:00
+TOTAL                   : 84/133 = 0.632
+saved: $REPO/ieee-rev1/data/reviewer1_edit_17_step3_results_lex_msf_paperjudged.json
+judge emb msf rc=0 2026-09-29T19:06:55+09:00
+TOTAL                   : 89/133 = 0.669
+saved: $REPO/ieee-rev1/data/reviewer1_edit_17_step3_results_emb_msf_paperjudged.json
+judge lex trf rc=0 2026-09-29T19:07:34+09:00
+TOTAL                   : 98/133 = 0.737
+saved: $REPO/ieee-rev1/data/reviewer1_edit_17_step3_results_lex_trf_paperjudged.json
+judge emb trf rc=0 2026-09-29T19:08:15+09:00
+TOTAL                   : 105/133 = 0.789
+saved: $REPO/ieee-rev1/data/reviewer1_edit_17_step3_results_emb_trf_paperjudged.json
+=== step3b done 2026-09-29T19:08:15+09:00 ===
+server stopped pid=3121837 2026-09-29T19:08:16+09:00
