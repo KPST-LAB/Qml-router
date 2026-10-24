@@ -21,6 +21,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
   <a href="#how-it-works">How it works</a> ·
   <a href="#qml-engine">qml-engine</a> ·
   <a href="#results">Results</a> ·
+  <a href="#documentation">Docs</a> ·
   <a href="#engines">Engines</a> ·
   <a href="#paper">Paper</a> ·
   <a href="#license">License</a>
@@ -318,6 +319,18 @@ documentation.
 | NVIDIA B200 (183 GB) | Qwen3-30B-A3B (GGUF Q3_K_M, Q4_K, Q8; BF16 on SGLang 0.5.20), gpt-oss-20b, gpt-oss-120b (also on vLLM 0.30.0), Qwen3.5-35B-A3B, Llama-3.1-8B-Instruct Q8_0, Llama-3.2-3B-Instruct F16, Qwen3-32B Q8_0, a 70B Q4_K_M model; architecture checks on Qwen3.5-0.8B/4B, Gemma 3/4, DeepSeek-V2-Lite | qml-engine | 20,000-turn memory stress test (500 questions); 32K restore and time to first token; 27-question weather recall | No |
 
 </details>
+
+<a id="documentation"></a>
+<h2 align="center">Documentation</h2>
+
+| Document | Contents <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
+|---|---|
+| [docs/API.md](docs/API.md) | API specification: C core, engine integration, session layer for vLLM and SGLang, store schema, settings |
+| [docs/RUNNING.md](docs/RUNNING.md) | Building and running with llama.cpp, vLLM and SGLang |
+| [docs/4-engines/engine-llama-cpp.md](docs/4-engines/engine-llama-cpp.md) | llama.cpp integration: server patch and hook |
+| [docs/4-engines/engine-vllm.md](docs/4-engines/engine-vllm.md) | vLLM integration: KV connector |
+| [docs/4-engines/engine-sglang.md](docs/4-engines/engine-sglang.md) | SGLang integration: HiCache storage backend |
+| [docs/4-engines/engine-comparison.md](docs/4-engines/engine-comparison.md) | The three engines compared |
 
 <a id="engines"></a>
 <h2 align="center">Engines</h2>
