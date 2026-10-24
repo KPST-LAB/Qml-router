@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="672" viewBox="0 0 640 672" role="img" aria-label="Qml Engine: API / Access; Runtime; Executor; CUDA Kernels; GPU Memory; Persistent State; Security; Store">
+<text x="320.0" y="26" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#f0f6fc">QML ENGINE</text>
+<rect x="16" y="40" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="60" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">API / Access</text>
+<text x="320.0" y="87" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">OpenAI API  ·  Session API  ·  Auth: key  ·  JWT  ·  gateway</text>
+<text x="320.0" y="111" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">Identity: tenant::user::agent::session</text>
+<rect x="16" y="126" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="146" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">Runtime</text>
+<text x="320.0" y="173" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">Scheduler (tenant quota)  ·  TAWT  ·  RIG  ·  Shared prefix</text>
+<line x1="16" y1="126" x2="624" y2="126" stroke="#3d444d"/>
+<rect x="16" y="188" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="208" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">Executor</text>
+<text x="320.0" y="235" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">Prefill  ·  Decode  ·  Sampling  ·  Tools  ·  Vision input</text>
+<line x1="16" y1="188" x2="624" y2="188" stroke="#3d444d"/>
+<rect x="16" y="250" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="270" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">CUDA Kernels</text>
+<text x="320.0" y="297" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">Attention (one definition for prefill and decode)</text>
+<text x="320.0" y="321" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">MoE  ·  INT8 matvec  ·  sm_90 WGMMA  ·  sm_100 tcgen05</text>
+<text x="320.0" y="345" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">ggml for the other paths</text>
+<line x1="16" y1="250" x2="624" y2="250" stroke="#3d444d"/>
+<rect x="16" y="360" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="380" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">GPU Memory</text>
+<text x="320.0" y="407" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">KV pool (VMM)  ·  Identity blocks  ·  Prefix copy-on-write</text>
+<line x1="16" y1="360" x2="624" y2="360" stroke="#3d444d"/>
+<rect x="16" y="422" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="442" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">Persistent State</text>
+<text x="320.0" y="469" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">Token log  ·  KV segment chain (checkpoint  ·  delta)</text>
+<text x="320.0" y="493" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">L2 host tier  ·  Recompute from the token log</text>
+<line x1="16" y1="422" x2="624" y2="422" stroke="#3d444d"/>
+<rect x="16" y="508" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="528" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">Security</text>
+<text x="320.0" y="555" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">MAC / AEAD per piece  ·  Rollback anchor  ·  Model fingerprint</text>
+<text x="320.0" y="579" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">Token digest  ·  Crypto-erasure  ·  Weight hash</text>
+<line x1="16" y1="508" x2="624" y2="508" stroke="#3d444d"/>
+<rect x="16" y="594" width="608" height="30" fill="#151b23"/>
+<text x="320.0" y="614" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#f0f6fc">Store</text>
+<text x="320.0" y="641" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#d1d9e0">SQLite or PostgreSQL (metadata)  ·  LMDB (one file per session)</text>
+<line x1="16" y1="594" x2="624" y2="594" stroke="#3d444d"/>
+<rect x="16" y="40" width="608" height="616" rx="8" fill="none" stroke="#3d444d" stroke-width="1.5"/>
+</svg>

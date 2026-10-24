@@ -33,8 +33,6 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
   and a session can continue on another engine. Built for on-premises servers and edge devices.
 </p>
 
-<div align="center">
-
 <table>
   <tr>
     <td align="center" width="33%"><h2>4.6×</h2>faster 32K-token reconnect<br><sub>restore 0.66 s vs recompute 3.03 s · RTX 4090, NVMe</sub></td>
@@ -42,8 +40,6 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
     <td align="center" width="33%"><h2>20,000</h2>turns in one session<br><sub>no material increase in per-turn latency · Llama-3.3-70B, H200</sub></td>
   </tr>
 </table>
-
-</div>
 
 > [!NOTE]
 > The source code, the benchmark programs and the paper's experiment artifact are published here
@@ -53,14 +49,10 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 <a id="news"></a>
 <h2 align="center">News</h2>
 
-<div align="center">
-
 | Date | |
 |---|---|
 | 2026-10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
 | 2026-10 | This repository opens; the code follows the final publication. |
-
-</div>
 
 <a id="two-ways-to-run"></a>
 <h2 align="center">Two ways to run</h2>
@@ -69,8 +61,6 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
   One session model — a token log owned by an explicit identity is the canonical state,<br>
   and the KV cache is a rebuildable acceleration derived from it — in two forms.
 </p>
-
-<div align="center">
 
 | | **qml-router** | **qml-engine** |
 |---|---|---|
@@ -83,12 +73,8 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 | In the paper | yes | no |
 | Code | after the paper's final publication | at a later release |
 
-</div>
-
 <a id="how-it-works"></a>
 <h2 align="center">How it works</h2>
-
-<div align="center">
 
 | Function | What it does |
 |---|---|
@@ -98,7 +84,15 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 | **RIG** (Recall Injection Gate) | Archived turns are indexed with SQLite FTS5 (BM25); a confidence gate and a token budget decide what to inject on a later turn. |
 | **Cross-engine continuation** | A session continues on another engine by replaying the token log, given a shared tokenizer. |
 
-</div>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/arch-router-dark.svg">
+    <img src="docs/images/arch-router-light.svg" width="640" alt="qml-router layers: client and gateway, session layer, engine integration, C core, embedded store">
+  </picture>
+</p>
+
+<details>
+<summary>Text version</summary>
 
 ```text
                             QML ROUTER
@@ -122,7 +116,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 └────────────────────────────────────────────────────────────────┘
 ```
 
-<div align="center">
+</details>
 
 | Step | One turn of a session |
 |---|---|
@@ -132,8 +126,6 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 | 4 | The engine generates the answer. |
 | 5 | The turn is appended to the token log and the KV is saved. |
 | 6 | Past the window, TAWT moves whole turns to the archive. |
-
-</div>
 
 <p align="center">
   <img src="docs/images/fig3-architecture.png" width="720" alt="llama.cpp, vLLM and SGLang with qml-router attached, saving to and restoring from the qml-router persistence tier (SQLite sessions and token log, LMDB KV payload)">
@@ -147,6 +139,16 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
   stored KV that is verified when it comes back and recomputed from the token log when it does not match,<br>
   and prefill and decode on the engine's own CUDA kernels. Not part of the paper.
 </p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/arch-engine-dark.svg">
+    <img src="docs/images/arch-engine-light.svg" width="640" alt="qml-engine layers: API and access, runtime, executor, CUDA kernels, GPU memory, persistent state, security, store">
+  </picture>
+</p>
+
+<details>
+<summary>Text version</summary>
 
 ```text
                             QML ENGINE
@@ -181,6 +183,8 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 │ SQLite or PostgreSQL (metadata) │ LMDB (one file per session)  │
 └────────────────────────────────────────────────────────────────┘
 ```
+
+</details>
 
 <details>
 <summary><b>qml-engine measured results</b> (not part of the paper)</summary>
@@ -219,8 +223,6 @@ GGUF and safetensors.
   throughput not answer-checked). Right: one user's reconnect latency versus history length.
 </sub></p>
 
-<div align="center">
-
 **32K-token reconnect by storage and device**
 
 | Environment | Recompute | Restore | Ratio |
@@ -231,8 +233,6 @@ GGUF and safetensors.
 | Jetson AGX Orin, 30 W | 87.87 s | 4.24 s | **20.7×** |
 
 <sub>Regimes where recomputation is as fast or faster (short histories on a fast GPU) are reported in the paper.</sub>
-
-</div>
 
 <details>
 <summary><b>Reconnect latency under load</b> (llama.cpp, RTX 4090)</summary>
@@ -322,8 +322,6 @@ documentation.
 <a id="engines"></a>
 <h2 align="center">Engines</h2>
 
-<div align="center">
-
 | Engine | Version | Interface |
 |---|---|---|
 | llama.cpp | build b10141 (upstream commit `0d47ea742`), as in the paper | qml-router: server patch plus a hook (llama.cpp has no storage extension point) |
@@ -331,8 +329,6 @@ documentation.
 | SGLang | 0.5.16, as in the paper | qml-router: `HiCacheStorage` backend, no engine-source modification |
 | qml-engine | own engine, not in the paper | Built in: OpenAI-compatible chat, completions and embeddings, plus session, memory and administration endpoints |
 | LMCache (comparison only) | 0.5.2 | The content-keyed baseline in the paper's Section V-D |
-
-</div>
 
 <p align="center"><sub>
   <b>Assumptions and scope (qml-router).</b> Identities are assigned by a trusted gateway, and the serving process runs inside a<br>

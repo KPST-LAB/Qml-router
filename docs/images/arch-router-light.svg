@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="414" viewBox="0 0 640 414" role="img" aria-label="Qml Router: Client / Gateway; Session Layer; Engine Integration; C Core; Embedded Store (in the engine process)">
+<text x="320.0" y="26" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#1f2328">QML ROUTER</text>
+<rect x="16" y="40" width="608" height="30" fill="#f6f8fa"/>
+<text x="320.0" y="60" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2328">Client / Gateway</text>
+<text x="320.0" y="87" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#3d444d">OpenAI-compatible API  ·  new turn + session_id (user::session)</text>
+<rect x="16" y="102" width="608" height="30" fill="#f6f8fa"/>
+<text x="320.0" y="122" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2328">Session Layer</text>
+<text x="320.0" y="149" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#3d444d">Identity  ·  Token Log  ·  Restore  ·  TAWT  ·  RIG (FTS5, BM25)</text>
+<line x1="16" y1="102" x2="624" y2="102" stroke="#d1d9e0"/>
+<rect x="16" y="164" width="608" height="30" fill="#f6f8fa"/>
+<text x="320.0" y="184" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2328">Engine Integration</text>
+<text x="320.0" y="211" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#3d444d">llama.cpp server patch + hook</text>
+<text x="320.0" y="235" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#3d444d">vLLM KVConnector  ·  SGLang HiCache backend</text>
+<line x1="16" y1="164" x2="624" y2="164" stroke="#d1d9e0"/>
+<rect x="16" y="250" width="608" height="30" fill="#f6f8fa"/>
+<text x="320.0" y="270" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2328">C Core</text>
+<text x="320.0" y="297" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#3d444d">TAWT policy (qml_window)  ·  RIG policy (qml_rig)</text>
+<line x1="16" y1="250" x2="624" y2="250" stroke="#d1d9e0"/>
+<rect x="16" y="312" width="608" height="30" fill="#f6f8fa"/>
+<text x="320.0" y="332" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2328">Embedded Store (in the engine process)</text>
+<text x="320.0" y="359" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#3d444d">SQLite: session  ·  token log  ·  archive  ·  FTS5 index</text>
+<text x="320.0" y="383" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#3d444d">LMDB: KV payload</text>
+<line x1="16" y1="312" x2="624" y2="312" stroke="#d1d9e0"/>
+<rect x="16" y="40" width="608" height="358" rx="8" fill="none" stroke="#d1d9e0" stroke-width="1.5"/>
+</svg>
