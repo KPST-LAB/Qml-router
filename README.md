@@ -3,31 +3,61 @@ SPDX-License-Identifier: AGPL-3.0-only
 Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserved.
 -->
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/banner-dark.svg">
+    <img src="docs/images/banner-light.svg" width="760" alt="qml-router: persistent session state for LLM serving on edge and on-premises hardware">
+  </picture>
+</p>
+
+<p align="center">
+  <a href="#license"><img src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue" alt="License: AGPL-3.0 and commercial"></a>
+  <a href="#paper"><img src="https://img.shields.io/badge/IEEE%20Access-accepted-2ea44f" alt="Paper: IEEE Access, accepted"></a>
+  <img src="https://img.shields.io/badge/engines-llama.cpp%20%7C%20vLLM%20%7C%20SGLang-555" alt="Engines: llama.cpp, vLLM, SGLang">
+  <img src="https://img.shields.io/badge/code-after%20final%20publication-lightgrey" alt="Code: after the final publication">
+</p>
+
+<p align="center">
+  <a href="#paper">Paper</a> ·
+  <a href="#architecture">Architecture</a> ·
+  <a href="#results">Results</a> ·
+  <a href="#license">License</a> ·
+  <a href="mailto:jun@kpst.co.kr">Contact</a>
+</p>
+
 # qml-router
 
-qml-router is a session-state layer for LLM serving on resource-constrained hardware
-(on-premises servers and edge devices). It keeps a conversation's state outside the
-serving process, so a session survives process restarts, a reconnect restores the KV
-cache instead of recomputing it, and a session can continue on another engine.
+qml-router keeps a conversation's state outside the LLM serving process. A session survives
+process restarts, a reconnect restores the KV cache instead of recomputing it, history past
+the context window is archived and retrieved when a question needs it, and a session can
+continue on another engine. It targets resource-constrained hardware: on-premises servers
+and edge devices.
 
-The design rests on one invariant: the canonical state of a session is a token log owned
-by an explicit identity (`user::session`) and independent of the engine at the storage
-layer; each engine's KV cache is a rebuildable acceleration derived from that log.
+The design rests on one invariant: the canonical state of a session is a token log owned by
+an explicit identity (`user::session`) and independent of the engine at the storage layer;
+each engine's KV cache is a rebuildable acceleration derived from that log.
 
-This repository will hold the source code and the artifact of the paper:
+> [!NOTE]
+> The source code (session core, storage, engine integrations for llama.cpp, vLLM and SGLang,
+> gateway), the benchmark programs and the paper's experiment artifact are published here after
+> the final publication of the paper. Until then this repository holds the description, the
+> license and the contribution terms.
 
-> "Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture for
-> Durable, Engine-Agnostic Sessions," *IEEE Access*, 2026 (accepted; manuscript ID
-> Access-2026-45930).
+## Updates
 
-**Key points**
+- **2026-10** — The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)).
+- **2026-10** — This repository opens with the description and the license terms; the code
+  follows the final publication.
 
-- Sessions survive process restarts, the storage lookup has no cross-session content
-  matching step, and history trimmed from the context window is archived for retrieval.
-- Restoring a 32K-token session takes 0.66 s against 3.03 s for recomputation on an
-  RTX 4090, and 4.2 s against 87.9 s on a Jetson AGX Orin at 30 W.
-- A 20,000-turn session runs without a material increase in per-turn latency, and a session
-  continues across llama.cpp, vLLM and SGLang by token-log replay followed by prefill.
+## At a glance
+
+<table>
+  <tr>
+    <td align="center" width="33%"><h3>4.6×</h3>faster 32K-token reconnect<br>restore 0.66 s vs recompute 3.03 s<br><sub>RTX 4090, NVMe</sub></td>
+    <td align="center" width="33%"><h3>20.7×</h3>faster on an edge device<br>4.2 s vs 87.9 s<br><sub>Jetson AGX Orin, 30 W</sub></td>
+    <td align="center" width="33%"><h3>20,000 turns</h3>one session, no material increase<br>in per-turn latency<br><sub>Llama-3.3-70B, H200</sub></td>
+  </tr>
+</table>
 
 The name "qml" stands for query-based machine learning. It is unrelated to the Qt QML
 language and to quantum machine learning.
@@ -194,8 +224,8 @@ qml-router keeps the history and answers the questions about it.
 
 ## Models and hardware used in the experiments
 
-Every model run in the measurements, by device, including experiments that are not in the
-paper. GGUF models run on llama.cpp; HF models run on vLLM or SGLang.
+<details>
+<summary>Every model run in the measurements, by device, including experiments that are not in the paper (GGUF models on llama.cpp; HF models on vLLM or SGLang)</summary>
 
 | Device | Model (precision, format) | Engine | Experiments | In the paper |
 |---|---|---|---|---|
@@ -215,6 +245,8 @@ paper. GGUF models run on llama.cpp; HF models run on vLLM or SGLang.
 | RTX 4090 | bge-m3 F16, GGUF | llama.cpp (embedding) | Ranker latency on GPU and CPU; lexical versus embedding retrieval | Table 13 |
 | Jetson AGX Orin | Llama-3.2-3B-Instruct F16, GGUF, Q4_0 KV | llama.cpp + qml-router | Reconnect crossover at MAXN and 30 W; 500-turn context overflow; adoption cost | Abstract, Tables 5-7 (adoption cost: no) |
 | NVIDIA B200 (183 GB) | Qwen3-30B-A3B (GGUF Q3_K_M, Q4_K, Q8; BF16 on SGLang 0.5.20), gpt-oss-20b, gpt-oss-120b (also on vLLM 0.30.0), Qwen3.5-35B-A3B, Llama-3.1-8B-Instruct Q8_0, Llama-3.2-3B-Instruct F16, Qwen3-32B Q8_0, a 70B Q4_K_M model; architecture checks on Qwen3.5-0.8B/4B, Gemma 3/4, DeepSeek-V2-Lite | qml-engine (a separate engine, not in this repository) | 20,000-turn memory stress test (500 questions); 32K restore and time to first token; 27-question weather recall | No |
+
+</details>
 
 ## Engine integration
 
@@ -240,13 +272,6 @@ Network filesystems and rotational media were not tested. The paper does not pro
 new eviction algorithm, live KV-byte migration between engines, or a long-term-memory
 reasoning system.
 
-## Release status
-
-The source code (session core, storage, engine integrations for llama.cpp, vLLM and SGLang,
-gateway), the benchmark programs and the paper's experiment artifact (scripts, logs, data)
-will be published in this repository after the final publication of the paper. This first
-commit contains the license and contribution terms only.
-
 ## License
 
 qml-router is dual-licensed:
@@ -262,7 +287,16 @@ Third-party notices are in [NOTICE](NOTICE). Contributions are accepted only wit
 contributor license agreement (CLA); see [CONTRIBUTING.md](CONTRIBUTING.md). Security
 reports: see [SECURITY.md](SECURITY.md).
 
-## Citation
+## Paper
 
-Please cite the paper named at the top of this README. The DOI will be added when the
-article is published.
+> "Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture for
+> Durable, Engine-Agnostic Sessions," *IEEE Access*, 2026 (accepted; manuscript ID
+> Access-2026-45930).
+
+Please cite the paper above. The DOI and a BibTeX entry will be added when the article is
+published.
+
+## Contact
+
+jun@kpst.co.kr (Korea Platform Service Technology Co., Inc.) — questions, commercial license,
+security reports ([SECURITY.md](SECURITY.md)).
