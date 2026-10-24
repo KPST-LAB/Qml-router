@@ -49,7 +49,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 <a id="news"></a>
 <h2 align="center">News</h2>
 
-| Date | |
+| Date | <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
 |---|---|
 | 2026-10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
 | 2026-10 | This repository opens; the code follows the final publication. |
@@ -118,7 +118,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 
 </details>
 
-| Step | One turn of a session |
+| Step | One turn of a session <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
 |---|---|
 | 1 | Look up the session by its identity. |
 | 2 | If the stored KV matches the engine configuration, load it; otherwise replay the token log. |
@@ -225,7 +225,7 @@ GGUF and safetensors.
 
 **32K-token reconnect by storage and device**
 
-| Environment | Recompute | Restore | Ratio |
+| Environment <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> | Recompute | Restore | Ratio |
 |---|---|---|---|
 | RTX 4090, storage 0.55 GB/s (container) | 3.16 s | 2.24 s | 1.4× |
 | Same GPU, NVMe 1.6-1.9 GB/s (host) | 3.03 s | 0.66 s | **4.6×** |
@@ -237,7 +237,7 @@ GGUF and safetensors.
 <details>
 <summary><b>Reconnect latency under load</b> (llama.cpp, RTX 4090)</summary>
 
-| Condition | Baseline | qml-router | Ratio |
+| Condition <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> | Baseline | qml-router | Ratio |
 |---|---|---|---|
 | 16 users reconnect at once: slowest / median reconnect | 59.9 s / 10.0 s | 0.51 s / 0.49 s | — |
 | Same run: short-request throughput | 1.0 req/s | 29.0 req/s | 29× |
@@ -254,7 +254,7 @@ GGUF and safetensors.
   <img src="docs/images/overflow-latency.png" width="560" alt="Per-turn p50 latency at turn 500, log scale, baseline and qml-router on five engine and device pairs, with the evicted facts answered">
 </p>
 
-| Engine and device | Baseline | qml-router | Throughput (turns/s), baseline -> qml-router |
+| Engine and device <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> | Baseline | qml-router | Throughput (turns/s), baseline -> qml-router |
 |---|---|---|---|
 | llama.cpp, RTX 4090 | 0/46 | 42/44 | 0.42 -> 0.49 |
 | vLLM, RTX 4090 | 0/46 | 46/46 | 3.95 -> 1.49 |
@@ -270,7 +270,7 @@ qml-router keeps the history and answers the questions about it.
 <details>
 <summary><b>Cost of adding qml-router</b> (RTX 4090, 12 sessions per run, 3 runs)</summary>
 
-| Engine | GPU memory | Latency per request |
+| Engine | GPU memory | Latency per request <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
 |---|---|---|
 | llama.cpp | +0 MiB | 225 -> 252 ms (+27) |
 | vLLM | +0 MiB | 180 -> 259 ms (+79) |
