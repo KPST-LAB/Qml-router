@@ -3,7 +3,7 @@
 //
 // unit_qml_rig.c — unit tests for core/qml_rig.c (no GPU, engine or DB needed).
 //
-//   cc -I include -I storage/sqlite tests/unit_qml_rig.c core/qml_rig.c -o /tmp/t
+//   cc -I include -I storage/sqlite tests/unit/unit_rig.c core/qml_rig.c -o /tmp/t
 //   /tmp/t
 //
 // Covers: qml_rig_query (query-term filter), qml_rig_n_words,

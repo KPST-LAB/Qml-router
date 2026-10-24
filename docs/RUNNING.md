@@ -55,25 +55,32 @@ prefix).
 
 ```bash
 pip install vllm==0.26.0
-# build the ctypes store library once (also produced by the llama build)
-VLLM_ALLOW_INSECURE_SERIALIZATION=1 \
-vllm serve <model> --kv-transfer-config \
-  '{"kv_connector":"QmlVllmConnector","kv_role":"kv_both",
-    "kv_connector_module_path":"hooks.vllm.qml_vllm_connector"}'
+# store library the connector loads (build/libqml_session_store.so)
+cmake -S . -B build && cmake --build build --target qml_session_store_shared -j
+mkdir -p store
+VLLM_PLUGINS="" PYTHONPATH=hooks/vllm python3 -m vllm.entrypoints.openai.api_server \
+  --model unsloth/Llama-3.2-3B-Instruct --port 8000 \
+  --kv-transfer-config '{"kv_connector":"QmlVllmConnector","kv_connector_module_path":"qml_vllm_connector","kv_role":"kv_both","kv_buffer_device":"cpu","kv_connector_extra_config":{"qml_sqlite_path":"store/qml.db","qml_lmdb_path":"store/qml_lmdb","qml_self_url":"http://127.0.0.1:8000","qml_read_threads":"8"}}'
 ```
 
-Identity is carried per request by the `cache_salt` field (set it to the
-session id). At-rest INT8 quantization of blocks is optional and
-auto-detected on load.
+Identity is carried per request by the `cache_salt` field (set it to the session id). At-rest
+INT8 quantization of blocks is optional and auto-detected on load. Behind the session layer of
+section 4, add `"qml_token_log":"off"` to `kv_connector_extra_config`.
 
 ## 3. SGLang + qml (official HiCacheStorage backend, zero source changes)
 
 ```bash
 pip install sglang==0.5.16
-python -m sglang.launch_server --model-path <model> \
-  --enable-hierarchical-cache \
-  --hicache-storage-backend hooks.sglang.qml_sglang_storage.QmlHiCacheStorage
+mkdir -p store
+PYTHONPATH=hooks/sglang python3 -m sglang.launch_server \
+  --model-path unsloth/Llama-3.2-3B-Instruct --port 30000 --page-size 64 \
+  --enable-hierarchical-cache --hicache-write-policy write_through \
+  --hicache-storage-backend dynamic \
+  --hicache-storage-backend-extra-config '{"module_path":"qml_sglang_storage","class_name":"QmlSglangStorage","backend_name":"qml","qml_sqlite_path":"store/qml.db","qml_lmdb_path":"store/qml_lmdb"}'
 ```
+
+Identity is carried per request by `extra_key` (set it to the session id). Behind the session
+layer of section 4, add `"qml_token_log":"off"` to the extra config.
 
 ## 4. Session layer for vLLM and SGLang
 
@@ -88,7 +95,8 @@ python3 router/qml_openai_gateway.py --engine vllm --engine-url http://127.0.0.1
 ```
 
 The engine runs with the qml-router connector (vLLM) or backend (SGLang) on the same store,
-started as in sections 2 and 3. `docs/API.md` section 3 lists the endpoints.
+started as in sections 2 and 3 with `"qml_token_log":"off"`, so the token log is kept by the
+session layer only. `docs/API.md` section 3 lists the endpoints.
 
 ## 5. Benchmarks
 

@@ -56,7 +56,7 @@ An OpenAI-compatible front end that owns the session for vLLM (with the qml-rout
 and SGLang (with the qml-router backend): it keeps the token log, trims the window (TAWT) and
 recalls archived turns (RIG) through the C core, and sends the engine token ids with the
 session key (`cache_salt` for vLLM, `extra_key` for SGLang). The engine modules then handle
-the KV payload only.
+the KV payload only; start them with `"qml_token_log":"off"` in their extra config.
 
 | Endpoint | Role |
 |---|---|
