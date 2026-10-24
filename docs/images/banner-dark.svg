@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="170" viewBox="0 0 900 170" role="img" aria-label="qml-router: persistent session state for LLM serving on edge and on-premises hardware">
   <text x="450" y="78" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="56" font-weight="700" fill="#f0f6fc">qml-router</text>
   <text x="450" y="116" text-anchor="middle" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="19" fill="#d1d9e0">Persistent session state for LLM serving on edge and on-premises hardware</text>
-  <text x="450" y="150" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#9198a1">llama.cpp · vLLM · SGLang  |  token log · KV restore · TAWT · RIG</text>
+  <text x="450" y="150" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#9198a1">llama.cpp · vLLM · SGLang · qml-engine  |  token log · KV restore · TAWT · RIG</text>
 </svg>

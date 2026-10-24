@@ -13,29 +13,27 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 <p align="center">
   <a href="#license"><img src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue" alt="License: AGPL-3.0 and commercial"></a>
   <a href="#paper"><img src="https://img.shields.io/badge/IEEE%20Access-accepted-2ea44f" alt="Paper: IEEE Access, accepted"></a>
-  <img src="https://img.shields.io/badge/engines-llama.cpp%20%7C%20vLLM%20%7C%20SGLang-555" alt="Engines: llama.cpp, vLLM, SGLang">
+  <a href="#engines"><img src="https://img.shields.io/badge/engines-llama.cpp%20%7C%20vLLM%20%7C%20SGLang%20%7C%20qml--engine-555" alt="Engines: llama.cpp, vLLM, SGLang, qml-engine"></a>
   <img src="https://img.shields.io/badge/code-after%20final%20publication-lightgrey" alt="Code: after the final publication">
 </p>
 
 <p align="center">
   <a href="#how-it-works">How it works</a> ·
+  <a href="#qml-engine">qml-engine</a> ·
   <a href="#results">Results</a> ·
   <a href="#engines">Engines</a> ·
   <a href="#paper">Paper</a> ·
   <a href="#license">License</a>
 </p>
 
----
+<p align="center">
+  <b>qml-router keeps a conversation's state outside the LLM serving process.</b><br>
+  A session survives process restarts, a reconnect restores the KV cache instead of recomputing it,<br>
+  history past the context window is archived and retrieved when a question needs it,<br>
+  and a session can continue on another engine. Built for on-premises servers and edge devices.
+</p>
 
-**qml-router keeps a conversation's state outside the LLM serving process.** A session survives
-process restarts, a reconnect restores the KV cache instead of recomputing it, history past the
-context window is archived and retrieved when a question needs it, and a session can continue on
-another engine. It targets resource-constrained hardware: on-premises servers and edge devices.
-
-> [!NOTE]
-> The source code, the benchmark programs and the paper's experiment artifact are published here
-> after the final publication of the paper. Until then this repository holds the description, the
-> license and the contribution terms.
+<div align="center">
 
 <table>
   <tr>
@@ -45,25 +43,62 @@ another engine. It targets resource-constrained hardware: on-premises servers an
   </tr>
 </table>
 
-## News
+</div>
 
-- **2026-10** · The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)).
-- **2026-10** · This repository opens; the code follows the final publication.
+> [!NOTE]
+> The source code, the benchmark programs and the paper's experiment artifact are published here
+> after the final publication of the paper. qml-engine, the own engine, follows at a later release.
+> Until then this repository holds the description, the license and the contribution terms.
 
-## What it does
+<a id="news"></a>
+<h2 align="center">News</h2>
 
-| | |
+<div align="center">
+
+| Date | |
 |---|---|
-| **Identity-keyed persistence** | Session state is stored and looked up by session identity (`user::session`), not by content hash. |
+| 2026-10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
+| 2026-10 | This repository opens; the code follows the final publication. |
+
+</div>
+
+<a id="two-ways-to-run"></a>
+<h2 align="center">Two ways to run</h2>
+
+<p align="center">
+  One session model — a token log owned by an explicit identity is the canonical state,<br>
+  and the KV cache is a rebuildable acceleration derived from it — in two forms.
+</p>
+
+<div align="center">
+
+| | **qml-router** | **qml-engine** |
+|---|---|---|
+| What it is | A layer attached to existing engines | An LLM inference engine of its own |
+| Engines | llama.cpp, vLLM, SGLang | its own CUDA kernels (sm_90 WGMMA, sm_100 tcgen05), ggml for the other paths |
+| Identity | `user::session`, assigned by a trusted gateway | `tenant::user::agent::session`, from verified credentials (API key, JWT, signed gateway headers) |
+| Stored state | SQLite (session, token log, archive), LMDB (KV) | SQLite or PostgreSQL (metadata), LMDB (one file per session) |
+| Stored KV checks | engine configuration match; otherwise token-log replay | owner, position range, model fingerprint, version and token digest, with MAC or AEAD |
+| Long conversations | TAWT and RIG | TAWT and RIG |
+| In the paper | yes | no |
+| Code | after the paper's final publication | at a later release |
+
+</div>
+
+<a id="how-it-works"></a>
+<h2 align="center">How it works</h2>
+
+<div align="center">
+
+| Function | What it does |
+|---|---|
+| **Identity-keyed persistence** | Session state is stored and looked up by session identity, not by content hash. |
 | **Restore instead of recompute** | A reconnect loads the stored KV payload; the token log is the fallback when the payload does not match the engine configuration. |
 | **TAWT** (turn-aligned window trim) | Past the window, whole turns move to a per-session archive without loss; the system prefix stays. |
 | **RIG** (Recall Injection Gate) | Archived turns are indexed with SQLite FTS5 (BM25); a confidence gate and a token budget decide what to inject on a later turn. |
 | **Cross-engine continuation** | A session continues on another engine by replaying the token log, given a shared tokenizer. |
 
-The design rests on one invariant: the canonical state of a session is a token log owned by an
-explicit identity; each engine's KV cache is a rebuildable acceleration derived from that log.
-
-## How it works
+</div>
 
 ```text
                             QML ROUTER
@@ -87,33 +122,104 @@ explicit identity; each engine's KV cache is a rebuildable acceleration derived 
 └────────────────────────────────────────────────────────────────┘
 ```
 
-**One turn of a session**
+<div align="center">
 
-1. Look up the session by its identity.
-2. If the stored KV matches the engine configuration, load it; otherwise replay the token log.
-3. RIG searches this session's archive, gates the candidates and injects the chosen turns.
-4. The engine generates the answer.
-5. The turn is appended to the token log and the KV is saved.
-6. Past the window, TAWT moves whole turns to the archive.
+| Step | One turn of a session |
+|---|---|
+| 1 | Look up the session by its identity. |
+| 2 | If the stored KV matches the engine configuration, load it; otherwise replay the token log. |
+| 3 | RIG searches this session's archive, gates the candidates and injects the chosen turns. |
+| 4 | The engine generates the answer. |
+| 5 | The turn is appended to the token log and the KV is saved. |
+| 6 | Past the window, TAWT moves whole turns to the archive. |
 
-Storage is embedded in the serving process (SQLite and LMDB); there is no separate service.
+</div>
 
 <p align="center">
   <img src="docs/images/fig3-architecture.png" width="720" alt="llama.cpp, vLLM and SGLang with qml-router attached, saving to and restoring from the qml-router persistence tier (SQLite sessions and token log, LMDB KV payload)">
 </p>
 
-## Results
+<a id="qml-engine"></a>
+<h2 align="center">qml-engine</h2>
 
-Llama-3.2-3B-Instruct unless noted; every reconnect answer is checked against a value planted in
-its own history. Baseline = the same engine without qml-router.
+<p align="center">
+  The same session model inside an engine of its own: identity from verified credentials,<br>
+  stored KV that is verified when it comes back and recomputed from the token log when it does not match,<br>
+  and prefill and decode on the engine's own CUDA kernels. Not part of the paper.
+</p>
+
+```text
+                            QML ENGINE
+┌────────────────────────────────────────────────────────────────┐
+│                          API / Access                          │
+│ OpenAI API │ Session API │ Auth: key │ JWT │ gateway           │
+│ Identity: tenant::user::agent::session                         │
+├────────────────────────────────────────────────────────────────┤
+│                            Runtime                             │
+│ Scheduler (tenant quota) │ TAWT │ RIG │ Shared prefix          │
+├────────────────────────────────────────────────────────────────┤
+│                            Executor                            │
+│ Prefill │ Decode │ Sampling │ Tools │ Vision input             │
+├────────────────────────────────────────────────────────────────┤
+│                          CUDA Kernels                          │
+│ Attention (one definition for prefill and decode)              │
+│ MoE │ INT8 matvec │ sm_90 WGMMA │ sm_100 tcgen05               │
+│ ggml for the other paths                                       │
+├────────────────────────────────────────────────────────────────┤
+│                           GPU Memory                           │
+│ KV pool (VMM) │ Identity blocks │ Prefix copy-on-write         │
+├────────────────────────────────────────────────────────────────┤
+│                        Persistent State                        │
+│ Token log │ KV segment chain (checkpoint │ delta)              │
+│ L2 host tier │ Recompute from the token log                    │
+├────────────────────────────────────────────────────────────────┤
+│                            Security                            │
+│ MAC / AEAD per piece │ Rollback anchor │ Model fingerprint     │
+│ Token digest │ Crypto-erasure │ Weight hash                    │
+├────────────────────────────────────────────────────────────────┤
+│                             Store                              │
+│ SQLite or PostgreSQL (metadata) │ LMDB (one file per session)  │
+└────────────────────────────────────────────────────────────────┘
+```
+
+<details>
+<summary><b>qml-engine measured results</b> (not part of the paper)</summary>
+
+| Measurement | Result | Device, model | Date |
+|---|---|---|---|
+| 32K-token session restore (31.4K tokens) | 58-130 ms plaintext, 161-349 ms encrypted (AES-GCM), depending on the page-cache state; recomputation 1,183 ms | B200, Qwen3-30B-A3B | 2026-10-16 |
+| 32K-token prompt, time to first token | Llama-3.1-8B Q8_0 0.82 s; Qwen3-30B-A3B Q3_K_M 0.92 s; gpt-oss-20b 0.97-1.17 s; Gemma 3 4B 0.85-1.04 s; Qwen3.5-35B-A3B BF16 1.53-1.56 s | B200 | 2026-10-15/16 |
+| 20,000-turn session, 500 recall questions (questions and answers kept in the session) | 500/500, median response 128 ms | H200, Qwen3-30B-A3B | 2026-10-22 |
+| Same test | 500/500, median response 83 ms; Qwen3.5-35B-A3B 499/500; Llama-3.1-8B 497/500; gpt-oss-20b 496/500; gpt-oss-120b 437/500 | B200 | 2026-10-17/20 |
+| Decode on the same GGUF as llama.cpp (engine / llama.cpp) | gpt-oss-20b 302 / 321; Qwen3-30B-A3B 243 / 232; gpt-oss-120b 218 / 227 tokens/s | H200 | 2026-10-05 |
+| Stored-state tampering | bit flips, swapped chunks, wrong segments and old versions refused and recomputed | RTX 4090, SQLite and PostgreSQL | 2026-10-07 |
+| Parser fuzzing (7 parsers) | 14 defects found and fixed; afterwards no findings, no authentication bypass in 6.8M runs | RTX 4090 host | 2026-10-07 |
+
+GPUs used: RTX 4090 (sm_89), H200 (sm_90), B200 (sm_100). Model families run: Llama 3.x, Qwen3
+and Qwen3.5 (dense and MoE), gpt-oss, Gemma 3 and 4, DeepSeek-V2-Lite and GLM-4.7-Flash (MLA);
+GGUF and safetensors.
+
+</details>
+
+<a id="results"></a>
+<h2 align="center">Results</h2>
+
+<p align="center">
+  qml-router, Llama-3.2-3B-Instruct unless noted; every reconnect answer is checked against a value<br>
+  planted in its own history. Baseline = the same engine without qml-router.
+</p>
 
 <p align="center">
   <img src="docs/images/fig1ab-reconnect-density.png" width="34%" alt="Reconnect latency and short-request throughput as N users reconnect">
   <img src="docs/images/fig1c-reconnect-vs-history.png" width="64%" alt="Single-user reconnect latency versus history length">
 </p>
 
-<sub>Left: N users reconnect at once (latency over passing answers only: 29/30 qml-router, 30/30
-baseline; throughput not answer-checked). Right: one user's reconnect latency versus history length.</sub>
+<p align="center"><sub>
+  Left: N users reconnect at once (latency over passing answers only: 29/30 qml-router, 30/30 baseline;<br>
+  throughput not answer-checked). Right: one user's reconnect latency versus history length.
+</sub></p>
+
+<div align="center">
 
 **32K-token reconnect by storage and device**
 
@@ -124,8 +230,9 @@ baseline; throughput not answer-checked). Right: one user's reconnect latency ve
 | Jetson AGX Orin, MAXN | 23.93 s | 2.26 s | 10.6× |
 | Jetson AGX Orin, 30 W | 87.87 s | 4.24 s | **20.7×** |
 
-Regimes where recomputation is as fast or faster (short histories on a fast GPU) are reported in
-the paper.
+<sub>Regimes where recomputation is as fast or faster (short histories on a fast GPU) are reported in the paper.</sub>
+
+</div>
 
 <details>
 <summary><b>Reconnect latency under load</b> (llama.cpp, RTX 4090)</summary>
@@ -208,42 +315,51 @@ documentation.
 | RTX 4090 | gemma-3-4b-it, gemma-3-12b | vLLM 0.26.0, SGLang 0.5.16, llama.cpp | Early restart and resume tests; sliding-window attention checks | No |
 | RTX 4090 | bge-m3 F16, GGUF | llama.cpp (embedding) | Ranker latency on GPU and CPU; lexical versus embedding retrieval | Table 13 |
 | Jetson AGX Orin | Llama-3.2-3B-Instruct F16, GGUF, Q4_0 KV | llama.cpp + qml-router | Reconnect crossover at MAXN and 30 W; 500-turn context overflow; adoption cost | Abstract, Tables 5-7 (adoption cost: no) |
-| NVIDIA B200 (183 GB) | Qwen3-30B-A3B (GGUF Q3_K_M, Q4_K, Q8; BF16 on SGLang 0.5.20), gpt-oss-20b, gpt-oss-120b (also on vLLM 0.30.0), Qwen3.5-35B-A3B, Llama-3.1-8B-Instruct Q8_0, Llama-3.2-3B-Instruct F16, Qwen3-32B Q8_0, a 70B Q4_K_M model; architecture checks on Qwen3.5-0.8B/4B, Gemma 3/4, DeepSeek-V2-Lite | qml-engine (a separate engine, not in this repository) | 20,000-turn memory stress test (500 questions); 32K restore and time to first token; 27-question weather recall | No |
+| NVIDIA B200 (183 GB) | Qwen3-30B-A3B (GGUF Q3_K_M, Q4_K, Q8; BF16 on SGLang 0.5.20), gpt-oss-20b, gpt-oss-120b (also on vLLM 0.30.0), Qwen3.5-35B-A3B, Llama-3.1-8B-Instruct Q8_0, Llama-3.2-3B-Instruct F16, Qwen3-32B Q8_0, a 70B Q4_K_M model; architecture checks on Qwen3.5-0.8B/4B, Gemma 3/4, DeepSeek-V2-Lite | qml-engine | 20,000-turn memory stress test (500 questions); 32K restore and time to first token; 27-question weather recall | No |
 
 </details>
 
-## Engines
+<a id="engines"></a>
+<h2 align="center">Engines</h2>
 
-| Engine | Version used in the paper | Integration |
+<div align="center">
+
+| Engine | Version | Interface |
 |---|---|---|
-| llama.cpp | build b10141 (upstream commit `0d47ea742`) | Server patch plus a hook (llama.cpp has no storage extension point) |
-| vLLM | 0.26.0 | `KVConnector` plug-in, no engine-source modification |
-| SGLang | 0.5.16 | `HiCacheStorage` backend, no engine-source modification |
+| llama.cpp | build b10141 (upstream commit `0d47ea742`), as in the paper | qml-router: server patch plus a hook (llama.cpp has no storage extension point) |
+| vLLM | 0.26.0, as in the paper | qml-router: `KVConnector` plug-in, no engine-source modification |
+| SGLang | 0.5.16, as in the paper | qml-router: `HiCacheStorage` backend, no engine-source modification |
+| qml-engine | own engine, not in the paper | Built in: OpenAI-compatible chat, completions and embeddings, plus session, memory and administration endpoints |
 | LMCache (comparison only) | 0.5.2 | The content-keyed baseline in the paper's Section V-D |
 
-**Assumptions and scope.** Identities are assigned by a trusted gateway, and the serving process
-runs inside a trusted host boundary, because the embedded store is readable by any code in the
-engine process; the identity key is not an authentication mechanism ([SECURITY.md](SECURITY.md)).
-Cross-engine results assume a shared tokenizer vocabulary and a single host. Network filesystems
-and rotational media were not tested.
-
-## Paper
-
-> "Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture for
-> Durable, Engine-Agnostic Sessions," *IEEE Access*, 2026 (accepted; manuscript ID
-> Access-2026-45930).
-
-Please cite the paper above. The DOI and a BibTeX entry will be added when the article is published.
-
-## License
-
-Dual-licensed: **AGPL-3.0-only** ([LICENSE](LICENSE)) or a **commercial license** from Korea
-Platform Service Technology Co., Inc. ([LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md)) for use
-that does not follow the AGPL terms. Third-party notices: [NOTICE](NOTICE). Contributions require a
-contributor license agreement ([CONTRIBUTING.md](CONTRIBUTING.md)).
+</div>
 
 <p align="center"><sub>
-"qml" stands for query-based machine learning; it is unrelated to the Qt QML language and to
-quantum machine learning.<br>
-Contact: <a href="mailto:jun@kpst.co.kr">jun@kpst.co.kr</a> — questions, commercial license, security reports
+  <b>Assumptions and scope (qml-router).</b> Identities are assigned by a trusted gateway, and the serving process runs inside a<br>
+  trusted host boundary, because the embedded store is readable by any code in the engine process; the identity key is not an<br>
+  authentication mechanism (<a href="SECURITY.md">SECURITY.md</a>). Cross-engine results assume a shared tokenizer vocabulary and a single host.<br>
+  Network filesystems and rotational media were not tested.
+</sub></p>
+
+<a id="paper"></a>
+<h2 align="center">Paper</h2>
+
+<p align="center">
+  <i>"Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture<br>
+  for Durable, Engine-Agnostic Sessions,"</i> IEEE Access, 2026 (accepted; manuscript ID Access-2026-45930).<br>
+  Please cite the paper above. The DOI and a BibTeX entry will be added when the article is published.
+</p>
+
+<a id="license"></a>
+<h2 align="center">License</h2>
+
+<p align="center">
+  Dual-licensed: <b>AGPL-3.0-only</b> (<a href="LICENSE">LICENSE</a>) or a <b>commercial license</b> from<br>
+  Korea Platform Service Technology Co., Inc. (<a href="LICENSE-COMMERCIAL.md">LICENSE-COMMERCIAL.md</a>) for use that does not follow the AGPL terms.<br>
+  Third-party notices: <a href="NOTICE">NOTICE</a>. Contributions require a contributor license agreement (<a href="CONTRIBUTING.md">CONTRIBUTING.md</a>).
+</p>
+
+<p align="center"><sub>
+  "qml" stands for query-based machine learning; it is unrelated to the Qt QML language and to quantum machine learning.<br>
+  Contact: <a href="mailto:jun@kpst.co.kr">jun@kpst.co.kr</a> — questions, commercial license, security reports
 </sub></p>
