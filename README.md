@@ -492,7 +492,7 @@ cc -I include -I storage/sqlite tests/unit/unit_rig.c core/qml_rig.c -o build/un
 
 <p align="center">
   <i>"Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture<br>
-  for Durable, Engine-Agnostic Sessions,"</i> IEEE Access, 2026 (accepted; manuscript ID Access-2026-45930).<br>
+  for Durable, Engine-Agnostic Sessions,"</i> IEEE Access, 2026 (accepted; manuscript ID Access-2026-49950).<br>
   Please cite the paper above. The DOI and a BibTeX entry will be added when the article is published.
 </p>
 

@@ -1,6 +1,6 @@
 Supplementary material for "Persistent Session-State Management for LLM Serving: An
 Identity-Keyed Architecture for Durable, Engine-Agnostic Sessions" (IEEE Access,
-Access-2026-45930).
+Access-2026-49950).
 
 This bundle holds, for every number reported in the article, the run log, the script that
 produced it and the inputs that were sent to the engines.

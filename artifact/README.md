@@ -2,7 +2,7 @@
 
 `paper/` is the supplementary material published with the article "Persistent Session-State
 Management for LLM Serving: An Identity-Keyed Architecture for Durable, Engine-Agnostic
-Sessions" (IEEE Access, Access-2026-45930): for every number reported in the article, the run
+Sessions" (IEEE Access, Access-2026-49950): for every number reported in the article, the run
 log, the script that produced it and the inputs that were sent to the engines.
 
 | Path | Contents |

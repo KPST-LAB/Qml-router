@@ -2,7 +2,7 @@ VERSIONS -- result-to-file map
 
 Which log, script and data file stand behind each table and figure of the article
 "Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture for
-Durable, Engine-Agnostic Sessions" (IEEE Access, Access-2026-45930). Logs are in logs/,
+Durable, Engine-Agnostic Sessions" (IEEE Access, Access-2026-49950). Logs are in logs/,
 scripts in scripts/ (bench programs in scripts/bin/), inputs and result files in data/.
 "LME data" means the files in data/longmemeval/. reader.txt gives the run conditions of
 each log and where the number is in it.
