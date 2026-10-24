@@ -18,72 +18,50 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 </p>
 
 <p align="center">
-  <a href="#paper">Paper</a> ·
-  <a href="#architecture">Architecture</a> ·
+  <a href="#how-it-works">How it works</a> ·
   <a href="#results">Results</a> ·
-  <a href="#license">License</a> ·
-  <a href="mailto:jun@kpst.co.kr">Contact</a>
+  <a href="#engines">Engines</a> ·
+  <a href="#paper">Paper</a> ·
+  <a href="#license">License</a>
 </p>
 
-# qml-router
+---
 
-qml-router keeps a conversation's state outside the LLM serving process. A session survives
-process restarts, a reconnect restores the KV cache instead of recomputing it, history past
-the context window is archived and retrieved when a question needs it, and a session can
-continue on another engine. It targets resource-constrained hardware: on-premises servers
-and edge devices.
-
-The design rests on one invariant: the canonical state of a session is a token log owned by
-an explicit identity (`user::session`) and independent of the engine at the storage layer;
-each engine's KV cache is a rebuildable acceleration derived from that log.
+**qml-router keeps a conversation's state outside the LLM serving process.** A session survives
+process restarts, a reconnect restores the KV cache instead of recomputing it, history past the
+context window is archived and retrieved when a question needs it, and a session can continue on
+another engine. It targets resource-constrained hardware: on-premises servers and edge devices.
 
 > [!NOTE]
-> The source code (session core, storage, engine integrations for llama.cpp, vLLM and SGLang,
-> gateway), the benchmark programs and the paper's experiment artifact are published here after
-> the final publication of the paper. Until then this repository holds the description, the
+> The source code, the benchmark programs and the paper's experiment artifact are published here
+> after the final publication of the paper. Until then this repository holds the description, the
 > license and the contribution terms.
-
-## Updates
-
-- **2026-10** — The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)).
-- **2026-10** — This repository opens with the description and the license terms; the code
-  follows the final publication.
-
-## At a glance
 
 <table>
   <tr>
-    <td align="center" width="33%"><h3>4.6×</h3>faster 32K-token reconnect<br>restore 0.66 s vs recompute 3.03 s<br><sub>RTX 4090, NVMe</sub></td>
-    <td align="center" width="33%"><h3>20.7×</h3>faster on an edge device<br>4.2 s vs 87.9 s<br><sub>Jetson AGX Orin, 30 W</sub></td>
-    <td align="center" width="33%"><h3>20,000 turns</h3>one session, no material increase<br>in per-turn latency<br><sub>Llama-3.3-70B, H200</sub></td>
+    <td align="center" width="33%"><h2>4.6×</h2>faster 32K-token reconnect<br><sub>restore 0.66 s vs recompute 3.03 s · RTX 4090, NVMe</sub></td>
+    <td align="center" width="33%"><h2>20.7×</h2>faster on an edge device<br><sub>4.2 s vs 87.9 s · Jetson AGX Orin, 30 W</sub></td>
+    <td align="center" width="33%"><h2>20,000</h2>turns in one session<br><sub>no material increase in per-turn latency · Llama-3.3-70B, H200</sub></td>
   </tr>
 </table>
 
-The name "qml" stands for query-based machine learning. It is unrelated to the Qt QML
-language and to quantum machine learning.
+## News
 
-## Architecture
+- **2026-10** · The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)).
+- **2026-10** · This repository opens; the code follows the final publication.
 
-<p align="center">
-  <img src="docs/images/fig3-architecture.png" width="760" alt="llama.cpp, vLLM and SGLang with qml-router attached, saving to and restoring from the qml-router persistence tier (SQLite sessions and token log, LMDB KV payload)">
-</p>
+## What it does
 
-The system after qml-router is attached: the reuse scope extends beyond GPU memory and engine
-boundaries.
+| | |
+|---|---|
+| **Identity-keyed persistence** | Session state is stored and looked up by session identity (`user::session`), not by content hash. |
+| **Restore instead of recompute** | A reconnect loads the stored KV payload; the token log is the fallback when the payload does not match the engine configuration. |
+| **TAWT** (turn-aligned window trim) | Past the window, whole turns move to a per-session archive without loss; the system prefix stays. |
+| **RIG** (Recall Injection Gate) | Archived turns are indexed with SQLite FTS5 (BM25); a confidence gate and a token budget decide what to inject on a later turn. |
+| **Cross-engine continuation** | A session continues on another engine by replaying the token log, given a shared tokenizer. |
 
-## Comparison with persistent-KV systems
-
-✓ = supported, — = not provided, N/R = the cited work does not report the property (not taken
-as evidence of its absence). Cells reflect the cited publications and, for LMCache, its 2026
-public documentation.
-
-| System | Canonical state | Identity-keyed session | Restart persistence | Heterogeneous engines | Lossless overflow archive | Selective history retrieval | Process isolation boundary | Encryption at rest | Correctness verification |
-|---|---|---|---|---|---|---|---|---|---|
-| LMCache | KV bytes (content hash) | prefix-keyed chunks; tenant salt, no session identity | ✓ (standalone daemon) | vLLM, SGLang | — | — | out-of-process daemon (IPC per operation) | ✓ (persistent tier) | N/R |
-| KVGov | KV bytes (content hash, principal salt) | prefix-keyed within a principal; no session identity | — | vLLM, llama.cpp | — | — | in-process (engine cache) | N/R | N/R |
-| CachedAttention | KV bytes | session-oriented | ✓ (hierarchical store) | single engine | — | — | N/R | N/R | N/R |
-| agent-memory | KV bytes (Q4) | prefix-keyed per agent (Q4 KV) | N/R | single runtime (MLX) | — | N/R | in-process (MLX runtime) | N/R | N/R |
-| **qml-router** (llama.cpp, vLLM, SGLang) | token record; KV derived | ✓ (`user::session`) | ✓ | ✓ | ✓ (TAWT) | ✓ (RIG) | in-process store (trust boundary = process) | — (roadmap) | ✓ |
+The design rests on one invariant: the canonical state of a session is a token log owned by an
+explicit identity; each engine's KV cache is a rebuildable acceleration derived from that log.
 
 ## How it works
 
@@ -101,115 +79,73 @@ public documentation.
 │ vLLM KVConnector │ SGLang HiCache backend                      │
 ├────────────────────────────────────────────────────────────────┤
 │                             C Core                             │
-│ TAWT policy (qml_cache) │ RIG policy (qml_ml)                  │
+│ TAWT policy (qml_window) │ RIG policy (qml_rig)                │
 ├────────────────────────────────────────────────────────────────┤
 │             Embedded Store (in the engine process)             │
 │ SQLite: session │ token log │ archive │ FTS5 index             │
 │ LMDB: KV payload                                               │
-├────────────────────────────────────────────────────────────────┤
-│                            Hardware                            │
-│ RTX 4090 │ H200 │ Jetson AGX Orin │ NVMe                       │
 └────────────────────────────────────────────────────────────────┘
 ```
 
-One turn of a session:
+**One turn of a session**
 
-```text
-Client ── new turn + session_id ──▶ qml-router
-    │
-    ▼
-┌────────────────────────────────────────────────────────────────┐
-│ 1. Look up the session by its identity                         │
-│ 2. Stored KV matches the engine configuration → load it;       │
-│    otherwise replay the token log (prefill)                    │
-│ 3. RIG: search this session's archive (FTS5), gate the         │
-│    candidates, inject the chosen turns before the new turn     │
-│ 4. The engine generates the answer                             │
-│ 5. Append the turn to the token log, save the KV               │
-│ 6. TAWT: past the window, whole turns move to the archive;     │
-│    the system prefix stays                                     │
-└────────────────────────────────────────────────────────────────┘
-```
+1. Look up the session by its identity.
+2. If the stored KV matches the engine configuration, load it; otherwise replay the token log.
+3. RIG searches this session's archive, gates the candidates and injects the chosen turns.
+4. The engine generates the answer.
+5. The turn is appended to the token log and the KV is saved.
+6. Past the window, TAWT moves whole turns to the archive.
 
-The canonical state is the token log, owned by the session identity. A KV payload is an
-acceleration that can always be rebuilt from it, and a session can continue on another engine
-that shares the tokenizer by replaying it.
+Storage is embedded in the serving process (SQLite and LMDB); there is no separate service.
 
-## What it does
-
-| Function | Description |
-|---|---|
-| Identity-keyed persistence | Session state is stored and looked up by session identity, not by content hash, so the storage lookup has no cross-session content matching step. |
-| Restore instead of recompute | On reconnect, the stored KV payload is loaded into the engine; the token log is the fallback when the payload does not match the engine configuration. |
-| Turn-aligned window trim (TAWT) | When a session passes its window, whole turns move to a per-session archive without loss, keeping the system prefix. |
-| Retrieval of archived turns (RIG, Recall Injection Gate) | Archived turns are indexed with SQLite FTS5 (BM25); a gate with a relative-confidence threshold and a token budget decides what to inject on a later turn. |
-| Cross-engine continuation | A session continues on another engine by replaying the token log followed by prefill, given a shared tokenizer and a compatible model configuration. |
-
-Storage is embedded in the serving process: SQLite for sessions, token log, archive and
-control commands; LMDB for KV payloads. There is no separate service process.
+<p align="center">
+  <img src="docs/images/fig3-architecture.png" width="720" alt="llama.cpp, vLLM and SGLang with qml-router attached, saving to and restoring from the qml-router persistence tier (SQLite sessions and token log, LMDB KV payload)">
+</p>
 
 ## Results
 
-Measured with the engine's restore path modified as described in the paper.
-
-| Measurement | Result |
-|---|---|
-| 32K-token reconnect, RTX 4090 | 0.66 s restore vs 3.03 s recomputation |
-| 32K-token reconnect, Jetson AGX Orin at 30 W | 4.2 s vs 87.9 s (20.7x) |
-| 20,000-turn session (Llama-3.3-70B, H200) | no material increase in per-turn latency |
-| Cross-engine continuation | llama.cpp, vLLM and SGLang, by token-log replay followed by prefill |
-
-Regimes where recomputation is as fast or faster (short histories on a fast GPU) are
-reported in the paper.
-
-### KV restoration
-
-All rows use Llama-3.2-3B-Instruct unless the row names another model; every reconnect answer is checked against a value planted
-in its own history. Baseline = the same engine without qml-router.
+Llama-3.2-3B-Instruct unless noted; every reconnect answer is checked against a value planted in
+its own history. Baseline = the same engine without qml-router.
 
 <p align="center">
   <img src="docs/images/fig1ab-reconnect-density.png" width="34%" alt="Reconnect latency and short-request throughput as N users reconnect">
   <img src="docs/images/fig1c-reconnect-vs-history.png" width="64%" alt="Single-user reconnect latency versus history length">
 </p>
 
-Left: reconnect latency and short-request throughput as N users reconnect at once (latency over
-passing answers only: 29/30 qml-router, 30/30 baseline; throughput not answer-checked). Right:
-one user's reconnect latency versus history length; restoration stays near-flat.
+<sub>Left: N users reconnect at once (latency over passing answers only: 29/30 qml-router, 30/30
+baseline; throughput not answer-checked). Right: one user's reconnect latency versus history length.</sub>
 
-**Reconnect latency (llama.cpp)**
-
-| Condition | Baseline | qml-router | Ratio |
-|---|---|---|---|
-| 16 users reconnect at once, RTX 4090: slowest / median reconnect | 59.9 s / 10.0 s | 0.51 s / 0.49 s | — |
-| Same run: short-request throughput | 1.0 req/s | 29.0 req/s | 29x |
-| One user, 49K-token history, RTX 4090 | 14.5 s | 1.3 s | 11x |
-| 32K-token history, RTX 4090, 10 runs (median) | 5.433 s | 0.760 s | 7.1x |
-| 49K-token history, RTX 4090, 10 runs (median) | 14.400 s | 1.329 s | 10.8x |
-
-**Restore versus recomputation by storage and device (32K-token history)**
+**32K-token reconnect by storage and device**
 
 | Environment | Recompute | Restore | Ratio |
 |---|---|---|---|
-| RTX 4090, storage 0.55 GB/s (container) | 3.16 s | 2.24 s | 1.4x |
-| Same GPU, NVMe 1.6-1.9 GB/s (host) | 3.03 s | 0.66 s | 4.6x |
-| Jetson AGX Orin, MAXN | 23.93 s | 2.26 s | 10.6x |
-| Jetson AGX Orin, 30 W | 87.87 s | 4.24 s | 20.7x |
+| RTX 4090, storage 0.55 GB/s (container) | 3.16 s | 2.24 s | 1.4× |
+| Same GPU, NVMe 1.6-1.9 GB/s (host) | 3.03 s | 0.66 s | **4.6×** |
+| Jetson AGX Orin, MAXN | 23.93 s | 2.26 s | 10.6× |
+| Jetson AGX Orin, 30 W | 87.87 s | 4.24 s | **20.7×** |
 
-**Cost of adding qml-router (RTX 4090, 12 sessions per run, 3 runs)**
+Regimes where recomputation is as fast or faster (short histories on a fast GPU) are reported in
+the paper.
 
-| Engine | GPU memory | Latency per request |
-|---|---|---|
-| llama.cpp | +0 MiB | 225 -> 252 ms (+27) |
-| vLLM | +0 MiB | 180 -> 259 ms (+79) |
-| SGLang | +47 MiB | 166 -> 185 ms (+19) |
+<details>
+<summary><b>Reconnect latency under load</b> (llama.cpp, RTX 4090)</summary>
 
-**500-turn session past a 32K-token window: facts answered at turn 500**
+| Condition | Baseline | qml-router | Ratio |
+|---|---|---|---|
+| 16 users reconnect at once: slowest / median reconnect | 59.9 s / 10.0 s | 0.51 s / 0.49 s | — |
+| Same run: short-request throughput | 1.0 req/s | 29.0 req/s | 29× |
+| One user, 49K-token history | 14.5 s | 1.3 s | 11× |
+| 32K-token history, 10 runs (median) | 5.433 s | 0.760 s | 7.1× |
+| 49K-token history, 10 runs (median) | 14.400 s | 1.329 s | 10.8× |
+
+</details>
+
+<details>
+<summary><b>500-turn session past a 32K-token window</b> (facts answered at turn 500)</summary>
 
 <p align="center">
   <img src="docs/images/overflow-latency.png" width="560" alt="Per-turn p50 latency at turn 500, log scale, baseline and qml-router on five engine and device pairs, with the evicted facts answered">
 </p>
-
-Per-turn p50 latency at turn 500 (log scale); bar labels give the evicted facts answered.
 
 | Engine and device | Baseline | qml-router | Throughput (turns/s), baseline -> qml-router |
 |---|---|---|---|
@@ -222,10 +158,38 @@ Per-turn p50 latency at turn 500 (log scale); bar labels give the evicted facts 
 On vLLM and SGLang the baseline drops the history that passed the window and stays faster;
 qml-router keeps the history and answers the questions about it.
 
-## Models and hardware used in the experiments
+</details>
 
 <details>
-<summary>Every model run in the measurements, by device, including experiments that are not in the paper (GGUF models on llama.cpp; HF models on vLLM or SGLang)</summary>
+<summary><b>Cost of adding qml-router</b> (RTX 4090, 12 sessions per run, 3 runs)</summary>
+
+| Engine | GPU memory | Latency per request |
+|---|---|---|
+| llama.cpp | +0 MiB | 225 -> 252 ms (+27) |
+| vLLM | +0 MiB | 180 -> 259 ms (+79) |
+| SGLang | +47 MiB | 166 -> 185 ms (+19) |
+
+</details>
+
+<details>
+<summary><b>Comparison with persistent-KV systems</b></summary>
+
+✓ = supported, — = not provided, N/R = the cited work does not report the property (not taken as
+evidence of its absence). Cells reflect the cited publications and, for LMCache, its 2026 public
+documentation.
+
+| System | Canonical state | Identity-keyed session | Restart persistence | Heterogeneous engines | Lossless overflow archive | Selective history retrieval | Process isolation boundary | Encryption at rest | Correctness verification |
+|---|---|---|---|---|---|---|---|---|---|
+| LMCache | KV bytes (content hash) | prefix-keyed chunks; tenant salt, no session identity | ✓ (standalone daemon) | vLLM, SGLang | — | — | out-of-process daemon (IPC per operation) | ✓ (persistent tier) | N/R |
+| KVGov | KV bytes (content hash, principal salt) | prefix-keyed within a principal; no session identity | — | vLLM, llama.cpp | — | — | in-process (engine cache) | N/R | N/R |
+| CachedAttention | KV bytes | session-oriented | ✓ (hierarchical store) | single engine | — | — | N/R | N/R | N/R |
+| agent-memory | KV bytes (Q4) | prefix-keyed per agent (Q4 KV) | N/R | single runtime (MLX) | — | N/R | in-process (MLX runtime) | N/R | N/R |
+| **qml-router** (llama.cpp, vLLM, SGLang) | token record; KV derived | ✓ (`user::session`) | ✓ | ✓ | ✓ (TAWT) | ✓ (RIG) | in-process store (trust boundary = process) | — (roadmap) | ✓ |
+
+</details>
+
+<details>
+<summary><b>Models and hardware used in the experiments</b> (including experiments that are not in the paper)</summary>
 
 | Device | Model (precision, format) | Engine | Experiments | In the paper |
 |---|---|---|---|---|
@@ -248,44 +212,20 @@ qml-router keeps the history and answers the questions about it.
 
 </details>
 
-## Engine integration
+## Engines
 
 | Engine | Version used in the paper | Integration |
 |---|---|---|
 | llama.cpp | build b10141 (upstream commit `0d47ea742`) | Server patch plus a hook (llama.cpp has no storage extension point) |
 | vLLM | 0.26.0 | `KVConnector` plug-in, no engine-source modification |
 | SGLang | 0.5.16 | `HiCacheStorage` backend, no engine-source modification |
-| LMCache (comparison only) | 0.5.2 | Used as the content-keyed baseline in Section V-D |
+| LMCache (comparison only) | 0.5.2 | The content-keyed baseline in the paper's Section V-D |
 
-## Security assumptions
-
-The isolation results hold under two assumptions stated in the paper (Section VI-A):
-identities are assigned by a trusted gateway, and the serving process runs inside a
-trusted host boundary, because the embedded store is readable by any code in the engine
-process. The identity key is not an authentication or authorization mechanism. See
-[SECURITY.md](SECURITY.md).
-
-## Scope
-
-Cross-engine results assume engines that share a tokenizer vocabulary and a single host.
-Network filesystems and rotational media were not tested. The paper does not propose a
-new eviction algorithm, live KV-byte migration between engines, or a long-term-memory
-reasoning system.
-
-## License
-
-qml-router is dual-licensed:
-
-- **Open source:** GNU Affero General Public License, version 3 only (AGPL-3.0-only); see
-  [LICENSE](LICENSE). If you modify qml-router and offer it to users over a network, the
-  AGPL requires you to make your modified source available to those users.
-- **Commercial:** a separate commercial license from Korea Platform Service Technology
-  Co., Inc. for use that does not follow the AGPL terms (for example, a closed-source
-  product or service); see [LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md).
-
-Third-party notices are in [NOTICE](NOTICE). Contributions are accepted only with a
-contributor license agreement (CLA); see [CONTRIBUTING.md](CONTRIBUTING.md). Security
-reports: see [SECURITY.md](SECURITY.md).
+**Assumptions and scope.** Identities are assigned by a trusted gateway, and the serving process
+runs inside a trusted host boundary, because the embedded store is readable by any code in the
+engine process; the identity key is not an authentication mechanism ([SECURITY.md](SECURITY.md)).
+Cross-engine results assume a shared tokenizer vocabulary and a single host. Network filesystems
+and rotational media were not tested.
 
 ## Paper
 
@@ -293,10 +233,17 @@ reports: see [SECURITY.md](SECURITY.md).
 > Durable, Engine-Agnostic Sessions," *IEEE Access*, 2026 (accepted; manuscript ID
 > Access-2026-45930).
 
-Please cite the paper above. The DOI and a BibTeX entry will be added when the article is
-published.
+Please cite the paper above. The DOI and a BibTeX entry will be added when the article is published.
 
-## Contact
+## License
 
-jun@kpst.co.kr (Korea Platform Service Technology Co., Inc.) — questions, commercial license,
-security reports ([SECURITY.md](SECURITY.md)).
+Dual-licensed: **AGPL-3.0-only** ([LICENSE](LICENSE)) or a **commercial license** from Korea
+Platform Service Technology Co., Inc. ([LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md)) for use
+that does not follow the AGPL terms. Third-party notices: [NOTICE](NOTICE). Contributions require a
+contributor license agreement ([CONTRIBUTING.md](CONTRIBUTING.md)).
+
+<p align="center"><sub>
+"qml" stands for query-based machine learning; it is unrelated to the Qt QML language and to
+quantum machine learning.<br>
+Contact: <a href="mailto:jun@kpst.co.kr">jun@kpst.co.kr</a> — questions, commercial license, security reports
+</sub></p>
