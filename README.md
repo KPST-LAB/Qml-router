@@ -362,7 +362,8 @@ third_party/llama.cpp/build/bin/llama-server \
   -c 131072 --kv-unified -np 8 -ctk q4_0 -ctv q4_0 --cache-ram 0 --port 8397 \
   --qml-session-store store/qml.db --qml-lmdb-store store/qml_lmdb
 
-# a request sends only the new turn with a session id; the server prepends the stored history
+# a request sends only the new turn with a session id;
+# the server prepends the stored history
 curl http://127.0.0.1:8397/completion -d '{
   "prompt": "and what was my name again?",
   "session_id": "alice::chat-1", "cache_prompt": true, "n_predict": 64}'
@@ -382,7 +383,8 @@ VLLM_PLUGINS="" PYTHONPATH=hooks/vllm python3 -m vllm.entrypoints.openai.api_ser
       "qml_lmdb_path": "store/qml_lmdb", "qml_self_url": "http://127.0.0.1:8000",
       "qml_token_log": "off"}}'
 
-# session layer: token log, window trim (TAWT) and archive recall (RIG) in front of the engine
+# session layer in front of the engine:
+# token log, window trim (TAWT) and archive recall (RIG)
 python3 router/qml_openai_gateway.py --engine vllm --engine-url http://127.0.0.1:8000 \
   --model unsloth/Llama-3.2-3B-Instruct --tokenizer <model directory> \
   --store-db store/qml.db --store-lmdb store/qml_lmdb --window 3000 --port 8090
@@ -434,8 +436,9 @@ To check a result, compare the new log with the frozen one in `artifact/paper/lo
 
 ```bash
 for t in unit_sqlite_save_tx unit_blob_fallback unit_blob_sweep unit_kv_owner; do
-  cc -I include -I storage/sqlite -I storage/lmdb tests/unit/$t.c -L build -lqml_session_store \
-     -llmdb -lsqlite3 -lcrypto -lpthread -o build/$t && LD_LIBRARY_PATH=build build/$t /tmp
+  cc -I include -I storage/sqlite -I storage/lmdb tests/unit/$t.c -L build \
+     -lqml_session_store -llmdb -lsqlite3 -lcrypto -lpthread -o build/$t \
+     && LD_LIBRARY_PATH=build build/$t /tmp
 done
 cc -I include -I storage/sqlite tests/unit/unit_rig.c core/qml_rig.c -o build/unit_rig \
   && build/unit_rig
