@@ -51,8 +51,8 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 
 | Date | <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
 |---|---|
-| 2026-10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
-| 2026-10 | This repository opens; the code follows the final publication. |
+| 2026‑10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
+| 2026‑10 | This repository opens; the code follows the final publication. |
 
 <a id="two-ways-to-run"></a>
 <h2 align="center">Two ways to run</h2>
