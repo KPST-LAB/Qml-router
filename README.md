@@ -14,11 +14,11 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
   <a href="#license"><img src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue" alt="License: AGPL-3.0 and commercial"></a>
   <a href="#paper"><img src="https://img.shields.io/badge/IEEE%20Access-accepted-2ea44f" alt="Paper: IEEE Access, accepted"></a>
   <a href="#engines"><img src="https://img.shields.io/badge/engines-llama.cpp%20%7C%20vLLM%20%7C%20SGLang%20%7C%20qml--engine-555" alt="Engines: llama.cpp, vLLM, SGLang, qml-engine"></a>
-  <a href="#quick-start"><img src="https://img.shields.io/badge/code-released-2ea44f" alt="Code: released"></a>
+  <a href="#how-to-run"><img src="https://img.shields.io/badge/code-released-2ea44f" alt="Code: released"></a>
 </p>
 
 <p align="center">
-  <a href="#quick-start">Quick start</a> ·
+  <a href="#how-to-run">How to run</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#qml-engine">qml-engine</a> ·
   <a href="#results">Results</a> ·
@@ -55,6 +55,123 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 |---|---|
 | 2026‑10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
 | 2026‑10 | Source code, benchmark programs and the paper's artifact released. |
+
+<a id="how-to-run"></a>
+<h2 align="center">How to run</h2>
+
+| Item | Tested with <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
+|---|---|
+| OS | Ubuntu 22.04 and 18.04 (x86_64); JetPack on the Jetson AGX Orin |
+| GPU and CUDA | RTX 4090 (CUDA 11.8 to 12.x), H200 (CUDA 13.0), Jetson AGX Orin (CUDA 13.2); a CPU build also works |
+| Engines | llama.cpp `0d47ea742` with the qml-router patch (built by the setup script), vLLM 0.26.0, SGLang 0.5.16 (`requirements-engines.txt`) |
+| Python | the vLLM and SGLang integrations, the session layer and the benchmarks (`requirements-bench.txt`) |
+
+**1. Build**
+
+```bash
+sudo apt install cmake build-essential libsqlite3-dev liblmdb-dev libssl-dev
+
+# llama.cpp at the paper's commit with the qml-router patch (into third_party/llama.cpp)
+scripts/setup_llama_cpp.sh --cuda 89      # 89 = RTX 4090, 87 = Jetson AGX Orin, 90 = H200; --cpu without CUDA
+
+# store library used by the vLLM connector and the session layer (build/libqml_session_store.so)
+cmake -S . -B build && cmake --build build --target qml_session_store_shared -j
+```
+
+**2. Model**
+
+```bash
+# llama.cpp reads GGUF: convert the Hugging Face weights of Llama-3.2-3B-Instruct to F16
+python3 third_party/llama.cpp/convert_hf_to_gguf.py <Hugging Face model directory> \
+  --outtype f16 --outfile models/Llama-3.2-3B-Instruct-F16.gguf
+# vLLM and SGLang load unsloth/Llama-3.2-3B-Instruct from Hugging Face directly
+```
+
+**3. llama.cpp with qml-router**
+
+```bash
+third_party/llama.cpp/build/bin/llama-server \
+  -m models/Llama-3.2-3B-Instruct-F16.gguf -ngl 99 -fa on \
+  -c 131072 --kv-unified -np 8 -ctk q4_0 -ctv q4_0 --cache-ram 0 --port 8397 \
+  --qml-session-store store/qml.db --qml-lmdb-store store/qml_lmdb
+
+# a request sends only the new turn with a session id; the server prepends the stored history
+curl http://127.0.0.1:8397/completion -d '{
+  "prompt": "and what was my name again?",
+  "session_id": "alice::chat-1", "cache_prompt": true, "n_predict": 64}'
+```
+
+**4. vLLM with qml-router, behind the session layer**
+
+```bash
+pip install vllm==0.26.0
+mkdir -p store
+VLLM_PLUGINS="" PYTHONPATH=hooks/vllm python3 -m vllm.entrypoints.openai.api_server \
+  --model unsloth/Llama-3.2-3B-Instruct --port 8000 \
+  --kv-transfer-config '{"kv_connector":"QmlVllmConnector","kv_connector_module_path":"qml_vllm_connector","kv_role":"kv_both","kv_buffer_device":"cpu","kv_connector_extra_config":{"qml_sqlite_path":"store/qml.db","qml_lmdb_path":"store/qml_lmdb","qml_self_url":"http://127.0.0.1:8000","qml_token_log":"off"}}'
+
+# session layer: token log, window trim (TAWT) and archive recall (RIG) in front of the engine
+python3 router/qml_openai_gateway.py --engine vllm --engine-url http://127.0.0.1:8000 \
+  --model unsloth/Llama-3.2-3B-Instruct --tokenizer <model directory> \
+  --store-db store/qml.db --store-lmdb store/qml_lmdb --window 3000 --port 8090
+
+curl http://127.0.0.1:8090/v1/chat/completions -H 'Content-Type: application/json' -d '{
+  "session_id": "alice::chat-1", "max_tokens": 64,
+  "messages": [{"role": "user", "content": "and what was my name again?"}]}'
+```
+
+**5. Run a paper experiment**
+
+Each experiment has a folder in `tests/paper/` with its run scripts and a README (model, engine,
+hardware, frozen log). The scripts read `REPO` (repository root; models under `$REPO/models/`)
+and, where they write stores, `BENCH` (a folder on the storage under test); they start and stop
+only their own servers.
+
+```bash
+REPO=$PWD bash tests/paper/tab07_restore_recompute_boundary/tab07_hw_nvme.sh                       # Table 7: 8K and 32K restore vs recompute
+REPO=$PWD bash tests/paper/fig01ab_reconnect_density/fig01_density.sh                              # Fig. 1(a)-(b)
+REPO=$PWD BENCH=/mnt/nvme/bench bash tests/paper/tab05_context_overflow_500turn/tab05_500turn_4090.sh llama qml   # Table 5, one engine and mode
+```
+
+| Paper item | Script <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
+|---|---|
+| Fig. 1(a)-(b) | `tests/paper/fig01ab_reconnect_density/fig01_density.sh` |
+| Fig. 1(c) | `tests/paper/fig01c_reconnect_vs_history_length/fig01_crossover.sh` |
+| Table 4 | `tests/paper/tab04_adoption_cost/tab04_adoption_llama.sh`, `tab04_adoption_vllm_sglang.sh` |
+| Table 5, Fig. 4 | `tests/paper/tab05_context_overflow_500turn/tab05_500turn_4090.sh ENGINE MODE` (`llama`/`vllm`/`sglang`, `stock`/`qml`) |
+| Table 6 | `tests/paper/tab06_repeated_runs/tab06_repeat_crossover.sh`, `tab06_repeat_mixed.sh` |
+| Table 7 | `tests/paper/tab07_restore_recompute_boundary/tab07_hw_nvme.sh` |
+| Section V-B1 | `tests/paper/secVB1_session_beyond_limits/secVB1_20000turn_session.sh`, `_recall.sh`, `_latency.sh` |
+| Section V-B2 | `tests/paper/secVB2_persistence_across_restarts/secVB2_restart_recovery.sh` |
+| Fig. 5 | `tests/paper/fig05_session_portability/fig05_continuation_vllm.sh` |
+| Fig. 6 | `tests/paper/fig06_longmemeval_archive_recall/fig06_longmemeval_archive_recall.sh` |
+| Table 11 | `tests/paper/tab11_lmcache_warm_vs_warm/tab11_lmcache_mp.sh`, `tab11_qml_connector.sh` |
+| Tables 13, 14, Section III-B | `artifact/paper/scripts/reviewer1_edit_17_*`, `reviewer1_edit_18_*`, `reviewer1_edit_10_*` |
+
+To check a result, compare the new log with the frozen one in `artifact/paper/logs/`;
+`artifact/paper/VERSIONS.txt` maps every table and figure to its log, script and data, and
+`artifact/paper/reader.txt` says where the number is in each log.
+
+**6. Unit tests (no GPU)**
+
+```bash
+for t in unit_sqlite_save_tx unit_blob_fallback unit_blob_sweep unit_kv_owner; do
+  cc -I include -I storage/sqlite -I storage/lmdb tests/unit/$t.c -L build -lqml_session_store \
+     -llmdb -lsqlite3 -lcrypto -lpthread -o build/$t && LD_LIBRARY_PATH=build build/$t /tmp
+done
+cc -I include -I storage/sqlite tests/unit/unit_rig.c core/qml_rig.c -o build/unit_rig && build/unit_rig
+```
+
+| Path | Contents |
+|---|---|
+| `core/`, `storage/`, `include/` | C session core, SQLite schema and store, LMDB payload store, public C API |
+| `hooks/` | Engine integrations: `llama.cpp/`, `vllm/` (the SGLang backend follows) |
+| `patches/` | The llama.cpp server patch |
+| `router/` | Session layer for vLLM and SGLang (Python, OpenAI-compatible) |
+| `comm/` | SQL/UDF communication layer (control-plane experiments) |
+| `tests/` | Benchmark programs, unit tests, and the run scripts of every paper experiment (`tests/paper/`) |
+| `artifact/` | The supplementary material published with the paper: logs, scripts, data, result-to-file map, SHA-256 manifest |
+| `docs/` | API specification, building and running, engine integration documents |
 
 <a id="two-ways-to-run"></a>
 <h2 align="center">Two ways to run</h2>
@@ -320,107 +437,6 @@ documentation.
 | NVIDIA B200 (183 GB) | Qwen3-30B-A3B (GGUF Q3_K_M, Q4_K, Q8; BF16 on SGLang 0.5.20), gpt-oss-20b, gpt-oss-120b (also on vLLM 0.30.0), Qwen3.5-35B-A3B, Llama-3.1-8B-Instruct Q8_0, Llama-3.2-3B-Instruct F16, Qwen3-32B Q8_0, a 70B Q4_K_M model; architecture checks on Qwen3.5-0.8B/4B, Gemma 3/4, DeepSeek-V2-Lite | qml-engine | 20,000-turn memory stress test (500 questions); 32K restore and time to first token; 27-question weather recall | No |
 
 </details>
-
-<a id="quick-start"></a>
-<h2 align="center">Quick start</h2>
-
-**1. Build**
-
-```bash
-sudo apt install cmake build-essential libsqlite3-dev liblmdb-dev libssl-dev
-
-# llama.cpp at the paper's commit with the qml-router patch (into third_party/llama.cpp)
-scripts/setup_llama_cpp.sh --cuda 89      # 89 = RTX 4090, 87 = Jetson AGX Orin, 90 = H200; --cpu without CUDA
-
-# store library used by the vLLM connector and the session layer (build/libqml_session_store.so)
-cmake -S . -B build && cmake --build build --target qml_session_store_shared -j
-```
-
-**2. llama.cpp with qml-router**
-
-```bash
-third_party/llama.cpp/build/bin/llama-server \
-  -m models/Llama-3.2-3B-Instruct-F16.gguf -ngl 99 -fa on \
-  -c 131072 --kv-unified -np 8 -ctk q4_0 -ctv q4_0 --cache-ram 0 --port 8397 \
-  --qml-session-store store/qml.db --qml-lmdb-store store/qml_lmdb
-
-# a request sends only the new turn with a session id; the server prepends the stored history
-curl http://127.0.0.1:8397/completion -d '{
-  "prompt": "and what was my name again?",
-  "session_id": "alice::chat-1", "cache_prompt": true, "n_predict": 64}'
-```
-
-**3. vLLM with qml-router, behind the session layer**
-
-```bash
-pip install vllm==0.26.0
-mkdir -p store
-VLLM_PLUGINS="" PYTHONPATH=hooks/vllm python3 -m vllm.entrypoints.openai.api_server \
-  --model unsloth/Llama-3.2-3B-Instruct --port 8000 \
-  --kv-transfer-config '{"kv_connector":"QmlVllmConnector","kv_connector_module_path":"qml_vllm_connector","kv_role":"kv_both","kv_buffer_device":"cpu","kv_connector_extra_config":{"qml_sqlite_path":"store/qml.db","qml_lmdb_path":"store/qml_lmdb","qml_self_url":"http://127.0.0.1:8000","qml_token_log":"off"}}'
-
-# session layer: token log, window trim (TAWT) and archive recall (RIG) in front of the engine
-python3 router/qml_openai_gateway.py --engine vllm --engine-url http://127.0.0.1:8000 \
-  --model unsloth/Llama-3.2-3B-Instruct --tokenizer <model directory> \
-  --store-db store/qml.db --store-lmdb store/qml_lmdb --window 3000 --port 8090
-
-curl http://127.0.0.1:8090/v1/chat/completions -H 'Content-Type: application/json' -d '{
-  "session_id": "alice::chat-1", "max_tokens": 64,
-  "messages": [{"role": "user", "content": "and what was my name again?"}]}'
-```
-
-**4. Run a paper experiment**
-
-Each experiment has a folder in `tests/paper/` with its run scripts and a README (model, engine,
-hardware, frozen log). The scripts read `REPO` (repository root; models under `$REPO/models/`)
-and, where they write stores, `BENCH` (a folder on the storage under test); they start and stop
-only their own servers.
-
-```bash
-REPO=$PWD bash tests/paper/tab07_restore_recompute_boundary/tab07_hw_nvme.sh                       # Table 7: 8K and 32K restore vs recompute
-REPO=$PWD bash tests/paper/fig01ab_reconnect_density/fig01_density.sh                              # Fig. 1(a)-(b)
-REPO=$PWD BENCH=/mnt/nvme/bench bash tests/paper/tab05_context_overflow_500turn/tab05_500turn_4090.sh llama qml   # Table 5, one engine and mode
-```
-
-| Paper item | Script <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
-|---|---|
-| Fig. 1(a)-(b) | `tests/paper/fig01ab_reconnect_density/fig01_density.sh` |
-| Fig. 1(c) | `tests/paper/fig01c_reconnect_vs_history_length/fig01_crossover.sh` |
-| Table 4 | `tests/paper/tab04_adoption_cost/tab04_adoption_llama.sh`, `tab04_adoption_vllm_sglang.sh` |
-| Table 5, Fig. 4 | `tests/paper/tab05_context_overflow_500turn/tab05_500turn_4090.sh ENGINE MODE` (`llama`/`vllm`/`sglang`, `stock`/`qml`) |
-| Table 6 | `tests/paper/tab06_repeated_runs/tab06_repeat_crossover.sh`, `tab06_repeat_mixed.sh` |
-| Table 7 | `tests/paper/tab07_restore_recompute_boundary/tab07_hw_nvme.sh` |
-| Section V-B1 | `tests/paper/secVB1_session_beyond_limits/secVB1_20000turn_session.sh`, `_recall.sh`, `_latency.sh` |
-| Section V-B2 | `tests/paper/secVB2_persistence_across_restarts/secVB2_restart_recovery.sh` |
-| Fig. 5 | `tests/paper/fig05_session_portability/fig05_continuation_vllm.sh` |
-| Fig. 6 | `tests/paper/fig06_longmemeval_archive_recall/fig06_longmemeval_archive_recall.sh` |
-| Table 11 | `tests/paper/tab11_lmcache_warm_vs_warm/tab11_lmcache_mp.sh`, `tab11_qml_connector.sh` |
-| Tables 13, 14, Section III-B | `artifact/paper/scripts/reviewer1_edit_17_*`, `reviewer1_edit_18_*`, `reviewer1_edit_10_*` |
-
-To check a result, compare the new log with the frozen one in `artifact/paper/logs/`;
-`artifact/paper/VERSIONS.txt` maps every table and figure to its log, script and data, and
-`artifact/paper/reader.txt` says where the number is in each log.
-
-**5. Unit tests (no GPU)**
-
-```bash
-for t in unit_sqlite_save_tx unit_blob_fallback unit_blob_sweep unit_kv_owner; do
-  cc -I include -I storage/sqlite -I storage/lmdb tests/unit/$t.c -L build -lqml_session_store \
-     -llmdb -lsqlite3 -lcrypto -lpthread -o build/$t && LD_LIBRARY_PATH=build build/$t /tmp
-done
-cc -I include -I storage/sqlite tests/unit/unit_rig.c core/qml_rig.c -o build/unit_rig && build/unit_rig
-```
-
-| Path | Contents |
-|---|---|
-| `core/`, `storage/`, `include/` | C session core, SQLite schema and store, LMDB payload store, public C API |
-| `hooks/` | Engine integrations: `llama.cpp/`, `vllm/` (the SGLang backend follows) |
-| `patches/` | The llama.cpp server patch |
-| `router/` | Session layer for vLLM and SGLang (Python, OpenAI-compatible) |
-| `comm/` | SQL/UDF communication layer (control-plane experiments) |
-| `tests/` | Benchmark programs, unit tests, and the run scripts of every paper experiment (`tests/paper/`) |
-| `artifact/` | The supplementary material published with the paper: logs, scripts, data, result-to-file map, SHA-256 manifest |
-| `docs/` | API specification, building and running, engine integration documents |
 
 <a id="documentation"></a>
 <h2 align="center">Documentation</h2>
