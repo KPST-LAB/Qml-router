@@ -29,11 +29,12 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 </p>
 
 <p align="center">
-  <b>qml-router keeps a conversation's state outside the LLM serving process.</b><br>
+  <b>qml-router is a persistent KV cache session layer for LLM serving on edge and on-premises hardware.</b><br>
   qml stands for query-based machine learning; the project is not related to Qt QML.<br>
-  A session survives process restarts, a reconnect restores the KV cache instead of recomputing it,<br>
-  history past the context window is archived and retrieved when a question needs it,<br>
-  and a session can continue on another engine. Built for on-premises servers and edge devices.
+  It keeps session state outside the inference engine: a session survives process restarts,<br>
+  a reconnect restores the KV cache instead of recomputing it, history past the context window<br>
+  is archived without loss and retrieved when a question needs it, and a session can continue<br>
+  on another engine (llama.cpp, vLLM, SGLang, qml-engine).
 </p>
 
 <table>
