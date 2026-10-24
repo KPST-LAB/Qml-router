@@ -56,8 +56,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 
 > [!NOTE]
 > This repository holds the source code, the benchmark programs and the paper's experiment artifact.
-> The SGLang storage backend (`hooks/sglang/`) follows shortly; qml-engine, the own engine, follows
-> at a later release.
+> qml-engine, the own engine, follows at a later release.
 
 <a id="news"></a>
 <h2 align="center">News</h2>
@@ -449,7 +448,7 @@ cc -I include -I storage/sqlite tests/unit/unit_rig.c core/qml_rig.c -o build/un
 | Path | Contents |
 |---|---|
 | `core/`, `storage/`, `include/` | C session core, SQLite schema and store, LMDB payload store, public C API |
-| `hooks/` | Engine integrations: `llama.cpp/`, `vllm/` (the SGLang backend follows) |
+| `hooks/` | Engine integrations: `llama.cpp/`, `vllm/`, `sglang/` |
 | `patches/` | The llama.cpp server patch |
 | `router/` | Session layer for vLLM and SGLang (Python, OpenAI-compatible) |
 | `comm/` | SQL/UDF communication layer (control-plane experiments) |

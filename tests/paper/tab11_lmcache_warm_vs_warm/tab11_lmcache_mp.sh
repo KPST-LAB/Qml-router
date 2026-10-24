@@ -5,6 +5,7 @@
 #------------------------------------------------------------
 R=$REPO/tests/_lm/results7_mp.log
 DN=$REPO/tests/_lm
+mkdir -p $DN   # the result file below lives in this folder
 exec > $R 2>&1
 echo "=== TEST 7 MP MODE: $(date) ==="
 free -g | head -2

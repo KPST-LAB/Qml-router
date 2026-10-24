@@ -5,6 +5,7 @@
 #------------------------------------------------------------
 R=$REPO/tests/_lm/results8.log
 DN=$REPO/tests/_lm
+mkdir -p $DN   # the result file below lives in this folder
 exec > $R 2>&1
 echo "=== TEST 8: qml connector (async save + pipelined load) warm, $(date) ==="
 
