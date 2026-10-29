@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use qml-router, please cite the paper below."
+title: "qml-router"
+abstract: "Persistent KV cache sessions for LLM serving on edge and on-premises hardware: the session state is an identity-keyed token log in an embedded store, and the KV caches of llama.cpp, vLLM and SGLang are restored from it instead of being recomputed."
+type: software
+authors:
+  - family-names: Lee
+    given-names: Junhyeok
+  - family-names: Kim
+    given-names: Hyong-Shik
+repository-code: "https://github.com/KPST-LAB/Qml-router"
+url: "https://doi.org/10.1109/ACCESS.2026.3747856"
+license: AGPL-3.0-only
+version: "0.1"
+keywords:
+  - llm-serving
+  - kv-cache
+  - session-persistence
+  - llama.cpp
+  - vllm
+  - sglang
+preferred-citation:
+  type: article
+  title: "Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture for Durable, Engine-Agnostic Sessions"
+  authors:
+    - family-names: Lee
+      given-names: Junhyeok
+    - family-names: Kim
+      given-names: Hyong-Shik
+  journal: "IEEE Access"
+  volume: 14
+  year: 2026
+  doi: "10.1109/ACCESS.2026.3747856"
+  url: "https://ieeexplore.ieee.org/document/11754965"
+  notes: "Early Access"
