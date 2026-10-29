@@ -12,7 +12,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 
 <p align="center">
   <a href="#license"><img src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue" alt="License: AGPL-3.0 and commercial"></a>
-  <a href="#paper"><img src="https://img.shields.io/badge/IEEE%20Access-accepted-2ea44f" alt="Paper: IEEE Access, accepted"></a>
+  <a href="https://doi.org/10.1109/ACCESS.2026.3747856"><img src="https://img.shields.io/badge/IEEE%20Access-10.1109%2FACCESS.2026.3747856-2ea44f" alt="Paper: IEEE Access, DOI 10.1109/ACCESS.2026.3747856"></a>
   <a href="#engines"><img src="https://img.shields.io/badge/engines-llama.cpp%20%7C%20vLLM%20%7C%20SGLang%20%7C%20qml--engine-555" alt="Engines: llama.cpp, vLLM, SGLang, qml-engine"></a>
   <a href="#how-to-run"><img src="https://img.shields.io/badge/code-released-2ea44f" alt="Code: released"></a>
 </p>
@@ -65,7 +65,7 @@ Copyright (c) 2026 Korea Platform Service Technology Co., Inc. All rights reserv
 
 | Date | <img src="docs/images/spacer.png" width="900" height="0" align="left" alt=""> |
 |---|---|
-| 2026‑10 | The paper on qml-router is accepted by *IEEE Access* ([Paper](#paper)). |
+| 2026‑10 | The paper on qml-router is published in *IEEE Access* (Early Access, [IEEE Xplore](https://ieeexplore.ieee.org/document/11754965), DOI [10.1109/ACCESS.2026.3747856](https://doi.org/10.1109/ACCESS.2026.3747856)). |
 | 2026‑10 | Source code, benchmark programs and the paper's artifact released. |
 
 <a id="two-ways-to-run"></a>
@@ -517,9 +517,23 @@ cc -I include -I storage/sqlite tests/unit/unit_rig.c core/qml_rig.c -o build/un
 
 <p align="center">
   <i>"Persistent Session-State Management for LLM Serving: An Identity-Keyed Architecture<br>
-  for Durable, Engine-Agnostic Sessions,"</i> IEEE Access, 2026 (accepted; manuscript ID Access-2026-49950).<br>
-  Please cite the paper above. The DOI and a BibTeX entry will be added when the article is published.
+  for Durable, Engine-Agnostic Sessions,"</i> <i>IEEE Access</i>, vol. 14, 2026 (Early Access).<br>
+  DOI: <a href="https://doi.org/10.1109/ACCESS.2026.3747856">10.1109/ACCESS.2026.3747856</a> ·
+  <a href="https://ieeexplore.ieee.org/document/11754965">IEEE Xplore</a>
 </p>
+
+```bibtex
+@article{lee2026persistent,
+  author  = {Lee, Junhyeok and Kim, Hyong-Shik},
+  title   = {Persistent Session-State Management for {LLM} Serving: An Identity-Keyed
+             Architecture for Durable, Engine-Agnostic Sessions},
+  journal = {IEEE Access},
+  volume  = {14},
+  year    = {2026},
+  doi     = {10.1109/ACCESS.2026.3747856},
+  note    = {Early Access}
+}
+```
 
 <a id="license"></a>
 <h2 align="center">License</h2>
